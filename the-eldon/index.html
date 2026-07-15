@@ -236,6 +236,15 @@ footer{background:var(--navy-900);color:rgba(248,242,230,.7);padding:3rem var(--
 @media(max-width:719px){body{padding-bottom:4.6rem;}}
 
 /* ============================ REDUCED MOTION ============================ */
+/* ============================ MOBILE POLISH ============================ */
+@media(max-width:560px){
+  .hero__inner{padding-bottom:6.2rem;}          /* clear the sticky call bar so the rating shows */
+  .hero .kicker{font-size:.62rem;letter-spacing:.2em;}
+  .hero .kicker::before{width:1.3rem;}
+  .hero h1{font-size:clamp(2.7rem,13vw,3.6rem);}
+  .hero .sub{font-size:1.02rem;}
+}
+
 @media(prefers-reduced-motion:reduce){
   *{animation:none !important;scroll-behavior:auto !important;}
   .reveal{opacity:1 !important;transform:none !important;transition:none !important;}
