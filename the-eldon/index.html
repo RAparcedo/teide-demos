@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>The Eldon · British Family-Run Bar · Playa Paraíso, Costa Adeje</title>
+<meta name="description" content="The Eldon — Playa Paraíso's home from home. A British family-run bar in the Costa Adeje sun since 1998. Proper pints, cocktails on the terrace, best tunes & chat." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2312263a'/%3E%3Ccircle cx='16' cy='13' r='6' fill='%23e88a3c'/%3E%3Ctext x='16' y='27' font-family='Georgia,serif' font-size='11' fill='%23f7f1e6' text-anchor='middle' font-weight='700'%3EE%3C/text%3E%3C/svg%3E" />
+
+<style>
+/* ============================ FONTS (self-hosted DNA: editorial-serif) ============================ */
+@font-face{font-family:"Fraunces";src:url("assets/fonts/display.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap;}
+@font-face{font-family:"Inter";src:url("assets/fonts/body.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap;}
+@font-face{font-family:"PlexMono";src:url("assets/fonts/mono.woff2") format("woff2");font-weight:400 600;font-style:normal;font-display:swap;}
+
+/* ============================ TOKENS ============================ */
+:root{
+  --navy:#12263a;         /* deep marine — their railing blue, darkened */
+  --navy-900:#0c1a29;
+  --marine:#1d4e77;       /* mid railing blue */
+  --sun:#e2802f;          /* sunset amber */
+  --sun-soft:#f0a95c;
+  --coral:#d9673f;        /* terracotta warmth for accents */
+  --cream:#f8f2e6;        /* warm paper ground */
+  --cream-2:#efe5d2;
+  --card:#fffdf8;
+  --ink:#1a2432;
+  --muted:#5b6b7b;
+  --line:rgba(18,38,58,.14);
+  --shadow:0 1px 2px rgba(18,38,58,.05),0 12px 34px -12px rgba(18,38,58,.22);
+  --shadow-lg:0 2px 4px rgba(18,38,58,.06),0 30px 60px -20px rgba(18,38,58,.32);
+  --font-display:"Fraunces",Georgia,"Times New Roman",serif;
+  --font-body:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  --font-mono:"PlexMono","IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --wrap:1180px;
+  --pad:clamp(1.25rem,5vw,3rem);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{
+  font-family:var(--font-body);
+  color:var(--ink);
+  background:var(--cream);
+  line-height:1.6;
+  overflow-x:hidden;
+  font-size:clamp(1rem,.96rem + .2vw,1.075rem);
+  letter-spacing:.005em;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+
+h1,h2,h3{font-family:var(--font-display);font-weight:560;line-height:1.02;letter-spacing:-.015em;}
+.serif-it{font-style:italic;}
+
+.kicker{
+  font-family:var(--font-mono);
+  font-size:.72rem;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  font-weight:500;
+  color:var(--coral);
+  display:inline-flex;align-items:center;gap:.7em;
+}
+.kicker::before{content:"";width:1.9rem;height:1px;background:var(--coral);opacity:.7;}
+.kicker.center::after{content:"";width:1.9rem;height:1px;background:var(--coral);opacity:.7;}
+
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--pad);}
+section{position:relative;}
+
+/* ============================ BUTTONS ============================ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.55em;
+  font-family:var(--font-mono);font-size:.82rem;letter-spacing:.06em;font-weight:500;
+  text-transform:uppercase;
+  padding:.95em 1.5em;border-radius:2px;cursor:pointer;border:1px solid transparent;
+  transition:transform .18s ease,background .18s ease,color .18s ease,box-shadow .18s ease;
+  white-space:nowrap;
+}
+.btn svg{width:1.05em;height:1.05em;}
+.btn-primary{background:var(--sun);color:#2a1602;box-shadow:0 8px 20px -8px rgba(226,128,47,.7);}
+.btn-primary:hover{background:var(--sun-soft);transform:translateY(-2px);}
+.btn-ghost{background:transparent;color:var(--cream);border-color:rgba(248,242,230,.42);}
+.btn-ghost:hover{background:rgba(248,242,230,.12);border-color:rgba(248,242,230,.8);transform:translateY(-2px);}
+.btn-dark{background:var(--navy);color:var(--cream);}
+.btn-dark:hover{background:var(--marine);transform:translateY(-2px);}
+
+/* ============================ HEADER ============================ */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:.85rem var(--pad);
+  transition:background .3s ease,box-shadow .3s ease,padding .3s ease;
+}
+header.scrolled{background:rgba(248,242,230,.94);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line);}
+.brand{display:flex;flex-direction:column;line-height:1;color:var(--cream);transition:color .3s ease;}
+header.scrolled .brand{color:var(--navy);}
+.brand .name{font-family:var(--font-display);font-size:1.42rem;font-weight:600;letter-spacing:-.01em;}
+.brand .est{font-family:var(--font-mono);font-size:.56rem;letter-spacing:.34em;text-transform:uppercase;margin-top:.32em;opacity:.85;}
+.head-right{display:flex;align-items:center;gap:.75rem;}
+
+/* language toggle */
+.lang{display:inline-flex;border:1px solid rgba(248,242,230,.45);border-radius:2px;overflow:hidden;font-family:var(--font-mono);font-size:.72rem;letter-spacing:.08em;}
+header.scrolled .lang{border-color:var(--line);}
+.lang button{background:transparent;border:0;color:var(--cream);padding:.42em .72em;cursor:pointer;font:inherit;transition:background .18s,color .18s;text-transform:uppercase;}
+header.scrolled .lang button{color:var(--muted);}
+.lang button[aria-pressed="true"]{background:var(--sun);color:#2a1602;}
+.head-call{display:none;}
+@media(min-width:720px){.head-call{display:inline-flex;}}
+
+/* ============================ HERO ============================ */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;background:var(--navy-900);}
+.hero__media{position:absolute;inset:0;z-index:0;overflow:hidden;}
+.hero__media img{
+  position:absolute;inset:-12% 0;width:100%;height:124%;object-fit:cover;object-position:center 42%;
+  will-change:transform;transform:scale(1.06);
+}
+.hero__veil{position:absolute;inset:0;z-index:1;
+  background:
+    linear-gradient(180deg,rgba(10,20,33,.55) 0%,rgba(10,20,33,.12) 30%,rgba(10,20,33,.35) 62%,rgba(9,17,28,.9) 100%),
+    radial-gradient(120% 80% at 20% 108%,rgba(226,128,47,.28),transparent 60%);
+}
+.hero__inner{position:relative;z-index:2;width:100%;max-width:var(--wrap);margin-inline:auto;padding:0 var(--pad) clamp(2.6rem,7vh,5rem);color:var(--cream);}
+.hero h1{font-size:clamp(2.9rem,9vw,6.6rem);color:var(--cream);max-width:15ch;text-shadow:0 2px 30px rgba(0,0,0,.35);}
+.hero h1 em{color:var(--sun-soft);}
+.hero .sub{font-size:clamp(1.05rem,1.4vw,1.3rem);max-width:44ch;margin-top:1.15rem;color:rgba(248,242,230,.9);}
+.hero .kicker{color:var(--sun-soft);margin-bottom:1.4rem;}
+.hero .kicker::before{background:var(--sun-soft);}
+.hero__cta{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.9rem;}
+.hero__rating{display:flex;align-items:center;gap:.6rem;margin-top:1.9rem;font-family:var(--font-mono);font-size:.8rem;letter-spacing:.05em;color:rgba(248,242,230,.85);}
+.stars{color:var(--sun-soft);letter-spacing:.12em;font-size:.95rem;}
+.scroll-hint{position:absolute;left:50%;bottom:1.4rem;transform:translateX(-50%);z-index:2;font-family:var(--font-mono);font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(248,242,230,.6);display:flex;flex-direction:column;align-items:center;gap:.5rem;}
+.scroll-hint span{width:1px;height:2.2rem;background:linear-gradient(rgba(248,242,230,.6),transparent);animation:pulse 2.2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:.3;transform:scaleY(.7)}50%{opacity:1;transform:scaleY(1)}}
+
+/* ============================ REVEAL ============================ */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1);}
+.reveal.in{opacity:1;transform:none;}
+.reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}
+
+/* ============================ THE LOCAL (about) ============================ */
+.local{padding:clamp(4.5rem,10vh,7.5rem) 0;background:var(--cream);}
+.local__grid{display:grid;grid-template-columns:1fr;gap:clamp(2rem,5vw,4rem);align-items:center;}
+@media(min-width:900px){.local__grid{grid-template-columns:1.05fr .95fr;}}
+.local h2{font-size:clamp(2rem,4.4vw,3.4rem);margin:1.1rem 0 1.3rem;max-width:16ch;}
+.local p{color:var(--muted);max-width:52ch;margin-bottom:1.1rem;}
+.local p strong{color:var(--ink);font-weight:600;}
+.local__figure{position:relative;}
+.local__figure img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:3px;box-shadow:var(--shadow-lg);}
+.local__figure .tag{position:absolute;bottom:-.9rem;left:-.9rem;background:var(--navy);color:var(--cream);font-family:var(--font-mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;padding:.7rem 1rem;border-radius:2px;box-shadow:var(--shadow);}
+@media(max-width:560px){.local__figure .tag{left:.6rem;bottom:.6rem;}}
+
+/* ============================ HIGHLIGHTS ============================ */
+.highlights{padding:clamp(4rem,9vh,6.5rem) 0;background:var(--navy);color:var(--cream);}
+.highlights .kicker{color:var(--sun-soft);}
+.highlights .kicker::before{background:var(--sun-soft);}
+.highlights h2{font-size:clamp(1.9rem,4vw,3rem);color:var(--cream);margin:1rem 0 2.8rem;max-width:20ch;}
+.hl-grid{display:grid;grid-template-columns:1fr;gap:0;}
+@media(min-width:820px){.hl-grid{grid-template-columns:repeat(3,1fr);}}
+.hl{padding:2rem 0;border-top:1px solid rgba(248,242,230,.16);}
+@media(min-width:820px){.hl{padding:0 2rem;border-top:0;border-left:1px solid rgba(248,242,230,.16);}.hl:first-child{padding-left:0;border-left:0;}.hl:last-child{padding-right:0;}}
+.hl .num{font-family:var(--font-mono);font-size:.82rem;color:var(--sun-soft);letter-spacing:.1em;}
+.hl h3{font-size:1.5rem;color:var(--cream);margin:.9rem 0 .7rem;}
+.hl p{color:rgba(248,242,230,.72);font-size:.97rem;}
+
+/* ============================ GALLERY ============================ */
+.gallery{padding:clamp(4.5rem,10vh,7rem) 0;background:var(--cream);}
+.gallery__head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:1rem;margin-bottom:2.4rem;}
+.gallery h2{font-size:clamp(1.9rem,4vw,3rem);max-width:16ch;}
+.g-grid{display:grid;gap:.9rem;grid-template-columns:repeat(2,1fr);grid-auto-rows:minmax(120px,auto);}
+@media(min-width:760px){.g-grid{grid-template-columns:repeat(4,1fr);}}
+.g-grid figure{overflow:hidden;border-radius:3px;box-shadow:var(--shadow);background:var(--cream-2);}
+.g-grid img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.2,1);}
+.g-grid figure:hover img{transform:scale(1.05);}
+.g-grid .tall{grid-row:span 2;}
+@media(min-width:760px){
+  .g-a{grid-column:span 2;grid-row:span 2;}
+  .g-b{grid-column:span 2;}
+}
+
+/* ============================ IN THEIR OWN WORDS (chalkboard) ============================ */
+.words{padding:clamp(4.5rem,11vh,8rem) 0;background:var(--navy-900);color:var(--cream);position:relative;overflow:hidden;}
+.words::before{content:"";position:absolute;inset:0;background:radial-gradient(90% 70% at 82% 20%,rgba(226,128,47,.16),transparent 60%);}
+.words__grid{position:relative;display:grid;grid-template-columns:1fr;gap:clamp(2rem,5vw,3.6rem);align-items:center;}
+@media(min-width:900px){.words__grid{grid-template-columns:.85fr 1.15fr;}}
+.words__fig img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:3px;box-shadow:var(--shadow-lg);filter:saturate(1.05);}
+.words blockquote{font-family:var(--font-display);font-weight:440;font-size:clamp(1.5rem,3.2vw,2.5rem);line-height:1.28;letter-spacing:-.01em;color:var(--cream);}
+.words blockquote em{color:var(--sun-soft);font-style:italic;}
+.words .attrib{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(248,242,230,.6);margin-top:1.8rem;}
+.words .note{color:rgba(248,242,230,.66);font-size:.92rem;margin-top:1rem;max-width:46ch;}
+
+/* ============================ REVIEWS ============================ */
+.reviews{padding:clamp(4.5rem,10vh,7rem) 0;background:var(--cream);}
+.reviews__head{text-align:center;max-width:40ch;margin:0 auto 3rem;}
+.reviews__head .kicker{justify-content:center;}
+.reviews h2{font-size:clamp(1.9rem,4vw,3rem);margin-top:1rem;}
+.reviews__head .rate{font-family:var(--font-mono);font-size:.82rem;letter-spacing:.06em;color:var(--muted);margin-top:1rem;}
+.r-grid{display:grid;grid-template-columns:1fr;gap:1.1rem;}
+@media(min-width:720px){.r-grid{grid-template-columns:repeat(2,1fr);}}
+@media(min-width:1040px){.r-grid{grid-template-columns:repeat(4,1fr);}}
+.r-card{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:1.7rem 1.5rem;display:flex;flex-direction:column;box-shadow:var(--shadow);}
+.r-card .stars{font-size:.9rem;margin-bottom:.9rem;}
+.r-card p{font-size:.98rem;color:var(--ink);flex:1;}
+.r-card .who{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:1.3rem;}
+
+/* ============================ FIND US ============================ */
+.find{padding:clamp(4.5rem,10vh,7rem) 0;background:var(--navy);color:var(--cream);}
+.find__grid{display:grid;grid-template-columns:1fr;gap:clamp(1.6rem,4vw,3rem);}
+@media(min-width:900px){.find__grid{grid-template-columns:1fr 1fr;align-items:stretch;}}
+.find .kicker{color:var(--sun-soft);}.find .kicker::before{background:var(--sun-soft);}
+.find h2{font-size:clamp(1.9rem,4vw,3rem);color:var(--cream);margin:1rem 0 1.8rem;}
+.info-row{display:flex;gap:1rem;padding:1.15rem 0;border-top:1px solid rgba(248,242,230,.16);}
+.info-row:last-of-type{border-bottom:1px solid rgba(248,242,230,.16);}
+.info-row .ico{color:var(--sun-soft);flex:0 0 auto;margin-top:.15rem;}
+.info-row .ico svg{width:1.15rem;height:1.15rem;}
+.info-row .lbl{font-family:var(--font-mono);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(248,242,230,.6);margin-bottom:.3rem;}
+.info-row .val{color:var(--cream);font-size:1rem;}
+.info-row .val .muted-day{color:rgba(248,242,230,.55);}
+.find__cta{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.8rem;}
+.map-frame{border-radius:4px;overflow:hidden;box-shadow:var(--shadow-lg);min-height:340px;border:1px solid rgba(248,242,230,.2);}
+.map-frame iframe{width:100%;height:100%;min-height:340px;border:0;display:block;filter:grayscale(.2) contrast(1.02);}
+
+/* ============================ FOOTER ============================ */
+footer{background:var(--navy-900);color:rgba(248,242,230,.7);padding:3rem var(--pad) 2.4rem;}
+.foot-grid{max-width:var(--wrap);margin-inline:auto;display:flex;flex-wrap:wrap;gap:1.4rem;justify-content:space-between;align-items:center;}
+.foot-brand{font-family:var(--font-display);font-size:1.5rem;color:var(--cream);}
+.foot-brand span{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;display:block;margin-top:.4rem;color:rgba(248,242,230,.55);}
+.foot-meta{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.08em;color:rgba(248,242,230,.5);text-align:right;line-height:1.9;}
+.foot-credit{margin-top:2.2rem;padding-top:1.4rem;border-top:1px solid rgba(248,242,230,.12);max-width:var(--wrap);margin-inline:auto;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(248,242,230,.4);display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;justify-content:space-between;}
+
+/* mobile sticky call */
+.sticky-call{position:fixed;left:0;right:0;bottom:0;z-index:55;display:flex;gap:.6rem;padding:.7rem var(--pad);background:rgba(12,26,41,.96);backdrop-filter:blur(8px);border-top:1px solid rgba(248,242,230,.14);}
+.sticky-call .btn{flex:1;}
+@media(min-width:720px){.sticky-call{display:none;}}
+@media(max-width:719px){body{padding-bottom:4.6rem;}}
+
+/* ============================ REDUCED MOTION ============================ */
+@media(prefers-reduced-motion:reduce){
+  *{animation:none !important;scroll-behavior:auto !important;}
+  .reveal{opacity:1 !important;transform:none !important;transition:none !important;}
+  .hero__media img{animation:none !important;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header id="header">
+  <a href="#top" class="brand" aria-label="The Eldon, home">
+    <span class="name">The Eldon</span>
+    <span class="est" data-i18n="brandEst">Est. 1998 · Playa Paraíso</span>
+  </a>
+  <div class="head-right">
+    <div class="lang" role="group" aria-label="Language / Idioma">
+      <button data-lang="en" aria-pressed="true">EN</button>
+      <button data-lang="es" aria-pressed="false">ES</button>
+    </div>
+    <a href="tel:+34922741369" class="btn btn-dark head-call">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <span data-i18n="call">Call us</span>
+    </a>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="top">
+  <div class="hero__media"><img id="heroImg" src="assets/hero.jpg" alt="The Eldon's sun terrace and lit sign at sunset in Playa Paraíso" fetchpriority="high" /></div>
+  <div class="hero__veil"></div>
+  <div class="hero__inner">
+    <p class="kicker" data-i18n="heroKicker">Est. 1998 · British family-run bar</p>
+    <h1><span data-i18n="heroTitleA">Playa Paraíso's</span> <em data-i18n="heroTitleB">home from home.</em></h1>
+    <p class="sub" data-i18n="heroSub">A proper British bar in the Costa Adeje sun — pulled pints, cocktails on the terrace, and the best tunes &amp; chat this side of the island. Run by two sisters since 1998.</p>
+    <div class="hero__cta">
+      <a href="#find" class="btn btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span data-i18n="ctaDirections">Get directions</span>
+      </a>
+      <a href="tel:+34922741369" class="btn btn-ghost">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        922 74 13 69
+      </a>
+    </div>
+    <div class="hero__rating">
+      <span class="stars">★★★★★</span>
+      <span data-i18n="heroRating">4.5 on Google · 110 reviews</span>
+    </div>
+  </div>
+  <div class="scroll-hint"><span></span></div>
+</section>
+
+<!-- ===================== THE LOCAL ===================== -->
+<section class="local">
+  <div class="wrap local__grid">
+    <div class="reveal">
+      <p class="kicker" data-i18n="localKicker">The local</p>
+      <h2 data-i18n="localTitle">Not a chain. Not a gimmick. Just your bar in the sun.</h2>
+      <p data-i18n="localP1"><strong>The Eldon is a British family-run bar</strong> in the heart of Playa Paraíso, poured and looked after by two sisters since 1998. It's the little hide-away regulars call a "gem" — the kind of place where they know your order before you've sat down.</p>
+      <p data-i18n="localP2">No frills, no fuss: a warm welcome, an all-day sun terrace, honest prices, and a proper drink whenever the mood takes you. As the regulars put it — you don't 'av to wait a lifetime to drink a beer in the sunshine.</p>
+      <p data-i18n="localP3"><strong>Drinks only, done right.</strong> This is a bar for a cold pint, a gin &amp; tonic, or a frozen cocktail as the sun goes down over Costa Adeje.</p>
+    </div>
+    <figure class="reveal d1 local__figure">
+      <img src="assets/welcome.jpg" alt="The Eldon's friendly team behind the bar" loading="lazy" />
+      <span class="tag" data-i18n="localTag">Family-run since 1998</span>
+    </figure>
+  </div>
+</section>
+
+<!-- ===================== HIGHLIGHTS ===================== -->
+<section class="highlights">
+  <div class="wrap">
+    <p class="kicker reveal" data-i18n="hlKicker">Why the Eldon</p>
+    <h2 class="reveal" data-i18n="hlTitle">Three good reasons to pull up a stool.</h2>
+    <div class="hl-grid">
+      <div class="hl reveal d1">
+        <span class="num">01</span>
+        <h3 data-i18n="hl1t">Proper pints, honest prices</h3>
+        <p data-i18n="hl1p">Carling, Guinness, Stowford Press &amp; Magners, local Dorada and more — poured properly at prices reviewers keep calling "so reasonable."</p>
+      </div>
+      <div class="hl reveal d2">
+        <span class="num">02</span>
+        <h3 data-i18n="hl2t">Cocktails in the sun</h3>
+        <p data-i18n="hl2p">Gin &amp; tonics, frozen cocktails and a proper piña colada — best enjoyed on the all-day terrace as the light turns gold.</p>
+      </div>
+      <div class="hl reveal d3">
+        <span class="num">03</span>
+        <h3 data-i18n="hl3t">Best tunes &amp; chat</h3>
+        <p data-i18n="hl3p">Great music, better company. Some might say we've the best tunes and chat on the strip — d'you know what we mean?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== GALLERY ===================== -->
+<section class="gallery">
+  <div class="wrap">
+    <div class="gallery__head">
+      <div>
+        <p class="kicker reveal" data-i18n="galKicker">The place</p>
+        <h2 class="reveal" data-i18n="galTitle">Sun, blue railings, a proper welcome.</h2>
+      </div>
+    </div>
+    <div class="g-grid reveal">
+      <figure class="g-a"><img src="assets/terrace.jpg" alt="Sun terrace at The Eldon overlooking the sea, with palms" loading="lazy" /></figure>
+      <figure class="g-b"><img src="assets/bar.jpg" alt="Inside The Eldon — the bar, draught taps and family signs" loading="lazy" /></figure>
+      <figure><img src="assets/cocktail.jpg" alt="A creamy cocktail on the terrace at dusk" loading="lazy" /></figure>
+      <figure><img src="assets/welcome.jpg" alt="Warm welcome behind the bar" loading="lazy" /></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== IN THEIR OWN WORDS ===================== -->
+<section class="words">
+  <div class="wrap words__grid">
+    <figure class="words__fig reveal">
+      <img src="assets/chalkboard.jpg" alt="The Eldon's hand-written chalkboard welcome" loading="lazy" />
+    </figure>
+    <div class="reveal d1">
+      <p class="kicker" data-i18n="wordsKicker">In their own words</p>
+      <blockquote>
+        <span data-i18n="wordsQuoteA">"You don't 'av to wait for a lifetime to drink a beer in the sunshine.</span>
+        <em data-i18n="wordsQuoteB">Or, if you're feeling supersonic, definitely maybe 'av a gin &amp; tonic."</em>
+      </blockquote>
+      <p class="note" data-i18n="wordsNote">Straight off the board by the door — because at the Eldon, you're free to do whatever you choose. Spread the word: you'll have a better day.</p>
+      <p class="attrib" data-i18n="wordsAttrib">— The chalkboard at the door</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== REVIEWS ===================== -->
+<section class="reviews">
+  <div class="wrap">
+    <div class="reviews__head reveal">
+      <p class="kicker center" data-i18n="revKicker">Word of mouth</p>
+      <h2 data-i18n="revTitle">Regulars &amp; first-timers agree.</h2>
+      <p class="rate"><span class="stars">★★★★★</span> &nbsp; <span data-i18n="revRate">4.5 out of 5 · 110 Google reviews</span></p>
+    </div>
+    <div class="r-grid">
+      <div class="r-card reveal">
+        <div class="stars">★★★★★</div>
+        <p data-i18n="rev1">"Great family-run pub, worth a visit. Happened to just come across it and stayed for a few drinks — felt so welcome."</p>
+        <div class="who">— A. Collins</div>
+      </div>
+      <div class="r-card reveal d1">
+        <div class="stars">★★★★★</div>
+        <p data-i18n="rev2">"Owners and staff are extremely friendly and make you very welcome. Drinks prices are so reasonable too. Give 'em a try!"</p>
+        <div class="who">— Sue Campbell</div>
+      </div>
+      <div class="r-card reveal d2">
+        <div class="stars">★★★★★</div>
+        <p data-i18n="rev3">"Amazing hide-away pub. Great host, fab music for all, and friendly people."</p>
+        <div class="who">— Loz Sheffy</div>
+      </div>
+      <div class="r-card reveal d3">
+        <div class="stars">★★★★★</div>
+        <p data-i18n="rev4">"Found this little gem. The landladies are sisters and very friendly, the drink prices are decent, and the atmosphere is lovely. Worth visiting."</p>
+        <div class="who">— Jade Mileham</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FIND US ===================== -->
+<section class="find" id="find">
+  <div class="wrap find__grid">
+    <div class="reveal">
+      <p class="kicker" data-i18n="findKicker">Find us</p>
+      <h2 data-i18n="findTitle">On the sun terrace at Playa Paraíso.</h2>
+
+      <div class="info-row">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+        <div><div class="lbl" data-i18n="findAddrL">Address</div><div class="val">Av. de Adeje 300, Playa Paraíso<br/>38678 Adeje · Costa Adeje, Tenerife</div></div>
+      </div>
+
+      <div class="info-row">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+        <div><div class="lbl" data-i18n="findHoursL">Opening hours</div>
+          <div class="val">
+            <span data-i18n="findHours">Tuesday – Sunday · 2:00 pm – midnight</span><br/>
+            <span class="muted-day" data-i18n="findHoursClosed">Closed Mondays</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-row">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+        <div><div class="lbl" data-i18n="findPhoneL">Phone</div><div class="val">+34 922 74 13 69</div></div>
+      </div>
+
+      <div class="find__cta">
+        <a class="btn btn-primary" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=The+Eldon+Av.+de+Adeje+300+Playa+Paraiso+Adeje">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 20l-5.5 2.5v-16L9 4m0 16l6-2.5M9 20V4m6 13.5L20.5 20v-16L15 6.5m0 11V6.5m0 0L9 4"/></svg>
+          <span data-i18n="ctaDirections2">Directions</span>
+        </a>
+        <a class="btn btn-ghost" href="tel:+34922741369">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span data-i18n="call2">Call the bar</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="map-frame reveal d1">
+      <iframe title="Map to The Eldon, Playa Paraíso" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps?q=The%20Eldon%20Av.%20de%20Adeje%20300%20Playa%20Paraiso%20Adeje%20Tenerife&output=embed"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="foot-grid">
+    <div class="foot-brand">The Eldon<span data-i18n="footTag">British family-run bar · Est. 1998</span></div>
+    <div class="foot-meta">
+      Av. de Adeje 300 · Playa Paraíso<br/>
+      Costa Adeje · Tenerife<br/>
+      +34 922 74 13 69
+    </div>
+  </div>
+  <div class="foot-credit">
+    <span data-i18n="footCredit">Preview / vista previa — built by Teide Digital</span>
+    <span>© 1998–2026 The Eldon</span>
+  </div>
+</footer>
+
+<!-- ===================== MOBILE STICKY CALL ===================== -->
+<div class="sticky-call">
+  <a class="btn btn-primary" href="tel:+34922741369">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    <span data-i18n="call3">Call</span>
+  </a>
+  <a class="btn btn-dark" href="#find"><span data-i18n="ctaDirections3">Directions</span></a>
+</div>
+
+<script>
+/* ============ i18n (EN default, ES toggle) ============ */
+const ES = {
+  brandEst:"Est. 1998 · Playa Paraíso",
+  call:"Llámanos", call2:"Llama al bar", call3:"Llamar",
+  heroKicker:"Est. 1998 · Bar británico familiar",
+  heroTitleA:"El rincón de Playa Paraíso,",
+  heroTitleB:"tu casa fuera de casa.",
+  heroSub:"Un auténtico bar británico al sol de Costa Adeje — pintas bien tiradas, cócteles en la terraza y la mejor música y buen ambiente de la zona. Regentado por dos hermanas desde 1998.",
+  ctaDirections:"Cómo llegar", ctaDirections2:"Cómo llegar", ctaDirections3:"Cómo llegar",
+  heroRating:"4,5 en Google · 110 reseñas",
+  localKicker:"El bar del barrio",
+  localTitle:"Sin cadenas. Sin postureo. Solo tu bar al sol.",
+  localP1:"<strong>The Eldon es un bar británico familiar</strong> en pleno Playa Paraíso, atendido por dos hermanas desde 1998. Es ese pequeño refugio que los clientes llaman \"una joya\" — de los sitios donde saben lo que vas a pedir antes de sentarte.",
+  localP2:"Sin complicaciones: una bienvenida de verdad, terraza al sol todo el día, precios honestos y una buena copa cuando te apetezca. Como dicen los de siempre — no hay que esperar toda una vida para tomarse una cerveza al sol.",
+  localP3:"<strong>Solo copas, y bien hechas.</strong> Un bar para una pinta fría, un gin-tonic o un cóctel helado mientras se pone el sol sobre Costa Adeje.",
+  localTag:"Negocio familiar desde 1998",
+  hlKicker:"Por qué the Eldon",
+  hlTitle:"Tres buenas razones para acercar el taburete.",
+  hl1t:"Pintas de verdad, precios honestos",
+  hl1p:"Carling, Guinness, Stowford Press y Magners, Dorada local y más — bien tiradas y a precios que las reseñas llaman \"muy razonables\".",
+  hl2t:"Cócteles al sol",
+  hl2p:"Gin-tonics, cócteles helados y una buena piña colada — mejor en la terraza abierta todo el día, cuando la luz se vuelve dorada.",
+  hl3t:"La mejor música y ambiente",
+  hl3p:"Buena música y mejor compañía. Algunos dicen que tenemos la mejor música y charla de la zona — ¿sabes a qué nos referimos?",
+  galKicker:"El sitio",
+  galTitle:"Sol, barandillas azules y una bienvenida de verdad.",
+  wordsKicker:"En sus propias palabras",
+  wordsQuoteA:"\"No hay que esperar toda una vida para tomarse una cerveza al sol.",
+  wordsQuoteB:"O, si te sientes con ganas, un buen gin-tonic.\"",
+  wordsNote:"Tal cual en la pizarra de la entrada — porque en the Eldon eres libre de hacer lo que quieras. Corre la voz: tendrás un día mejor.",
+  wordsAttrib:"— La pizarra de la entrada",
+  revKicker:"El boca a boca",
+  revTitle:"Habituales y recién llegados coinciden.",
+  revRate:"4,5 sobre 5 · 110 reseñas en Google",
+  rev1:"\"Un gran bar familiar, merece la visita. Entré de casualidad y me quedé a tomar algo — me sentí muy bien recibido.\"",
+  rev2:"\"Los dueños y el personal son súper amables y te hacen sentir muy bienvenido. Y los precios de las copas, muy razonables. ¡Dadle una oportunidad!\"",
+  rev3:"\"Un bar refugio increíble. Gran anfitriona, música estupenda para todos y gente amable.\"",
+  rev4:"\"Encontré esta pequeña joya. Las dueñas son hermanas y muy amables, los precios de las copas están bien y el ambiente es encantador. Merece la pena.\"",
+  findKicker:"Cómo llegar",
+  findTitle:"En la terraza al sol de Playa Paraíso.",
+  findAddrL:"Dirección", findHoursL:"Horario", findPhoneL:"Teléfono",
+  findHours:"Martes a domingo · 14:00 – 00:00",
+  findHoursClosed:"Lunes cerrado",
+  footTag:"Bar británico familiar · Est. 1998",
+  footCredit:"Vista previa — creado por Teide Digital"
+};
+
+const EN = {}; // EN lives in the HTML as-authored
+document.querySelectorAll('[data-i18n]').forEach(el=>{ EN[el.dataset.i18n]=el.innerHTML; });
+
+function setLang(lang){
+  const dict = lang==='es' ? ES : EN;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k = el.dataset.i18n;
+    if(dict[k]!==undefined) el.innerHTML = dict[k];
+    else if(EN[k]!==undefined) el.innerHTML = EN[k];
+  });
+  document.documentElement.lang = lang;
+  document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed', String(b.dataset.lang===lang)));
+  try{ localStorage.setItem('eldon-lang', lang); }catch(e){}
+}
+document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
+let saved='en'; try{ saved = localStorage.getItem('eldon-lang') || 'en'; }catch(e){}
+if(saved==='es') setLang('es');
+
+/* ============ header state ============ */
+const header=document.getElementById('header');
+const onScroll=()=>{ header.classList.toggle('scrolled', window.scrollY>60); };
+onScroll();
+
+/* ============ reveal on scroll ============ */
+const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(!prefersReduced && 'IntersectionObserver' in window){
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.14, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+}else{
+  document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
+}
+/* fail-open safety net: never leave a section invisible */
+setTimeout(()=>{ document.querySelectorAll('.reveal:not(.in)').forEach(el=>el.classList.add('in')); }, 2600);
+
+/* ============ signature hero parallax (rAF, reduced-motion safe) ============ */
+const heroImg=document.getElementById('heroImg');
+let ticking=false;
+function parallax(){
+  const y=window.scrollY;
+  if(y < window.innerHeight*1.2){
+    heroImg.style.transform = `translate3d(0, ${y*0.10}px, 0) scale(1.06)`;
+  }
+  ticking=false;
+}
+window.addEventListener('scroll',()=>{
+  onScroll();
+  if(!prefersReduced && !ticking){ requestAnimationFrame(parallax); ticking=true; }
+}, {passive:true});
+</script>
+</body>
+</html>
