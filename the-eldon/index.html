@@ -130,6 +130,17 @@ header.scrolled .lang button{color:var(--muted);}
 .hero__cta{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.9rem;}
 .hero__rating{display:flex;align-items:center;gap:.6rem;margin-top:1.9rem;font-family:var(--font-mono);font-size:.8rem;letter-spacing:.05em;color:rgba(248,242,230,.85);}
 .stars{color:var(--sun-soft);letter-spacing:.12em;font-size:.95rem;}
+
+/* live open/closed status pill (computed in the bar's Canary timezone) */
+.status-pill{display:inline-flex;align-items:center;gap:.5em;font-family:var(--font-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;padding:.42em .85em;border-radius:100px;border:1px solid transparent;white-space:nowrap;}
+.status-pill .dot{width:.5em;height:.5em;border-radius:50%;flex:0 0 auto;}
+.status-pill .pd{opacity:.78;letter-spacing:.06em;}
+.status-pill.is-open{background:rgba(74,166,98,.16);color:#8bd9a2;border-color:rgba(96,184,120,.4);}
+.status-pill.is-open .dot{background:#63cf85;animation:livepulse 2.4s ease-out infinite;}
+.status-pill.is-closed{background:rgba(206,96,74,.14);color:#ec9d88;border-color:rgba(214,116,94,.32);}
+.status-pill.is-closed .dot{background:#df7d66;}
+@keyframes livepulse{0%{box-shadow:0 0 0 0 rgba(99,207,133,.55)}70%{box-shadow:0 0 0 .5em rgba(99,207,133,0)}100%{box-shadow:0 0 0 0 rgba(99,207,133,0)}}
+.hours-live{display:block;margin:.75rem 0 .1rem;}
 .scroll-hint{position:absolute;left:50%;bottom:1.4rem;transform:translateX(-50%);z-index:2;font-family:var(--font-mono);font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(248,242,230,.6);display:flex;flex-direction:column;align-items:center;gap:.5rem;}
 .scroll-hint span{width:1px;height:2.2rem;background:linear-gradient(rgba(248,242,230,.6),transparent);animation:pulse 2.2s ease-in-out infinite;}
 @keyframes pulse{0%,100%{opacity:.3;transform:scaleY(.7)}50%{opacity:1;transform:scaleY(1)}}
@@ -298,6 +309,7 @@ footer{background:var(--navy-900);color:rgba(248,242,230,.7);padding:3rem var(--
       </a>
     </div>
     <div class="hero__rating">
+      <span class="status-pill is-closed" data-status><span class="dot"></span></span>
       <span class="stars">★★★★★</span>
       <span data-i18n="heroRating">4.5 on Google · 110 reviews</span>
     </div>
@@ -433,6 +445,7 @@ footer{background:var(--navy-900);color:rgba(248,242,230,.7);padding:3rem var(--
           <div class="val">
             <span data-i18n="findHours">Tuesday – Sunday · 2:00 pm – midnight</span><br/>
             <span class="muted-day" data-i18n="findHoursClosed">Closed Mondays</span>
+            <span class="hours-live"><span class="status-pill is-closed" data-status><span class="dot"></span></span></span>
             <span class="hint" data-i18n="findHoursHint">Times can change. We post day-to-day updates on <a href="https://www.facebook.com/eldonhousepub/" target="_blank" rel="noopener">our Facebook page</a> — check before you set off, so you're never disappointed.</span>
           </div>
         </div>
@@ -554,7 +567,10 @@ const ES = {
 const EN = {}; // EN lives in the HTML as-authored
 document.querySelectorAll('[data-i18n]').forEach(el=>{ EN[el.dataset.i18n]=el.innerHTML; });
 
+let curLang = 'en';
+
 function setLang(lang){
+  curLang = lang;
   const dict = lang==='es' ? ES : EN;
   document.querySelectorAll('[data-i18n]').forEach(el=>{
     const k = el.dataset.i18n;
@@ -564,10 +580,40 @@ function setLang(lang){
   document.documentElement.lang = lang;
   document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed', String(b.dataset.lang===lang)));
   try{ localStorage.setItem('eldon-lang', lang); }catch(e){}
+  renderStatus();
 }
 document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
 let saved='en'; try{ saved = localStorage.getItem('eldon-lang') || 'en'; }catch(e){}
 if(saved==='es') setLang('es');
+
+/* ============ live Open / Closed status ============ */
+/* Computed in the BAR's timezone (Atlantic/Canary) so it's correct for any visitor.
+   Reflects the usual weekly hours: Tue–Sun 14:00–00:00, closed Mon. On conversion this
+   is swapped to read live from the Google Business Profile (special hours / "closed today"). */
+const OPEN_HOUR = 14; // opens 2pm
+function eldonStatus(){
+  const parts = new Intl.DateTimeFormat('en-GB',{timeZone:'Atlantic/Canary',weekday:'long',hour:'numeric',hour12:false}).formatToParts(new Date());
+  const wd = parts.find(p=>p.type==='weekday').value;
+  let hr = parseInt(parts.find(p=>p.type==='hour').value,10); if(hr===24) hr=0;
+  const monday = (wd==='Monday');
+  const open = !monday && hr>=OPEN_HOUR;   // open 14:00 → midnight
+  return {open, monday};
+}
+function renderStatus(){
+  const {open, monday} = eldonStatus();
+  const L = curLang==='es'
+    ? {open:'Abierto ahora', openD:'hasta medianoche', closed:'Cerrado', mon:'lunes cerrado', soon:'abre a las 14:00'}
+    : {open:'Open now',       openD:'until midnight',   closed:'Closed',  mon:'Mondays off',    soon:'opens 2pm'};
+  const cls = open ? 'is-open' : 'is-closed';
+  const label = open ? L.open : L.closed;
+  const detail = open ? L.openD : (monday ? L.mon : L.soon);
+  document.querySelectorAll('[data-status]').forEach(el=>{
+    el.className = 'status-pill '+cls;
+    el.innerHTML = '<span class="dot"></span>'+label+' <span class="pd">· '+detail+'</span>';
+  });
+}
+renderStatus();
+setInterval(renderStatus, 60000);
 
 /* ============ header state ============ */
 const header=document.getElementById('header');
