@@ -253,6 +253,40 @@ footer{background:var(--navy-900);color:rgba(248,242,230,.7);padding:3rem var(--
 @media(max-width:719px){body{padding-bottom:4.6rem;}}
 
 /* ============================ REDUCED MOTION ============================ */
+/* ============================ WHAT WE POUR (drinks board) ============================ */
+.pour{padding:clamp(4.5rem,10vh,7rem) 0;background:var(--navy-900);color:var(--cream);position:relative;overflow:hidden;}
+.pour::before{content:"";position:absolute;inset:0;background:radial-gradient(90% 60% at 12% 0%,rgba(226,128,47,.14),transparent 55%);pointer-events:none;}
+.pour .wrap{position:relative;}
+.pour .kicker{color:var(--sun-soft);}.pour .kicker::before{background:var(--sun-soft);}
+.pour h2{font-size:clamp(1.9rem,4vw,3rem);color:var(--cream);margin:1rem 0 .8rem;max-width:18ch;}
+.pour .lede{color:rgba(248,242,230,.72);max-width:54ch;margin-bottom:2.6rem;}
+.pour-grid{display:grid;grid-template-columns:1fr;gap:0 3rem;}
+@media(min-width:720px){.pour-grid{grid-template-columns:1fr 1fr;}}
+.pour-item{padding:1.35rem 0;border-top:1px solid rgba(248,242,230,.16);display:grid;grid-template-columns:2.2rem 1fr;gap:.6rem 1rem;}
+.pour-item .pn{font-family:var(--font-mono);font-size:.82rem;color:var(--sun-soft);padding-top:.25rem;}
+.pour-item h3{font-size:1.22rem;color:var(--cream);margin-bottom:.35rem;}
+.pour-item p{color:rgba(248,242,230,.68);font-size:.93rem;grid-column:2;}
+.pour-foot{margin-top:2.3rem;padding-top:1.5rem;border-top:1px solid rgba(248,242,230,.16);display:flex;flex-wrap:wrap;gap:.6rem 1.6rem;align-items:baseline;justify-content:space-between;}
+.pour-foot .fnote{font-family:var(--font-mono);font-size:.74rem;letter-spacing:.06em;color:rgba(248,242,230,.6);}
+.pour-foot .price{font-family:var(--font-display);font-size:1.15rem;color:var(--sun-soft);font-style:italic;}
+
+/* ============================ "CLOSED TONIGHT" MOCK BANNER + DEMO TOGGLE ============================ */
+header{transition:background .3s ease,box-shadow .3s ease,padding .3s ease,top .35s ease;}
+.closed-banner{position:fixed;top:0;left:0;right:0;z-index:70;background:linear-gradient(90deg,#b0472f,#d9673f);color:#fff;transform:translateY(-100%);transition:transform .45s cubic-bezier(.2,.7,.2,1);}
+.closed-banner .cb-in{max-width:var(--wrap);margin-inline:auto;padding:.72rem var(--pad);display:flex;align-items:center;justify-content:center;gap:.6rem;text-align:center;font-family:var(--font-mono);font-size:.74rem;letter-spacing:.09em;text-transform:uppercase;}
+.closed-banner .cb-in svg{width:1rem;height:1rem;flex:0 0 auto;}
+html.alerting .closed-banner{transform:none;}
+html.alerting header{top:2.75rem;}
+@media(max-width:560px){.closed-banner .cb-in{font-size:.63rem;letter-spacing:.04em;}html.alerting header{top:3.5rem;}}
+
+.demo-toggle{position:fixed;left:1rem;bottom:1rem;z-index:80;display:inline-flex;align-items:center;gap:.55em;background:rgba(12,26,41,.94);color:var(--cream);border:1px dashed var(--sun-soft);border-radius:100px;padding:.55em 1em .55em .7em;font-family:var(--font-mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;backdrop-filter:blur(6px);box-shadow:var(--shadow);}
+.demo-toggle .tg{width:2em;height:1.1em;border-radius:100px;background:rgba(248,242,230,.28);position:relative;transition:background .2s;flex:0 0 auto;}
+.demo-toggle .tg::after{content:"";position:absolute;top:2px;left:2px;width:calc(1.1em - 4px);height:calc(1.1em - 4px);border-radius:50%;background:var(--cream);transition:transform .2s;}
+html.alerting .demo-toggle .tg{background:var(--sun);}
+html.alerting .demo-toggle .tg::after{transform:translateX(.9em);}
+.demo-toggle .dl{font-weight:600;color:var(--sun-soft);letter-spacing:.12em;}
+@media(max-width:719px){.demo-toggle{bottom:5.3rem;left:.7rem;font-size:.58rem;}}
+
 /* ============================ MOBILE POLISH ============================ */
 @media(max-width:560px){
   .hero__inner{padding-bottom:6.2rem;}          /* clear the sticky call bar so the rating shows */
@@ -271,6 +305,14 @@ footer{background:var(--navy-900);color:rgba(248,242,230,.7);padding:3rem var(--
 </head>
 
 <body>
+
+<!-- ===================== "CLOSED TONIGHT" BANNER (mock — owner-toggled on the live build) ===================== -->
+<div class="closed-banner" id="closedBanner">
+  <div class="cb-in">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <span data-i18n="bannerText">Closed tonight — private event · back tomorrow from 2 pm</span>
+  </div>
+</div>
 
 <!-- ===================== HEADER ===================== -->
 <header id="header">
@@ -372,6 +414,51 @@ footer{background:var(--navy-900);color:rgba(248,242,230,.7);padding:3rem var(--
       <figure class="g-b"><img src="assets/bar.jpg" alt="Inside The Eldon — the bar, draught taps and family signs" loading="lazy" /></figure>
       <figure><img src="assets/cocktail.jpg" alt="A creamy cocktail on the terrace at dusk" loading="lazy" /></figure>
       <figure><img src="assets/welcome.jpg" alt="Warm welcome behind the bar" loading="lazy" /></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WHAT WE POUR ===================== -->
+<section class="pour" id="drinks">
+  <div class="wrap">
+    <p class="kicker reveal" data-i18n="pourKicker">At the bar</p>
+    <h2 class="reveal" data-i18n="pourTitle">Cold, honest, and poured in the sun.</h2>
+    <p class="lede reveal" data-i18n="pourLede">No cocktail-menu theatrics — just proper drinks, done right, at prices that keep the regulars coming back. Here's what's on.</p>
+    <div class="pour-grid">
+      <div class="pour-item reveal">
+        <span class="pn">01</span>
+        <h3 data-i18n="pour1t">On tap</h3>
+        <p data-i18n="pour1p">Carling, Guinness, Stowford Press cider, Old Speckled Hen &amp; local Dorada — pulled properly.</p>
+      </div>
+      <div class="pour-item reveal d1">
+        <span class="pn">02</span>
+        <h3 data-i18n="pour2t">Bottles, cans &amp; ciders</h3>
+        <p data-i18n="pour2p">Magners, local Canarian lagers and a cold fridge full of the usual favourites.</p>
+      </div>
+      <div class="pour-item reveal">
+        <span class="pn">03</span>
+        <h3 data-i18n="pour3t">Gin &amp; tonics + spirits</h3>
+        <p data-i18n="pour3p">A proper G&amp;T and every classic you'd ask for — measured with a friendly hand.</p>
+      </div>
+      <div class="pour-item reveal d1">
+        <span class="pn">04</span>
+        <h3 data-i18n="pour4t">Cocktails &amp; frozen</h3>
+        <p data-i18n="pour4p">Cocktails, and frozen cocktails when the sun's out — a piña colada as it dips.</p>
+      </div>
+      <div class="pour-item reveal">
+        <span class="pn">05</span>
+        <h3 data-i18n="pour5t">Softs, teas &amp; coffee</h3>
+        <p data-i18n="pour5p">The designated driver's looked after too — soft drinks, a proper cuppa and coffee.</p>
+      </div>
+      <div class="pour-item reveal d1">
+        <span class="pn">06</span>
+        <h3 data-i18n="pour6t">Wine &amp; fizz</h3>
+        <p data-i18n="pour6p">A glass of red, white or something chilled and sparkling for the terrace.</p>
+      </div>
+    </div>
+    <div class="pour-foot reveal">
+      <span class="fnote" data-i18n="pourFoot">Guest pours change — just ask the girls what's on.</span>
+      <span class="price" data-i18n="pourPrice">Pints from €2.50 · frozen cocktails 2 for €12</span>
     </div>
   </div>
 </section>
@@ -512,6 +599,11 @@ footer{background:var(--navy-900);color:rgba(248,242,230,.7);padding:3rem var(--
   <a class="btn btn-dark" href="#find"><span data-i18n="ctaDirections3">Directions</span></a>
 </div>
 
+<!-- ===================== DEMO-ONLY: preview the owner's "closed tonight" switch ===================== -->
+<button class="demo-toggle" id="demoToggle" type="button" aria-pressed="false" title="Demo only — shows what the owners' toggle does">
+  <span class="tg"></span><span class="dl">Demo</span><span data-i18n="demoLabel">preview “closed tonight”</span>
+</button>
+
 <script>
 /* ============ i18n (EN default, ES toggle) ============ */
 const ES = {
@@ -538,6 +630,25 @@ const ES = {
   hl3p:"Las hermanas Corinne y Carly, y Simon, el marido de Corinne — una bienvenida calurosa siempre, buena música y mejor compañía. Algunos dicen que la mejor música y charla de la zona.",
   galKicker:"El sitio",
   galTitle:"Sol, barandillas azules y una bienvenida de verdad.",
+  pourKicker:"En la barra",
+  pourTitle:"Fría, honesta y al sol.",
+  pourLede:"Sin teatro de carta de cócteles — solo copas de verdad, bien hechas, a precios que hacen volver a los de siempre. Esto es lo que hay.",
+  pour1t:"De barril",
+  pour1p:"Carling, Guinness, sidra Stowford Press, Old Speckled Hen y Dorada local — bien tiradas.",
+  pour2t:"Botellas, latas y sidras",
+  pour2p:"Magners, cervezas canarias y una nevera llena de los clásicos de siempre.",
+  pour3t:"Gin-tonics y destilados",
+  pour3p:"Un buen gin-tonic y todos los clásicos que pidas — servidos con mano generosa.",
+  pour4t:"Cócteles y helados",
+  pour4p:"Cócteles, y cócteles helados cuando sale el sol — una piña colada al atardecer.",
+  pour5t:"Refrescos, tés y café",
+  pour5p:"Al conductor también se le cuida — refrescos, un buen té y café.",
+  pour6t:"Vino y espumosos",
+  pour6p:"Una copa de tinto, blanco o algo fresquito y con burbujas para la terraza.",
+  pourFoot:"Lo que hay va cambiando — pregunta a las chicas qué tienen hoy.",
+  pourPrice:"Pintas desde 2,50 € · cócteles helados 2 por 12 €",
+  bannerText:"Cerrado esta noche — evento privado · volvemos mañana desde las 14:00",
+  demoLabel:"vista previa “cerrado hoy”",
   wordsKicker:"En sus propias palabras",
   wordsQuoteA:"\"Entra como un desconocido,",
   wordsQuoteB:"vete como un amigo.\"",
@@ -568,6 +679,7 @@ const EN = {}; // EN lives in the HTML as-authored
 document.querySelectorAll('[data-i18n]').forEach(el=>{ EN[el.dataset.i18n]=el.innerHTML; });
 
 let curLang = 'en';
+let demoClosed = false;
 
 function setLang(lang){
   curLang = lang;
@@ -600,13 +712,15 @@ function eldonStatus(){
   return {open, monday};
 }
 function renderStatus(){
-  const {open, monday} = eldonStatus();
   const L = curLang==='es'
-    ? {open:'Abierto ahora', openD:'hasta medianoche', closed:'Cerrado', mon:'lunes cerrado', soon:'abre a las 14:00'}
-    : {open:'Open now',       openD:'until midnight',   closed:'Closed',  mon:'Mondays off',    soon:'opens 2pm'};
+    ? {open:'Abierto ahora', openD:'hasta medianoche', closed:'Cerrado', mon:'lunes cerrado', soon:'abre a las 14:00', tonight:'cerrado hoy'}
+    : {open:'Open now',       openD:'until midnight',   closed:'Closed',  mon:'Mondays off',    soon:'opens 2pm',        tonight:'closed tonight'};
+  let open, monday=false;
+  if(demoClosed){ open=false; }
+  else { const s=eldonStatus(); open=s.open; monday=s.monday; }
   const cls = open ? 'is-open' : 'is-closed';
   const label = open ? L.open : L.closed;
-  const detail = open ? L.openD : (monday ? L.mon : L.soon);
+  const detail = demoClosed ? L.tonight : (open ? L.openD : (monday ? L.mon : L.soon));
   document.querySelectorAll('[data-status]').forEach(el=>{
     el.className = 'status-pill '+cls;
     el.innerHTML = '<span class="dot"></span>'+label+' <span class="pd">· '+detail+'</span>';
@@ -614,6 +728,17 @@ function renderStatus(){
 }
 renderStatus();
 setInterval(renderStatus, 60000);
+
+/* ============ DEMO-ONLY: preview the owner's "closed tonight" switch ============ */
+const demoToggle = document.getElementById('demoToggle');
+if(demoToggle){
+  demoToggle.addEventListener('click',()=>{
+    demoClosed = !demoClosed;
+    document.documentElement.classList.toggle('alerting', demoClosed);
+    demoToggle.setAttribute('aria-pressed', String(demoClosed));
+    renderStatus();
+  });
+}
 
 /* ============ header state ============ */
 const header=document.getElementById('header');
