@@ -279,21 +279,29 @@ html.alerting .closed-banner{transform:none;}
 html.alerting header{top:2.75rem;}
 @media(max-width:560px){.closed-banner .cb-in{font-size:.63rem;letter-spacing:.04em;}html.alerting header{top:3.5rem;}}
 
-.demo-toggle{position:fixed;left:1rem;bottom:1rem;z-index:80;display:inline-flex;align-items:center;gap:.55em;background:rgba(12,26,41,.94);color:var(--cream);border:1px dashed var(--sun-soft);border-radius:100px;padding:.55em 1em .55em .7em;font-family:var(--font-mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;backdrop-filter:blur(6px);box-shadow:var(--shadow);}
+.demo-toggle{position:fixed;left:1rem;bottom:1rem;z-index:90;display:inline-flex;align-items:center;gap:.55em;white-space:nowrap;background:rgba(18,38,58,.97);color:var(--cream);border:1.5px dashed var(--sun);border-radius:100px;padding:.6em 1em .6em .7em;font-family:var(--font-mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;backdrop-filter:blur(6px);box-shadow:0 6px 22px -6px rgba(0,0,0,.6),0 0 0 4px rgba(226,128,47,.12);}
 .demo-toggle .tg{width:2em;height:1.1em;border-radius:100px;background:rgba(248,242,230,.28);position:relative;transition:background .2s;flex:0 0 auto;}
 .demo-toggle .tg::after{content:"";position:absolute;top:2px;left:2px;width:calc(1.1em - 4px);height:calc(1.1em - 4px);border-radius:50%;background:var(--cream);transition:transform .2s;}
 html.alerting .demo-toggle .tg{background:var(--sun);}
 html.alerting .demo-toggle .tg::after{transform:translateX(.9em);}
 .demo-toggle .dl{font-weight:600;color:var(--sun-soft);letter-spacing:.12em;}
-@media(max-width:719px){.demo-toggle{bottom:5.3rem;left:.7rem;font-size:.58rem;}}
+@media(max-width:719px){.demo-toggle{bottom:5.6rem;left:auto;right:.7rem;font-size:.58rem;}.demo-toggle .dl-text{display:none;}}
 
 /* ============================ MOBILE POLISH ============================ */
 @media(max-width:560px){
-  .hero__inner{padding-bottom:6.2rem;}          /* clear the sticky call bar so the rating shows */
-  .hero .kicker{font-size:.62rem;letter-spacing:.2em;}
-  .hero .kicker::before{width:1.3rem;}
-  .hero h1{font-size:clamp(2.7rem,13vw,3.6rem);}
-  .hero .sub{font-size:1.02rem;}
+  .brand .est{display:none;}                     /* compact single-line header — no clash with the hero kicker */
+  header{padding-top:.7rem;padding-bottom:.7rem;}
+  .hero{align-items:flex-start;}                 /* content sits BELOW the header, never underneath it */
+  .hero__inner{padding-top:4rem;padding-bottom:6.8rem;}
+  html.alerting .hero__inner{padding-top:5.9rem;}/* extra clearance when the closed banner is showing */
+  .hero .kicker{font-size:.6rem;letter-spacing:.16em;margin-bottom:1rem;}
+  .hero .kicker::before{width:1.1rem;}
+  .hero h1{font-size:clamp(2.4rem,11vw,3.1rem);}
+  .hero .sub{font-size:.95rem;margin-top:.85rem;}
+  .hero__cta{margin-top:1.3rem;gap:.6rem;}
+  .hero__rating{margin-top:1.2rem;}
+  /* declutter hero bottom on phones: keep only the live status pill (stars + rating live in Reviews) */
+  .hero__rating .stars,.hero__rating [data-i18n="heroRating"]{display:none;}
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -601,7 +609,7 @@ html.alerting .demo-toggle .tg::after{transform:translateX(.9em);}
 
 <!-- ===================== DEMO-ONLY: preview the owner's "closed tonight" switch ===================== -->
 <button class="demo-toggle" id="demoToggle" type="button" aria-pressed="false" title="Demo only — shows what the owners' toggle does">
-  <span class="tg"></span><span class="dl">Demo</span><span data-i18n="demoLabel">preview “closed tonight”</span>
+  <span class="tg"></span><span class="dl">Demo</span><span class="dl-text" data-i18n="demoLabel">preview “closed tonight”</span>
 </button>
 
 <script>
