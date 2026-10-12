@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Pedro Moto Care · Limpieza de motos a domicilio en Tenerife</title>
+<meta name="description" content="Limpieza total y engrasado de cadena a domicilio en Tenerife. Voy a tu garaje y te dejo la moto impoluta. Motero a motero.">
+<meta name="theme-color" content="#e6e7e8">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:title" content="Pedro Moto Care · Limpieza de motos a domicilio">
+<meta property="og:description" content="Voy a tu garaje y te dejo la moto impoluta. Tenerife, motero a motero.">
+<meta property="og:image" content="https://raparcedo.github.io/teide-demos/pedro-moto-care/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Depósito naranja de una Suzuki GSX-R 600 recién limpiado">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23ffffff'/%3E%3Crect width='32' height='10' fill='%230e1116'/%3E%3Crect x='4' y='15' width='24' height='13' fill='%236d28d9'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/geist.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" href="assets/img/gsxr-tank-1440.webp" imagesrcset="assets/img/gsxr-tank-800.webp 800w, assets/img/gsxr-tank-1440.webp 1440w" imagesizes="(max-width: 63.99rem) 220vw, 100vw" fetchpriority="high">
+<script>
+  // tower-open: the expanded timing tower at the top of the page (phones).
+  // motion: opt-in. Both are taken back after 3s if the page script never
+  // confirms it is alive (script-live), so a broken script can't leave plates
+  // offset or the expanded tower parked over the content.
+  (function () {
+    var r = document.documentElement;
+    r.classList.add('tower-open');
+    if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) r.classList.add('motion');
+    setTimeout(function () { if (!r.classList.contains('script-live')) r.classList.remove('motion', 'tower-open'); }, 3000);
+  })();
+</script>
+<style>
+@font-face{font-family:"Geist";src:url(assets/fonts/geist.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+/* Arial tuned to Geist's advance widths per weight, so the swap doesn't rewrap. */
+@font-face{font-family:"Geist Fallback";src:local("Arial"),local("ArialMT"),local("Helvetica"),local("Roboto");font-weight:100 500;size-adjust:103.7%;ascent-override:96.9%;descent-override:28.4%;line-gap-override:0%}
+@font-face{font-family:"Geist Fallback";src:local("Arial Bold"),local("Arial-BoldMT"),local("Helvetica Bold"),local("Roboto Bold");font-weight:600 700;size-adjust:102.5%;ascent-override:98%;descent-override:28.8%;line-gap-override:0%}
+@font-face{font-family:"Geist Fallback";src:local("Arial Bold"),local("Arial-BoldMT"),local("Helvetica Bold"),local("Roboto Bold");font-weight:800 900;size-adjust:109%;ascent-override:92.2%;descent-override:27.1%;line-gap-override:0%}
+
+:root{
+  --ground:#e6e7e8;
+  --plate:#ffffff;
+  --ink:#0e1116;
+  --muted:#4a4f57;
+  --live:#6d28d9;
+  --live-deep:#5b21b6;
+  --rule:#c4c7cb;
+  --board-muted:#a9adb4;
+  --f:"Geist","Geist Fallback",system-ui,sans-serif;
+  --gutter:clamp(1rem,4vw,2.5rem);
+  --band:clamp(4.5rem,10vw,8rem);
+  --rail:0rem;
+  --ease:cubic-bezier(.16,1,.3,1);
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:3.75rem;scrollbar-color:var(--ink) var(--ground);caret-color:var(--live)}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--f);font-size:1.0625rem;line-height:1.55;overflow-x:hidden}
+::selection{background:var(--live);color:#fff}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+p,figure,blockquote,h1,h2,h3,dl,dd,ol{margin:0}
+h1,h2,h3{line-height:1;text-wrap:balance}
+:focus-visible{outline:3px solid var(--live);outline-offset:3px}
+.btn:focus-visible,.fab:focus-visible,.tower__row.is-live:focus-visible,.tower__dm:focus-visible{outline-color:var(--ink)}
+.skip{position:absolute;left:-999px;top:0}
+.skip:focus{left:1rem;top:1rem;z-index:100;background:var(--ink);color:#fff;padding:.7rem 1rem;font-weight:700}
+.nw{white-space:nowrap}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.col{padding-inline:var(--gutter)}
+.band{padding-block:var(--band)}
+.band--plate{background:var(--plate)}
+h2{font-size:clamp(2.5rem,8vw,4.5rem);font-weight:800;letter-spacing:-.035em;margin-bottom:clamp(1.75rem,4vw,2.75rem)}
+
+/* ── timing tower: the page's navigation. Docked strip by default (and with no
+   JS); expanded over the hero at the top of the page; always expanded on desktop. */
+.tower{position:fixed;z-index:50;top:0;left:0;right:0;display:flex;height:2.75rem;background:var(--plate);box-shadow:0 1px 0 var(--rule),0 8px 18px -12px rgba(14,17,22,.4)}
+.tower__brand{display:flex;align-items:center;padding:0 .75rem;background:var(--ink);color:#fff;font-weight:800;font-size:.875rem;letter-spacing:-.01em;line-height:1.1;text-decoration:none;white-space:nowrap}
+.tower__list{display:flex;flex:1;list-style:none;margin:0;padding:0}
+.tower__list li{flex:1;display:flex}
+.tower__row{flex:1;display:flex;align-items:center;justify-content:center;gap:.6rem;font-weight:700;font-size:.875rem;text-decoration:none;color:var(--ink);transition:background-color .35s var(--ease),color .35s var(--ease)}
+.tower__row+.tower__row,.tower__list li+li .tower__row{box-shadow:inset 1px 0 0 var(--rule)}
+.tower__row:hover{background:var(--ground)}
+.tower__row.is-live{background:var(--live);color:#fff;box-shadow:none}
+.tower__code{font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.tower__name{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.tower__dm{display:none}
+@media (max-width:63.99rem){
+  .tower-open .tower{right:auto;top:.75rem;left:.75rem;width:11.75rem;height:auto;flex-direction:column;box-shadow:0 10px 26px -12px rgba(14,17,22,.55)}
+  .tower-open .tower__brand{padding:.5rem .65rem}
+  .tower-open .tower__list{flex-direction:column}
+  .tower-open .tower__row{justify-content:flex-start;padding:.45rem .65rem;min-height:2.25rem}
+  .tower-open .tower__list li+li .tower__row{box-shadow:inset 0 1px 0 var(--rule)}
+  .tower-open .tower__list li+li .tower__row.is-live{box-shadow:none}
+  .tower-open .tower__code{width:2.3rem;flex:none}
+  .tower-open .tower__name{position:static;width:auto;height:auto;overflow:visible;clip:auto;font-weight:500}
+}
+
+/* ── feeds: the photo at full bleed, telestrator loop in image space ── */
+.feed{position:relative;overflow:hidden;background:#cfd1d4}
+.feed>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.feed--left>img{object-position:0 50%}
+.tele{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;filter:drop-shadow(0 2px 3px rgba(14,17,22,.45))}
+.tele path{fill:none;stroke:#fff;stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+/* one gloss pass, only on the feed that is on air */
+.feed::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transform:translateX(-100%);
+  background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.4) 50%,transparent 62%);mix-blend-mode:screen}
+
+/* ── plates: white broadcast lower-thirds ── */
+.plate{position:relative;z-index:2;background:var(--plate);box-shadow:0 14px 30px -18px rgba(14,17,22,.45)}
+.strap{display:inline-block;justify-self:start;align-self:end;background:var(--ink);color:#fff;font-weight:700;font-size:.9375rem;line-height:1.2;padding:.45rem .7rem}
+.strap b{font-weight:800}
+
+/* hero: the feed takes whatever the plate leaves, so the action always ends
+   inside the first viewport at every phone height */
+.hero{position:relative;display:flex;flex-direction:column;min-height:100vh;min-height:100svh}
+.hero .feed{flex:1 1 auto;min-height:15rem}
+.tele--d{display:none}
+.hero__plate{margin:-5rem 1rem .75rem 0;padding:1.3rem 1.125rem 1.125rem}
+.hero h1{font-size:clamp(2.75rem,11.5vw,5.75rem);font-weight:900;letter-spacing:-.035em;line-height:.95}
+.hero h1 em,.contact h2 em{font-style:normal;color:var(--live)}
+.hero h1 span{display:block;font-size:clamp(1.7rem,7.1vw,3.1rem);font-weight:600;letter-spacing:-.025em;line-height:1.05;margin-top:.2em}
+.hero .strap{margin-top:1rem}
+.hero__meta{margin-top:.75rem;font-size:.9375rem;font-weight:500;color:var(--muted);max-width:34ch}
+.hero .btn{margin-top:1.1rem}
+#tower-sentinel{position:absolute;top:0;left:0;width:1px;height:2.5rem;pointer-events:none}
+
+/* buttons + links */
+.btn{display:flex;align-items:center;gap:.75rem;min-height:3.5rem;padding:.9rem 1.1rem;background:var(--live);color:#fff;font-weight:800;font-size:1.125rem;line-height:1.2;letter-spacing:-.01em;text-decoration:none;transition:background-color .2s}
+.btn:hover{background:var(--live-deep)}
+@media (max-width:23.4rem){.btn{font-size:1rem;gap:.6rem}}
+.btn:active{transform:translateY(1px)}
+.btn svg{width:1.25em;height:1.25em;flex:none}
+.btn .arrow{margin-left:auto;transition:transform .3s var(--ease)}
+.btn:hover .arrow{transform:translateX(3px)}
+.link{font-weight:700;text-decoration-thickness:2px;text-underline-offset:.28em;text-decoration-color:var(--live)}
+.link:hover{text-decoration-color:currentColor}
+
+/* ── cómo funciona: three sectors of one lap ── */
+.sectors{list-style:none;padding:0;display:grid;gap:1.75rem}
+/* one lap in three sectors: an unlabelled violet sector bar over each, the
+   sector code set inline in the heading like a timing line */
+.sector{padding-top:1.1rem;border-top:6px solid var(--live)}
+.sector h3{font-size:clamp(1.75rem,5vw,2.25rem);font-weight:800;letter-spacing:-.03em;margin-bottom:.5rem}
+.sector__n{color:var(--live);font-variant-numeric:tabular-nums}
+.sector p{color:var(--muted);max-width:34ch}
+@media (min-width:48rem){
+  .sectors{grid-template-columns:repeat(3,1fr);gap:0 .375rem}
+  .sector h3,.sector p{padding-right:1.5rem}
+}
+
+/* ── servicios: ranked by size, no boxes ── */
+.svcs{display:grid}
+.svc{padding-block:1.5rem 1.75rem;border-top:1px solid var(--rule)}
+.svc h3{font-weight:800;letter-spacing:-.035em;margin-bottom:.6rem}
+.svc--1 h3{font-size:clamp(2.75rem,10vw,5.5rem);letter-spacing:-.04em;line-height:.95}
+.svc--2 h3{font-size:clamp(2rem,6.5vw,3.5rem)}
+.svc--3 h3{font-size:clamp(1.5rem,4.5vw,2.25rem)}
+.svc p{color:var(--muted);max-width:40ch}
+.svc--1 p{font-size:1.125rem;color:var(--ink)}
+.note{padding-top:1.25rem;border-top:1px solid var(--rule);font-weight:600;font-size:.9375rem}
+@media (min-width:48rem){
+  .svc{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:2rem;align-items:end}
+  .svc h3{margin-bottom:0}
+}
+
+/* ── trabajos: each job comes on air ── */
+.jobs-head .sub{margin-top:-1rem;max-width:40ch;color:var(--muted)}
+.job{margin-top:clamp(3.5rem,9vw,7rem)}
+.job .feed{aspect-ratio:4/5}
+.job__plate{margin:-3rem 1rem 0 0;padding:1.1rem 1.125rem 1.2rem}
+.job__plate h3{font-size:clamp(2rem,8vw,3.75rem);font-weight:900;letter-spacing:-.04em;line-height:.95}
+.job__svc{display:flex;align-items:center;gap:.55rem;margin-top:.7rem;font-weight:600;font-size:.9375rem}
+.job__svc::before{content:"";width:.7rem;height:.7rem;background:var(--live);flex:none}
+.job__body{padding-top:clamp(1.75rem,5vw,2.75rem)}
+.job__q p{font-size:clamp(1.6rem,6vw,2.75rem);font-weight:700;letter-spacing:-.03em;line-height:1.08;max-width:22ch;text-wrap:balance}
+.job__q footer{margin-top:.75rem;font-size:.9375rem;font-weight:500;color:var(--muted)}
+.reel{display:flex;gap:.5rem;margin:clamp(1.75rem,5vw,2.5rem) calc(var(--gutter)*-1) 0;padding:0 var(--gutter);overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gutter);scrollbar-width:thin;overscroll-behavior-x:contain}
+.reel figure{flex:0 0 84%;scroll-snap-align:start;background:#cfd1d4}
+.reel img{width:100%;height:100%;object-fit:cover}
+.reel--solo figure{flex-basis:100%}
+@media (min-width:40rem){.job .feed{aspect-ratio:4/3}}
+
+/* ── pedro: rider card ── */
+.rider__q{font-size:clamp(2.25rem,8.5vw,4.75rem);letter-spacing:-.04em;line-height:1;max-width:16ch;margin-bottom:1.5rem}
+.rider__q em{font-style:normal;color:var(--live)}
+.rider__flag{display:inline-block;width:1.35em;height:.9em;background:linear-gradient(90deg,#fff 0 33.4%,#0768a9 0 66.6%,#ffcc00 0)}
+.rider__body{display:grid;gap:1rem;max-width:40ch;margin-top:2rem;font-size:1.125rem}
+.rider__body p:last-child{font-weight:700}
+
+/* ── contacto: the close, with the pit board ── */
+.contact h2{font-size:clamp(2.75rem,10vw,5.5rem);letter-spacing:-.04em;max-width:11ch;margin-bottom:1.25rem}
+.contact__lede{max-width:36ch;font-size:1.125rem}
+.actions{display:flex;flex-direction:column;align-items:flex-start;gap:1.25rem;margin-top:1.75rem}
+.board{margin-top:clamp(2.5rem,7vw,3.5rem);background:var(--ink);color:#fff;padding:.5rem 1.25rem}
+.board div{padding-block:1rem;border-top:1px solid rgba(255,255,255,.16)}
+.board div:first-child{border-top:0}
+.board dt{font-size:.875rem;font-weight:600;color:var(--board-muted)}
+.board dd{font-size:clamp(2rem,9vw,3.25rem);font-weight:900;letter-spacing:-.03em;line-height:1;text-transform:uppercase;margin-top:.35rem}
+
+/* footer + floating DM */
+.foot{padding-block:2rem 6.5rem;font-size:.875rem;color:var(--muted)}
+.foot__in{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem 2rem;padding-top:1.25rem;border-top:1px solid var(--rule)}
+.fab{position:fixed;right:1rem;bottom:1rem;z-index:60;display:grid;place-items:center;width:3.5rem;height:3.5rem;background:var(--live);color:#fff;box-shadow:0 10px 22px -8px rgba(14,17,22,.6)}
+.fab svg{width:1.6rem;height:1.6rem}
+.tower-open .fab{display:none}
+
+/* ── desktop: tower fixed as the rail, content offset past it ── */
+@media (min-width:64rem){
+  :root{--rail:17.5rem}
+  html{scroll-padding-top:1.5rem}
+  .tower{top:1.5rem;left:1.5rem;right:auto;width:14rem;height:auto;flex-direction:column;box-shadow:0 14px 32px -16px rgba(14,17,22,.55)}
+  .tower__brand{padding:.7rem .85rem;font-size:.9375rem}
+  .tower__list{flex-direction:column}
+  .tower__row{justify-content:flex-start;padding:.6rem .85rem;font-size:.9375rem}
+  .tower__list li+li .tower__row{box-shadow:inset 0 1px 0 var(--rule)}
+  .tower__list li+li .tower__row.is-live{box-shadow:none}
+  .tower__code{width:2.6rem;flex:none}
+  .tower__name{position:static;width:auto;height:auto;overflow:visible;clip:auto;font-weight:500}
+  .tower__dm{display:flex;align-items:center;justify-content:space-between;padding:.75rem .85rem;background:var(--live);color:#fff;font-weight:800;text-decoration:none;transition:background-color .2s}
+  .tower__dm:hover{background:var(--live-deep)}
+  .tower__dm svg{width:1.1rem;height:1.1rem}
+  .col{margin-left:var(--rail);max-width:68rem;padding-inline:0 3rem}
+  .hero{min-height:max(36rem,100svh)}
+  /* the plate ends left of the tank reflection the loop rings; below 78rem
+     there is no room for both, so the hero runs without its loop */
+  .tele--m{display:none}
+  .hero__plate{position:absolute;left:var(--rail);bottom:3rem;width:min(38rem,calc(66.5vw - var(--rail) - 1.5rem));min-width:28rem;margin:0;padding:1.6rem 1.75rem 1.5rem}
+  .hero h1{font-size:clamp(3.5rem,5.6vw,5rem)}
+  .hero h1 span{font-size:clamp(1.9rem,3.1vw,2.75rem)}
+  .hero__meta{font-size:1rem}
+  .hero .btn{display:inline-flex;min-width:22rem}
+  .job .feed{aspect-ratio:auto;height:min(100svh,62.5vw)}
+  .job__plate{margin:-7rem 0 0 var(--rail);width:min(40rem,calc(100vw - var(--rail) - 3rem));padding:1.5rem 1.75rem 1.6rem}
+  .job__q p{max-width:26ch}
+  .reel{margin:2.5rem 0 0;padding:0;overflow:visible;display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:.75rem}
+  .reel figure{flex:none}
+  .job--mon .job__body{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:3rem;align-items:start}
+  .job--mon .reel{margin-top:0}
+  .rider{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:1rem 3rem;align-items:start}
+  .rider .strap{align-self:start}
+  .rider__q{grid-column:1/-1}
+  .rider__body{margin-top:0}
+  .fab{display:none}
+  .foot{padding-bottom:2rem}
+}
+@media (min-width:78rem){
+  .tele--d{display:block}
+  /* the pit board sits beside the close only once its words fit the column */
+  .contact{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:3rem;align-items:end}
+  .board{margin-top:0}
+}
+
+/* ── motion: one authored moment, the on-air handoff. Transform only; every
+   plate is readable before, during and after. ── */
+.motion .plate{clip-path:inset(-2rem 100% -3rem -2rem);transition:clip-path .7s var(--ease)}
+.motion .on-air .plate{clip-path:inset(-2rem -2rem -3rem -2rem)}
+.motion .tele path{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1s cubic-bezier(.65,0,.35,1) .45s}
+.motion .on-air .tele path{stroke-dashoffset:0}
+.motion .on-air .feed::after{animation:sweep 1.5s cubic-bezier(.45,.05,.35,1) .9s 1 both}
+@keyframes sweep{from{transform:translateX(-100%);opacity:1}to{transform:translateX(100%);opacity:1}}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .tower__row,.btn .arrow{transition:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+
+<nav class="tower" aria-label="Trabajos">
+  <a class="tower__brand" href="#top">Pedro Moto Care</a>
+  <ol class="tower__list">
+    <li><a class="tower__row is-live" href="#job-gsx" data-job="gsx" aria-current="true"><span class="tower__code" aria-hidden="true">GSX</span><span class="tower__name">GSX-R 600</span></a></li>
+    <li><a class="tower__row" href="#job-mts" data-job="mts"><span class="tower__code" aria-hidden="true">MTS</span><span class="tower__name">Multistrada</span></a></li>
+    <li><a class="tower__row" href="#job-mon" data-job="mon"><span class="tower__code" aria-hidden="true">MON</span><span class="tower__name">Monster 1200R</span></a></li>
+  </ol>
+  <a class="tower__dm" href="https://ig.me/m/pedromotocare" rel="noopener">Escríbeme<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+</nav>
+
+<main id="main">
+
+<section class="hero on-air-target" id="top" data-job="gsx" aria-labelledby="hero-h">
+  <span id="tower-sentinel" aria-hidden="true"></span>
+  <div class="feed">
+    <img src="assets/img/gsxr-tank-1440.webp" srcset="assets/img/gsxr-tank-800.webp 800w, assets/img/gsxr-tank-1440.webp 1440w" sizes="(max-width: 63.99rem) 220vw, 100vw" width="1440" height="1080" fetchpriority="high" decoding="async" alt="Depósito naranja de una Suzuki GSX-R 600 recién limpiado, con reflejos de brillo">
+    <svg class="tele tele--m" viewBox="0 0 1440 1080" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path pathLength="1" d="M785 384C788 383 800 377 807 375C815 372 823 370 831 368C839 367 847 366 855 366C863 365 870 365 878 366C886 367 894 368 901 370C909 371 916 373 923 376C930 378 937 381 943 385C950 388 956 392 962 397C968 401 973 406 978 411C983 416 988 422 991 428C995 434 999 440 1001 447C1004 453 1006 460 1007 467C1008 474 1009 481 1008 488C1008 496 1007 503 1005 510C1003 517 1000 524 997 530C993 537 989 544 984 549C979 555 974 561 968 566C962 571 956 576 949 580C942 584 935 588 928 591C920 593 913 596 905 598C898 600 890 601 882 602C874 602 867 603 859 602C852 602 844 601 837 600C829 599 822 597 815 595C808 593 801 590 795 587C788 584 782 581 776 577C770 573 765 569 759 564C754 559 750 554 745 549C741 543 738 537 735 531C731 525 729 519 727 512C726 506 725 499 724 492C724 485 725 478 726 471C727 464 729 457 732 451C735 444 738 438 743 432C747 425 752 420 757 414C762 409 768 404 774 400C781 396 787 392 794 389C801 385 808 383 816 380C823 378 830 377 838 375C845 374 856 374 860 374"/></svg>
+    <svg class="tele tele--d" viewBox="0 0 1440 1080" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path pathLength="1" d="M1003 405C1005 405 1011 404 1014 404C1018 404 1022 405 1026 406C1030 407 1034 408 1038 410C1042 412 1045 415 1049 418C1053 421 1056 424 1060 428C1063 432 1066 436 1069 441C1072 445 1075 450 1078 456C1080 461 1082 467 1084 473C1086 479 1087 485 1088 491C1089 497 1090 503 1090 510C1090 516 1090 522 1090 528C1089 534 1088 540 1087 545C1086 551 1085 556 1083 561C1081 566 1079 570 1076 575C1074 579 1071 583 1069 586C1066 590 1063 593 1060 595C1057 598 1053 600 1050 602C1047 604 1043 605 1040 606C1036 607 1032 608 1029 608C1025 608 1021 608 1018 607C1014 606 1010 605 1006 604C1003 602 999 600 995 598C992 595 988 592 985 589C981 586 978 582 975 578C972 573 969 569 966 564C964 559 961 553 959 548C957 542 956 536 954 531C953 525 952 519 952 513C951 507 951 501 951 495C951 489 952 483 953 478C954 472 955 467 956 462C958 457 960 452 962 448C964 443 966 439 969 436C972 432 974 429 977 426C980 423 983 421 986 419C989 417 993 415 996 414C1000 413 1003 412 1006 411C1010 411 1014 411 1017 411C1021 411 1024 412 1028 413C1032 414 1037 417 1039 418"/></svg>
+  </div>
+  <div class="plate hero__plate">
+    <h1 id="hero-h">Tu moto, <em>impoluta.</em> <span>Sin sacarla del garaje.</span></h1>
+    <p class="strap"><b>Pedro</b> · motero a motero</p>
+    <p class="hero__meta">Limpieza total y engrasado de cadena · <span class="nw">A domicilio en Tenerife</span></p>
+    <a class="btn" href="https://ig.me/m/pedromotocare" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg>Escríbeme por Instagram<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+</section>
+
+<section class="band band--plate" id="como" aria-labelledby="como-h">
+  <div class="col">
+    <h2 id="como-h">Así de fácil</h2>
+    <ol class="sectors">
+      <li class="sector">
+        <h3><span class="sector__n">S1</span> Escríbeme</h3>
+        <p>Mándame un mensaje con tu moto y lo que necesita, y te respondo con el presupuesto.</p>
+      </li>
+      <li class="sector">
+        <h3><span class="sector__n">S2</span> Voy a tu garaje</h3>
+        <p>Quedamos un día y voy yo. Tu moto no sale de casa.</p>
+      </li>
+      <li class="sector">
+        <h3><span class="sector__n">S3</span> Impoluta</h3>
+        <p>La limpio a fondo, como si fuera la mía, y queda lista para lucirla en tu próxima salida.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="band" id="servicios" aria-labelledby="serv-h">
+  <div class="col">
+    <h2 id="serv-h">Qué hago</h2>
+    <div class="svcs">
+      <article class="svc svc--1">
+        <h3>Limpieza total</h3>
+        <p>Tu moto de arriba abajo: carenados, depósito, llantas, motor y escape. Que brille hasta el último rincón.</p>
+      </article>
+      <article class="svc svc--2">
+        <h3>Engrasado de cadena</h3>
+        <p>La cadena, limpia y bien engrasada. Lo puedes sumar a la limpieza total.</p>
+      </article>
+      <article class="svc svc--3">
+        <h3>¿Coche? También.</h3>
+        <p>También limpio coches. Escríbeme y lo hablamos.</p>
+      </article>
+    </div>
+    <p class="note">Presupuesto por mensaje · Servicio a domicilio en Tenerife</p>
+  </div>
+</section>
+
+<section id="trabajos" aria-labelledby="trab-h">
+  <div class="col jobs-head">
+    <h2 id="trab-h">Así quedan</h2>
+    <p class="sub">Fotos reales de motos de clientes, al terminar el trabajo.</p>
+  </div>
+
+  <article class="job job--gsx on-air-target" id="job-gsx" data-job="gsx" aria-labelledby="job-gsx-h">
+    <div class="feed">
+      <img src="assets/img/gsxr-nose-800.webp" srcset="assets/img/gsxr-nose-800.webp 800w, assets/img/gsxr-nose-1440.webp 1440w" sizes="(max-width: 39.99rem) 167vw, 100vw" width="1440" height="1080" loading="lazy" decoding="async" alt="Frontal naranja y faro de la Suzuki GSX-R 600 tras la limpieza total">
+      <svg class="tele" viewBox="0 0 1440 1080" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path pathLength="1" d="M875 449C882 450 902 454 915 457C928 460 940 464 953 469C965 474 977 480 989 486C1001 493 1012 500 1022 508C1033 516 1043 524 1052 533C1061 542 1069 552 1076 563C1084 573 1090 584 1095 595C1100 607 1104 618 1107 630C1110 642 1111 654 1111 666C1111 678 1110 690 1107 701C1105 713 1101 724 1095 735C1090 746 1083 756 1076 765C1068 775 1059 784 1050 792C1040 799 1030 807 1019 813C1008 819 996 824 984 828C972 832 959 836 946 838C934 840 921 842 908 843C895 843 881 843 868 842C856 841 843 839 830 836C817 834 805 830 792 826C780 822 768 817 757 811C745 806 734 799 723 792C713 785 702 777 693 769C684 761 675 752 667 742C659 732 652 722 647 712C641 701 636 690 632 679C629 667 626 656 625 644C624 633 624 621 626 609C628 598 630 587 635 576C639 565 644 555 651 545C657 536 665 527 674 518C682 510 692 503 702 496C712 490 723 484 735 479C746 474 758 470 770 467C782 464 795 462 807 461C820 460 832 460 845 460C858 460 870 462 883 464C895 466 907 468 919 472C931 475 943 479 955 484C966 489 982 498 988 501"/></svg>
+    </div>
+    <div class="plate job__plate">
+      <h3 id="job-gsx-h">Suzuki GSX-R 600</h3>
+      <p class="job__svc">Limpieza total + engrasado de cadena</p>
+    </div>
+    <div class="col job__body">
+      <blockquote class="job__q"><p>“Los resultados hablan por si solos.”</p><footer>Pedro, en Instagram</footer></blockquote>
+      <div class="reel" role="region" aria-label="Más fotos de la GSX-R 600" tabindex="0">
+        <figure><img src="assets/img/gsxr-decal-800.webp" srcset="assets/img/gsxr-decal-800.webp 800w, assets/img/gsxr-decal-1440.webp 1440w" sizes="(max-width: 63.99rem) 84vw, 34rem" width="1440" height="1080" loading="lazy" decoding="async" alt="Carenado lateral de la GSX-R con el logo GSX-R brillante"></figure>
+        <figure><img src="assets/img/gsxr-exhaust-800.webp" srcset="assets/img/gsxr-exhaust-800.webp 800w, assets/img/gsxr-exhaust-1440.webp 1440w" sizes="(max-width: 63.99rem) 84vw, 34rem" width="1440" height="1080" loading="lazy" decoding="async" alt="Escape Akrapovič de la GSX-R, limpio y sin restos"></figure>
+      </div>
+    </div>
+  </article>
+
+  <article class="job job--mts on-air-target" id="job-mts" data-job="mts" aria-labelledby="job-mts-h">
+    <div class="feed">
+      <img src="assets/img/multi-fairing-800.webp" srcset="assets/img/multi-fairing-800.webp 800w, assets/img/multi-fairing-1440.webp 1440w" sizes="100vw" width="1440" height="1920" loading="lazy" decoding="async" alt="Carenado rojo de la Ducati Multistrada con el logo Ducati">
+      <svg class="tele" viewBox="0 0 1440 1920" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path pathLength="1" d="M519 681C532 677 570 666 595 659C621 653 647 647 673 643C698 638 724 634 749 631C775 628 800 625 824 624C849 623 873 622 896 622C919 623 942 624 963 626C984 628 1005 631 1024 634C1044 638 1062 643 1078 649C1094 654 1109 661 1122 668C1135 676 1146 684 1154 693C1163 702 1169 712 1173 722C1177 733 1178 744 1177 755C1175 767 1171 779 1165 791C1158 803 1149 815 1138 827C1127 839 1113 852 1097 863C1082 875 1064 887 1045 898C1026 908 1004 919 983 929C961 938 938 948 914 956C890 964 866 972 841 979C817 986 792 992 767 997C742 1002 717 1006 692 1010C668 1014 643 1016 619 1018C595 1020 571 1022 548 1022C525 1022 503 1022 482 1021C460 1019 439 1017 420 1014C400 1011 382 1007 365 1003C348 998 332 992 318 986C304 979 292 972 282 964C272 956 264 947 259 937C253 928 250 917 249 907C249 896 250 885 255 873C259 862 266 850 275 838C284 826 296 814 310 803C323 791 339 780 356 769C374 758 393 747 413 737C433 727 455 718 478 709C500 701 523 693 547 686C570 678 594 672 618 666C642 661 667 656 691 652C715 648 750 644 762 642"/></svg>
+    </div>
+    <div class="plate job__plate">
+      <h3 id="job-mts-h">Ducati Multistrada</h3>
+      <p class="job__svc">Limpieza total</p>
+    </div>
+    <div class="col job__body">
+      <blockquote class="job__q"><p>“El color rojo hace que se aprecie la limpieza.”</p><footer>Pedro, en Instagram</footer></blockquote>
+      <div class="reel" role="region" aria-label="Más fotos de la Multistrada" tabindex="0">
+        <figure><img src="assets/img/multi-frame-800.webp" srcset="assets/img/multi-frame-800.webp 800w, assets/img/multi-frame-1440.webp 1440w" sizes="(max-width: 63.99rem) 84vw, 15rem" width="1440" height="1920" loading="lazy" decoding="async" alt="Chasis multitubular rojo y motor de la Multistrada, limpios"></figure>
+        <figure><img src="assets/img/multi-wheel-800.webp" srcset="assets/img/multi-wheel-800.webp 800w, assets/img/multi-wheel-1440.webp 1440w" sizes="(max-width: 63.99rem) 84vw, 15rem" width="1440" height="1920" loading="lazy" decoding="async" alt="Llanta delantera negra con vivo rojo y disco de freno de la Multistrada"></figure>
+        <figure><img src="assets/img/multi-tank-800.webp" srcset="assets/img/multi-tank-800.webp 800w, assets/img/multi-tank-1440.webp 1440w" sizes="(max-width: 63.99rem) 84vw, 15rem" width="1440" height="1920" loading="lazy" decoding="async" alt="Lateral rojo del depósito de la Multistrada con brillo"></figure>
+      </div>
+    </div>
+  </article>
+
+  <article class="job job--mon on-air-target" id="job-mon" data-job="mon" aria-labelledby="job-mon-h">
+    <div class="feed feed--left">
+      <img src="assets/img/monster-engine-800.webp" srcset="assets/img/monster-engine-800.webp 800w, assets/img/monster-engine-1440.webp 1440w" sizes="(max-width: 39.99rem) 167vw, 100vw" width="1440" height="1080" loading="lazy" decoding="async" alt="Tapa del motor Ducati de la Monster 1200R, limpia">
+      <svg class="tele" viewBox="0 0 1440 1080" preserveAspectRatio="xMinYMid slice" aria-hidden="true"><path pathLength="1" d="M560 554C567 557 589 565 602 571C616 577 629 584 641 591C653 597 664 605 674 612C684 620 693 627 700 635C708 643 714 651 719 658C724 666 727 674 729 681C731 688 731 696 730 702C729 709 727 716 723 721C719 727 714 733 708 738C702 743 694 747 686 751C678 755 668 759 659 761C649 764 638 767 626 768C615 770 603 772 591 772C578 773 565 773 552 773C539 773 525 772 511 771C497 769 483 767 468 765C454 763 439 760 425 756C410 753 396 749 382 744C367 740 353 735 340 729C326 724 313 718 301 711C288 705 277 698 266 691C256 684 246 677 238 669C230 662 222 654 217 647C211 639 207 632 204 625C201 617 199 610 199 603C199 596 201 590 203 584C206 578 210 572 215 567C220 562 227 557 234 553C241 549 250 545 259 542C268 539 278 536 288 534C299 532 310 530 321 529C333 528 345 527 358 527C370 527 383 527 397 528C410 529 424 531 437 533C451 534 465 537 479 540C493 543 507 546 521 550C535 554 549 559 562 564C576 568 589 574 601 580C614 586 626 592 637 598C648 605 662 616 667 619"/></svg>
+    </div>
+    <div class="plate job__plate">
+      <h3 id="job-mon-h">Ducati Monster 1200R</h3>
+      <p class="job__svc">Limpieza total + engrasado de cadena</p>
+    </div>
+    <div class="col job__body">
+      <blockquote class="job__q"><p>“Brillante como el primer día, sin sacarla del garaje.”</p><footer>Pedro, en Instagram</footer></blockquote>
+      <div class="reel reel--solo">
+        <figure><img src="assets/img/monster-rim-752.webp" srcset="assets/img/monster-rim-752.webp 752w" sizes="(max-width: 63.99rem) 100vw, 40rem" width="752" height="564" loading="lazy" decoding="async" alt="Llanta trasera negra de la Ducati Monster 1200R, con brillo y las letras DUCATI"></figure>
+      </div>
+    </div>
+  </article>
+</section>
+
+<section class="band band--plate" id="pedro" aria-labelledby="pedro-h">
+  <div class="col rider">
+    <h2 id="pedro-h" class="rider__q">“Cuidaré de tu moto, <em>como si fuera la mía.</em>”</h2>
+    <p class="strap"><b>Pedro</b> · motero · Tenerife <span class="rider__flag" aria-hidden="true"></span></p>
+    <div class="rider__body">
+      <p>Soy Pedro, y también soy motero. Sé lo que es querer la moto impecable para la próxima salida y no tener tiempo, o sitio, para dejarla así.</p>
+      <p>Por eso voy yo a tu garaje.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="contacto" aria-labelledby="cont-h">
+  <div class="col contact">
+    <div>
+      <h2 id="cont-h">¿La dejamos <em>impoluta?</em></h2>
+      <p class="contact__lede">Escríbeme por Instagram con tu moto (o tu coche) y te respondo con el presupuesto.</p>
+      <div class="actions">
+        <a class="btn" href="https://ig.me/m/pedromotocare" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg>Escribir por Instagram<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="link" href="https://www.instagram.com/pedromotocare/" rel="noopener">Ver @pedromotocare</a>
+      </div>
+    </div>
+    <dl class="board">
+      <div><dt>Zona</dt><dd>Tenerife</dd></div>
+      <div><dt>Servicio</dt><dd>A domicilio</dd></div>
+      <div><dt>Contacto</dt><dd>Instagram</dd></div>
+    </dl>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="col foot__in">
+    <p>© 2026 Pedro Moto Care · Tenerife</p>
+    <p>Vista previa · Teide Digital</p>
+  </div>
+</footer>
+
+<a class="fab" href="https://ig.me/m/pedromotocare" rel="noopener" aria-label="Escríbeme por Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg></a>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  if (!('IntersectionObserver' in window)) { root.classList.remove('tower-open'); return; }
+
+  // Expanded tower only while the top of the page is in view (phones).
+  new IntersectionObserver(function (e) {
+    root.classList.toggle('tower-open', e[0].isIntersecting);
+  }).observe(document.getElementById('tower-sentinel'));
+
+  // Chase light: the tower's live row is whichever feed crosses mid-screen.
+  var rows = [].slice.call(document.querySelectorAll('.tower__row'));
+  var targets = [].slice.call(document.querySelectorAll('.on-air-target'));
+  var crossing = {};
+  function setLive(job) {
+    rows.forEach(function (r) {
+      var on = r.getAttribute('data-job') === job;
+      r.classList.toggle('is-live', on);
+      if (on) r.setAttribute('aria-current', 'true'); else r.removeAttribute('aria-current');
+    });
+  }
+  var chase = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { crossing[e.target.id] = e.isIntersecting; });
+    var live = null;
+    targets.forEach(function (t) { if (crossing[t.id]) live = t.getAttribute('data-job'); });
+    setLive(live);
+  }, { rootMargin: '-50% 0px -50% 0px' });
+  targets.forEach(function (t) { chase.observe(t); });
+
+  // On air, once per feed: plate in, then the loop, then the gloss pass.
+  // Watches the photo, not the whole job: a feed always fits the screen, so
+  // 35% of it is reachable even on a landscape phone.
+  var air = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.parentNode.classList.add('on-air'); air.unobserve(e.target); }
+    });
+  }, { threshold: 0.35 });
+  targets.forEach(function (t) { air.observe(t.querySelector('.feed')); });
+  root.classList.add('script-live');
+})();
+</script>
+</body>
+</html>
