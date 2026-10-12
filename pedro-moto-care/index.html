@@ -7,6 +7,15 @@
 <title>Pedro Moto Care · Limpieza de motos a domicilio en Tenerife</title>
 <meta name="description" content="Limpieza total y engrasado de cadena a domicilio en Tenerife. Voy a tu garaje y te dejo la moto impoluta. Motero a motero.">
 <meta name="theme-color" content="#111010">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:title" content="Pedro Moto Care · Limpieza de motos a domicilio">
+<meta property="og:description" content="Voy a tu garaje y te dejo la moto impoluta. Tenerife, motero a motero.">
+<meta property="og:image" content="https://raparcedo.github.io/teide-demos/pedro-moto-care/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Depósito naranja de una Suzuki GSX-R 600 recién limpiado">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111010'/%3E%3Crect x='9' y='9' width='14' height='14' fill='%23ff5a1f'/%3E%3C/svg%3E">
 <link rel="preload" href="assets/fonts/display.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/body.woff2" as="font" type="font/woff2" crossorigin>
@@ -22,10 +31,8 @@
 </script>
 <style>
 @font-face{font-family:"Bebas Neue";src:url(assets/fonts/display.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}
-/* body + mono: optional, a late swap reflowed the hero (CLS 0.15). Display stays swap:
-   its fallback (mixed-case sans) would lose the brand, and it is preloaded + 14KB. */
-@font-face{font-family:"Archivo";src:url(assets/fonts/body.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:optional}
-@font-face{font-family:"JetBrains Mono";src:url(assets/fonts/mono.woff2) format("woff2");font-weight:500;font-style:normal;font-display:optional}
+@font-face{font-family:"Archivo";src:url(assets/fonts/body.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"JetBrains Mono";src:url(assets/fonts/mono.woff2) format("woff2");font-weight:500;font-style:normal;font-display:swap}
 
 :root{
   --ground:#111010;
@@ -82,6 +89,9 @@ h1,h2,h3{font-family:var(--f-display);font-weight:400;letter-spacing:.02em;line-
 .btn--dark:hover{background:#2a2725}
 .link{font-weight:600;text-decoration-thickness:1px;text-underline-offset:.3em}
 .actions{display:flex;flex-wrap:wrap;align-items:center;gap:1rem 1.5rem;margin-top:2rem}
+/* phones: link always under the button. Side-by-side, the body-font swap
+   rewrapped it and dropped the hero photo 43px (Lighthouse CLS 0.151). */
+@media (max-width:47.99rem){.actions{flex-direction:column;align-items:flex-start}}
 
 /* hero */
 .hero{padding-block:clamp(2rem,6vw,4.5rem) var(--band)}
@@ -234,7 +244,7 @@ h1,h2,h3{font-family:var(--f-display);font-weight:400;letter-spacing:.02em;line-
       <li class="step reveal">
         <span class="step__n">02</span>
         <h3>Voy a tu garaje</h3>
-        <p>Quedamos el día que te venga bien y voy yo. Tu moto no sale de casa.</p>
+        <p>Quedamos un día y voy yo. Tu moto no sale de casa.</p>
       </li>
       <li class="step reveal">
         <span class="step__n">03</span>
@@ -263,7 +273,7 @@ h1,h2,h3{font-family:var(--f-display);font-weight:400;letter-spacing:.02em;line-
       <article class="svc svc--car reveal">
         <p class="svc__n">Coches</p>
         <h3>¿Coche? También.</h3>
-        <p>También limpio coches a domicilio. Escríbeme y lo hablamos.</p>
+        <p>También limpio coches. Escríbeme y lo hablamos.</p>
       </article>
     </div>
     <p class="note">Presupuesto por mensaje · Servicio a domicilio en Tenerife</p>
@@ -301,7 +311,7 @@ h1,h2,h3{font-family:var(--f-display);font-weight:400;letter-spacing:.02em;line-
           <figure class="ph ph--tall"><img src="assets/img/multi-wheel-800.webp" srcset="assets/img/multi-wheel-800.webp 800w, assets/img/multi-wheel-1440.webp 1440w" sizes="(min-width: 64rem) 18rem, 50vw" width="1440" height="1920" loading="lazy" decoding="async" alt="Llanta delantera negra con vivo rojo y disco de freno de la Multistrada"></figure>
           <figure class="ph ph--tall"><img src="assets/img/multi-tank-800.webp" srcset="assets/img/multi-tank-800.webp 800w, assets/img/multi-tank-1440.webp 1440w" sizes="(min-width: 64rem) 18rem, 50vw" width="1440" height="1920" loading="lazy" decoding="async" alt="Lateral rojo del depósito de la Multistrada con brillo"></figure>
         </div>
-        <p class="job__q">“El rojo hace que se aprecie la limpieza.”</p>
+        <p class="job__q">“El color rojo hace que se aprecie la limpieza.”</p>
       </article>
 
       <article class="job job--pair reveal">
@@ -311,7 +321,7 @@ h1,h2,h3{font-family:var(--f-display);font-weight:400;letter-spacing:.02em;line-
         </header>
         <div class="job__grid">
           <figure class="ph ph--wide"><img src="assets/img/monster-engine-800.webp" srcset="assets/img/monster-engine-800.webp 800w, assets/img/monster-engine-1440.webp 1440w" sizes="(min-width: 48rem) 36rem, 100vw" width="1440" height="1080" loading="lazy" decoding="async" alt="Tapa del motor Ducati de la Monster 1200R, limpia"></figure>
-          <figure class="ph ph--wide"><img src="assets/img/monster-wheel-800.webp" srcset="assets/img/monster-wheel-800.webp 800w, assets/img/monster-wheel-1440.webp 1440w" sizes="(min-width: 48rem) 36rem, 100vw" width="1440" height="1080" loading="lazy" decoding="async" alt="Llanta trasera negra de la Ducati Monster 1200R con brillo y el vivo 1200 R"></figure>
+          <figure class="ph ph--wide"><img src="assets/img/monster-rim-752.webp" srcset="assets/img/monster-rim-752.webp 752w" sizes="(min-width: 48rem) 36rem, 100vw" width="752" height="564" loading="lazy" decoding="async" alt="Llanta trasera negra de la Ducati Monster 1200R, con brillo y las letras DUCATI"></figure>
         </div>
         <p class="job__q">“Brillante como el primer día, sin sacarla del garaje.”</p>
       </article>
