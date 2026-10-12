@@ -252,8 +252,9 @@ h2{font-size:clamp(2.5rem,8vw,4.5rem);font-weight:800;letter-spacing:-.035em;mar
   .board{margin-top:0}
 }
 
-/* ── motion: one authored moment, the on-air handoff. Transform only; every
-   plate is readable before, during and after. ── */
+/* ── motion: one authored moment, the on-air handoff. The plate wipes in
+   (clip-path), the loop draws (stroke-dashoffset), one gloss sweep crosses the
+   photo. Nothing that carries text ever fades. ── */
 .motion .plate{clip-path:inset(-2rem 100% -3rem -2rem);transition:clip-path .7s var(--ease)}
 .motion .on-air .plate{clip-path:inset(-2rem -2rem -3rem -2rem)}
 .motion .tele path{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1s cubic-bezier(.65,0,.35,1) .45s}
