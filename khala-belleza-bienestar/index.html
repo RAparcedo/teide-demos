@@ -111,11 +111,13 @@ p{text-wrap:pretty}
 /* ── actions ─────────────────────────────────────────────────────────── */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.65rem;min-height:3.25rem;padding:.8rem 1.6rem;background:var(--gold-fill);color:var(--on-gold);font:500 1rem/1.2 var(--sans);letter-spacing:.03em;text-decoration:none;text-align:center;
   /* the alfiz: a hairline frame standing off the button, as around her arches */
-  box-shadow:0 0 0 3px var(--ground),0 0 0 4px var(--gold);transition:background-color .2s}
-.btn:hover{background:var(--gold-hover)}
+  box-shadow:0 0 0 3px var(--ground),0 0 0 4px var(--gold);transition:background-color .2s,box-shadow .3s var(--ease),scale .12s ease-out}
+/* feedback: the alfiz ring steps out on hover; the button presses in on tap */
+.btn:hover{background:var(--gold-hover);box-shadow:0 0 0 5px var(--ground),0 0 0 6px var(--gold)}
+.btn:active{scale:.97}
 .btn svg{width:1.3rem;height:1.3rem;fill:currentColor;flex:none}
 .btn--line{background:transparent;color:var(--gold-lt);box-shadow:inset 0 0 0 1px var(--gold)}
-.btn--line:hover{background:rgba(211,191,147,.12)}
+.btn--line:hover{background:rgba(211,191,147,.12);box-shadow:inset 0 0 0 1px var(--gold-lt)}
 .acts{display:flex;flex-wrap:wrap;align-items:center;gap:1rem 1.5rem}
 .textlink{display:inline-flex;align-items:center;gap:.6rem;min-height:2.75rem;color:var(--gold-lt);text-decoration:underline}
 .textlink svg{width:1.2rem;height:1.2rem;fill:currentColor;flex:none}
@@ -130,6 +132,8 @@ p{text-wrap:pretty}
 .arch{position:relative;aspect-ratio:340/440;flex:none}
 .arch__win{position:absolute;left:8.8235%;top:8.6364%;width:82.353%;height:91.364%;overflow:hidden;background:var(--wall-deep);-webkit-mask:var(--horseshoe) center/100% 100% no-repeat;mask:var(--horseshoe) center/100% 100% no-repeat}
 .arch__img{width:100%;height:100%;object-fit:cover}
+/* her backlit sign's light on the corridor wall (always on; .motion warms it up) */
+.arch__glow{position:absolute;left:51%;top:45%;width:82%;aspect-ratio:1;translate:-50% -50%;border-radius:50%;background:radial-gradient(circle,rgba(255,210,135,.4),rgba(255,210,135,.1) 42%,rgba(255,210,135,0) 68%);mix-blend-mode:screen;pointer-events:none}
 .arch__frame{position:absolute;inset:0;width:100%;height:100%;overflow:visible;fill:none;stroke:var(--gold);stroke-width:1.1}
 .arch__frame use{fill:var(--gold);stroke:none}
 [data-ground=dark] .arch__frame{stroke:var(--gold-lt)}
@@ -152,7 +156,7 @@ p{text-wrap:pretty}
 /* ── 2 · Sandra ──────────────────────────────────────────────────────── */
 .sandra{display:grid;gap:clamp(1.75rem,4vw,3rem);align-content:center}
 /* alicatado friezes mark the two joins between the dark rooms and marble */
-.sandra::before,.drenaje::after{content:"";position:absolute;left:0;right:0;height:3rem;background:var(--frieze) 0 50%/auto 100% repeat-x}
+.sandra::before,.drenaje::after{content:"";position:absolute;left:0;right:0;height:3rem;background:linear-gradient(100deg,rgba(255,232,180,0) 30%,rgba(255,232,180,.34) 50%,rgba(255,232,180,0) 70%) -90% 0/45% 100% no-repeat,var(--frieze) 0 50%/auto 100% repeat-x}
 .sandra::before{top:0}
 .drenaje::after{bottom:0}
 .sandra h2{color:var(--ink)}
@@ -193,9 +197,9 @@ p{text-wrap:pretty}
 .sky--1{--x:20%}
 .sky--2{--x:50%}
 .sky--3{--x:80%}
-.halo{position:absolute;top:0;left:0;width:clamp(5rem,3.5rem + 4vw,8rem);aspect-ratio:1;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(255,226,170,.34),rgba(255,226,170,0) 66%)}
-.oculus{position:absolute;top:0;left:0;width:clamp(1.9rem,1.4rem + 1.6vw,3rem);aspect-ratio:1;transform:translate(-50%,-50%);background:radial-gradient(circle,#fffaf0 0 38%,#f0d7a4 100%);-webkit-mask:var(--octagram) center/contain no-repeat;mask:var(--octagram) center/contain no-repeat}
-.shaft{position:absolute;top:0;left:calc(clamp(4.5rem,3rem + 6vw,8rem) / -2);width:clamp(4.5rem,3rem + 6vw,8rem);height:88%;transform-origin:50% 0;transform:rotate(-13deg);background:linear-gradient(180deg,rgba(255,236,200,.24),rgba(255,236,200,.07) 55%,rgba(255,236,200,0));clip-path:polygon(33% 0,67% 0,100% 100%,0 100%);-webkit-mask:linear-gradient(90deg,transparent,#000 30%,#000 70%,transparent);mask:linear-gradient(90deg,transparent,#000 30%,#000 70%,transparent)}
+.halo{position:absolute;top:0;left:0;width:clamp(5rem,3.5rem + 4vw,8rem);aspect-ratio:1;translate:-50% -50%;background:radial-gradient(circle,rgba(255,226,170,.34),rgba(255,226,170,0) 66%)}
+.oculus{position:absolute;top:0;left:0;width:clamp(1.9rem,1.4rem + 1.6vw,3rem);aspect-ratio:1;translate:-50% -50%;background:radial-gradient(circle,#fffaf0 0 38%,#f0d7a4 100%);-webkit-mask:var(--octagram) center/contain no-repeat;mask:var(--octagram) center/contain no-repeat}
+.shaft{position:absolute;top:0;left:calc(clamp(4.5rem,3rem + 6vw,8rem) / -2);width:clamp(4.5rem,3rem + 6vw,8rem);height:88%;transform-origin:50% 0;rotate:-13deg;background:linear-gradient(180deg,rgba(255,236,200,.24),rgba(255,236,200,.07) 55%,rgba(255,236,200,0));clip-path:polygon(33% 0,67% 0,100% 100%,0 100%);-webkit-mask:linear-gradient(90deg,transparent,#000 30%,#000 70%,transparent);mask:linear-gradient(90deg,transparent,#000 30%,#000 70%,transparent)}
 .hammam h2{color:var(--on-dark)}
 .hammam .said{color:var(--on-dark);max-width:25rem}
 .ritual{display:grid;gap:clamp(2rem,5vw,3rem);padding:clamp(3rem,8vh,6rem) var(--gutter) clamp(4rem,10vh,7rem);scroll-snap-align:start}
@@ -261,13 +265,19 @@ p{text-wrap:pretty}
 /* ── chapter dots (desktop): plain anchors; the spy only reflects ─────── */
 .dots{display:none}
 
-/* ── motion: one reveal of her motif + the hammam's light ───────────────
+/* ── motion: the walk through her house ────────────────────────────────
+   One grammar: rooms are DRAWN (frames), UNCOVERED (masks), LIT (light).
+   Focal moment: the hammam's star openings ignite one by one and pour
+   their light into the room. Text never fades; nothing slides.
    Everything is drawn by default; .motion (head script) only adds the
    entrance. Reduced motion never gets .motion. */
 @keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
 @keyframes bloom{from{transform:scale(.3) rotate(-40deg);opacity:0}to{transform:none;opacity:1}}
 @keyframes rise{to{transform:translate3d(4%,-9%,0) scaleX(var(--flip,1)) scale(1.07)}}
 @keyframes breathe{to{opacity:.45}}
+@keyframes glowOn{from{opacity:0;scale:.6}}
+@keyframes breath{to{scale:1.04}}
+@keyframes sheen{to{background-position:190% 0,0 50%}}
 .motion .arch--door .ln{stroke-dasharray:1;animation:draw 1.9s var(--ease) .15s both}
 .motion .arch--door .ln--arc{animation-delay:.4s}
 .motion .arch--door use{transform-box:fill-box;transform-origin:50% 50%;animation:bloom 1.3s var(--ease) 1.05s both}
@@ -277,12 +287,68 @@ p{text-wrap:pretty}
 .motion .sky--2 .shaft,.motion .sky--2 .halo{animation-delay:-2.2s}
 .motion .sky--3 .shaft,.motion .sky--3 .halo{animation-delay:-4.4s}
 .motion .hammam.is-lit .steam,.motion .hammam.is-lit .shaft,.motion .hammam.is-lit .halo{animation-play-state:running}
+/* arrival: her sign warms up once the door frame has drawn */
+.motion .arch--door .arch__glow{animation:glowOn 1.8s ease-out 1.2s both}
+
+/* Reveals. Hidden states live ONLY under .motion and only until the page
+   script adds .in (see [data-rv]); a dead script, an old browser or
+   reduced motion shows everything as built. */
+/* every doorway draws itself as you reach it, and the room behind settles */
+.motion .portrait .ln{stroke-dasharray:1;transition:stroke-dashoffset 1.7s var(--ease) .1s}
+.motion .portrait .ln + .ln{transition-delay:.35s}
+.motion .portrait:not(.in) .ln{stroke-dashoffset:1}
+.motion .portrait .arch__frame use{transform-box:fill-box;transform-origin:50% 50%;transition:scale 1.1s var(--ease) .9s,rotate 1.1s var(--ease) .9s,opacity .6s ease .9s}
+.motion .portrait:not(.in) .arch__frame use{scale:.3;rotate:-40deg;opacity:0}
+.motion .portrait .arch__img{transition:scale 1.8s var(--ease)}
+.motion .portrait:not(.in) .arch__img{scale:1.08}
+/* light catches the gold frieze once as you pass a join */
+.motion .sandra.in::before,.motion .drenaje.in::after{animation:sheen 1.9s cubic-bezier(.45,.05,.35,1) .25s both}
+/* la carta is a list: its names are uncovered like an inscription (capped stagger) */
+.motion .carta__pics img{clip-path:inset(-6px);transition:clip-path .95s var(--ease)}
+.motion .carta__pics img + img{transition-delay:.15s}
+.motion .carta__pics:not(.in) img{clip-path:inset(calc(100% + 6px) -6px -6px -6px)}
+.motion .grupo h3,.motion .grupo li{clip-path:inset(-2px);transition:clip-path .6s var(--ease) calc(var(--i,0) * 32ms + .12s)}
+.motion .grupo h3{--i:-4}
+.motion .grupo:not(.in) h3,.motion .grupo:not(.in) li{clip-path:inset(-2px 100% -2px -2px)}
+.grupo li:nth-child(2){--i:1}.grupo li:nth-child(3){--i:2}.grupo li:nth-child(4){--i:3}.grupo li:nth-child(5){--i:4}.grupo li:nth-child(6){--i:5}
+.grupo li:nth-child(7){--i:6}.grupo li:nth-child(8){--i:7}.grupo li:nth-child(9){--i:8}.grupo li:nth-child(10){--i:9}.grupo li:nth-child(11){--i:10}
+/* the focal moment: the vault's star openings ignite in turn, then pour */
+.sky--1{--d:0s}.sky--2{--d:.28s}.sky--3{--d:.56s}
+.motion .hammam .sky{transition:opacity .8s ease-out var(--d)}
+.motion .hammam:not(.in) .sky{opacity:0}
+.motion .hammam .oculus{transition:scale 1s var(--ease) var(--d)}
+.motion .hammam:not(.in) .oculus{scale:.35}
+.motion .hammam .shaft{transition:scale 1.5s var(--ease) calc(var(--d) + .35s)}
+.motion .hammam:not(.in) .shaft{scale:1 0}
+.motion .hammam .steam{transition:opacity 2s ease .9s}
+.motion .hammam:not(.in) .steam{opacity:0}
+/* the ritual's photos open like hammam doors; the gift's flower blooms */
+.motion .mosaic img{clip-path:inset(0);transition:clip-path 1s var(--ease)}
+.motion .mosaic .m-ladle{transition-delay:.12s}
+.motion .mosaic .m-bather{transition-delay:.24s}
+.motion .mosaic:not(.in) img{clip-path:inset(0 0 100% 0)}
+.motion .gift__mark{transition:scale 1.1s var(--ease) .15s,rotate 1.1s var(--ease) .15s,opacity .5s ease .15s}
+.motion .gift:not(.in) .gift__mark{scale:.3;rotate:-45deg;opacity:0}
+/* the calm room breathes */
+.motion .drenaje__flor{animation:breath 7s ease-in-out infinite alternate paused}
+.motion .drenaje.is-lit .drenaje__flor{animation-play-state:running}
+/* the rating builds to five */
+.motion .stars svg{transition:scale .5s var(--ease) calc(var(--i,0) * 90ms + .1s),opacity .5s ease calc(var(--i,0) * 90ms + .1s)}
+.motion .review:not(.in) .stars svg{scale:.35;opacity:.15}
+.stars svg:nth-child(2){--i:1}.stars svg:nth-child(3){--i:2}.stars svg:nth-child(4){--i:3}.stars svg:nth-child(5){--i:4}
 /* Through the arch the room has depth: the photo drifts against the frame. */
 @supports (animation-timeline: view()){
   @keyframes depth{from{transform:translate3d(0,-4%,0)}to{transform:translate3d(0,4%,0)}}
   .motion .arch__img{height:110%;margin-top:-5.5%;animation:depth linear both;animation-timeline:view();animation-range:cover}
 }
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* reduced motion: no movement; colour and state feedback stay (the floating
+   button appears by opacity, not by sliding) */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .btn:active{scale:none}
+  .fab{transform:none;opacity:0;transition:opacity .25s,visibility 0s linear .25s}
+  .fab.is-on{opacity:1;transition:opacity .25s,visibility 0s}
+}
 
 @media (max-width:63.99rem) and (max-height:44rem){
   :root{--logo-w:5.75rem}
@@ -350,8 +416,8 @@ p{text-wrap:pretty}
   .dots{display:grid;position:fixed;right:1rem;top:50%;translate:0 -50%;z-index:40;gap:.3rem;--dot:var(--gold-lt)}
   .dots[data-ground=light]{--dot:var(--ink)}
   .dots a{display:flex;align-items:center;justify-content:flex-end;gap:.7rem;min-height:1.75rem;padding-inline:.3rem;color:var(--dot);text-decoration:none}
-  .dots__mark{width:.62rem;height:.62rem;transform:rotate(45deg);box-shadow:inset 0 0 0 1px currentColor;flex:none}
-  .dots a[aria-current=true] .dots__mark{background:currentColor}
+  .dots__mark{width:.62rem;height:.62rem;transform:rotate(45deg);box-shadow:inset 0 0 0 1px currentColor;flex:none;transition:background-color .25s,scale .3s var(--ease)}
+  .dots a[aria-current=true] .dots__mark{background:currentColor;scale:1.25}
   .dots__label{font-size:.75rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;opacity:0;transform:translateX(.35rem);transition:opacity .2s,transform .2s}
   .dots a:hover .dots__label,.dots a:focus-visible .dots__label{opacity:1;transform:none}
 }
@@ -393,6 +459,7 @@ p{text-wrap:pretty}
     <div class="arch arch--door">
       <div class="arch__win">
         <img class="arch__img" src="assets/img/corridor-960.webp" srcset="assets/img/corridor-600.webp 600w, assets/img/corridor-960.webp 960w, assets/img/corridor-1440.webp 1440w" sizes="(min-width: 64rem) 36vw, 74vw" width="1440" height="1920" alt="Pasillo de Khala con las paredes verde oscuro y el logotipo dorado iluminado al fondo" fetchpriority="high" style="object-position:50% 46%">
+        <span class="arch__glow" aria-hidden="true"></span>
       </div>
       <svg class="arch__frame" viewBox="0 0 340 440" aria-hidden="true" focusable="false">
         <path class="ln" pathLength="1" d="M8 440V14H332V440"/>
@@ -412,16 +479,16 @@ p{text-wrap:pretty}
     </div>
   </section>
 
-  <section id="sandra" class="ch sandra" data-ground="light" aria-labelledby="h-sandra">
+  <section id="sandra" class="ch sandra" data-ground="light" aria-labelledby="h-sandra" data-rv>
     <h2 id="h-sandra" class="cap">De Granada <span class="c">a</span> Tenerife</h2>
-    <figure class="portrait">
+    <figure class="portrait" data-rv>
       <div class="arch">
         <div class="arch__win">
           <img class="arch__img" src="assets/img/sandra-960.webp" srcset="assets/img/sandra-600.webp 600w, assets/img/sandra-960.webp 960w, assets/img/sandra-1440.webp 1440w" sizes="(min-width: 64rem) 28vw, 70vw" width="1440" height="1800" loading="lazy" decoding="async" alt="Sandra en su escritorio de Khala, con un cuadro de la Alhambra de Granada detrás" style="object-position:50% 30%">
         </div>
         <svg class="arch__frame" viewBox="0 0 340 440" aria-hidden="true" focusable="false">
-          <path class="ln" d="M8 440V14H332V440Z"/>
-          <path class="ln" d="M31.3 440V229.8A148 148 0 1 1 308.7 229.8V440"/>
+          <path class="ln" pathLength="1" d="M8 440V14H332V440Z"/>
+          <path class="ln" pathLength="1" d="M31.3 440V229.8A148 148 0 1 1 308.7 229.8V440"/>
           <use href="#flor" x="26" y="32" width="36" height="36"/>
           <use href="#flor" x="278" y="32" width="36" height="36"/>
         </svg>
@@ -441,30 +508,30 @@ p{text-wrap:pretty}
       <h2 id="h-carta" class="cap">La carta</h2>
       <p class="said">Escuchar es el primer paso para cuidar. Te asesoramos sobre qué sería lo mejor para tu imagen.</p>
     </div>
-    <div class="carta__pics">
+    <div class="carta__pics" data-rv>
       <img src="assets/img/facial-800.webp" srcset="assets/img/facial-480.webp 480w, assets/img/facial-800.webp 800w" sizes="(min-width: 64rem) 14rem, 45vw" width="800" height="1000" loading="lazy" decoding="async" alt="Aplicación de una mascarilla facial con espátula a una clienta tumbada en la camilla">
       <img src="assets/img/capilar-800.webp" srcset="assets/img/capilar-480.webp 480w, assets/img/capilar-800.webp 800w" sizes="(min-width: 64rem) 14rem, 45vw" width="800" height="1000" loading="lazy" decoding="async" alt="Spa capilar en el lavacabezas: una clienta relajada, con los ojos cubiertos">
     </div>
     <div class="carta__groups">
-      <div class="grupo">
+      <div class="grupo" data-rv>
         <h3 class="cap">Tratamientos faciales</h3>
         <ul>
           <li>Limpieza facial básica</li><li>Limpieza facial pro</li><li>Vitamina C</li><li>Oxigenación</li><li>Acné SOS</li><li>Tratamiento Glow</li><li>Tratamiento Even para manchas</li><li>Radiofrecuencia</li><li>Dermapen</li><li>Hilos de colágeno</li><li>Luz LED</li>
         </ul>
       </div>
-      <div class="grupo">
+      <div class="grupo" data-rv>
         <h3 class="cap">Tratamientos corporales</h3>
         <ul>
           <li>Diagnóstico corporal</li><li>Vitamina C</li><li>Presoterapia</li><li>Chocoterapia</li><li>Radiofrecuencia</li><li>Vacumterapia</li><li>Cavitación</li><li>Drenaje linfático postoperatorio</li>
         </ul>
       </div>
-      <div class="grupo">
+      <div class="grupo" data-rv>
         <h3 class="cap">Rituales de bienestar</h3>
         <ul>
           <li>Baño turco</li><li>Ritual Cleopatra</li><li>Spa capilar</li>
         </ul>
       </div>
-      <div class="grupo">
+      <div class="grupo" data-rv>
         <h3 class="cap">Además</h3>
         <ul>
           <li>Peluquería</li><li>Peinado &amp; Maquillaje</li><li>Venta de productos</li>
@@ -475,7 +542,7 @@ p{text-wrap:pretty}
   </section>
 
   <section id="bano-turco" class="ch bano" data-ground="dark" aria-labelledby="h-bano">
-    <div class="hammam">
+    <div class="hammam" data-rv data-loop>
       <img class="hammam__img" src="assets/img/hammam-960.webp" srcset="assets/img/hammam-600.webp 600w, assets/img/hammam-960.webp 960w, assets/img/hammam-1440.webp 1440w" sizes="(min-width: 64rem) 58vw, 100vw" width="1440" height="1920" loading="lazy" decoding="async" alt="Juego de té turco de cobre sobre una mesa dorada, delante de la bañera de mármol donde una clienta toma té">
       <div class="hammam__veil"></div>
       <div class="light" aria-hidden="true">
@@ -495,12 +562,12 @@ p{text-wrap:pretty}
         <p class="said">El calor y el vapor ayudan a crear una sensación profunda de bienestar, dejando tu cuerpo y tu mente renovados.</p>
         <p>Un ritual de limpieza y exfoliación inspirado en los tradicionales hammam de Turquía: baño con espuma y exfoliación corporal profunda.</p>
       </div>
-      <div class="mosaic">
+      <div class="mosaic" data-rv>
         <img class="m-room" src="assets/img/room-800.webp" srcset="assets/img/room-480.webp 480w, assets/img/room-800.webp 800w, assets/img/room-1200.webp 1200w" sizes="(min-width: 64rem) 20vw, (min-width: 40rem) 36vw, 52vw" width="800" height="1182" loading="lazy" decoding="async" alt="La sala del baño turco: bañera exenta, grifería dorada, paredes de mármol y un farol">
         <img class="m-ladle" src="assets/img/ladle-800.webp" srcset="assets/img/ladle-480.webp 480w, assets/img/ladle-800.webp 800w, assets/img/ladle-1200.webp 1200w" sizes="(min-width: 64rem) 16vw, (min-width: 40rem) 30vw, 45vw" width="800" height="1000" loading="lazy" decoding="async" alt="Sandra vierte agua con un cazo dorado en un cuenco, en la sala del baño turco">
         <img class="m-bather" src="assets/img/bather-800.webp" srcset="assets/img/bather-480.webp 480w, assets/img/bather-800.webp 800w, assets/img/bather-1200.webp 1200w" sizes="(min-width: 64rem) 16vw, (min-width: 40rem) 30vw, 45vw" width="800" height="1067" loading="lazy" decoding="async" alt="Una clienta toma té dentro de la bañera de mármol">
       </div>
-      <div class="gift">
+      <div class="gift" data-rv>
         <svg class="gift__mark" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><use href="#flor"/></svg>
         <h3 class="cap"><span class="c lead">Y si quieres compartir este momento…</span> También puedes regalarlo</h3>
         <p>Pregunta por nuestros bonos regalo.</p>
@@ -509,7 +576,7 @@ p{text-wrap:pretty}
     </div>
   </section>
 
-  <section id="drenaje" class="ch drenaje" data-ground="light" aria-labelledby="h-drenaje">
+  <section id="drenaje" class="ch drenaje" data-ground="light" aria-labelledby="h-drenaje" data-rv data-loop>
     <svg class="drenaje__flor" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><use href="#flor"/></svg>
     <h2 id="h-drenaje" class="cap">Drenaje linfático postoperatorio</h2>
     <p class="said">Después de una intervención, cada cuerpo necesita tiempo, cuidados y acompañamiento.</p>
@@ -524,7 +591,7 @@ p{text-wrap:pretty}
       <img src="assets/img/sign-960.webp" srcset="assets/img/sign-600.webp 600w, assets/img/sign-960.webp 960w, assets/img/sign-1440.webp 1440w" sizes="(min-width: 64rem) 42vw, 100vw" width="960" height="1200" loading="lazy" decoding="async" alt="El logotipo de Khala en dorado sobre la pared verde del centro">
     </figure>
     <div class="visita__body">
-      <section class="review" aria-labelledby="h-resenas">
+      <section class="review" aria-labelledby="h-resenas" data-rv>
         <h2 id="h-resenas" class="vh">Opiniones en Google</h2>
         <p class="rating"><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span><strong>5,0</strong><span>33 reseñas en Google</span></p>
         <figure>
@@ -586,9 +653,23 @@ p{text-wrap:pretty}
   }, { threshold: 0.5 });
   document.querySelectorAll('.ch:not(.bano), .hammam, .ritual').forEach(function (c) { spy.observe(c); });
 
-  // The hammam's light only moves while the room is on screen.
-  var ham = document.querySelector('.hammam');
-  new IntersectionObserver(function (es) { ham.classList.toggle('is-lit', es[0].isIntersecting); }, { threshold: 0.15 }).observe(ham);
+  // Reveals: each [data-rv] room or group gets .in once it is on screen. The
+  // CSS holds hidden states ONLY under .motion and only until .in, so without
+  // this script (or with reduced motion) nothing is ever hidden.
+  var rv = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); rv.unobserve(e.target); } });
+  }, { rootMargin: '0px 0px -12% 0px', threshold: 0.12 });
+  document.querySelectorAll('[data-rv]').forEach(function (el) { rv.observe(el); });
+  addEventListener('beforeprint', function () {
+    document.querySelectorAll('[data-rv]').forEach(function (el) { el.classList.add('in'); });
+  });
+
+  // Loops (the hammam's light and steam, the drenaje flower's breath) only
+  // run while their room is on screen.
+  var loop = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { e.target.classList.toggle('is-lit', e.isIntersecting); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('[data-loop]').forEach(function (el) { loop.observe(el); });
 
   // Floating WhatsApp: once the hero's own button has scrolled away, until
   // the visit chapter (which has its own buttons) takes over.
