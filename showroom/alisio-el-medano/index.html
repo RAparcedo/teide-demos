@@ -1,0 +1,883 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Café Alisio · Desayunos y brunch en El Médano</title>
+<meta name="description" content="Café Alisio, en el paseo de El Médano (Tenerife): desayunos hasta las 12:00 y brunch hasta las 15:00, café de especialidad y fruta del sur. Mesa para grupos de 6 o más por WhatsApp.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#1435C8">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2339B6F2'/%3E%3Ccircle cx='10' cy='10' r='5' fill='%23FFD23A'/%3E%3Cpath d='M0 25 C8 25 11 12 17 12 C23 12 25 23 32 24 V32 H0Z' fill='%23D23B22'/%3E%3Cpath d='M0 26 H32 V32 H0Z' fill='%231435C8'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/anybody-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/atkinson-next-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+  (function(){var d=document.documentElement;d.className+=' js';try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)d.className+=' motion'}catch(e){}})();
+</script>
+<style>
+@font-face{font-family:"Anybody";src:url("assets/fonts/anybody-latin.woff2") format("woff2");font-weight:500 900;font-stretch:75% 150%;font-style:normal;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2190-2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Anybody";src:url("assets/fonts/anybody-latin-ext.woff2") format("woff2");font-weight:500 900;font-stretch:75% 150%;font-style:normal;font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Anybody";src:url("assets/fonts/anybody-italic-latin.woff2") format("woff2");font-weight:500 900;font-stretch:75% 150%;font-style:italic;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2190-2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Anybody";src:url("assets/fonts/anybody-italic-latin-ext.woff2") format("woff2");font-weight:500 900;font-stretch:75% 150%;font-style:italic;font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Atkinson Hyperlegible Next";src:url("assets/fonts/atkinson-next-latin.woff2") format("woff2");font-weight:400 800;font-style:normal;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2190-2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Atkinson Hyperlegible Next";src:url("assets/fonts/atkinson-next-latin-ext.woff2") format("woff2");font-weight:400 800;font-style:normal;font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+
+@property --alisio{syntax:"<number>";inherits:true;initial-value:0}
+
+:root{
+  /* the scene's inks */
+  --cielo:#39B6F2;        /* sky — hero + hours ground */
+  --atlantico:#1435C8;    /* sea — rail, bay, place, footer */
+  --montana:#D23B22;      /* Montaña Roja — the cone, the groups field */
+  --sol:#FFD23A;          /* the live ink: current state + primary action only */
+  --tinta:#0A2240;        /* text on light grounds */
+  --cal:#F3F7FA;          /* the paseo's whitewash — rest state, the carta */
+  /* computed overprints (multiply) */
+  --sombra:#893321;       /* cielo into montaña, 45% — the cone's shade */
+  --montana-2:#B0301B;    /* montaña, second plate */
+  --tabaiba:#399637;      /* sol over cielo — dune plants */
+  --cielo-cal:#D7ECF8;    /* cielo 15% over cal */
+  --cal-mar:#3651D0;      /* cal 14% over atlántico */
+  --tinta-2:#34496A;      /* secondary text on cal */
+  --f-sign:"Anybody","Arial Narrow",system-ui,sans-serif;
+  --f-text:"Atkinson Hyperlegible Next",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --rail-w:17.5rem;
+  --mast-h:3.25rem;
+  --chips-h:3.25rem;
+  --gutter:clamp(1rem,4.6vw,3rem);
+  --out:cubic-bezier(.16,1,.3,1);
+  --gust:linear(0, .19 6%, .5 15%, .83 27%, 1 37%, .93 47%, .58 64%, .24 81%, .06 92%, 0);
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-padding-top:4rem;scrollbar-color:var(--atlantico) var(--cal)}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;background:var(--cal);color:var(--tinta);font:400 1.0625rem/1.55 var(--f-text);overflow-x:hidden;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-underline-offset:.22em;text-decoration-thickness:.09em}
+h1,h2,h3,p,ul,ol,figure,fieldset,dl,dd{margin:0}
+ul,ol{padding:0;list-style:none}
+::selection{background:var(--sol);color:var(--tinta)}
+:focus-visible{outline:3px solid var(--tinta);outline-offset:3px;border-radius:4px}
+.on-dark :focus-visible{outline-color:var(--sol)}
+.vh{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
+.n{font-family:var(--f-sign);font-variant-numeric:tabular-nums lining-nums;font-stretch:108%;font-weight:700;letter-spacing:0}
+.ico{width:1.15em;height:1.15em;flex:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.skip{position:absolute;left:.75rem;top:.75rem;z-index:100;background:var(--sol);color:var(--tinta);font-weight:700;padding:.75rem 1rem;border-radius:999px;transform:translateY(-200%)}
+.skip:focus{transform:none}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;min-height:3.5rem;padding:0 1.5rem;border-radius:999px;font:700 1.1875rem/1.1 var(--f-text);text-decoration:none;cursor:pointer;border:0;transition:background-color .18s var(--out),color .18s var(--out),transform .18s var(--out)}
+.btn:active{transform:translateY(1px) scale(.985)}
+.btn-sol{background:var(--sol);color:var(--tinta)}
+.btn-sol:hover{background:#FFE277}
+.btn-sol .ico{transition:transform .25s var(--out)}
+.btn-sol:hover .ico{transform:translateX(3px)}
+.btn-cal{background:var(--cal);color:var(--tinta)}
+.btn-cal:hover{background:#fff}
+.link-arrow{display:inline-flex;align-items:center;gap:.5rem;min-height:3rem;font:700 1.0625rem/1.2 var(--f-text);text-decoration:underline;text-underline-offset:.3em}
+
+/* ---------- rail (mobile: masthead + sticky chips) ---------- */
+.rail{position:sticky;top:calc(-1 * var(--mast-h));z-index:50;background:var(--atlantico);color:#fff}
+.mast{height:var(--mast-h);display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:0 var(--gutter)}
+.wordmark{font:800 1.3rem/1 var(--f-sign);font-stretch:140%;letter-spacing:-.01em;text-decoration:none;white-space:nowrap}
+.place{display:none}
+.lang{display:inline-flex;gap:.35rem}
+.lang button{width:2.75rem;height:2.75rem;border:0;border-radius:50%;background:transparent;color:#fff;font:800 .9375rem/1 var(--f-sign);font-stretch:115%;cursor:pointer}
+.lang button[aria-pressed="true"]{background:#fff;color:var(--atlantico)}
+.nav{height:var(--chips-h)}
+.chips{display:flex;align-items:center;gap:.5rem;height:100%;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scroll-padding-inline:var(--gutter);padding:0 var(--gutter);scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chips li{flex:none;scroll-snap-align:start}
+.chip{display:inline-flex;align-items:center;gap:.5rem;height:2.5rem;padding:0 1rem;border-radius:999px;background:var(--cal-mar);color:#fff;font:700 1rem/1 var(--f-text);text-decoration:none;white-space:nowrap;transition:background-color .2s var(--out),color .2s var(--out)}
+.chip[aria-current="true"]{background:#fff;color:var(--atlantico)}
+.chip-now,.chip-now[aria-current="true"]{background:var(--sol);color:var(--tinta);font-family:var(--f-text);font-weight:700}
+.chip-now .n{font-weight:800}
+.dot{width:.7rem;height:.7rem;border-radius:50%;background:var(--sol);flex:none}
+.chip-now .dot{background:var(--tinta)}
+.rail-foot{display:none}
+
+/* ---------- hero ---------- */
+.hero{position:relative;background:var(--cielo);color:var(--tinta);overflow:clip;display:flex;flex-direction:column;min-height:calc(100svh - var(--chips-h))}
+.sky{position:relative;flex:1 0 auto;padding:1.4rem var(--gutter) 0;container-type:inline-size;display:flex;flex-direction:column}
+.sign{position:relative;z-index:2;container-type:inline-size;font-family:var(--f-sign);font-weight:850;text-transform:uppercase;color:var(--tinta);margin:0;line-height:1}
+.sign .l{display:flex;align-items:flex-end;white-space:nowrap;letter-spacing:-.012em}
+.sign .la{height:15.4cqi;font-size:var(--fa,12.6cqi);font-stretch:var(--wa,128%);line-height:.8}
+.sign .lb{height:9cqi;margin-top:.6cqi;font-size:var(--fb,7.4cqi);font-stretch:var(--wb,118%);line-height:.8;font-weight:800}
+.sign .ch{display:inline-block;transform-origin:30% 100%}
+.motion .sign.gusting .ch{font-stretch:calc(var(--w0) + var(--alisio) * 24%);transform:skewX(calc(var(--alisio) * -10deg));animation:racha 1.15s var(--d,0ms) both var(--gust)}
+@keyframes racha{from{--alisio:0}38%{--alisio:1}to{--alisio:0}}
+.hook{position:relative;z-index:2;margin-top:.9rem;max-width:23ch;font:700 clamp(1.25rem,5.6cqi,1.6rem)/1.22 var(--f-text);text-wrap:balance}
+.scene{position:relative;flex:1 0 auto;min-height:clamp(12.5rem,54cqi,19rem);margin:0 calc(-1 * var(--gutter))}
+.arc{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.arc path{fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-dasharray:0 11;vector-effect:non-scaling-stroke;opacity:.9}
+.tick,.sun{position:absolute;inset:0;pointer-events:none}
+.tick{transform:translate(calc(var(--x) * 1%),calc(var(--y) * 1%))}
+.scene{--disc:clamp(2.6rem,12cqw,4.4rem)}
+.tick .n{position:absolute;left:0;top:0;transform:translate(-50%,calc(-100% - var(--disc) / 2 - .35rem));font-size:.8125rem;font-weight:800;color:var(--tinta);white-space:nowrap}
+#t08 .n,#t15 .n{transform:translate(calc(var(--disc) / 2 + .6rem),-50%)}
+.sun{transform:translate(calc(var(--sx,24) * 1%),calc(var(--sy,66) * 1%));z-index:1}
+.disc{position:absolute;left:0;top:0;width:var(--disc);aspect-ratio:1;border-radius:50%;background:var(--sol);transform:translate(-50%,-50%)}
+.cone{position:absolute;right:-73%;bottom:0;width:133%;max-width:none;height:auto;z-index:2;overflow:visible}
+.kites{position:absolute;inset:0;z-index:3;pointer-events:none}
+.k1{--kx:26%;--kh:34%}.k2{--kx:31%;--kh:26%}.k3{--kx:36%;--kh:36%}
+.kite{position:absolute;left:var(--kx);bottom:0;height:var(--kh,50%);width:auto;overflow:visible;transform-origin:0 100%}
+.kite .line{stroke:var(--tinta);stroke-width:1;vector-effect:non-scaling-stroke;fill:none;opacity:.6}
+.riders{position:absolute;left:0;right:0;top:0;height:1.5rem;pointer-events:none}
+.rider{position:absolute;top:0;left:var(--kx);width:.95rem;height:1.35rem;overflow:visible}
+.rider path{fill:#fff}
+.rider .ln{fill:none;stroke:#fff;stroke-width:1;vector-effect:non-scaling-stroke;opacity:.85}
+.motion .kite{animation:drift var(--kd,11s) ease-in-out infinite alternate;animation-delay:var(--kdl,0s)}
+.motion .hero.still .kite{animation-play-state:paused}
+@keyframes drift{from{transform:rotate(-2.5deg)}to{transform:rotate(3deg) translateX(var(--kdx,.6rem))}}
+.bay{position:relative;z-index:4;background:var(--atlantico);color:#fff;padding:1.15rem var(--gutter) 1.5rem}
+.caps{position:absolute;left:0;right:0;top:.55rem;height:1.2rem;width:100%;pointer-events:none}
+.caps path{stroke:#fff;stroke-width:2.2;stroke-linecap:round;vector-effect:non-scaling-stroke;fill:none;opacity:.85}
+.now{margin-top:1.1rem;font:850 1.5rem/1.05 var(--f-sign);font-stretch:112%;text-transform:uppercase;letter-spacing:-.005em}
+.today{margin-top:.25rem;color:#fff;font-size:1rem;line-height:1.45;max-width:34ch}
+.acts{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem 1.25rem;margin-top:1.1rem}
+.acts .btn{flex:1 1 100%}
+
+/* ---------- section scaffolding ---------- */
+.sec{padding:clamp(3.5rem,9vw,6.5rem) var(--gutter)}
+.sec h2{font:850 clamp(2.25rem,9.6vw,4.4rem)/.92 var(--f-sign);font-stretch:132%;text-transform:uppercase;letter-spacing:-.015em;text-wrap:balance}
+.lede{margin-top:1rem;max-width:44ch;font-size:1.1875rem;line-height:1.5}
+
+/* ---------- carta ---------- */
+.carta{background:var(--cal)}
+.carta .lede{color:var(--tinta-2)}
+.idx{display:flex;flex-wrap:wrap;gap:.15rem 1.35rem;margin-top:1.6rem;padding:.35rem 0;border-top:2px solid var(--tinta);border-bottom:2px solid var(--tinta)}
+.idx a{display:inline-flex;align-items:center;gap:.5rem;min-height:3rem;color:var(--tinta);font:700 1.0625rem/1 var(--f-text);text-decoration:none}
+.idx a:hover{text-decoration:underline;text-decoration-thickness:2px}
+.idx .n{display:inline-grid;place-items:center;width:1.85rem;height:1.85rem;border-radius:50%;background:var(--cielo);color:var(--tinta);font-size:.875rem;font-weight:800}
+.status{display:flex;gap:.6rem;align-items:center;margin-top:1.25rem;font-weight:700}
+.status[hidden]{display:none}
+.menu{margin-top:2.5rem;display:grid;gap:2.75rem}
+.menu section{scroll-margin-top:4.5rem}
+.menu h3{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;padding-bottom:.6rem;border-bottom:3px solid var(--tinta);font:850 1.6rem/1 var(--f-sign);font-stretch:135%;text-transform:uppercase;letter-spacing:-.01em}
+.menu h3 small{font:700 .9375rem/1 var(--f-text);text-transform:none;letter-spacing:0;color:var(--tinta-2)}
+.items li{display:grid;grid-template-columns:1fr auto;column-gap:1rem;row-gap:.2rem;padding:1rem 0 1.05rem;border-bottom:1px solid #C9D6E0}
+.items li:last-child{border-bottom:0}
+.it{font:700 1.1875rem/1.3 var(--f-text)}
+.pr{font-size:1.375rem;line-height:1.1;text-align:right;align-self:baseline}
+.ds{grid-column:1/-1;color:var(--tinta-2);font-size:1rem;line-height:1.45;max-width:46ch}
+.notes{margin-top:2.5rem;display:grid;gap:.6rem;color:var(--tinta-2);font-size:1rem;max-width:52ch}
+.notes strong{color:var(--tinta)}
+
+/* ---------- carta header disc ---------- */
+.carta-top{display:grid;gap:1.25rem}
+.disco{justify-self:end;width:min(46vw,20rem);margin-top:-.5rem}
+.disco img{width:100%;height:auto;aspect-ratio:1;border-radius:50%;object-fit:cover}
+/* ---------- el sitio ---------- */
+.banda{margin:2.25rem calc(-1 * var(--gutter)) 0}
+.banda img{width:100%;height:auto;aspect-ratio:800/365;object-fit:cover;object-position:50% 60%}
+.credit{padding:.6rem var(--gutter) 0;font-size:.9375rem;line-height:1.45;color:#fff}
+.sitio-grid{margin-top:2.5rem}
+.sitio{background:var(--atlantico);color:#fff}
+.sitio h2{font-style:italic;font-stretch:120%;max-width:12ch}
+.sitio .lede{max-width:40ch}
+.facts{margin-top:2.25rem;display:grid;gap:2rem}
+.facts h3{font:850 1.5rem/1 var(--f-sign);font-stretch:130%;text-transform:uppercase;color:var(--sol)}
+.facts p{margin-top:.55rem;max-width:40ch;font-size:1.0625rem}
+.duna{margin-top:2.75rem;padding-top:1.25rem;border-top:2px solid var(--cal-mar);max-width:44ch;font:700 1.125rem/1.4 var(--f-text)}
+
+/* ---------- grupos ---------- */
+.grupos{background:var(--montana);color:#fff}
+.grupos h2{font-style:italic;font-stretch:118%}
+.composer{margin-top:2rem;display:grid;gap:1.75rem;max-width:40rem}
+.c-in,.c-out{display:grid;gap:1.75rem;min-width:0}
+.composer fieldset{border:0;padding:0;margin:0;min-width:0}
+.composer legend,.composer .lab{display:block;padding:0;margin-bottom:.75rem;font:850 1.125rem/1.1 var(--f-sign);font-stretch:118%;text-transform:uppercase;letter-spacing:.01em}
+.stepper{display:flex;align-items:center;gap:1rem}
+.stepper button{width:3.5rem;height:3.5rem;border-radius:50%;border:0;background:var(--cal);color:var(--tinta);display:grid;place-items:center;cursor:pointer;transition:transform .15s var(--out),background-color .15s}
+.stepper button:hover{background:#fff}
+.stepper button:active{transform:scale(.94)}
+.stepper button:disabled{opacity:.45;cursor:not-allowed}
+.stepper button .ico{width:1.4rem;height:1.4rem;stroke-width:3}
+.stepper input{width:3ch;height:3.5rem;border:0;border-bottom:3px solid #fff;border-radius:0;background:transparent;color:#fff;text-align:center;font:850 2rem/1 var(--f-sign);font-stretch:110%;font-variant-numeric:tabular-nums;-moz-appearance:textfield;appearance:textfield}
+.stepper input::-webkit-inner-spin-button,.stepper input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.stepper .unit{font-weight:700}
+.opts{display:flex;flex-wrap:wrap;gap:.5rem}
+.opt{position:relative}
+.opt input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.opt label{display:inline-flex;flex-direction:column;justify-content:center;align-items:center;width:var(--o,4.35rem);height:var(--o,4.35rem);padding:0;border-radius:50%;background:var(--sombra);color:#fff;font:700 1rem/1.1 var(--f-text);text-align:center;cursor:pointer;transition:background-color .15s var(--out),color .15s var(--out)}
+.opt label .n{font-size:1.0625rem}
+#g-days{--o:4.9rem}
+#g-days label{font-size:.875rem}
+.opt label:hover{background:#7A2C1C}
+.opt input:checked+label{background:var(--cal);color:var(--tinta)}
+.opt input:focus-visible+label{outline:3px solid var(--sol);outline-offset:3px}
+.opt input:disabled+label{opacity:.5;cursor:not-allowed;text-decoration:line-through}
+.field .lab{margin-bottom:.35rem}
+.field input[type=text]{width:100%;max-width:20rem;height:3rem;border:0;border-bottom:3px solid #fff;border-radius:0;background:transparent;color:#fff;padding:.6rem 0 0;font:700 1.25rem/1 var(--f-text)}
+.field input::placeholder{color:#fff;opacity:1;font-style:italic;font-weight:400}
+
+.preview{padding:.5rem 0 1.1rem;border-bottom:2px solid #fff;font-size:1.0625rem;line-height:1.5}
+.preview .lab{margin-bottom:.4rem;font-size:.9375rem}
+.motion .preview.blown p{animation:blowin .32s var(--out)}
+@keyframes blowin{from{transform:translateX(-.6rem)}to{transform:none}}
+.send{justify-self:start}
+.small{font-size:1rem;line-height:1.45}
+
+/* ---------- horario ---------- */
+.horario{background:var(--cielo)}
+.hours{margin-top:2rem;display:grid;gap:1.4rem}
+.big{font:850 clamp(2.3rem,10.4vw,3.6rem)/.9 var(--f-sign);font-stretch:104%;font-variant-numeric:tabular-nums;letter-spacing:-.01em;white-space:nowrap}
+.hours dl{display:grid;grid-template-columns:auto 1fr;gap:.45rem 1.25rem;font-size:1.125rem}
+.hours dt{font-weight:700}
+.hours dd .n{font-size:1.1875rem}
+.addr{margin-top:2rem;font-size:1.125rem;line-height:1.5;font-style:normal}
+.addr .eg{font-size:.9375rem;font-weight:700}
+.contact{margin-top:1.4rem;display:flex;flex-wrap:wrap;gap:.6rem}
+.contact .btn{min-height:3.25rem;font-size:1rem}
+.btn-mar{background:var(--atlantico);color:#fff}
+.btn-mar:hover{background:#0F2AA6}
+.mapa{margin-top:2.5rem}
+.mapa svg{width:100%;height:auto}
+.mapa figcaption{margin-top:.9rem;max-width:44ch;font-size:1rem;line-height:1.5;color:#fff}
+.mapa figcaption a{font-weight:700}
+.llegar{margin-top:1.25rem}
+.donde-h{margin-top:2.25rem;font:850 1.5rem/1 var(--f-sign);font-stretch:130%;text-transform:uppercase}
+.addr{margin-top:.9rem}
+.mapa text{font-family:var(--f-text);font-weight:700}
+
+/* ---------- footer ---------- */
+.foot{background:var(--atlantico);color:#fff;padding:3rem var(--gutter) 3.5rem}
+.foot .wordmark{font-size:1.75rem}
+.foot p{margin-top:.75rem;max-width:56ch;font-size:1rem;line-height:1.5}
+.foot .fict{margin-top:1.25rem;font-weight:700}
+.foot small{display:block;margin-top:1.5rem;font-size:.875rem;line-height:1.5;color:#E4E9FF}
+
+/* ---------- wider phones / tablets ---------- */
+@media (min-width:40rem){
+  .acts .btn{flex:0 0 auto}
+  .menu{grid-template-columns:1fr 1fr;column-gap:3rem}
+  .facts{grid-template-columns:repeat(3,1fr);gap:2rem}
+}
+
+/* ---------- the rail: measured breakpoint 64rem (17.5rem rail + 46.5rem field holds the hero sign + two carta columns) ---------- */
+@media (min-width:64rem){
+  html{scroll-padding-top:1.5rem}
+  .rail{position:fixed;top:0;bottom:0;left:0;width:var(--rail-w);display:flex;flex-direction:column;padding:2rem 1.75rem 1.75rem;overflow-y:auto}
+  .mast{display:block;height:auto;padding:0}
+  .wordmark{display:block;font-size:1.75rem;line-height:.95;white-space:normal}
+  .place{display:block;margin-top:.6rem;font:700 1rem/1.3 var(--f-text);color:#E4E9FF}
+  .lang{margin-top:1.25rem}
+  .nav{height:auto;margin-top:2rem}
+  .chips{flex-direction:column;align-items:stretch;height:auto;overflow:visible;padding:0;gap:.15rem}
+  .chips li{scroll-snap-align:none}
+  .chip{width:100%;height:auto;min-height:2.75rem;padding:.45rem .85rem;border-radius:.85rem;background:transparent;font:800 1.0625rem/1.15 var(--f-sign);font-stretch:116%;text-transform:uppercase;letter-spacing:.01em;white-space:normal}
+  .chip:hover{background:var(--cal-mar)}
+  .chip-now{margin-bottom:1rem;padding:.8rem .9rem;background:var(--sol);font:700 1.0625rem/1.25 var(--f-text);text-transform:none;letter-spacing:0}
+  .chip-now:hover{background:#FFE277}
+  .rail-foot{display:block;margin-top:auto;padding-top:2rem;font-size:.9375rem;line-height:1.45;color:#E4E9FF}
+  .rail-foot .n{color:#fff}
+  main,.foot{margin-left:var(--rail-w)}
+  .hero{min-height:100svh}
+  .sky{padding:clamp(2rem,6vh,3.75rem) clamp(2rem,3.4vw,3.5rem) 0}
+  .sign{max-width:74%}
+  .hook{max-width:26ch;font-size:clamp(1.35rem,1.8vw,1.75rem)}
+  .scene{min-height:0;flex:1 1 auto;margin:0 calc(-1 * clamp(2rem,3.4vw,3.5rem));min-height:20rem}
+  .cone{width:108%;right:-56%}
+  .k1{--kx:15%;--kh:56%}.k2{--kx:24%;--kh:72%}.k3{--kx:33%;--kh:44%}
+  .bay{padding:1.6rem clamp(2rem,3.4vw,3.5rem) 1.9rem;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;column-gap:2.5rem}
+  .now{margin-top:.4rem;font-size:1.75rem}
+  .acts{margin-top:0;flex-wrap:nowrap}
+  .sec{padding:clamp(4.5rem,9vh,7rem) clamp(2rem,3.4vw,3.5rem)}
+  .menu{margin-top:3rem}
+  .carta-top{grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:3rem}
+  .disco{margin-top:0}
+  .banda{margin:2.75rem calc(-1 * clamp(2rem,3.4vw,3.5rem)) 0}
+  .banda img{aspect-ratio:21/8}
+  .credit{padding-inline:clamp(2rem,3.4vw,3.5rem)}
+  .sitio-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:3.5rem;align-items:start}
+  .sitio-grid .facts{grid-template-columns:1fr;margin-top:0}
+  body::before{content:"";position:absolute;left:0;top:0;bottom:0;width:var(--rail-w);background:var(--atlantico);z-index:0}
+  body{position:relative}
+  .sec-head{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:3rem;align-items:end}
+  .sec-head .lede{margin-top:0}
+  .sitio h2{max-width:none}
+  .composer{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);column-gap:3.5rem;max-width:none;align-items:start}
+  .c-out{position:sticky;top:2rem}
+  .big{font-size:clamp(2.6rem,3.7vw,3.6rem)}
+  .split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:3.5rem;align-items:start}
+  .mapa{margin-top:0}
+}
+@media (min-width:40rem) and (max-width:63.99rem){
+  .sign{max-width:40rem}
+  .hook{max-width:28ch}
+  .scene{min-height:clamp(12.5rem,28cqi,15rem)}
+  .cone{width:120%;right:-63%}
+  .k1{--kx:24%;--kh:36%}.k2{--kx:30%;--kh:28%}.k3{--kx:36%;--kh:40%}
+}
+@media (min-width:64rem) and (max-width:79.99rem){
+  .bay{grid-template-columns:minmax(0,1fr);row-gap:1rem}
+  .now{font-size:1.6rem}
+}
+@media (min-width:64rem) and (max-height:820px){
+  .sky{padding-top:1.6rem}
+  .scene{min-height:13rem}
+  .bay{padding-top:1.25rem;padding-bottom:1.4rem}
+}
+@media (min-width:90rem){
+  .menu{grid-template-columns:repeat(3,1fr)}
+  .cone{width:100%;right:-50%}
+  .k1{--kx:15%}.k2{--kx:25%}.k3{--kx:35%}
+}
+@media (prefers-reduced-motion:reduce){
+  .kite,.sign .ch,.preview p{animation:none!important}
+  .btn,.chip,.opt label{transition:none}
+}
+@supports not (container-type:inline-size){
+  .sign .la{font-size:3.6rem;height:4.4rem}.sign .lb{font-size:2.1rem;height:2.6rem}
+  .tick,.sun{display:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main" data-i18n="skip">Saltar al contenido</a>
+
+<header class="rail on-dark" id="rail">
+  <div class="mast">
+    <a class="wordmark" href="#ahora">Café Alisio</a>
+    <p class="place" data-i18n="place">El Médano · Tenerife</p>
+    <div class="lang" role="group" aria-label="Idioma" data-i18n-attr="aria-label:langLabel">
+      <button type="button" data-lang="es" aria-pressed="true" lang="es">ES</button>
+      <button type="button" data-lang="en" aria-pressed="false" lang="en">EN</button>
+    </div>
+  </div>
+  <nav class="nav" aria-label="Secciones" data-i18n-attr="aria-label:navLabel">
+    <ul class="chips" id="chips">
+      <li><a class="chip chip-now" href="#ahora" data-sec="ahora"><span class="dot" aria-hidden="true"></span><span id="chip-now" data-i18n="chipNow"><span class="n">08:00–15:00</span></span></a></li>
+      <li><a class="chip" href="#carta" data-sec="carta" data-i18n="navCarta">La carta</a></li>
+      <li><a class="chip" href="#sitio" data-sec="sitio" data-i18n="navSitio">El sitio</a></li>
+      <li><a class="chip" href="#grupos" data-sec="grupos" data-i18n="navGrupos">Grupos de 6+</a></li>
+      <li><a class="chip" href="#horario" data-sec="horario" data-i18n="navHorario">Horario y mapa</a></li>
+    </ul>
+  </nav>
+  <div class="rail-foot">
+    <p data-i18n="railHours">Todos los días <span class="n">08:00–15:00</span><br>Cocina hasta las <span class="n">14:30</span></p>
+    <p style="margin-top:.75rem" data-i18n="railAddr">Paseo Marítimo 21, El Médano<br>(dirección de ejemplo)</p>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" id="ahora" aria-labelledby="hook">
+    <div class="sky">
+      <p class="sign" id="sign" style="--fa:17.5cqi;--fb:9.6cqi;--wa:88%;--wb:125%">
+        <span class="vh" id="sign-sr">Desayunos y brunch</span>
+        <span class="l la" aria-hidden="true" id="sign-a">Desayunos</span>
+        <span class="l lb" aria-hidden="true" id="sign-b">y brunch</span>
+      </p>
+      <script>
+      /* the sign of the hour, set before first paint (Atlantic/Canary) */
+      (function(){try{
+        var L=localStorage.getItem('alisio-lang')==='en'?'en':'es';
+        var p={};new Intl.DateTimeFormat('en-GB',{timeZone:'Atlantic/Canary',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(new Date()).forEach(function(x){p[x.type]=x.value});
+        var m=(+p.hour)*60+(+p.minute);
+        var k=m<480?'pre':m<720?'des':m<870?'bru':m<900?'caf':'post';
+        var S=window.__ALISIO_SIGN__={k:k,L:L,m:m,T:{"es":{"default":["Desayunos","y brunch",17.5,9.6,88,125],"pre":["Abrimos","a las 08:00",17.5,9.6,114,125],"des":["Desayunos","hasta las 12:00",17.5,9.6,88,118],"bru":["Brunch","hasta las 15:00",17.5,9.6,127,118],"caf":["Cafés","hasta las 15:00",17.5,9.6,150,118],"post":["Mañana","a las 08:00",17.5,9.6,115,125]},"en":{"default":["Breakfast","& brunch",17.5,9.6,94,125],"pre":["Opening","at 08:00",17.5,9.6,118,125],"des":["Breakfast","until 12:00",17.5,9.6,94,125],"bru":["Brunch","until 15:00",17.5,9.6,127,125],"caf":["Coffee","until 15:00",17.5,9.6,145,125],"post":["Tomorrow","at 08:00",17.5,9.6,90,125]}}};
+        var t=S.T[L][k],a=document.getElementById('sign-a'),b=document.getElementById('sign-b'),s=document.getElementById('sign');
+        a.textContent=t[0];b.textContent=t[1];document.getElementById('sign-sr').textContent=t[0]+' '+t[1];
+        s.style.setProperty('--fa',t[2]+'cqi');s.style.setProperty('--fb',t[3]+'cqi');s.style.setProperty('--wa',t[4]+'%');s.style.setProperty('--wb',t[5]+'%');s.dataset.state=k;
+        if(L==='en')document.documentElement.lang='en';
+      }catch(e){}})();
+      </script>
+      <h1 class="hook" id="hook" data-i18n="hook">Desayunos y brunch con viento a favor, en el paseo de El Médano.</h1>
+      <div class="scene" aria-hidden="true">
+        <svg class="arc" viewBox="0 0 1000 1000" preserveAspectRatio="none" focusable="false"><path id="arc" d="M60.0 853.2L80.0 823.0L100.0 793.2L120.0 763.9L140.0 735.1L160.0 707.0L180.0 679.6L200.0 653.1L220.0 627.5L240.0 603.0L260.0 579.7L280.0 557.9L300.0 537.7L320.0 519.3L340.0 503.0L360.0 489.1L380.0 477.7L400.0 469.1L420.0 463.5L440.0 460.9L460.0 461.4L480.0 465.1L500.0 471.9L520.0 481.5L540.0 493.8L560.0 508.6L580.0 525.6L600.0 544.7L620.0 565.5"/></svg>
+        <span class="tick" id="t08" style="--x:6.00;--y:85.32"><span class="n">08:00</span></span>
+        <span class="tick" id="t12" style="--x:38.00;--y:47.77"><span class="n">12:00</span></span>
+        <span class="tick" id="t15" style="--x:62.00;--y:56.55"><span class="n">15:00</span></span>
+        <span class="sun" id="sun" style="--sx:14.00;--sy:73.51"><span class="disc"></span></span>
+        <svg class="cone" viewBox="0 0 705 103.7" focusable="false">
+          <defs><clipPath id="conecut"><path d="M0 103.7 L0.0 103.7 L10.0 99.1 L20.0 93.6 L30.0 88.2 L40.0 83.8 L50.0 79.8 L50.0 79.8 L163.0 0.0 L170.0 0.0 L175.0 1.6 L300.0 78.2 L315.0 82.8 L330.0 85.5 L345.0 87.9 L360.0 89.9 L375.0 92.1 L390.0 94.3 L405.0 95.9 L420.0 97.3 L435.0 98.5 L450.0 99.2 L465.0 99.7 L480.0 99.8 L495.0 99.6 L510.0 99.3 L525.0 98.9 L540.0 98.4 L555.0 98.0 L570.0 97.7 L585.0 97.3 L600.0 96.5 L615.0 96.3 L630.0 95.4 L645.0 94.6 L660.0 94.6 L675.0 95.0 L690.0 95.5 L705.0 95.8 L705.0 95.8 L705 103.7 Z"/></clipPath></defs>
+          <path d="M0 103.7 L0.0 103.7 L10.0 99.1 L20.0 93.6 L30.0 88.2 L40.0 83.8 L50.0 79.8 L50.0 79.8 L163.0 0.0 L170.0 0.0 L175.0 1.6 L300.0 78.2 L315.0 82.8 L330.0 85.5 L345.0 87.9 L360.0 89.9 L375.0 92.1 L390.0 94.3 L405.0 95.9 L420.0 97.3 L435.0 98.5 L450.0 99.2 L465.0 99.7 L480.0 99.8 L495.0 99.6 L510.0 99.3 L525.0 98.9 L540.0 98.4 L555.0 98.0 L570.0 97.7 L585.0 97.3 L600.0 96.5 L615.0 96.3 L630.0 95.4 L645.0 94.6 L660.0 94.6 L675.0 95.0 L690.0 95.5 L705.0 95.8 L705.0 95.8 L705 103.7 Z" fill="#D23B22"/>
+          <path d="M170.0 0.0 L209.0 103.7 L705 103.7 L705 0 L170.0 0 Z" fill="#893321" clip-path="url(#conecut)"/>
+          <path d="M340 103.7 a4.0 2.4 0 0 1 8.0 0 Z M395 103.7 a6.0 3.6 0 0 1 12.0 0 Z M450 103.7 a3.5 2.1 0 0 1 7.0 0 Z M515 103.7 a5.0 3.0 0 0 1 10.0 0 Z M590 103.7 a4.0 2.4 0 0 1 8.0 0 Z" fill="#399637" clip-path="url(#conecut)"/>
+        </svg>
+        <div class="kites">
+          <svg class="kite k1" style="--kd:10s;--kdl:0s;--kdx:0.5rem" viewBox="0 0 70 200" preserveAspectRatio="xMinYMax meet" focusable="false"><path class="line" d="M38 15 L0 200 M66 15 L0 200"/><path d="M34 16 C40 3 62 1 69 13 L66 15 C60 7 44 8 38 17 Z" fill="#FFD23A"/></svg>
+          <svg class="kite k2" style="--kd:12.5s;--kdl:-3s;--kdx:-0.4rem" viewBox="0 0 70 200" preserveAspectRatio="xMinYMax meet" focusable="false"><path class="line" d="M38 15 L0 200 M66 15 L0 200"/><path d="M34 16 C40 3 62 1 69 13 L66 15 C60 7 44 8 38 17 Z" fill="#F3F7FA"/></svg>
+          <svg class="kite k3" style="--kd:9s;--kdl:-5s;--kdx:0.6rem" viewBox="0 0 70 200" preserveAspectRatio="xMinYMax meet" focusable="false"><path class="line" d="M38 15 L0 200 M66 15 L0 200"/><path d="M34 16 C40 3 62 1 69 13 L66 15 C60 7 44 8 38 17 Z" fill="#D23B22"/></svg>
+        </div>
+      </div>
+    </div>
+    <div class="bay on-dark">
+      <div class="riders" aria-hidden="true"><svg class="rider k1" viewBox="-4 0 12 18" focusable="false"><path class="ln" d="M0 0 L1 7"/><path d="M0 7 h2.6 l.9 5.6 -2.7.9 Z M-3.5 15 h11 v2 h-11 Z"/></svg><svg class="rider k2" viewBox="-4 0 12 18" focusable="false"><path class="ln" d="M0 0 L1 7"/><path d="M0 7 h2.6 l.9 5.6 -2.7.9 Z M-3.5 15 h11 v2 h-11 Z"/></svg><svg class="rider k3" viewBox="-4 0 12 18" focusable="false"><path class="ln" d="M0 0 L1 7"/><path d="M0 7 h2.6 l.9 5.6 -2.7.9 Z M-3.5 15 h11 v2 h-11 Z"/></svg></div>
+      <svg class="caps" viewBox="0 0 1000 20" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M30 6h26 M120 14h18 M205 4h30 M300 12h14 M370 7h24 M470 15h20 M560 5h28 M655 13h16 M730 6h26 M830 14h20 M905 5h30"/></svg>
+      <div>
+        <p class="now" id="now" data-i18n="bandHours">Hoy, de <span class="n">08:00</span> a <span class="n">15:00</span></p>
+        <script>
+        (function(){try{var S=window.__ALISIO_SIGN__;if(!S)return;
+          var c={"es":{"pre":"Abrimos a las <span class=\"n\">08:00</span>","des":"Desayunos hasta las <span class=\"n\">12:00</span>","bru":"Brunch hasta las <span class=\"n\">15:00</span>","caf":"Cafés hasta las <span class=\"n\">15:00</span>","post":"Cerrado · mañana <span class=\"n\">08:00</span>"},"en":{"pre":"Opening at <span class=\"n\">08:00</span>","des":"Breakfast until <span class=\"n\">12:00</span>","bru":"Brunch until <span class=\"n\">15:00</span>","caf":"Coffee until <span class=\"n\">15:00</span>","post":"Closed · back <span class=\"n\">08:00</span>"}};document.getElementById('chip-now').innerHTML=c[S.L][S.k];
+          if(/motion/.test(document.documentElement.className)&&/^(des|bru|caf)$/.test(S.k)){var u=document.getElementById('sun');u.style.setProperty('--sx','6.00');u.style.setProperty('--sy','85.32');}}catch(e){}})();
+        </script>
+        <p class="today" data-i18n="today">Cocina hasta las <span class="n">14:30</span>. Sin reservas, salvo grupos de 6 o más.</p>
+      </div>
+      <div class="acts">
+        <a class="btn btn-sol" href="#carta"><span data-i18n="ctaCarta">Ver la carta</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+        <a class="link-arrow" href="#grupos"><span data-i18n="ctaGrupos">Mesa para 6 o más</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec carta" id="carta" aria-labelledby="carta-h">
+    <div class="carta-top">
+      <div>
+        <h2 id="carta-h" data-i18n="cartaH">La carta</h2>
+        <p class="lede" data-i18n="cartaLede">Todo lo que hay, con su precio. Para leer con las manos mojadas: letra grande y precios a la derecha. Precios de ejemplo.</p>
+      </div>
+      <figure class="disco"><img src="assets/img/tostada-aguacate-400.webp" srcset="assets/img/tostada-aguacate-400.webp 400w, assets/img/tostada-aguacate-800.webp 800w" sizes="(min-width: 64rem) 20rem, 46vw" width="400" height="400" loading="lazy" decoding="async" alt="Tostada de aguacate en un plato blanco, al sol" data-i18n-attr="alt:altTostada"></figure>
+    </div>
+    <p class="status" id="carta-status" hidden><span class="dot" aria-hidden="true" style="background:var(--montana)"></span><span id="carta-status-text"></span></p>
+    <nav aria-label="Secciones de la carta" data-i18n-attr="aria-label:idxLabel">
+      <ul class="idx">
+        <li><a href="#c-cafe"><span data-i18n="cCafe">Café</span> <span class="n">4</span></a></li>
+        <li><a href="#c-zumos"><span data-i18n="cZumos">Zumos</span> <span class="n">2</span></a></li>
+        <li><a href="#c-tostadas"><span data-i18n="cTostadas">Tostadas</span> <span class="n">3</span></a></li>
+        <li><a href="#c-huevos"><span data-i18n="cHuevos">Huevos</span> <span class="n">2</span></a></li>
+        <li><a href="#c-bowls"><span data-i18n="cBowls">Bowls</span> <span class="n">2</span></a></li>
+        <li><a href="#c-tortitas"><span data-i18n="cTortitas">Tortitas</span> <span class="n">1</span></a></li>
+        <li><a href="#c-dulce"><span data-i18n="cDulce">Dulce</span> <span class="n">2</span></a></li>
+      </ul>
+    </nav>
+    <div class="menu">
+      <section id="c-cafe" aria-labelledby="h-cafe">
+        <h3 id="h-cafe"><span data-i18n="hCafe">Café de especialidad</span></h3>
+        <ul class="items">
+          <li><span class="it">Espresso</span><span class="pr n">1,80</span><p class="ds" data-i18n="dEspresso">Corto y serio.</p></li>
+          <li><span class="it">Flat white</span><span class="pr n">3,20</span><p class="ds" data-i18n="dFlat">Doble ristretto y leche sedosa.</p></li>
+          <li><span class="it">Leche y leche</span><span class="pr n">2,20</span><p class="ds" data-i18n="dLyl">Espresso con leche condensada y leche. El cortado de aquí.</p></li>
+          <li><span class="it">Barraquito</span><span class="pr n">3,50</span><p class="ds" data-i18n="dBarraquito">Por capas: leche condensada, licor, café y leche, con canela y piel de limón. Pídelo sin licor si luego te vuelves al agua.</p></li>
+        </ul>
+      </section>
+      <section id="c-zumos" aria-labelledby="h-zumos">
+        <h3 id="h-zumos"><span data-i18n="hZumos">Zumos naturales</span></h3>
+        <ul class="items">
+          <li><span class="it" data-i18n="iNaranja">Naranja</span><span class="pr n">3,50</span><p class="ds" data-i18n="dNaranja">Exprimido al momento.</p></li>
+          <li><span class="it" data-i18n="iVerde">Verde</span><span class="pr n">4,50</span><p class="ds" data-i18n="dVerde">Manzana, pepino, apio y jengibre.</p></li>
+        </ul>
+      </section>
+      <section id="c-tostadas" aria-labelledby="h-tostadas">
+        <h3 id="h-tostadas"><span data-i18n="hTostadas">Tostadas</span></h3>
+        <ul class="items">
+          <li><span class="it" data-i18n="iAguacate">Aguacate, tomate y aceite de oliva</span><span class="pr n">6,50</span></li>
+          <li><span class="it" data-i18n="iRotos">Huevos rotos con pimentón</span><span class="pr n">8,00</span></li>
+          <li><span class="it" data-i18n="iSalmon">Salmón ahumado y queso crema</span><span class="pr n">9,50</span></li>
+        </ul>
+      </section>
+      <section id="c-huevos" aria-labelledby="h-huevos">
+        <h3 id="h-huevos"><span data-i18n="hHuevos">Huevos</span></h3>
+        <ul class="items">
+          <li><span class="it" data-i18n="iBenedict">Benedictinos</span><span class="pr n">10,50</span><p class="ds" data-i18n="dBenedict">Huevos escalfados y salsa holandesa sobre pan tostado.</p></li>
+          <li><span class="it">Shakshuka</span><span class="pr n">10,00</span><p class="ds" data-i18n="dShak">Huevos al horno en salsa de tomate y pimiento, con pan para mojar.</p></li>
+        </ul>
+      </section>
+      <section id="c-bowls" aria-labelledby="h-bowls">
+        <h3 id="h-bowls"><span>Bowls</span></h3>
+        <ul class="items">
+          <li><span class="it" data-i18n="iGranola">Granola de la casa</span><span class="pr n">8,50</span><p class="ds" data-i18n="dGranola">Con yogur, papaya y plátano de Canarias IGP.</p></li>
+          <li><span class="it">Açaí</span><span class="pr n">9,00</span><p class="ds" data-i18n="dAcai">Con mango del sur de la isla.</p></li>
+        </ul>
+      </section>
+      <section id="c-tortitas" aria-labelledby="h-tortitas">
+        <h3 id="h-tortitas"><span data-i18n="hTortitas">Tortitas</span></h3>
+        <ul class="items">
+          <li><span class="it" data-i18n="iTortitas">Tortitas con plátano caramelizado</span><span class="pr n">8,00</span><p class="ds" data-i18n="dTortitas">Con miel de palma de La Gomera.</p></li>
+        </ul>
+      </section>
+      <section id="c-dulce" aria-labelledby="h-dulce">
+        <h3 id="h-dulce"><span data-i18n="hDulce">Dulce</span></h3>
+        <ul class="items">
+          <li><span class="it">Quesillo</span><span class="pr n">4,00</span><p class="ds" data-i18n="dQuesillo">El flan canario, con leche condensada. Queso no lleva, aunque se llame así.</p></li>
+          <li><span class="it">Banana bread</span><span class="pr n">3,50</span><p class="ds" data-i18n="dBanana">Con plátano bien maduro.</p></li>
+        </ul>
+      </section>
+    </div>
+    <div class="notes">
+      <p data-i18n="nAlerg"><strong>¿Alergias o intolerancias?</strong> Pregúntanos y te decimos los alérgenos plato a plato.</p>
+      <p data-i18n="nPrecios">Precios de ejemplo, con IGIC incluido. Cocina hasta las <span class="n">14:30</span>; cafés y zumos hasta las <span class="n">15:00</span>.</p>
+    </div>
+  </section>
+
+  <section class="sec sitio on-dark" id="sitio" aria-labelledby="sitio-h">
+    <div class="sec-head">
+    <h2 id="sitio-h" data-i18n="sitioH">El alisio llega antes que tú</h2>
+    <p class="lede" data-i18n="sitioLede">Sopla del nordeste casi todo el año, y en El Médano se nota: la bahía amanece llena de velas y cometas, y en la terraza las servilletas van con pinza.</p>
+    </div>
+    <figure class="banda"><img src="assets/img/medano-kites-800.webp" srcset="assets/img/medano-kites-800.webp 800w, assets/img/medano-kites-1600.webp 1600w" sizes="(min-width: 64rem) calc(100vw - 17.5rem), 100vw" width="800" height="365" loading="lazy" decoding="async" alt="Cometas de kitesurf sobre la bahía de El Médano, con Montaña Roja al fondo" data-i18n-attr="alt:altKites"><figcaption class="credit" data-i18n="creditKites">Cometas sobre la bahía, con Montaña Roja al fondo. Foto: Angelika P (Unsplash).</figcaption></figure>
+    <div class="sitio-grid">
+    <figure class="mapa">
+      <svg class="map" viewBox="0 0 1000 969" role="img" aria-labelledby="map-t map-d">
+        <title id="map-t" data-i18n="mapT">Mapa de El Médano</title>
+        <desc id="map-d" data-i18n="mapD">Mapa dibujado de El Médano: el paseo, la Plaza Roja y la playa al nordeste, Montaña Roja al suroeste, al final de la playa, y La Tejita al otro lado del volcán. El alisio sopla del nordeste, a lo largo de la playa.</desc>
+        <path d="M877 0 L0 0 L0 636 L21 635 L29 625 L75 625 L80 634 L86 635 L89 633 L94 625 L101 624 L110 635 L148 635 L157 645 L179 646 L185 654 L195 656 L200 664 L204 667 L222 666 L242 689 L246 699 L260 700 L264 706 L270 711 L270 726 L278 731 L280 735 L280 792 L277 797 L271 800 L271 810 L279 816 L283 825 L294 826 L296 816 L299 814 L305 815 L309 819 L310 824 L314 825 L335 849 L339 856 L344 858 L423 858 L431 856 L435 848 L441 842 L462 816 L487 790 L491 784 L506 784 L516 781 L518 776 L517 764 L527 756 L526 744 L545 722 L548 720 L570 721 L578 719 L582 711 L591 704 L592 695 L591 687 L592 679 L598 675 L602 669 L616 668 L619 662 L619 656 L616 652 L610 649 L609 641 L619 627 L627 622 L629 618 L627 563 L618 555 L618 543 L609 534 L609 522 L599 513 L599 502 L598 499 L590 493 L585 485 L558 486 L554 484 L542 471 L543 451 L533 439 L533 404 L536 373 L535 357 L545 346 L544 304 L553 296 L554 283 L563 274 L564 260 L579 245 L582 239 L590 233 L590 221 L600 213 L600 199 L606 194 L610 187 L613 185 L624 187 L631 186 L635 184 L639 177 L652 175 L656 166 L677 144 L693 144 L700 154 L707 156 L716 154 L723 144 L758 144 L779 166 L784 174 L796 176 L813 195 L821 197 L826 195 L841 176 L849 171 L850 167 L850 156 L859 146 L859 43 L860 40 L868 31 L868 9 L876 3Z" fill="#F3F7FA"/>
+        <path d="M451 604 L437 602 L433 600 L399 601 L386 603 L380 603 L370 607 L360 608 L355 610 L345 618 L328 628 L322 634 L315 645 L292 692 L279 714 L279 722 L284 728 L285 735 L286 783 L288 799 L289 804 L294 807 L305 810 L309 811 L313 818 L335 838 L346 844 L365 847 L372 847 L389 844 L398 841 L421 819 L430 809 L433 803 L443 793 L469 750 L471 742 L476 734 L486 702 L490 691 L494 670 L494 658 L489 638 L484 629 L477 623 L469 618 L462 611Z" fill="#D23B22"/><path d="M425 671 L412 666 L397 666 L391 666 L371 671 L359 676 L345 686 L329 699 L316 712 L308 726 L305 732 L302 749 L302 768 L305 786 L312 798 L321 807 L346 821 L359 824 L366 824 L375 821 L385 815 L391 809 L395 801 L398 793 L403 752 L409 740 L428 709 L435 691 L435 687 L433 680 L429 674Z" fill="#B0301B"/><path d="M384 705 L378 706 L362 714 L346 732 L330 748 L326 756 L323 766 L323 776 L325 783 L334 794 L346 801 L355 804 L358 803 L364 801 L367 796 L368 786 L364 766 L365 752 L367 744 L370 737 L381 725 L386 716 L387 709Z" fill="#893321"/>
+        <path d="M966 392 C 906 470, 846 520, 784 598" fill="none" stroke="#F3F7FA" stroke-width="8" stroke-linecap="round"/>
+        <path d="M760 574 L784 600 L812 586" fill="none" stroke="#F3F7FA" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="958" y="372" text-anchor="end" fill="#FFFFFF" font-size="40" font-style="italic" data-i18n="mapWind">alisio</text>
+        <circle cx="784" cy="139" r="10" fill="#0A2240"/>
+        <text x="764" y="112" text-anchor="end" fill="#0A2240" font-size="40">Plaza Roja</text>
+        <circle cx="806" cy="183" r="18" fill="#D23B22"/><circle cx="806" cy="183" r="7" fill="#F3F7FA"/>
+        <text x="838" y="246" fill="#FFFFFF" font-size="40"><tspan x="838">Café</tspan><tspan x="838" dy="44">Alisio</tspan></text>
+        <text x="596" y="262" fill="#FFFFFF" font-size="40"><tspan x="596" data-i18n="mapBeach1">Playa de</tspan><tspan x="596" dy="44">El Médano</tspan></text>
+        <text x="626" y="716" fill="#FFFFFF" font-size="40"><tspan x="626">Montaña Roja</tspan><tspan x="626" dy="44" class="n">171 m</tspan></text>
+        <text x="40" y="772" fill="#FFFFFF" font-size="40">La Tejita</text>
+        <path d="M40 930 H379 M40 914 V946 M379 914 V946" fill="none" stroke="#F3F7FA" stroke-width="5" stroke-linecap="round"/>
+        <text x="40" y="900" fill="#FFFFFF" font-size="34" class="n">1 km</text>
+      </svg>
+      <figcaption><span data-i18n="mapCap">El alisio baja por la playa, del pueblo a Montaña Roja. El café está en el paseo, junto a la Plaza Roja.</span> <a href="https://www.google.com/maps/search/?api=1&amp;query=Plaza%20Roja%2C%20El%20M%C3%A9dano%2C%20Tenerife" target="_blank" rel="noopener" data-i18n="mapLink">Abrir la Plaza Roja en Google Maps</a></figcaption>
+    </figure>
+    <div class="facts">
+      <div>
+        <h3 data-i18n="f1H">Después del agua</h3>
+        <p data-i18n="f1P">Vienes con sal en el pelo y hambre de verdad. Siéntate al sol, que aquí nadie mira el neopreno.</p>
+      </div>
+      <div>
+        <h3 data-i18n="f2H">La mesa larga</h3>
+        <p data-i18n="f2P">Wifi y enchufes. Portátiles bienvenidos; los fines de semana, hasta las <span class="n">12:00</span>, que luego llega el brunch.</p>
+      </div>
+      <div>
+        <h3>Montaña Roja</h3>
+        <p data-i18n="f3P">El volcán rojo del final de la playa: <span class="n">171</span> metros, reserva natural de dunas y chorlitejos. Desde la terraza se ve entero.</p>
+      </div>
+    </div>
+    </div>
+    <p class="duna" data-i18n="duna">Médano quiere decir duna: el pueblo se llama así por la arena que tiene debajo.</p>
+  </section>
+
+  <section class="sec grupos on-dark" id="grupos" aria-labelledby="grupos-h">
+    <div class="sec-head">
+    <h2 id="grupos-h" data-i18n="gruposH">Mesa para 6 o más</h2>
+    <p class="lede" data-i18n="gruposLede">No reservamos, salvo grupos. Dinos cuántos son, qué día y a qué hora, y te dejamos el WhatsApp escrito.</p>
+    </div>
+    <form class="composer" id="composer" onsubmit="return false">
+      <div class="c-in">
+      <fieldset>
+        <legend data-i18n="qCuantos">¿Cuántos son?</legend>
+        <div class="stepper">
+          <button type="button" data-step="-1" aria-label="Uno menos" data-i18n-attr="aria-label:menos" aria-controls="g-people"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14"/></svg></button>
+          <label class="vh" for="g-people" data-i18n="personas">Personas</label>
+          <input id="g-people" type="number" inputmode="numeric" min="6" max="40" value="8" aria-describedby="g-people-unit">
+          <button type="button" data-step="1" aria-label="Uno más" data-i18n-attr="aria-label:mas" aria-controls="g-people"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M12 5v14"/></svg></button>
+          <span class="unit" id="g-people-unit" data-i18n="unit">personas</span>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend data-i18n="qDia">¿Qué día?</legend>
+        <div class="opts" id="g-days">
+          <span class="opt"><input type="radio" name="day" id="d-a" value="a" checked><label for="d-a" data-i18n="dEsta">Esta semana</label></span>
+          <span class="opt"><input type="radio" name="day" id="d-b" value="b"><label for="d-b" data-i18n="dFinde">El finde</label></span>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend data-i18n="qHora">¿A qué hora, más o menos?</legend>
+        <div class="opts" id="g-times">
+          <span class="opt"><input type="radio" name="time" id="h-0830" value="08:30"><label for="h-0830"><span class="n">08:30</span></label></span>
+          <span class="opt"><input type="radio" name="time" id="h-0930" value="09:30"><label for="h-0930"><span class="n">09:30</span></label></span>
+          <span class="opt"><input type="radio" name="time" id="h-1030" value="10:30" checked><label for="h-1030"><span class="n">10:30</span></label></span>
+          <span class="opt"><input type="radio" name="time" id="h-1130" value="11:30"><label for="h-1130"><span class="n">11:30</span></label></span>
+          <span class="opt"><input type="radio" name="time" id="h-1230" value="12:30"><label for="h-1230"><span class="n">12:30</span></label></span>
+          <span class="opt"><input type="radio" name="time" id="h-1330" value="13:30"><label for="h-1330"><span class="n">13:30</span></label></span>
+        </div>
+      </fieldset>
+      <div class="field">
+        <label class="lab" for="g-name" data-i18n="qNombre">¿A nombre de quién? (opcional)</label>
+        <input id="g-name" type="text" autocomplete="given-name" maxlength="40" placeholder="p. ej. Laura" data-i18n-attr="placeholder:namePh">
+      </div>
+      </div>
+      <div class="c-out">
+      <div class="preview" id="preview" aria-live="polite">
+        <p class="lab" data-i18n="tuMensaje">Tu mensaje</p>
+        <p id="msg" data-i18n="msgDefault">Hola, Café Alisio. Somos un grupo de 6 o más y queremos mesa. ¿Tienen sitio?</p>
+      </div>
+      <a class="btn btn-sol send" id="send" href="https://wa.me/34600000000?text=Hola%2C%20Caf%C3%A9%20Alisio.%20Somos%20un%20grupo%20de%206%20o%20m%C3%A1s%20y%20queremos%20mesa.%20%C2%BFTienen%20sitio%3F" target="_blank" rel="noopener"><span data-i18n="send">Enviar por WhatsApp</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+      <p class="small" data-i18n="menos6">¿Son menos de seis? Vengan directamente, sin reserva.</p>
+      </div>
+    </form>
+  </section>
+
+  <section class="sec horario" id="horario" aria-labelledby="horario-h">
+    <div class="split">
+      <div>
+        <h2 id="horario-h" data-i18n="horarioH">Horario y cómo llegar</h2>
+        <div class="hours">
+          <p class="big"><span class="vh" data-i18n="todosDias">Todos los días, </span><span class="n">08:00–15:00</span></p>
+          <dl>
+            <dt data-i18n="tDesayunos">Desayunos</dt><dd><span class="n">08:00–12:00</span></dd>
+            <dt>Brunch</dt><dd><span class="n">12:00–15:00</span></dd>
+            <dt data-i18n="tCocina">Cocina</dt><dd data-i18n="tCocinaH">hasta las <span class="n">14:30</span></dd>
+          </dl>
+        </div>
+      </div>
+      <div class="donde">
+        <h3 class="donde-h" data-i18n="dondeH">Dónde</h3>
+        <address class="addr">Paseo Marítimo 21, 38612 El Médano<br>Granadilla de Abona, Tenerife<br><span class="eg" data-i18n="eg">(dirección de ejemplo)</span></address>
+        <div class="contact">
+          <a class="btn btn-mar" href="https://www.google.com/maps/search/?api=1&amp;query=Plaza%20Roja%2C%20El%20M%C3%A9dano%2C%20Tenerife" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></svg><span data-i18n="mapsBtn">Abrir en Google Maps</span></a>
+          <a class="btn btn-cal" href="tel:+34922000000"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span class="n">922 000 000</span></a>
+          <a class="btn btn-cal" href="mailto:hola@ejemplo.es"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6"/></svg>hola@ejemplo.es</a>
+        </div>
+        <p class="small llegar" data-i18n="llegar">Frente a la playa, a dos pasos de la Plaza Roja. Hay bicis y tablas en la puerta casi siempre: entra igual.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot on-dark">
+  <p class="wordmark">Café Alisio</p>
+  <p data-i18n="footLine">Desayunos y brunch en el paseo de El Médano, todos los días de <span class="n">08:00</span> a <span class="n">15:00</span>.</p>
+  <p class="fict" data-i18n="fict">Diseño de muestra de Teide Digital · negocio ficticio</p>
+  <small data-i18n="credits">Precios de ejemplo y dirección de ejemplo. Fotos: Angelika P y Giorgio Trovato (Unsplash). Relieve de Montaña Roja y costa: Terrain Tiles (SRTM, USGS). Situación de lugares: © colaboradores de OpenStreetMap.</small>
+</footer>
+
+<script>
+(() => {
+  'use strict';
+  const d = document, root = d.documentElement;
+  const $ = (id) => d.getElementById(id);
+  const reduced = () => { try { return matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { return false; } };
+  const SIGN = {"es":{"default":["Desayunos","y brunch",17.5,9.6,88,125],"pre":["Abrimos","a las 08:00",17.5,9.6,114,125],"des":["Desayunos","hasta las 12:00",17.5,9.6,88,118],"bru":["Brunch","hasta las 15:00",17.5,9.6,127,118],"caf":["Cafés","hasta las 15:00",17.5,9.6,150,118],"post":["Mañana","a las 08:00",17.5,9.6,115,125]},"en":{"default":["Breakfast","& brunch",17.5,9.6,94,125],"pre":["Opening","at 08:00",17.5,9.6,118,125],"des":["Breakfast","until 12:00",17.5,9.6,94,125],"bru":["Brunch","until 15:00",17.5,9.6,127,125],"caf":["Coffee","until 15:00",17.5,9.6,145,125],"post":["Tomorrow","at 08:00",17.5,9.6,90,125]}}, CHIP = {"es":{"pre":"Abrimos a las <span class=\"n\">08:00</span>","des":"Desayunos hasta las <span class=\"n\">12:00</span>","bru":"Brunch hasta las <span class=\"n\">15:00</span>","caf":"Cafés hasta las <span class=\"n\">15:00</span>","post":"Cerrado · mañana <span class=\"n\">08:00</span>"},"en":{"pre":"Opening at <span class=\"n\">08:00</span>","des":"Breakfast until <span class=\"n\">12:00</span>","bru":"Brunch until <span class=\"n\">15:00</span>","caf":"Coffee until <span class=\"n\">15:00</span>","post":"Closed · back <span class=\"n\">08:00</span>"}};
+  const EN = {"skip":"Skip to content","place":"El Médano · Tenerife","langLabel":"Language","navLabel":"Sections","chipNow":"<span class=\"n\">08:00–15:00</span>","navCarta":"The menu","navSitio":"The place","navGrupos":"Groups of 6+","navHorario":"Hours and map","railHours":"Every day <span class=\"n\">08:00–15:00</span><br>Kitchen until <span class=\"n\">14:30</span>","railAddr":"Paseo Marítimo 21, El Médano<br>(example address)","hook":"Breakfast and brunch with a tailwind, on El Médano’s seafront.","today":"Kitchen until <span class=\"n\">14:30</span>. No bookings, except groups of 6 or more.","ctaCarta":"See the menu","ctaGrupos":"Table for 6 or more","cartaH":"The menu","cartaLede":"Everything we serve, with its price. Made to read with wet hands: big type, prices on the right. Example prices.","idxLabel":"Menu sections","cCafe":"Coffee","cZumos":"Juices","cTostadas":"Toast","cHuevos":"Eggs","cTortitas":"Pancakes","cDulce":"Sweet","hCafe":"Specialty coffee","dEspresso":"Short and serious.","dFlat":"Double ristretto, silky milk.","dLyl":"Espresso with condensed milk and milk. The local cortado.","dBarraquito":"In layers: condensed milk, liqueur, coffee and milk, with cinnamon and lemon peel. Ask for it without the liqueur if you are heading back into the water.","hZumos":"Fresh juices","iNaranja":"Orange","dNaranja":"Squeezed to order.","iVerde":"Green","dVerde":"Apple, cucumber, celery and ginger.","hTostadas":"Toast","iAguacate":"Avocado, tomato and olive oil","iRotos":"Broken fried eggs with paprika","iSalmon":"Smoked salmon and cream cheese","hHuevos":"Eggs","iBenedict":"Eggs Benedict","dBenedict":"Poached eggs and hollandaise on toast.","dShak":"Eggs baked in tomato and pepper sauce, with bread for dipping.","iGranola":"House granola","dGranola":"With yoghurt, papaya and Canary Islands banana (PGI).","dAcai":"With mango from the south of the island.","hTortitas":"Pancakes","iTortitas":"Pancakes with caramelised banana","dTortitas":"With palm honey from La Gomera.","hDulce":"Something sweet","dQuesillo":"Canarian flan, made with condensed milk. No cheese in it, whatever the name says.","dBanana":"Made with very ripe bananas.","nAlerg":"<strong>Allergies or intolerances?</strong> Ask us and we will go through the allergens dish by dish.","nPrecios":"Example prices, IGIC (the Canary Islands sales tax) included. Kitchen until <span class=\"n\">14:30</span>; coffee and juices until <span class=\"n\">15:00</span>.","sitioH":"The trade wind gets here before you do","sitioLede":"It blows from the north-east most of the year, and in El Médano you feel it: the bay wakes up full of sails and kites, and on our terrace the napkins come with clips.","mapCap":"The trade wind runs down the beach, from the town to Montaña Roja. The café is on the seafront, by Plaza Roja.","mapLink":"Open Plaza Roja in Google Maps","mapT":"Map of El Médano","mapD":"Drawn map of El Médano: the seafront, Plaza Roja and the beach in the north-east, Montaña Roja at the south-west end of the beach and La Tejita on the far side of the volcano. The trade wind blows from the north-east, along the beach.","mapWind":"trade wind","mapBeach1":"Playa de","f1H":"After the water","f1P":"Salt in your hair and properly hungry. Sit in the sun; nobody here minds the wetsuit.","f2H":"The long table","f2P":"Wifi and plugs. Laptops welcome; at weekends until <span class=\"n\">12:00</span>, when brunch takes over.","f3P":"The red volcano at the end of the beach: <span class=\"n\">171</span> metres, a nature reserve of dunes and plovers. You can see all of it from the terrace.","duna":"Médano means dune: the town is named after the sand it sits on.","gruposH":"A table for 6 or more","gruposLede":"We don’t take bookings, except for groups. Tell us how many, which day and roughly what time, and we will write the WhatsApp for you.","qCuantos":"How many?","menos":"One fewer","mas":"One more","personas":"People","unit":"people","qDia":"Which day?","dEsta":"This week","dFinde":"The weekend","qHora":"Roughly what time?","qNombre":"Under what name? (optional)","tuMensaje":"Your message","msgDefault":"Hi Café Alisio, we’re a group of 6 or more and we’d like a table. Do you have room?","send":"Send on WhatsApp","menos6":"Fewer than six? Just come along, no booking needed.","horarioH":"Hours and how to get here","todosDias":"Every day, ","tDesayunos":"Breakfast","tCocina":"Kitchen","tCocinaH":"until <span class=\"n\">14:30</span>","dondeH":"Where","eg":"(example address)","mapsBtn":"Open in Google Maps","llegar":"On the seafront, a few steps from Plaza Roja. There are usually bikes and boards by the door: come in anyway.","footLine":"Breakfast and brunch on El Médano’s seafront, every day from <span class=\"n\">08:00</span> to <span class=\"n\">15:00</span>.","fict":"Sample design by Teide Digital · fictional business","credits":"Example prices and example address. Photos: Angelika P and Giorgio Trovato (Unsplash). Relief of Montaña Roja and the coast: Terrain Tiles (SRTM, USGS). Place positions: © OpenStreetMap contributors.","altTostada":"Avocado toast on a white plate, in the sun","altKites":"Kitesurf kites over the bay at El Médano, with Montaña Roja behind","creditKites":"Kites over the bay, with Montaña Roja behind. Photo: Angelika P (Unsplash).","bandHours":"Today, <span class=\"n\">08:00</span> to <span class=\"n\">15:00</span>","namePh":"e.g. Laura"};
+  let lang = 'es';
+  try { if (localStorage.getItem('alisio-lang') === 'en') lang = 'en'; } catch (e) {}
+
+  /* ---------- the real time, in Atlantic/Canary ---------- */
+  function canary(date = new Date()) {
+    const p = {};
+    new Intl.DateTimeFormat('en-GB', { timeZone: 'Atlantic/Canary', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' })
+      .formatToParts(date).forEach((x) => { p[x.type] = x.value; });
+    const y = +p.year, mo = +p.month, dd = +p.day, h = +p.hour, mi = +p.minute;
+    const off = Math.round((Date.UTC(y, mo - 1, dd, h, mi) - Math.floor(date.getTime() / 60000) * 60000) / 60000);
+    return { y, mo, d: dd, min: h * 60 + mi, off };
+  }
+  const stateOf = (m) => (m < 480 ? 'pre' : m < 720 ? 'des' : m < 870 ? 'bru' : m < 900 ? 'caf' : 'post');
+  const isOpen = (k) => k === 'des' || k === 'bru' || k === 'caf';
+
+  /* ---------- the sun: solar altitude over El Médano (approx. NOAA) ---------- */
+  const LAT = 28.0428, LON = -16.5344, R = Math.PI / 180;
+  function sunAlt(ms) {
+    const n = (ms - Date.UTC(2000, 0, 1, 12)) / 864e5;
+    const g = (357.529 + 0.98560028 * n) * R, q = 280.459 + 0.98564736 * n;
+    const L = (q + 1.915 * Math.sin(g) + 0.02 * Math.sin(2 * g)) * R, e = (23.439 - 0.00000036 * n) * R;
+    const ra = Math.atan2(Math.cos(e) * Math.sin(L), Math.cos(L)), dec = Math.asin(Math.sin(e) * Math.sin(L));
+    const gmst = (18.697374558 + 24.06570982441908 * n) % 24;
+    const H = (gmst * 15 + LON) * R - ra;
+    return Math.asin(Math.sin(LAT * R) * Math.sin(dec) + Math.cos(LAT * R) * Math.cos(dec) * Math.cos(H)) / R;
+  }
+  /* x = the café's hour (08:00 at 6%, 15:00 at 80% — above the cone); y = the real altitude today */
+  function arcPoint(now, min) {
+    const ms = Date.UTC(now.y, now.mo - 1, now.d, 0, min) - now.off * 60000;
+    const a = Math.max(sunAlt(ms), 0);
+    return [6 + ((min - 480) / 420) * 56, 94 - (a / 86) * 84];
+  }
+  function drawArc(now) {
+    let dpath = '';
+    for (let m = 480; m <= 900; m += 15) { const [x, y] = arcPoint(now, m); dpath += (m === 480 ? 'M' : 'L') + (x * 10).toFixed(1) + ' ' + (y * 10).toFixed(1); }
+    $('arc').setAttribute('d', dpath);
+    [['t08', 480], ['t12', 720], ['t15', 900]].forEach(([id, m]) => { const [x, y] = arcPoint(now, m); const t = $(id); t.style.setProperty('--x', x.toFixed(2)); t.style.setProperty('--y', y.toFixed(2)); });
+  }
+  const sunTarget = (now) => arcPoint(now, isOpen(stateOf(now.min)) ? now.min : 480);
+  function placeSun(pt) { const s = $('sun'); s.style.setProperty('--sx', pt[0].toFixed(2)); s.style.setProperty('--sy', pt[1].toFixed(2)); }
+
+  /* ---------- the sign of the hour + the live lines ---------- */
+  let state = 'des';
+  function renderSign() {
+    const t = SIGN[lang][state], sign = $('sign');
+    $('sign-a').textContent = t[0]; $('sign-b').textContent = t[1]; $('sign-sr').textContent = t[0] + ' ' + t[1];
+    sign.style.setProperty('--fa', t[2] + 'cqi'); sign.style.setProperty('--fb', t[3] + 'cqi'); sign.style.setProperty('--wa', t[4] + '%'); sign.style.setProperty('--wb', t[5] + '%'); sign.dataset.state = state;
+  }
+  function renderLive() {
+    $('chip-now').innerHTML = CHIP[lang][state];
+    const st = $('carta-status');
+    if (state === 'caf') { $('carta-status-text').textContent = lang === 'en' ? 'The kitchen has closed: coffee and juices until 15:00.' : 'La cocina ya cerró: quedan cafés y zumos hasta las 15:00.'; st.hidden = false; }
+    else st.hidden = true;
+  }
+
+  /* ---------- languages: ES in the markup, EN from one dictionary ---------- */
+  const ES = new Map(), ESA = new Map();
+  function applyLang(l) {
+    lang = l;
+    d.querySelectorAll('[data-i18n]').forEach((el) => {
+      if (!ES.has(el)) ES.set(el, el.innerHTML);
+      const k = el.dataset.i18n;
+      el.innerHTML = l === 'en' && EN[k] != null ? EN[k] : ES.get(el);
+    });
+    d.querySelectorAll('[data-i18n-attr]').forEach((el) => {
+      el.dataset.i18nAttr.split(';').forEach((pair) => {
+        const [attr, k] = pair.split(':');
+        const key = el, store = ESA.get(key) || {};
+        if (!(attr in store)) { store[attr] = el.getAttribute(attr); ESA.set(key, store); }
+        el.setAttribute(attr, l === 'en' && EN[k] != null ? EN[k] : store[attr]);
+      });
+    });
+    root.lang = l;
+    d.querySelectorAll('.lang button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === l)));
+    renderSign(); renderLive(); buildDays(); compose(false);
+    try { localStorage.setItem('alisio-lang', l); } catch (e) {}
+  }
+  function setLang(l) {
+    if (l === lang) return;
+    if (d.startViewTransition && !reduced()) {
+      root.classList.add('vt-wind');
+      const t = d.startViewTransition(() => applyLang(l));
+      t.finished.finally(() => root.classList.remove('vt-wind'));
+    } else applyLang(l);
+  }
+  d.querySelectorAll('.lang button').forEach((b) => b.addEventListener('click', () => setLang(b.dataset.lang)));
+
+  /* ---------- group-table composer: people + day + time -> WhatsApp ---------- */
+  const WA = 'https://wa.me/34600000000?text=';
+  const people = $('g-people');
+  const fmt = (l, o) => new Intl.DateTimeFormat(l === 'en' ? 'en-GB' : 'es-ES', Object.assign({ timeZone: 'UTC' }, o));
+  function buildDays() {
+    const now = canary(), box = $('g-days'), prev = (box.querySelector('input:checked') || {}).value;
+    const base = Date.UTC(now.y, now.mo - 1, now.d);
+    let html = '';
+    for (let i = 0; i < 7; i++) {
+      if (i === 0 && now.min >= 13 * 60 + 30) continue; /* last group slot today has passed */
+      const t = new Date(base + i * 864e5);
+      const wd = fmt(lang, { weekday: 'short' }).format(t).replace('.', '');
+      const name = i === 0 ? (lang === 'en' ? 'Today' : 'Hoy') : i === 1 ? (lang === 'en' ? 'Tomorrow' : 'Mañana') : wd.charAt(0).toUpperCase() + wd.slice(1);
+      html += `<span class="opt"><input type="radio" name="day" id="day-${i}" value="${i}" data-ts="${t.getTime()}"><label for="day-${i}">${name}<span class="n">${t.getUTCDate()}</span></label></span>`;
+    }
+    box.innerHTML = html;
+    const pick = box.querySelector(`input[value="${prev}"]`) || box.querySelector('input');
+    if (pick) pick.checked = true;
+    box.querySelectorAll('input').forEach((r) => r.addEventListener('change', () => { gateTimes(); compose(true); }));
+    gateTimes();
+  }
+  function gateTimes() {
+    const now = canary(), day = d.querySelector('#g-days input:checked');
+    const today = day && day.value === '0';
+    let first = null;
+    d.querySelectorAll('#g-times input').forEach((r) => {
+      const [h, m] = r.value.split(':').map(Number);
+      r.disabled = !!today && h * 60 + m < now.min + 30;
+      if (!r.disabled && !first) first = r;
+    });
+    const cur = d.querySelector('#g-times input:checked');
+    if ((!cur || cur.disabled) && first) first.checked = true;
+  }
+  function clampPeople() {
+    let v = parseInt(people.value, 10);
+    if (isNaN(v)) v = 8;
+    v = Math.min(40, Math.max(6, v));
+    people.value = v;
+    d.querySelectorAll('[data-step]').forEach((b) => { b.disabled = (b.dataset.step < 0 && v <= 6) || (b.dataset.step > 0 && v >= 40); });
+    return v;
+  }
+  function message() {
+    const n = clampPeople();
+    const day = d.querySelector('#g-days input:checked'), time = d.querySelector('#g-times input:checked');
+    const name = $('g-name').value.trim().replace(/\s+/g, ' ').slice(0, 40);
+    let when = lang === 'en' ? 'soon' : 'pronto';
+    if (day) {
+      const i = +day.value, t = new Date(+day.dataset.ts);
+      if (i === 0) when = lang === 'en' ? 'today' : 'hoy';
+      else if (i === 1) when = lang === 'en' ? 'tomorrow' : 'mañana';
+      else if (lang === 'en') when = 'on ' + fmt('en', { weekday: 'long' }).format(t) + ' ' + t.getUTCDate() + ' ' + fmt('en', { month: 'long' }).format(t);
+      else when = 'el ' + fmt('es', { weekday: 'long' }).format(t) + ' ' + t.getUTCDate() + ' de ' + fmt('es', { month: 'long' }).format(t);
+    }
+    const at = time ? time.value : '10:30';
+    return lang === 'en'
+      ? `Hi Café Alisio, we're ${n} people and we'd like a table ${when} at around ${at}.${name ? ` The name is ${name}.` : ''} Do you have room?`
+      : `Hola, Café Alisio. Somos ${n} y queremos mesa ${when} sobre las ${at}.${name ? ` A nombre de ${name}.` : ''} ¿Tienen sitio?`;
+  }
+  function compose(blow) {
+    const text = message();
+    $('msg').textContent = text;
+    $('send').href = WA + encodeURIComponent(text);
+    if (blow && !reduced()) { const p = $('preview'); p.classList.remove('blown'); void p.offsetWidth; p.classList.add('blown'); }
+  }
+  d.querySelectorAll('[data-step]').forEach((b) => b.addEventListener('click', () => { people.value = clampPeople() + Number(b.dataset.step); compose(true); }));
+  people.addEventListener('change', () => compose(true));
+  people.addEventListener('input', () => { if (people.value.length >= 1 && +people.value >= 6) compose(false); });
+  $('g-name').addEventListener('input', () => compose(false));
+  d.querySelectorAll('#g-times input').forEach((r) => r.addEventListener('change', () => compose(true)));
+
+  /* ---------- where am I: rail / chip bar ---------- */
+  const chips = [...d.querySelectorAll('.chip[data-sec]')];
+  const bar = $('chips'), mobile = () => !matchMedia('(min-width: 64rem)').matches;
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((es) => {
+      es.forEach((e) => {
+        if (!e.isIntersecting) return;
+        chips.forEach((c) => c.toggleAttribute('aria-current', c.dataset.sec === e.target.id));
+        chips.forEach((c) => { if (c.dataset.sec === e.target.id) c.setAttribute('aria-current', 'true'); });
+        const c = chips.find((x) => x.dataset.sec === e.target.id);
+        if (c && mobile()) { const g = parseFloat(getComputedStyle(bar).paddingLeft) || 16; bar.scrollTo({ left: Math.max(0, bar.scrollLeft + c.parentElement.getBoundingClientRect().left - bar.getBoundingClientRect().left - g), behavior: reduced() ? 'auto' : 'smooth' }); }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    ['ahora', 'carta', 'sitio', 'grupos', 'horario'].forEach((id) => { const s = $(id); if (s) io.observe(s); });
+    const hero = $('ahora');
+    new IntersectionObserver(([e]) => hero.classList.toggle('still', !e.isIntersecting)).observe(hero);
+  }
+
+  /* ---------- la racha: the alisio crosses the hero once, NE -> SW ---------- */
+  function racha(now) {
+    const target = sunTarget(now);
+    const settle = () => placeSun(target);
+    if (reduced() || !root.classList.contains('motion')) { settle(); return; }
+    const sign = $('sign'), lines = [$('sign-a'), $('sign-b')];
+    const texts = lines.map((l) => l.textContent);
+    let i = 0;
+    lines.forEach((el) => {
+      const w0 = getComputedStyle(el).fontStretch || '120%';
+      const txt = el.textContent; el.textContent = '';
+      for (const ch of txt) {
+        const s = d.createElement('span');
+        s.className = 'ch'; s.textContent = ch === ' ' ? ' ' : ch;
+        s.style.setProperty('--d', i++ * 34 + 'ms'); s.style.setProperty('--w0', w0);
+        el.appendChild(s);
+      }
+    });
+    const chs = [...sign.querySelectorAll('.ch')];
+    const ws = chs.map((c) => c.getBoundingClientRect().width);
+    chs.forEach((c, k) => { c.style.width = ws[k] + 'px'; });
+    sign.classList.add('gusting');
+    let restored = false;
+    const restore = () => { if (restored) return; restored = true; sign.classList.remove('gusting'); lines.forEach((el, k) => { el.textContent = texts[k]; }); };
+    const last = chs[chs.length - 1];
+    if (last) last.addEventListener('animationend', restore, { once: true });
+    setTimeout(restore, 2600);
+    /* the sun rides the arc from 08:00 to now */
+    const sun = $('sun');
+    if (sun.animate && isOpen(stateOf(now.min))) {
+      const frames = [];
+      for (let k = 0; k <= 14; k++) {
+        const m = 480 + ((now.min - 480) * k) / 14;
+        const [x, y] = arcPoint(now, m);
+        frames.push({ transform: `translate(${x.toFixed(2)}%, ${y.toFixed(2)}%)` });
+      }
+      const a = sun.animate(frames, { duration: 1500, delay: 120, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'backwards' });
+      settle();
+      a.finished.catch(() => {});
+    } else settle();
+    d.querySelectorAll('.kites, .riders').forEach((k) => { if (k.animate) k.animate([{ transform: 'translateX(-1.6rem)' }, { transform: 'none' }], { duration: 1400, easing: 'cubic-bezier(.16,1,.3,1)' }); });
+  }
+
+  /* ---------- boot ---------- */
+  const now = canary();
+  state = stateOf(now.min);
+  drawArc(now);
+  if (lang === 'en') applyLang('en'); else { renderSign(); renderLive(); buildDays(); compose(false); }
+  let ran = false;
+  const go = () => { if (ran) return; ran = true; racha(canary()); };
+  if (d.fonts && d.fonts.ready) d.fonts.ready.then(() => setTimeout(go, 60));
+  setTimeout(go, 900);
+  setTimeout(() => placeSun(sunTarget(canary())), 3000); /* safety: the sun always ends where it should */
+
+  /* keep telling the truth while the page stays open */
+  let day = now.d;
+  setInterval(() => {
+    const t = canary(), k = stateOf(t.min);
+    if (k !== state) { state = k; renderSign(); renderLive(); }
+    if (t.d !== day) { day = t.d; drawArc(t); buildDays(); compose(false); }
+    placeSun(sunTarget(t));
+  }, 30000);
+})();
+
+</script>
+</body>
+</html>
