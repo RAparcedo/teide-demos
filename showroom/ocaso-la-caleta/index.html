@@ -1,0 +1,868 @@
+<!doctype html>
+<html lang="es" data-hour="noon">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Ocaso · La mesa del atardecer en La Caleta, Adeje</title>
+<meta name="description" content="Restaurante y terraza de cócteles sobre las rocas de La Caleta, Adeje. Cada día les decimos a qué hora se pone el sol y les guardamos la mesa de esa hora.">
+<meta name="theme-color" content="#1E3FA6">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231E3FA6'/%3E%3Cpath d='M0 3h32v7a4 4 0 0 1-8 0 4 4 0 0 1-8 0 4 4 0 0 1-8 0 4 4 0 0 1-8 0Z' fill='%23F4F8FB'/%3E%3Cpath d='M9 26a7 7 0 0 1 14 0Z' fill='%23E04E14'/%3E%3Crect x='5' y='26' width='22' height='2' rx='1' fill='%23F4F8FB'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/geologica-var.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Geologica";src:url("assets/fonts/geologica-var.woff2") format("woff2");font-weight:300 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Geologica Fallback";src:local("Arial"),local("ArialMT");size-adjust:104.96%;ascent-override:92.89%;descent-override:26.2%;line-gap-override:0%}
+
+:root{
+  /* the awning: n stripes across the page; one stripe = the column module; half a stripe = the scallop radius = the unit */
+  --n:14;
+  --s:calc(100vw / var(--n));
+  --u:calc(var(--s) / 2);
+  --gutter:var(--s);
+  /* noon light */
+  --cobalt:#1E3FA6; --cobalt-deep:#132C7C; --canvas:#F4F8FB; --shade:#E2ECF5; --band-dark:#D8E4F0; --band-light:#E9F1F8;
+  --ink:#0E1A3A; --ink-2:#3A4A6E; --sun:#B8340A; --sun-ink:#B33A0A;
+  /* sunset light */
+  --violet:#2B1650; --plum:#5A2378; --gold:#FFE1A6; --gold-fill:#FFC85C; --dusk-ink:#F7EAF4;
+  /* night light */
+  --night:#0B1236; --night-2:#141E50; --bulb:#FFC861; --night-ink:#EEF1FB; --night-ink-2:#BAC3E6;
+  --font:"Geologica","Geologica Fallback",system-ui,sans-serif;
+  --shrp:60; --crsv:0; --slnt:0;
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  /* awning geometry */
+  --roll-h:8px; --lona-h:44px; --faldon-h:56px;
+  --toldo-h:calc(var(--roll-h) + var(--lona-h) + var(--faldon-h) + var(--u));
+  --toldo-furled:calc(var(--roll-h) * 1.6 + var(--faldon-h) + var(--u));
+  --furl-y:calc(var(--roll-h) * .6 - var(--lona-h) - 1px);
+  /* valance + roller, relit by the hour */
+  --v-shade:#0B1B55;
+  --pintura:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Cfilter id='p' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -3 0 0 0 2.75'/%3E%3C/filter%3E%3Crect width='90' height='90' filter='url(%23p)'/%3E%3C/svg%3E");
+  --v-bg:var(--cobalt); --v-ink:var(--canvas); --v-btn:var(--canvas); --v-btn-ink:var(--cobalt);
+  --stripe-a:var(--cobalt); --stripe-b:var(--canvas);
+ 
+  --scallop:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2 1' preserveAspectRatio='none'%3E%3Cpath d='M0 0H2A1 1 0 0 1 0 0Z'/%3E%3C/svg%3E");
+  --stitch:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2 1' preserveAspectRatio='none'%3E%3Cpath d='M1.76 0A.76 .76 0 0 1 .24 0' fill='none' stroke='%23000' stroke-width='.1' stroke-dasharray='.17 .12'/%3E%3C/svg%3E");
+  --scallop-v:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 2' preserveAspectRatio='none'%3E%3Cpath d='M0 0A1 1 0 0 1 0 2Z'/%3E%3C/svg%3E");
+  --stitch-v:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 2' preserveAspectRatio='none'%3E%3Cpath d='M0 .24A.76 .76 0 0 1 0 1.76' fill='none' stroke='%23000' stroke-width='.1' stroke-dasharray='.17 .12'/%3E%3C/svg%3E");
+  color-scheme:light;
+}
+@media (min-width:48rem){:root{--n:24;--gutter:calc(var(--s) * 2);--roll-h:10px;--lona-h:56px;--faldon-h:68px}}
+@media (min-width:80rem){:root{--n:32}}
+html[data-hour="sunset"]{--v-shade:#2C0E44;--v-bg:var(--plum);--v-ink:var(--gold);--v-btn:var(--gold);--v-btn-ink:var(--violet);--stripe-a:#4A1F6B;--stripe-b:#F6B27A}
+html[data-hour="night"]{--v-shade:#050A26;--v-bg:#101A48;--v-ink:var(--bulb);--v-btn:var(--bulb);--v-btn-ink:#101A48;--stripe-a:#0C1440;--stripe-b:#C9A25A}
+
+*,*::before,*::after{box-sizing:border-box}
+*{font-variation-settings:"SHRP" var(--shrp),"CRSV" var(--crsv),"slnt" var(--slnt)}
+html{scroll-snap-type:y proximity;scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%;background:var(--shade);scrollbar-color:var(--cobalt) var(--shade)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;font-family:var(--font);font-size:1.0625rem;line-height:1.5;color:var(--ink);background:var(--shade);overflow-x:hidden}
+main{display:block;container-type:inline-size;--s:calc(100cqw / var(--n));--u:calc(var(--s) / 2);--gutter:var(--s)}
+@media (min-width:48rem){main{--gutter:calc(var(--s) * 2)}}
+img{max-width:100%}
+a{color:inherit;text-underline-offset:.2em;text-decoration-thickness:1px}
+::selection{background:var(--cobalt);color:var(--canvas)}
+:focus-visible{outline:3px solid var(--sun-ink);outline-offset:3px;border-radius:4px}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.saltar{position:fixed;left:var(--u);top:-120px;z-index:100;background:var(--ink);color:var(--canvas);padding:.75rem 1rem;border-radius:var(--u);font-weight:600;text-decoration:none}
+.saltar:focus{top:.5rem}
+
+/* ---------- the awning (one object, fixed, seen from the table) ---------- */
+.toldo{position:fixed;inset:0 0 auto 0;z-index:50;pointer-events:none}
+.toldo__rodillo{position:relative;z-index:2;height:var(--roll-h);transform-origin:top;
+  background:linear-gradient(180deg,rgb(255 255 255/.32),rgb(255 255 255/0) 42%,rgb(0 0 0/.45)),
+    linear-gradient(90deg,var(--stripe-a) 50%,var(--stripe-b) 50%) 0 0/calc(200% / var(--n)) 100%;
+  box-shadow:0 2px 3px rgb(6 10 30/.35)}
+.toldo__lona{position:relative;z-index:0;height:calc(var(--lona-h) + 1px);margin-bottom:-1px;
+  background:linear-gradient(180deg,rgb(8 14 44/.42),rgb(8 14 44/.08) 65%,rgb(255 255 255/.05)),
+    linear-gradient(90deg,var(--stripe-a) 50%,var(--stripe-b) 50%) 0 0/calc(200% / var(--n)) 100%}
+.toldo__faldon{position:relative;z-index:1;display:flex;align-items:center;gap:calc(var(--u) * .75);height:var(--faldon-h);padding:8px var(--gutter);
+  background:var(--v-bg);color:var(--v-ink);pointer-events:auto;transition:background-color .6s var(--ease-out),color .6s var(--ease-out)}
+.toldo__faldon::after{content:"";position:absolute;left:0;right:0;top:calc(100% - 1px);height:calc(var(--u) + 1px);background:var(--v-bg);
+  -webkit-mask:var(--scallop) 0 1px/calc(100% / var(--n)) var(--u) repeat-x,linear-gradient(#000 0 0) 0 0/100% 1px no-repeat;
+  mask:var(--scallop) 0 1px/calc(100% / var(--n)) var(--u) repeat-x,linear-gradient(#000 0 0) 0 0/100% 1px no-repeat;
+  transition:background-color .6s var(--ease-out);filter:drop-shadow(0 3px 2px rgb(6 10 30/.22))}
+.toldo__faldon::before{content:"";position:absolute;left:0;right:0;top:100%;height:var(--u);z-index:1;background:var(--v-ink);opacity:.8;
+  -webkit-mask:var(--stitch) 0 0/calc(100% / var(--n)) 100% repeat-x;mask:var(--stitch) 0 0/calc(100% / var(--n)) 100% repeat-x;transition:background-color .6s var(--ease-out)}
+.marca{display:flex;flex-direction:column;line-height:1;text-decoration:none;margin-right:auto;min-height:40px;justify-content:center}
+.marca__nombre{font-size:clamp(1.5rem,6.2vw,2.2rem);font-weight:850;line-height:.95;letter-spacing:.01em;--shrp:0;--crsv:1;--slnt:-9;
+  text-shadow:.05em .06em 0 var(--v-shade);-webkit-mask:var(--pintura) 0 0/90px 90px;mask:var(--pintura) 0 0/90px 90px;transition:text-shadow .6s var(--ease-out)}
+.marca__lugar{margin-top:.3rem;font-size:.75rem;font-weight:500;letter-spacing:.02em}
+.idioma{display:flex;border:1.5px solid currentColor;border-radius:var(--u);overflow:hidden}
+.idioma button{appearance:none;border:0;margin:0;background:transparent;color:inherit;font:600 .8125rem/1 var(--font);min-width:40px;height:40px;padding:0 .5rem;cursor:pointer}
+.idioma button[aria-pressed="true"]{background:var(--v-ink);color:var(--v-bg)}
+.faldon__reservar{display:inline-flex;align-items:center;height:40px;padding:0 .9rem;border-radius:var(--u);background:var(--v-btn);color:var(--v-btn-ink);font-weight:700;font-size:.9375rem;text-decoration:none;white-space:nowrap}
+.faldon__reservar:hover{filter:brightness(1.06)}
+@media (max-width:22.4rem){.marca__lugar{display:none}.faldon__reservar{padding:0 .7rem}}
+html.is-furled .toldo__lona,html.is-furled .toldo__faldon{transform:translateY(var(--furl-y))}
+html.is-furled .toldo__rodillo{transform:scaleY(1.6)}
+@media (prefers-reduced-motion:no-preference){
+  .toldo__lona,.toldo__rodillo{transition:transform .7s var(--ease-out)}
+  .toldo__faldon{transition:background-color .6s var(--ease-out),color .6s var(--ease-out),transform .7s var(--ease-out)}
+}
+
+/* chapter dots (wide screens only) */
+.horas{position:fixed;right:var(--u);top:50%;translate:0 -50%;z-index:40;display:none;gap:.35rem;flex-direction:column}
+.horas a{display:flex;align-items:center;justify-content:flex-end;gap:.6rem;min-height:2rem;color:var(--rail-ink,var(--ink));text-decoration:none;font-size:.8125rem;font-weight:600;transition:color .2s}
+.horas a[data-ground="dusk"],.horas a[data-ground="sky"]{--rail-ink:var(--gold)}
+.horas a[data-ground="night"]{--rail-ink:var(--bulb)}
+.horas a[data-ground="deep"],.horas a[data-ground="photo"]{--rail-ink:var(--canvas)}
+.horas a[data-ground="sky"] span:first-child,.horas a[data-ground="photo"] span:first-child{padding:.15rem .5rem;border-radius:var(--u);background:rgb(14 10 40/.66)}
+.horas a[data-ground="sky"] .horas__marca,.horas a[data-ground="photo"] .horas__marca{box-shadow:0 0 0 2px rgb(14 10 40/.55)}
+.horas__marca{width:12px;height:12px;border-radius:50%;border:1.5px solid currentColor;transition:background-color .3s}
+.horas a[aria-current="true"] .horas__marca{background:currentColor}
+.horas a[aria-current="true"]{font-weight:800}
+@media (min-width:64rem){.horas{display:flex}}
+
+/* ---------- chapters ---------- */
+.cap{position:relative;scroll-snap-align:start;scroll-margin-top:var(--toldo-h);padding:calc(var(--u) * 4) var(--gutter)}
+.titulo{margin:0;font-size:clamp(2.4rem,10.4vw,5.25rem);font-weight:800;line-height:.98;letter-spacing:-.035em;text-wrap:balance}
+.texto{margin:var(--u) 0 0;max-width:34rem;text-wrap:pretty}
+.nota{margin:var(--u) 0 0;font-size:.875rem}
+.precio{font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* hoy — under the awning at noon: the striped light falls on the ground */
+.cap--hoy{min-height:100svh;scroll-margin-top:0;padding-top:calc(var(--toldo-h) + var(--u) * 1.5);padding-bottom:calc(var(--u) * 3);
+  background:linear-gradient(90deg,var(--band-dark) 0 44%,var(--band-light) 56% 94%,var(--band-dark) 100%) 0 0/calc(200% / var(--n)) 100% repeat-x,var(--shade)}
+.cap--hoy::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgb(14 26 58/.07),rgb(14 26 58/0) 40%)}
+.hoy{position:relative;z-index:1;max-width:calc(var(--s) * 15)}
+.vista{display:none}
+@media (min-width:80rem){
+  .cap--hoy .hoy__hora{font-size:min(15rem,calc(var(--s) * 5.3))}
+  .vista{display:block;position:absolute;z-index:0;top:0;bottom:0;right:0;left:calc(var(--s) * 17);overflow:hidden;--horizon:58%;--gom-h:clamp(22px,3.4%,36px);--sun-x:26%;--gom-l:32%;--gom-w:45%;--orilla:clamp(40px,8%,80px);--pretil:calc(var(--u) * 1.3)}
+  .vista__cielo{position:absolute;left:0;right:0;top:0;height:var(--horizon);background:linear-gradient(180deg,#9EC1E6 0%,#BCD5EE 45%,#DCE9F6 82%,#EEF4FA 100%)}
+  .vista__gomera{position:absolute;z-index:1;left:var(--gom-l);width:var(--gom-w);top:calc(var(--horizon) - var(--gom-h));height:var(--gom-h);color:#7E95BD;filter:drop-shadow(0 -1px 0 rgb(255 255 255/.35))}
+  .vista__mar{position:absolute;left:0;right:0;top:var(--horizon);bottom:0;
+    background:linear-gradient(180deg,rgb(238 244 250/.7) 0,rgb(238 244 250/0) 6%),
+      radial-gradient(55% 40% at 16% 26%,rgb(255 255 255/.26),rgb(255 255 255/0) 72%),
+      linear-gradient(180deg,#5A8AD2 0%,#3766BA 10%,#22499C 34%,#183A84 64%,#122E6C 100%)}
+  .vista__brillos{position:absolute;left:0;top:0;width:100%;height:calc(100% - var(--orilla) - var(--pretil));opacity:.9}
+  .vista__orilla{position:absolute;z-index:2;left:0;bottom:calc(var(--pretil) - 2px);width:100%;height:var(--orilla)}
+  .vista__pretil{position:absolute;z-index:3;left:0;right:0;bottom:0;height:var(--pretil);background:linear-gradient(180deg,#FFFFFF 0,#F1F5F9 30%,#DDE6EF 100%);box-shadow:0 -2px 6px -2px rgb(14 26 58/.35)}
+  .vista__punto{position:absolute;z-index:1;left:var(--sun-x);top:var(--horizon);width:64px;height:64px;margin:-64px 0 0 -32px;border:2px dashed var(--sun);border-radius:50%}
+  .vista__etiqueta{position:absolute;bottom:calc(100% + .6rem);left:0;white-space:nowrap;padding:.45rem .7rem;border-radius:var(--u);background:var(--sun);color:#fff;font-size:.875rem;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+  .vista__lateral{position:absolute;z-index:6;top:0;bottom:var(--pretil);left:0;width:calc(var(--u) * 1.2);background:var(--cobalt)}
+  .vista__lateral::after{content:"";position:absolute;top:0;bottom:0;left:calc(100% - 1px);width:calc(var(--u) + 1px);background:var(--cobalt);
+    -webkit-mask:var(--scallop-v) 1px 0/var(--u) var(--s) repeat-y,linear-gradient(#000 0 0) 0 0/1px 100% no-repeat;
+    mask:var(--scallop-v) 1px 0/var(--u) var(--s) repeat-y,linear-gradient(#000 0 0) 0 0/1px 100% no-repeat;filter:drop-shadow(3px 0 2px rgb(6 10 30/.22))}
+  .vista__lateral::before{content:"";position:absolute;z-index:1;top:0;bottom:0;left:100%;width:var(--u);background:var(--canvas);opacity:.8;
+    -webkit-mask:var(--stitch-v) 0 0/var(--u) var(--s) repeat-y;mask:var(--stitch-v) 0 0/var(--u) var(--s) repeat-y}
+}
+.hoy__titulo{margin:0;font-weight:500;font-size:clamp(1.2rem,5.2vw,1.9rem);line-height:1.15;letter-spacing:-.01em}
+.hoy__lead{display:block}
+.hoy__hora{display:block;margin-top:.06em;font-size:clamp(6rem,31vw,15rem);font-weight:800;line-height:.84;letter-spacing:-.04em;color:var(--sun);font-variant-numeric:tabular-nums;--shrp:85}
+.hoy__hora .ampm{font-size:.24em;letter-spacing:0;margin-left:.1em}
+.hoy__estado{margin:calc(var(--u) * .9) 0 0;font-weight:600;font-size:1rem;line-height:1.35;color:var(--sun-ink);text-wrap:pretty}
+.hoy__texto{margin:calc(var(--u) * .5) 0 0;color:var(--ink-2);font-size:1rem;line-height:1.45;max-width:30rem;text-wrap:pretty}
+
+/* the composer: a strip of the awning is the week */
+.reserva{margin-top:calc(var(--u) * 1.6);scroll-margin-top:calc(var(--toldo-h) + var(--u))}
+.reserva fieldset{border:0;margin:0;padding:0;min-width:0}
+.reserva legend,.paso-label{font-size:.875rem;font-weight:600;color:var(--ink-2);padding:0;margin-bottom:.4rem}
+.dias__fila{display:grid;grid-template-columns:repeat(7,1fr);margin-inline:calc(var(--gutter) * -1)}
+.dia{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:.1rem;padding:.55rem 0 calc(var(--u) + .4rem);min-height:calc(var(--u) * 5.6);cursor:pointer;
+  color:var(--ink);background:var(--canvas);font-variant-numeric:tabular-nums;text-align:center;
+  -webkit-mask:linear-gradient(#000 0 0) 0 0/100% calc(100% - var(--u)) no-repeat,var(--scallop) 0 100%/var(--s) var(--u) repeat-x;
+  mask:linear-gradient(#000 0 0) 0 0/100% calc(100% - var(--u)) no-repeat,var(--scallop) 0 100%/var(--s) var(--u) repeat-x;
+  transition:background-color .15s,color .15s}
+.dia::before{content:"";position:absolute;inset:3px 3px var(--u) 3px;border:1.5px dashed rgb(30 63 166/.55);border-bottom:0;border-radius:2px;pointer-events:none}
+.dia + .dia{box-shadow:inset 1px 0 0 rgb(30 63 166/.18)}
+.dia input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.dia__nombre{font-size:.75rem;font-weight:600;letter-spacing:.01em}
+.dia__num{font-size:1.25rem;font-weight:800;line-height:1.1}
+.dia__sol{font-size:.75rem;font-weight:600;color:var(--sun-ink)}
+.dia:hover{background:#fff}
+.dia:has(input:checked){background:var(--cobalt);color:var(--canvas)}
+.dia:has(input:checked)::before{border-style:solid;border-color:rgb(244 248 251/.55)}
+.dia:has(input:checked) .dia__sol{color:var(--gold)}
+.dia:has(input:focus-visible){outline:3px solid var(--sun-ink);outline-offset:-6px}
+.dia:has(input:disabled){cursor:not-allowed;color:var(--ink-2);background:var(--band-light)}
+.dia:has(input:disabled) .dia__sol{text-decoration:line-through;text-decoration-thickness:2px;color:var(--ink-2)}
+.reserva__filas{display:grid;gap:calc(var(--u) * .7);margin-top:calc(var(--u) * .2)}
+.personas{display:flex;align-items:center;gap:.75rem}
+.personas .paso-label{margin:0 auto 0 0;font-size:1rem;color:var(--ink)}
+.paso{appearance:none;display:grid;place-items:center;width:46px;height:46px;border-radius:var(--u);border:1.5px solid var(--cobalt);background:var(--canvas);color:var(--cobalt);cursor:pointer;transition:background-color .15s,transform .1s}
+.paso:hover{background:#fff}.paso:active{transform:scale(.96)}
+.paso:disabled{opacity:.45;cursor:not-allowed}
+.paso svg{width:18px;height:18px}
+.personas output{min-width:2.4ch;text-align:center;font-size:1.5rem;font-weight:800;font-variant-numeric:tabular-nums}
+.modo{display:grid;grid-template-columns:1.35fr 1fr;gap:4px;padding:4px;border:1.5px solid var(--cobalt);border-radius:var(--u);background:var(--canvas)}
+.modo label{position:relative;display:grid;place-items:center;min-height:42px;padding:0 .6rem;border-radius:calc(var(--u) - 4px);font-size:.9375rem;font-weight:600;color:var(--cobalt);cursor:pointer;text-align:center;line-height:1.15;transition:background-color .15s,color .15s}
+.modo input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.modo label:has(input:checked){background:var(--cobalt);color:var(--canvas)}
+.modo label:has(input:focus-visible){outline:3px solid var(--sun-ink);outline-offset:-5px}
+.modo b{font-weight:800;font-variant-numeric:tabular-nums}
+.otra{display:flex;align-items:center;gap:.75rem}
+.otra[hidden]{display:none}
+.otra label{font-weight:600;margin-right:auto}
+.otra select{appearance:none;font:600 1rem/1 var(--font);color:var(--ink);background:var(--canvas) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231E3FA6' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right .6rem center/18px;border:1.5px solid var(--cobalt);border-radius:var(--u);height:46px;padding:0 2.4rem 0 .9rem;font-variant-numeric:tabular-nums}
+.cta{display:flex;align-items:center;justify-content:center;gap:.65rem;min-height:56px;padding:.5rem 1.25rem;border-radius:var(--u);
+  background:var(--cobalt);color:var(--canvas);font-weight:700;font-size:1.0625rem;text-decoration:none;text-align:center;
+  box-shadow:0 6px 14px -6px rgb(10 14 30/.38);transition:background-color .15s,transform .1s,box-shadow .15s}
+.cta:hover{background:var(--cobalt-deep)}
+.cta:active{transform:translateY(1px);box-shadow:0 3px 8px -4px rgb(10 14 30/.38)}
+.cta svg{width:22px;height:22px;flex:none}
+.reserva .cta{margin-top:calc(var(--u) * .9)}
+.reserva__pie{margin:.5rem 0 0;font-size:.8125rem;color:var(--ink-2)}
+
+/* mediodía — lunch in the shade */
+.cap--mediodia{background:linear-gradient(90deg,var(--band-dark) 0 44%,var(--band-light) 56% 94%,var(--band-dark) 100%) 0 0/calc(200% / var(--n)) 100% repeat-x,var(--shade)}
+.mediodia{display:grid;gap:calc(var(--u) * 2)}
+.foto{margin:0}
+.foto img{display:block;width:100%;height:auto;object-fit:cover;
+  -webkit-mask:var(--scallop) 0 0/var(--s) var(--u) repeat-x,linear-gradient(#000 0 0) 0 calc(var(--u) - 1px)/100% 100% no-repeat;
+  mask:var(--scallop) 0 0/var(--s) var(--u) repeat-x,linear-gradient(#000 0 0) 0 calc(var(--u) - 1px)/100% 100% no-repeat}
+.foto figcaption{margin-top:.55rem;font-size:.875rem;color:var(--ink-2)}
+.cap--mediodia .foto{margin-inline:calc(var(--gutter) * -1)}
+.cap--mediodia .foto img{aspect-ratio:16/11}
+.cap--mediodia .foto figcaption{padding-inline:var(--gutter)}
+.carta h3,.barra h3{margin:0 0 .6rem;font-size:1.4rem;font-weight:700;letter-spacing:-.015em}
+.lista{list-style:none;margin:0;padding:0;border-top:1.5px solid rgb(30 63 166/.35)}
+.lista li{display:grid;grid-template-columns:1fr auto;gap:.25rem 1rem;align-items:baseline;padding:.6rem 0;border-bottom:1px dashed rgb(30 63 166/.35)}
+.lista .plato{font-weight:600}
+.lista small{display:block;font-size:.875rem;font-weight:400;color:var(--ink-2)}
+.lista .precio{font-weight:700}
+
+/* atardecer — the sky opens */
+.cap--atardecer{min-height:100svh;scroll-margin-top:0;padding-top:calc(var(--toldo-h) - var(--lona-h) + var(--u) * 2);padding-bottom:calc(var(--u) * 3);color:var(--dusk-ink);background:#100F33;overflow:clip;display:flex;flex-direction:column;--shrp:0}
+.cap--atardecer ::selection{background:var(--gold);color:var(--violet)}
+.cap--atardecer :focus-visible{outline-color:var(--gold)}
+.escena{position:absolute;inset:0;--horizon:50%;--sun-x:26.2%;--gom-l:31.7%;--gom-w:45%;--gom-h:clamp(14px,2.3%,28px);--sol:clamp(46px,14.5vw,96px);pointer-events:none}
+@media (min-width:48rem){.escena{--horizon:57%;--sol-viaje:-8vh}}
+.escena__cielo{position:absolute;left:0;right:0;top:0;height:var(--horizon);background:linear-gradient(180deg,#2B1650 0%,#4B1F68 18%,#7E2A6D 34%,#B7385F 50%,#E2552E 69%,#F58A33 84%,#FFC062 100%)}
+.escena__cielo--tarde{background:linear-gradient(180deg,#120E3A 0%,#24165A 30%,#4A1F68 58%,#8A2E5A 82%,#C24A33 100%);opacity:0}
+.escena__sol{position:absolute;z-index:1;left:var(--sun-x);top:var(--horizon);width:var(--sol);height:var(--sol);margin-left:calc(var(--sol) / -2);margin-top:calc(var(--sol) * -1)}
+.escena__sol::before{content:"";position:absolute;inset:-160%;border-radius:50%;background:radial-gradient(closest-side,rgb(255 214 140/.6),rgb(255 150 70/.22) 45%,rgb(255 120 60/0) 100%)}
+.escena__disco{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 50% 42%,#FFFBEA 0%,#FFE9A8 42%,#FFC25C 100%)}
+.escena__etiqueta{position:absolute;white-space:nowrap;font-size:.8125rem;font-weight:700;font-variant-numeric:tabular-nums;line-height:1}
+.escena__etiqueta--sol{bottom:calc(100% + .7rem);left:50%;translate:-50% 0;padding:.4rem .6rem;border-radius:var(--u);background:var(--gold);color:var(--violet)}
+.escena__gomera{position:absolute;z-index:2;left:var(--gom-l);width:var(--gom-w);top:calc(var(--horizon) - var(--gom-h));height:var(--gom-h);color:#3A1A52}
+.escena__etiqueta--gomera{z-index:2;left:calc(var(--gom-l) + var(--gom-w) * .47);top:calc(var(--horizon) - var(--gom-h) - 2.1rem);translate:-50% 0;padding:.35rem .55rem;border-radius:var(--u);background:rgb(43 22 80/.88);color:var(--gold)}
+.escena__mar{position:absolute;z-index:3;left:0;right:0;top:var(--horizon);bottom:0;background:linear-gradient(180deg,#7A2D63 0,#3A2466 3%,#241F5C 16%,#17174A 48%,#0E0E33 100%)}
+.escena__brillo{position:absolute;top:0;left:var(--sun-x);width:calc(var(--sol) * 1.5);margin-left:calc(var(--sol) * -.75);height:34%;
+  background:linear-gradient(180deg,rgb(255 205 120/.9) 0 2px,rgb(255 205 120/0) 2px) 0 0/100% 8px;
+  -webkit-mask:linear-gradient(180deg,#000 0%,rgb(0 0 0/.5) 45%,transparent 100%),radial-gradient(50% 100% at 50% 0,#000 35%,transparent 100%);-webkit-mask-composite:source-in;
+  mask:linear-gradient(180deg,#000 0%,rgb(0 0 0/.5) 45%,transparent 100%),radial-gradient(50% 100% at 50% 0,#000 35%,transparent 100%);mask-composite:intersect}
+.escena__rocas{position:absolute;z-index:4;left:0;bottom:0;width:100%;height:clamp(40px,7svh,80px)}
+.atardecer__cielo{position:relative;z-index:5;max-width:calc(var(--s) * 15)}
+.titulo--tierno{color:var(--gold);font-weight:500;font-size:clamp(2.05rem,8.6vw,3.7rem);line-height:1.02;letter-spacing:-.02em;--crsv:1;--slnt:-10;--shrp:0}
+.atardecer__mar{position:relative;z-index:5;margin-top:auto;max-width:calc(var(--s) * 13);padding-bottom:calc(clamp(40px,7svh,80px) + var(--u))}
+.atardecer__mar .texto{color:var(--dusk-ink)}
+.cta--oro{background:var(--gold-fill);color:var(--violet);box-shadow:0 8px 18px -8px rgb(0 0 0/.6);margin-top:calc(var(--u) * 1.2)}
+.cta--oro:hover{background:#FFD47E}
+
+/* noche — the valance stays, the bulbs come on */
+.cap--noche{overflow-x:clip;color:var(--night-ink);background:linear-gradient(180deg,#120E3A 0%,var(--night) 26%,var(--night) 100%);scroll-margin-top:var(--toldo-furled);padding-top:calc(var(--u) * 5.5 + 8px);--shrp:100}
+.cap--noche ::selection{background:var(--bulb);color:var(--night)}
+.cap--noche :focus-visible{outline-color:var(--bulb)}
+.guirnalda{position:absolute;left:0;right:0;top:-2px;height:calc(var(--u) * 5);pointer-events:none}
+.guirnalda svg{display:block;width:100%;height:100%;overflow:visible}
+.bombilla{position:absolute;top:var(--y);left:var(--x);width:12px;height:17px;margin-left:-6px;border-radius:45% 45% 50% 50%/40% 40% 60% 60%;background:radial-gradient(circle at 50% 62%,#FFF6D8 0 22%,#FFD27A 55%,#F2A13A 100%)}
+.bombilla::before{content:"";position:absolute;left:3px;right:3px;top:-5px;height:6px;border-radius:2px 2px 0 0;background:#2A2F4F}
+.bombilla::after{content:"";position:absolute;inset:-26px -30px -30px;border-radius:50%;background:radial-gradient(closest-side,rgb(255 200 97/.4),rgb(255 200 97/0))}
+.titulo--nitido{color:var(--bulb);font-weight:300;letter-spacing:-.02em}
+.cap--noche .texto{color:var(--night-ink-2)}
+.barra{margin-top:calc(var(--u) * 2);max-width:calc(var(--s) * 13)}
+.barra h3{color:var(--night-ink)}
+.cap--noche .lista{border-top-color:rgb(255 200 97/.45)}
+.cap--noche .lista li{border-bottom-color:rgb(255 200 97/.3)}
+.cap--noche .lista small{color:var(--night-ink-2)}
+.cap--noche .lista .precio{color:var(--bulb)}
+.cap--noche .nota{color:var(--night-ink-2)}
+
+/* dónde — tomorrow's light */
+.cap--donde{background:var(--canvas);scroll-margin-top:var(--toldo-furled)}
+.donde{display:grid;gap:calc(var(--u) * 2)}
+.donde__texto .texto{color:var(--ink-2)}
+.cap--donde .foto img{aspect-ratio:4/3}
+.mapa{display:block;width:100%;height:auto;border-radius:var(--u);background:#CFDCEE}
+.enlace{display:inline-flex;align-items:center;gap:.4rem;min-height:44px;font-weight:700;color:var(--cobalt)}
+.enlace svg{width:18px;height:18px}
+.datos{margin:0;display:grid;gap:.9rem}
+.datos div{border-top:1.5px solid rgb(30 63 166/.3);padding-top:.6rem}
+.datos dt{font-size:.875rem;font-weight:700;color:var(--cobalt)}
+.datos dd{margin:.15rem 0 0;color:var(--ink)}
+.datos a{font-weight:600}
+.dato-ejemplo{font-size:.875rem;color:var(--ink-2)}
+.donde__cierre{display:grid;gap:.25rem}
+
+/* footer: the hem again */
+.pie{position:relative;background:var(--cobalt);color:var(--canvas);padding:calc(var(--u) * 3) var(--gutter) calc(var(--u) * 3);font-size:.9375rem}
+.pie::before{content:"";position:absolute;left:0;right:0;bottom:100%;height:var(--u);background:var(--cobalt);
+  -webkit-mask:var(--scallop) 0 0/calc(100% / var(--n)) 100% repeat-x;mask:var(--scallop) 0 0/calc(100% / var(--n)) 100% repeat-x;transform:scaleY(-1)}
+.pie p{margin:0 0 .4rem}
+.pie__marca{font-weight:800;letter-spacing:.16em;text-transform:uppercase;font-size:1.25rem}
+.pie a{font-weight:600}
+.pie ::selection{background:var(--canvas);color:var(--cobalt)}
+.pie :focus-visible{outline-color:var(--canvas)}
+
+/* ---------- wider screens: the measure holds, width goes to canvas, sky and photo ---------- */
+@media (min-width:48rem){
+  .cap{padding-inline:var(--gutter)}
+  .dias__fila{margin-inline:0;width:calc(var(--s) * 14)}
+  .reserva{max-width:calc(var(--s) * 14)}
+  .reserva__filas{grid-template-columns:1fr 1.25fr;align-items:center}
+  .otra{grid-column:1/-1}
+  .mediodia{grid-template-columns:repeat(var(--n),1fr);column-gap:0;align-items:start}
+  .mediodia__texto{grid-column:1/span 9}
+  .cap--mediodia .foto{grid-column:11/-1;grid-row:1/span 2;margin-inline:0 calc(var(--gutter) * -1)}
+  .cap--mediodia .foto figcaption{padding-inline:0}
+  .carta{grid-column:1/span 9}
+  .donde{grid-template-columns:repeat(var(--n),1fr);column-gap:0;align-items:start}
+  .donde__texto{grid-column:1/span 9}
+  .cap--donde .foto{grid-column:11/-1;grid-row:1/span 2}
+  .donde__mapa{grid-column:1/span 9}
+  .barra{columns:1}
+}
+@media (min-width:80rem){
+  .mediodia__texto,.carta,.donde__texto,.donde__mapa{grid-column:1/span 11}
+  .cap--mediodia .foto,.cap--donde .foto{grid-column:14/-1}
+}
+
+/* ---------- the signature: the awning winds back as the evening comes (scroll-driven, native) ---------- */
+@supports (timeline-scope:--a) and (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference){
+    body{timeline-scope:--atardecer}
+    #atardecer{view-timeline:--atardecer block}
+    .toldo__lona{animation:lona-recoge linear both;animation-timeline:--atardecer;animation-range:entry 22% entry 82%}
+    .toldo__faldon{animation:faldon-sube linear both;animation-timeline:--atardecer;animation-range:entry 22% entry 82%}
+    .toldo__rodillo{animation:rodillo-engorda linear both;animation-timeline:--atardecer;animation-range:entry 22% entry 82%}
+    .escena__sol{animation:sol-baja linear both;animation-timeline:--atardecer;animation-range:entry 10% entry 100%}
+    .escena__disco,.escena__etiqueta--sol{animation:sol-se-pone linear both;animation-timeline:--atardecer;animation-range:exit 0% exit 70%}
+    .escena__brillo{animation:brillo-sube linear both;animation-timeline:--atardecer;animation-range:entry 30% entry 100%}
+    .escena__cielo--tarde{animation:cielo-oscurece linear both;animation-timeline:--atardecer;animation-range:exit 0% exit 75%}
+  }
+}
+@keyframes lona-recoge{to{transform:translateY(var(--furl-y))}}
+@keyframes faldon-sube{to{transform:translateY(var(--furl-y))}}
+@keyframes rodillo-engorda{to{transform:scaleY(1.6)}}
+@keyframes sol-baja{from{translate:0 var(--sol-viaje,-12vh)}to{translate:0 0}}
+@keyframes sol-se-pone{to{transform:translateY(62%)}}
+@keyframes brillo-sube{from{opacity:.25}to{opacity:1}}
+@keyframes cielo-oscurece{to{opacity:1}}
+@view-transition{navigation:none}
+</style>
+</head>
+<body>
+<a class="saltar" href="#main" data-i18n="skip">Saltar al contenido</a>
+
+<header class="toldo">
+  <div class="toldo__rodillo" aria-hidden="true"></div>
+  <div class="toldo__lona" aria-hidden="true"></div>
+  <div class="toldo__faldon">
+    <a class="marca" href="#hoy"><span class="marca__nombre">Ocaso</span><span class="marca__lugar">La Caleta · Adeje</span></a>
+    <div class="idioma" role="group" aria-label="Idioma · Language">
+      <button type="button" data-lang="es" lang="es" aria-pressed="true">ES</button>
+      <button type="button" data-lang="en" lang="en" aria-pressed="false">EN</button>
+    </div>
+    <a class="faldon__reservar" href="#reserva" data-i18n="nav_book">Reservar</a>
+  </div>
+</header>
+
+<nav class="horas" aria-label="Las horas de Ocaso" data-i18n-aria="nav_hours">
+  <a href="#hoy" data-dot="hoy"><span data-i18n="dot_hoy">Hoy</span><span class="horas__marca" aria-hidden="true"></span></a>
+  <a href="#mediodia" data-dot="mediodia"><span data-i18n="dot_mediodia">Mediodía</span><span class="horas__marca" aria-hidden="true"></span></a>
+  <a href="#atardecer" data-dot="atardecer"><span data-i18n="dot_atardecer">Atardecer</span><span class="horas__marca" aria-hidden="true"></span></a>
+  <a href="#noche" data-dot="noche"><span data-i18n="dot_noche">Noche</span><span class="horas__marca" aria-hidden="true"></span></a>
+  <a href="#donde" data-dot="donde"><span data-i18n="dot_donde">Dónde</span><span class="horas__marca" aria-hidden="true"></span></a>
+</nav>
+
+<main id="main">
+
+<section id="hoy" class="cap cap--hoy" data-hour="noon" data-ground="light" aria-labelledby="hoy-titulo">
+  <div class="hoy">
+    <h1 id="hoy-titulo" class="hoy__titulo"><span class="hoy__lead" data-live="lead">El 27 de octubre el sol se pone a las</span> <time class="hoy__hora" data-live="hero-time" datetime="2026-10-27T18:26">18:26</time></h1>
+    <p class="hoy__estado" data-live="status">Ese día cae al mar, a la izquierda de La Gomera.</p>
+    <p class="hoy__texto" data-i18n="hoy_texto">Cada tarde la terraza sobre las rocas se llena unos cuarenta minutos, y esos minutos cambian de hora cada día. Reserven la mesa de esa hora: se la guardamos media hora.</p>
+
+    <div class="reserva" id="reserva" role="group" aria-label="Reservar mesa" data-i18n-aria="reserva_titulo">
+      <fieldset class="dias">
+        <legend data-i18n="dia_legend">Elijan el día</legend>
+        <div class="dias__fila">
+          <label class="dia"><input type="radio" name="dia" value="0" checked><span class="sr-only dia__sr">martes 27 de octubre, puesta de sol 18:26</span><span class="dia__nombre" aria-hidden="true">mar</span><span class="dia__num" aria-hidden="true">27</span><span class="dia__sol" aria-hidden="true">18:26</span></label>
+          <label class="dia"><input type="radio" name="dia" value="1"><span class="sr-only dia__sr">miércoles 28 de octubre, puesta de sol 18:26</span><span class="dia__nombre" aria-hidden="true">mié</span><span class="dia__num" aria-hidden="true">28</span><span class="dia__sol" aria-hidden="true">18:26</span></label>
+          <label class="dia"><input type="radio" name="dia" value="2"><span class="sr-only dia__sr">jueves 29 de octubre, puesta de sol 18:25</span><span class="dia__nombre" aria-hidden="true">jue</span><span class="dia__num" aria-hidden="true">29</span><span class="dia__sol" aria-hidden="true">18:25</span></label>
+          <label class="dia"><input type="radio" name="dia" value="3"><span class="sr-only dia__sr">viernes 30 de octubre, puesta de sol 18:24</span><span class="dia__nombre" aria-hidden="true">vie</span><span class="dia__num" aria-hidden="true">30</span><span class="dia__sol" aria-hidden="true">18:24</span></label>
+          <label class="dia"><input type="radio" name="dia" value="4"><span class="sr-only dia__sr">sábado 31 de octubre, puesta de sol 18:23</span><span class="dia__nombre" aria-hidden="true">sáb</span><span class="dia__num" aria-hidden="true">31</span><span class="dia__sol" aria-hidden="true">18:23</span></label>
+          <label class="dia"><input type="radio" name="dia" value="5"><span class="sr-only dia__sr">domingo 1 de noviembre, puesta de sol 18:22</span><span class="dia__nombre" aria-hidden="true">dom</span><span class="dia__num" aria-hidden="true">1</span><span class="dia__sol" aria-hidden="true">18:22</span></label>
+          <label class="dia"><input type="radio" name="dia" value="6"><span class="sr-only dia__sr">lunes 2 de noviembre, puesta de sol 18:22</span><span class="dia__nombre" aria-hidden="true">lun</span><span class="dia__num" aria-hidden="true">2</span><span class="dia__sol" aria-hidden="true">18:22</span></label>
+        </div>
+      </fieldset>
+      <div class="reserva__filas">
+        <div class="personas" role="group" aria-labelledby="personas-label">
+          <span class="paso-label" id="personas-label" data-i18n="personas">Personas</span>
+          <button type="button" class="paso" data-step="-1" aria-label="Quitar una persona" data-i18n-aria="menos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg></button>
+          <output id="personas-num" aria-live="polite" aria-labelledby="personas-label">2</output>
+          <button type="button" class="paso" data-step="1" aria-label="Añadir una persona" data-i18n-aria="mas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5v14"/></svg></button>
+        </div>
+        <fieldset class="modo">
+          <legend class="sr-only" data-i18n="modo_legend">¿A qué hora?</legend>
+          <label><input type="radio" name="modo" value="sol" checked><span><span data-i18n="modo_sol">Al atardecer</span> · <b data-live="arrival">17:45</b></span></label>
+          <label><input type="radio" name="modo" value="otra"><span data-i18n="modo_otra">Otra hora</span></label>
+        </fieldset>
+        <div class="otra" hidden>
+          <label for="otra-hora" data-i18n="otra_label">¿A qué hora?</label>
+          <select id="otra-hora">
+            <optgroup label="Mediodía" data-i18n-label="g_mediodia"><option>12:30</option><option>13:00</option><option>13:30</option><option selected>14:00</option><option>14:30</option><option>15:00</option><option>15:30</option></optgroup>
+            <optgroup label="Noche" data-i18n-label="g_noche"><option>19:00</option><option>19:30</option><option>20:00</option><option>20:30</option><option>21:00</option><option>21:30</option><option>22:00</option></optgroup>
+          </select>
+        </div>
+      </div>
+      <a class="cta" data-wa href="https://wa.me/34600000000?text=Hola%2C%20Ocaso.%20Querr%C3%ADamos%20reservar%20una%20mesa%20al%20atardecer." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.2A8.5 8.5 0 1 1 20.5 11.6Z"/><path d="M9 8.6c.3-.5.8-.6 1.1-.3l.9 1.6c.2.3.1.7-.2 1l-.5.5c.5 1.1 1.4 2 2.5 2.5l.5-.5c.3-.3.7-.4 1-.2l1.6.9c.3.2.3.8-.3 1.1-.7.5-1.6.6-2.4.3A8 8 0 0 1 8.9 11c-.4-.8-.3-1.8.1-2.4Z"/></svg><span data-i18n="cta">Reservar por WhatsApp</span></a>
+      <p class="reserva__pie" data-i18n="reserva_pie">Se abre WhatsApp con el mensaje listo; ustedes lo envían.</p>
+    </div>
+  </div>
+  <div class="vista" aria-hidden="true" data-escena="13">
+    <div class="vista__cielo"></div>
+    <svg class="vista__gomera" viewBox="0 0 100 10" preserveAspectRatio="none"><path fill="currentColor" d="M0 10L2.5 9.4 4.5 8.6 6.2 8.8 8 7.7 10.5 7.2 12 7.5 14 6.4 17 5.6 18.5 5.9 21 4.7 24 4.2 25.5 4.5 28 3.4 31 2.6 33 2.8 36 1.9 39 1.5 41.5 1.6 44 .8 46 .3 48 .2 50 .5 52.5 1.1 55 1 57.5 1.4 60 1.3 62 2 64.5 2.6 66 2.4 68 3.3 71 3.6 72.5 3.4 75 4.4 78 4.9 80 4.6 82 5.6 85 6.1 87 5.9 89 6.9 91 7.4 93 8.6 95.5 9.6 97 9.8 100 10Z"/></svg>
+    <div class="vista__mar" data-ground="deep"><svg class="vista__brillos" viewBox="0 0 400 200" preserveAspectRatio="none"><g stroke="#fff" stroke-width="1.6" stroke-linecap="round" vector-effect="non-scaling-stroke" fill="none"><path vector-effect="non-scaling-stroke" d="M68.3 28.1h4.0" stroke-opacity="0.25"/><path vector-effect="non-scaling-stroke" d="M138.7 35.5h4.6" stroke-opacity="0.18"/><path vector-effect="non-scaling-stroke" d="M105.5 77.7h7.0" stroke-opacity="0.56"/><path vector-effect="non-scaling-stroke" d="M217.8 89.5h7.0" stroke-opacity="0.44"/><path vector-effect="non-scaling-stroke" d="M168.8 111.8h13.0" stroke-opacity="0.40"/><path vector-effect="non-scaling-stroke" d="M92.7 52.0h5.8" stroke-opacity="0.85"/><path vector-effect="non-scaling-stroke" d="M219.7 57.8h4.9" stroke-opacity="0.37"/><path vector-effect="non-scaling-stroke" d="M72.0 139.5h11.8" stroke-opacity="0.34"/><path vector-effect="non-scaling-stroke" d="M84.4 74.8h5.9" stroke-opacity="0.85"/><path vector-effect="non-scaling-stroke" d="M137.4 38.3h5.5" stroke-opacity="0.61"/><path vector-effect="non-scaling-stroke" d="M283.1 134.5h14.1" stroke-opacity="0.23"/><path vector-effect="non-scaling-stroke" d="M13.0 110.5h7.3" stroke-opacity="0.18"/><path vector-effect="non-scaling-stroke" d="M124.4 33.4h5.4" stroke-opacity="0.66"/><path vector-effect="non-scaling-stroke" d="M58.3 57.3h6.0" stroke-opacity="0.18"/><path vector-effect="non-scaling-stroke" d="M254.4 60.4h4.5" stroke-opacity="0.41"/><path vector-effect="non-scaling-stroke" d="M166.6 149.0h12.9" stroke-opacity="0.24"/><path vector-effect="non-scaling-stroke" d="M109.7 113.2h8.2" stroke-opacity="0.35"/><path vector-effect="non-scaling-stroke" d="M48.6 94.9h6.9" stroke-opacity="0.52"/><path vector-effect="non-scaling-stroke" d="M161.8 139.4h10.8" stroke-opacity="0.33"/><path vector-effect="non-scaling-stroke" d="M70.6 19.1h2.8" stroke-opacity="0.61"/><path vector-effect="non-scaling-stroke" d="M37.8 103.8h12.8" stroke-opacity="0.18"/><path vector-effect="non-scaling-stroke" d="M283.2 63.4h7.0" stroke-opacity="0.21"/><path vector-effect="non-scaling-stroke" d="M37.2 132.9h9.5" stroke-opacity="0.43"/><path vector-effect="non-scaling-stroke" d="M118.9 131.9h14.4" stroke-opacity="0.59"/><path vector-effect="non-scaling-stroke" d="M119.1 11.6h2.7" stroke-opacity="0.47"/><path vector-effect="non-scaling-stroke" d="M175.7 28.9h3.3" stroke-opacity="0.25"/><path vector-effect="non-scaling-stroke" d="M232.6 147.6h15.2" stroke-opacity="0.23"/><path vector-effect="non-scaling-stroke" d="M112.0 144.0h12.8" stroke-opacity="0.53"/><path vector-effect="non-scaling-stroke" d="M88.4 35.0h5.4" stroke-opacity="0.63"/><path vector-effect="non-scaling-stroke" d="M38.5 49.0h5.7" stroke-opacity="0.38"/><path vector-effect="non-scaling-stroke" d="M223.1 5.5h2.5" stroke-opacity="0.36"/><path vector-effect="non-scaling-stroke" d="M100.6 90.7h9.5" stroke-opacity="0.70"/><path vector-effect="non-scaling-stroke" d="M30.5 41.6h4.8" stroke-opacity="0.73"/><path vector-effect="non-scaling-stroke" d="M66.0 23.5h3.1" stroke-opacity="0.51"/><path vector-effect="non-scaling-stroke" d="M113.8 69.2h5.4" stroke-opacity="0.72"/><path vector-effect="non-scaling-stroke" d="M29.4 22.5h3.7" stroke-opacity="0.33"/><path vector-effect="non-scaling-stroke" d="M178.0 36.1h3.8" stroke-opacity="0.48"/><path vector-effect="non-scaling-stroke" d="M167.4 107.7h10.3" stroke-opacity="0.67"/><path vector-effect="non-scaling-stroke" d="M136.6 131.6h14.1" stroke-opacity="0.50"/><path vector-effect="non-scaling-stroke" d="M96.5 71.7h5.2" stroke-opacity="0.54"/><path vector-effect="non-scaling-stroke" d="M61.7 107.9h8.1" stroke-opacity="0.42"/><path vector-effect="non-scaling-stroke" d="M47.6 10.1h2.7" stroke-opacity="0.32"/><path vector-effect="non-scaling-stroke" d="M245.1 47.1h5.5" stroke-opacity="0.18"/><path vector-effect="non-scaling-stroke" d="M53.0 18.4h3.5" stroke-opacity="0.19"/><path vector-effect="non-scaling-stroke" d="M99.1 145.2h10.8" stroke-opacity="0.46"/><path vector-effect="non-scaling-stroke" d="M23.8 85.9h5.8" stroke-opacity="0.56"/><path vector-effect="non-scaling-stroke" d="M138.4 50.4h4.3" stroke-opacity="0.49"/><path vector-effect="non-scaling-stroke" d="M151.5 14.7h3.0" stroke-opacity="0.20"/><path vector-effect="non-scaling-stroke" d="M204.9 94.7h8.6" stroke-opacity="0.39"/><path vector-effect="non-scaling-stroke" d="M50.5 79.5h6.4" stroke-opacity="0.56"/><path vector-effect="non-scaling-stroke" d="M56.7 11.1h3.0" stroke-opacity="0.51"/><path vector-effect="non-scaling-stroke" d="M92.3 123.3h8.9" stroke-opacity="0.32"/><path vector-effect="non-scaling-stroke" d="M6.4 60.3h8.3" stroke-opacity="0.38"/><path vector-effect="non-scaling-stroke" d="M24.2 16.5h3.4" stroke-opacity="0.42"/><path vector-effect="non-scaling-stroke" d="M123.1 134.0h14.1" stroke-opacity="0.26"/><path vector-effect="non-scaling-stroke" d="M173.6 101.5h10.7" stroke-opacity="0.24"/><path vector-effect="non-scaling-stroke" d="M164.9 39.8h5.2" stroke-opacity="0.36"/><path vector-effect="non-scaling-stroke" d="M57.4 4.9h2.3" stroke-opacity="0.40"/><path vector-effect="non-scaling-stroke" d="M169.6 25.2h3.9" stroke-opacity="0.55"/><path vector-effect="non-scaling-stroke" d="M133.5 141.8h14.7" stroke-opacity="0.41"/><path vector-effect="non-scaling-stroke" d="M112.9 143.6h14.5" stroke-opacity="0.58"/><path vector-effect="non-scaling-stroke" d="M165.8 97.7h10.3" stroke-opacity="0.41"/><path vector-effect="non-scaling-stroke" d="M276.7 51.0h4.9" stroke-opacity="0.26"/><path vector-effect="non-scaling-stroke" d="M71.6 103.4h7.5" stroke-opacity="0.37"/><path vector-effect="non-scaling-stroke" d="M72.4 59.3h8.1" stroke-opacity="0.30"/><path vector-effect="non-scaling-stroke" d="M120.5 94.1h7.5" stroke-opacity="0.61"/><path vector-effect="non-scaling-stroke" d="M166.3 43.8h4.3" stroke-opacity="0.48"/><path vector-effect="non-scaling-stroke" d="M100.5 122.3h14.5" stroke-opacity="0.53"/><path vector-effect="non-scaling-stroke" d="M91.8 77.2h5.3" stroke-opacity="0.29"/><path vector-effect="non-scaling-stroke" d="M36.9 39.1h3.6" stroke-opacity="0.36"/><path vector-effect="non-scaling-stroke" d="M96.4 49.1h5.5" stroke-opacity="0.68"/><path vector-effect="non-scaling-stroke" d="M12.9 6.0h262.5" stroke-opacity="0.12"/><path vector-effect="non-scaling-stroke" d="M80.0 10.0h128.8" stroke-opacity="0.07"/><path vector-effect="non-scaling-stroke" d="M58.5 15.6h219.3" stroke-opacity="0.08"/><path vector-effect="non-scaling-stroke" d="M126.4 22.8h271.8" stroke-opacity="0.12"/><path vector-effect="non-scaling-stroke" d="M140.2 31.6h123.2" stroke-opacity="0.10"/><path vector-effect="non-scaling-stroke" d="M3.7 42.0h281.9" stroke-opacity="0.11"/><path vector-effect="non-scaling-stroke" d="M119.1 54.0h153.9" stroke-opacity="0.06"/><path vector-effect="non-scaling-stroke" d="M128.6 67.6h229.2" stroke-opacity="0.10"/><path vector-effect="non-scaling-stroke" d="M70.1 82.8h264.0" stroke-opacity="0.08"/><path vector-effect="non-scaling-stroke" d="M35.9 99.6h183.6" stroke-opacity="0.08"/><path vector-effect="non-scaling-stroke" d="M96.6 118.0h280.2" stroke-opacity="0.06"/><path vector-effect="non-scaling-stroke" d="M1.5 138.0h212.1" stroke-opacity="0.11"/><path vector-effect="non-scaling-stroke" d="M22.3 159.6h168.6" stroke-opacity="0.06"/><path vector-effect="non-scaling-stroke" d="M-3.7 182.8h209.1" stroke-opacity="0.11"/></g></svg></div>
+    <svg class="vista__orilla" viewBox="0 0 400 60" preserveAspectRatio="none"><path fill="#3A4152" d="M0 60V30.0L10.2 29.1L12.6 25.4L26.8 26.0L29.2 19.7L48.9 19.6L52.5 18.0L78.4 18.0L82.4 22.8L96.2 22.1L99.9 18.0L116.3 18.0L119.8 21.2L145.4 21.5L148.0 28.2L169.5 27.5L170.6 31.2L171.9 27.5L187.9 27.2L191.9 35.0L219.8 35.7L223.6 29.9L248.7 29.5L252.0 21.8L274.5 20.9L278.5 27.1L292.1 27.0L294.3 32.0L317.2 31.5L319.8 23.7L332.7 24.8L336.3 19.4L351.3 19.0L354.4 18.0L378.7 18.3L382.3 18.0L400.0 18.0V60Z"/><path fill="#1C202C" d="M0 60V44.0L17.2 43.0L20.1 36.2L35.0 35.3L39.0 43.8L52.3 43.0L54.7 39.4L66.0 39.1L69.2 45.9L76.7 46.0L78.9 49.4L93.6 49.1L96.4 45.9L105.8 46.8L108.6 39.4L119.0 39.7L122.5 35.0L136.7 34.3L139.1 34.0L155.8 34.0L158.6 40.9L166.1 42.1L167.2 45.1L168.5 42.1L183.1 41.5L185.6 44.6L205.7 43.8L206.8 46.8L208.1 43.8L223.8 43.9L227.1 48.5L234.9 49.1L237.2 52.0L248.9 51.3L252.3 52.0L264.6 52.0L267.7 43.9L286.8 44.5L290.1 35.7L310.2 35.2L313.7 34.0L330.0 35.1L333.8 43.7L348.1 42.7L351.3 35.8L359.6 36.1L360.7 39.1L362.0 36.1L369.6 36.7L373.5 34.0L382.7 34.0L385.3 34.0L397.1 34.0L399.7 34.0L400.0 34.0V60Z"/></svg>
+    <div class="vista__pretil"></div>
+    <div class="vista__punto"><span class="vista__etiqueta" data-live="vista-label">Se pone aquí · 18:26 (27 oct)</span></div>
+    <div class="vista__lateral"></div>
+  </div>
+</section>
+
+<section id="mediodia" class="cap cap--mediodia" data-hour="noon" data-ground="light" aria-labelledby="mediodia-titulo">
+  <div class="mediodia">
+    <div class="mediodia__texto">
+      <h2 id="mediodia-titulo" class="titulo" data-i18n="med_titulo">Mediodía, a la sombra</h2>
+      <p class="texto" data-i18n="med_texto">Se come bajo el toldo, con el mar a un paso, de 12:30 a 16:00. Pescado del día, lapas, papas arrugadas: lo de aquí, sin prisa.</p>
+    </div>
+    <figure class="foto" data-ground="photo">
+      <img src="assets/img/pescado-800.webp" srcset="assets/img/pescado-800.webp 800w, assets/img/pescado-1400.webp 1400w" sizes="(min-width: 48rem) 55vw, 100vw" width="800" height="534" loading="lazy" decoding="async" alt="Tres pescados enteros a la plancha, con dos cuñas de limón, en un plato verde azulado sobre una mesa de madera blanca." data-i18n-alt="med_alt">
+      <figcaption data-i18n="med_foto">Pescado del día, a la plancha.</figcaption>
+    </figure>
+    <div class="carta">
+      <h3 data-i18n="carta_titulo">De la cocina</h3>
+      <ul class="lista">
+        <li><span class="plato"><span data-i18n="p1">Pescado del día a la sal</span><small data-i18n="p1d">por kilo, para compartir</small></span><span class="precio">58 €</span></li>
+        <li><span class="plato"><span data-i18n="p2">Vieja sancochada</span><small data-i18n="p2d">con papas y mojo</small></span><span class="precio">19 €</span></li>
+        <li><span class="plato"><span data-i18n="p3">Cherne a la plancha</span></span><span class="precio">22 €</span></li>
+        <li><span class="plato"><span data-i18n="p4">Lapas con mojo verde</span></span><span class="precio">13 €</span></li>
+        <li><span class="plato"><span data-i18n="p5">Pulpo a la brasa</span></span><span class="precio">18 €</span></li>
+        <li><span class="plato"><span data-i18n="p6">Arroz caldoso de marisco</span><small data-i18n="p6d">para dos</small></span><span class="precio">42 €</span></li>
+        <li><span class="plato"><span data-i18n="p7">Ceviche de pescado del día</span></span><span class="precio">15 €</span></li>
+        <li><span class="plato"><span data-i18n="p8">Papas arrugadas</span></span><span class="precio">6 €</span></li>
+      </ul>
+      <p class="nota" data-i18n="precios">Precios de ejemplo.</p>
+    </div>
+  </div>
+</section>
+
+<section id="atardecer" class="cap cap--atardecer" data-hour="sunset" data-ground="dusk" aria-labelledby="atardecer-titulo">
+  <div class="escena" aria-hidden="true" data-escena>
+    <div class="escena__cielo" data-ground="sky"></div>
+    <div class="escena__cielo escena__cielo--tarde"></div>
+    <div class="escena__sol"><div class="escena__disco"></div><span class="escena__etiqueta escena__etiqueta--sol" data-live="sun-label">18:26 · 256°</span></div>
+    <svg class="escena__gomera" viewBox="0 0 100 10" preserveAspectRatio="none"><path fill="currentColor" d="M0 10C3 9.7 6 9.1 9 8.3 12 7.5 14 6.9 17 5.9 20 4.9 22 4.2 25 3.4 28 2.6 30 2.4 33 1.8 36 1.2 38 1.3 41 .9 44 .5 46 .7 49 .4 52 .1 54 .5 57 .6 60 .7 62 1.3 65 1.4 68 1.5 70 2.2 73 2.6 76 3 78 3.9 81 4.6 84 5.3 86 6.4 89 7.3 92 8.2 95 9.2 100 10Z"/></svg>
+    <span class="escena__etiqueta escena__etiqueta--gomera">La Gomera</span>
+    <div class="escena__mar" data-ground="dusk"><div class="escena__brillo"></div></div>
+    <svg class="escena__rocas" viewBox="0 0 400 60" preserveAspectRatio="none"><path fill="#15122F" d="M0 60V22.0L16.7 22.2L19.3 27.9L41.9 27.8L42.8 26.6L45.5 24.2L55.2 25.6L57.6 18.9L67.2 19.9L69.8 24.9L82.7 24.3L83.8 27.6L85.1 24.5L101.0 24.7L102.1 20.6L103.4 17.4L125.4 17.2L127.0 18.3L129.5 20.6L139.4 20.2L143.1 23.7L156.7 22.5L157.8 25.5L159.0 30.0L181.6 29.1L185.3 30.0L201.4 29.7L205.6 26.7L224.7 28.1L225.8 31.8L227.1 28.9L246.3 29.1L247.4 32.7L248.7 29.0L257.9 29.3L259.4 29.1L261.3 30.0L276.6 29.9L277.8 30.2L279.4 30.0L292.3 30.0L294.9 22.6L320.0 23.6L321.4 24.8L323.7 26.9L339.4 26.7L341.0 27.5L342.0 30.0L360.5 30.0L364.2 30.0L374.4 29.8L377.8 25.7L389.0 25.3L392.4 30.0L400.0 28.7V60Z"/><path fill="#07061A" d="M0 60V36.0L14.7 36.7L17.4 27.0L24.1 26.0L25.2 25.5L27.2 24.0L35.7 25.0L38.2 24.0L44.2 25.0L45.2 24.1L46.8 24.0L65.1 24.4L66.2 31.2L67.5 23.9L87.0 24.0L88.1 28.7L89.4 24.7L99.1 24.2L101.4 24.0L112.4 24.0L114.7 24.0L134.3 24.0L137.3 27.1L151.4 25.8L152.5 29.5L153.8 26.5L162.5 27.2L165.8 33.0L182.6 31.9L184.6 36.0L185.5 41.7L200.1 42.9L201.1 39.3L202.6 37.4L218.2 38.8L219.3 42.0L220.6 39.6L234.1 39.3L237.1 46.0L243.9 46.0L245.0 51.0L246.3 46.5L254.1 46.0L256.6 46.0L274.4 45.4L277.6 34.6L293.8 34.6L295.6 39.7L296.4 44.8L315.5 45.8L316.6 50.8L317.9 45.8L331.6 45.8L332.7 52.0L334.0 45.6L348.2 44.3L350.2 45.6L352.3 46.0L363.1 45.1L364.7 45.5L366.9 46.0L382.0 46.0L384.9 46.0L400.0 46.0V60Z"/></svg>
+  </div>
+  <div class="atardecer__cielo">
+    <h2 id="atardecer-titulo" class="titulo titulo--tierno" data-live="where-title">El 27 de octubre cae al mar, a la izquierda de La Gomera.</h2>
+  </div>
+  <div class="atardecer__mar">
+    <p class="texto" data-live="golden">La luz dorada empieza hacia las 17:54 (aprox.). El sol toca el agua a las 18:26 y queda claridad hasta las 18:50. La mesa se la guardamos media hora.</p>
+    <a class="cta cta--oro" data-wa href="https://wa.me/34600000000?text=Hola%2C%20Ocaso.%20Querr%C3%ADamos%20reservar%20una%20mesa%20al%20atardecer." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.2A8.5 8.5 0 1 1 20.5 11.6Z"/><path d="M9 8.6c.3-.5.8-.6 1.1-.3l.9 1.6c.2.3.1.7-.2 1l-.5.5c.5 1.1 1.4 2 2.5 2.5l.5-.5c.3-.3.7-.4 1-.2l1.6.9c.3.2.3.8-.3 1.1-.7.5-1.6.6-2.4.3A8 8 0 0 1 8.9 11c-.4-.8-.3-1.8.1-2.4Z"/></svg><span data-i18n="cta_sol">Reservar mesa al atardecer</span></a>
+  </div>
+</section>
+
+<section id="noche" class="cap cap--noche" data-hour="night" data-ground="night" aria-labelledby="noche-titulo">
+  <div class="guirnalda" aria-hidden="true">
+    <svg viewBox="0 0 100 20" preserveAspectRatio="none"><path d="M0 2C20 18 38 19 50 19S80 18 100 2" fill="none" stroke="#2A2F4F" stroke-width="1.5" vector-effect="non-scaling-stroke"/></svg>
+    <span class="bombilla" style="--x:6%;--y:24%"></span><span class="bombilla" style="--x:17%;--y:46%"></span><span class="bombilla" style="--x:28%;--y:62%"></span><span class="bombilla" style="--x:39%;--y:71%"></span><span class="bombilla" style="--x:50%;--y:74%"></span><span class="bombilla" style="--x:61%;--y:71%"></span><span class="bombilla" style="--x:72%;--y:62%"></span><span class="bombilla" style="--x:83%;--y:46%"></span><span class="bombilla" style="--x:94%;--y:24%"></span>
+  </div>
+  <h2 id="noche-titulo" class="titulo titulo--nitido" data-i18n="noche_titulo">La noche, en la barra</h2>
+  <p class="texto" data-i18n="noche_texto">Cócteles hasta las 24:00, y la cocina vuelve de 18:30 a 22:30. Cuando se va la luz, se encienden las bombillas del toldo.</p>
+  <div class="barra">
+    <h3 data-i18n="barra_titulo">De la barra</h3>
+    <ul class="lista">
+      <li><span class="plato">La Gomera<small data-i18n="c1">ron miel, maracuyá y lima</small></span><span class="precio">12 €</span></li>
+      <li><span class="plato">Hora azul<small data-i18n="c2">ginebra, flor de saúco y tónica</small></span><span class="precio">12 €</span></li>
+      <li><span class="plato">Malpaís<small data-i18n="c3">mezcal y piña asada</small></span><span class="precio">12 €</span></li>
+      <li><span class="plato">Barraquito<small data-i18n="c4">leche condensada, Licor 43, café, leche, canela y piel de limón</small></span><span class="precio">3,50 €</span></li>
+      <li><span class="plato">Ron miel<small data-i18n="c5">canario, con hielo</small></span><span class="precio">4 €</span></li>
+    </ul>
+    <p class="nota" data-live="blue">El «Hora azul» se pide hacia las 18:50, cuando el cielo se pone de ese color.</p>
+    <p class="nota" data-i18n="precios">Precios de ejemplo.</p>
+  </div>
+</section>
+
+<section id="donde" class="cap cap--donde" data-hour="noon" data-ground="light" aria-labelledby="donde-titulo">
+  <div class="donde">
+    <div class="donde__texto">
+      <h2 id="donde-titulo" class="titulo" data-i18n="donde_titulo">Mañana, otra vez</h2>
+      <p class="texto" data-live="tomorrow">El 28 de octubre el sol se pone a las 18:26, y el 29, a las 18:25. Cambia un poco cada día, y aquí se lo decimos.</p>
+    </div>
+    <figure class="foto" data-ground="photo">
+      <img src="assets/img/costa-adeje-800.webp" srcset="assets/img/costa-adeje-800.webp 800w, assets/img/costa-adeje-1400.webp 1400w" sizes="(min-width: 48rem) 50vw, 100vw" width="800" height="600" loading="lazy" decoding="async" alt="El sol tocando el horizonte del Atlántico, un velero y una lancha en el agua y, a la derecha, una punta de roca volcánica oscura con palmeras." data-i18n-alt="donde_alt">
+      <figcaption data-i18n="donde_foto">La costa de Adeje al atardecer, a un paseo de La Caleta.</figcaption>
+    </figure>
+    <div class="donde__mapa">
+      <svg class="mapa" viewBox="0 0 360 230" role="img" aria-labelledby="mapa-t">
+        <title id="mapa-t" data-i18n="mapa_t">Mapa esquemático: el paseo marítimo de Costa Adeje termina en La Caleta, y Ocaso está al final, sobre las rocas, mirando al oeste hacia La Gomera.</title>
+        <rect width="360" height="230" fill="#CFDCEE"/>
+        <path d="M150 0h210v230H118c6-14 22-22 20-38-2-15-20-18-18-34 2-14 22-16 26-30 4-15-12-24-8-40 4-14 24-18 26-34 2-14-14-22-14-54Z" fill="#F4F8FB"/>
+        <path d="M150 0c0 32 16 40 14 54-2 16-22 20-26 34-4 16 12 25 8 40-4 14-24 16-26 30-2 16 16 19 18 34 2 16-14 24-20 38" fill="none" stroke="#1E3FA6" stroke-width="2"/>
+        <path d="M165 4c2 30 13 38 11 52-3 17-22 22-25 36-3 15 11 24 7 40-4 15-23 17-25 31-2 15 15 18 17 33 2 14-10 22-15 34" fill="none" stroke="#B33A0A" stroke-width="2.4" stroke-dasharray="5 5" stroke-linecap="round"/>
+        <g fill="#0E1A3A" font-family="Geologica, Arial, sans-serif" font-size="11">
+          <text x="200" y="40" font-weight="700" font-size="13">La Caleta</text>
+          <text x="196" y="118" data-i18n="mapa_paseo">Paseo marítimo</text>
+          <text x="186" y="206" data-i18n="mapa_costa">hacia Costa Adeje</text>
+          <text x="34" y="67" font-weight="700" fill="#132C7C" data-i18n="mapa_gomera">La Gomera</text>
+          <text x="14" y="83" fill="#132C7C" data-i18n="mapa_oeste">unos 35 km al oeste</text>
+          <text x="330" y="26" font-weight="700" text-anchor="middle">N</text>
+        </g>
+        <path d="M28 63H14m0 0 5-4m-5 4 5 4" fill="none" stroke="#132C7C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M330 34v-4m0 0-4 6m4-6 4 6" stroke="#0E1A3A" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round" transform="translate(0 10)"/>
+        <g transform="translate(164 58)">
+          <path d="M-14 -22h28v8a3.5 3.5 0 0 1-7 0 3.5 3.5 0 0 1-7 0 3.5 3.5 0 0 1-7 0 3.5 3.5 0 0 1-7 0Z" fill="#1E3FA6"/>
+          <path d="M-14 -22h28" stroke="#0E1A3A" stroke-width="2"/>
+          <circle r="5" fill="#D84A12" stroke="#F4F8FB" stroke-width="2"/>
+        </g>
+        <text x="182" y="62" font-family="Geologica, Arial, sans-serif" font-size="12" font-weight="800" fill="#1E3FA6">OCASO</text>
+      </svg>
+      <a class="enlace" href="https://www.google.com/maps/search/?api=1&amp;query=Playa%20de%20La%20Caleta%2C%20Adeje" target="_blank" rel="noopener"><span data-i18n="mapa_link">Abrir en Google Maps (playa de La Caleta)</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+      <dl class="datos">
+        <div><dt data-i18n="d_dir">Dirección</dt><dd>Paseo de La Caleta 3, 38679 La Caleta, Adeje <span data-i18n="d_dir2">· al final del paseo marítimo, sobre las rocas</span> <span class="dato-ejemplo" data-i18n="d_ejemplo">· dirección de ejemplo</span></dd></div>
+        <div><dt data-i18n="d_hor">Horario</dt><dd data-i18n="d_hor2">Todos los días, de 12:30 a 24:00. Cocina de 12:30 a 16:00 y de 18:30 a 22:30.</dd></div>
+        <div><dt data-i18n="d_con">Contacto</dt><dd><a href="tel:+34922000000">+34 922 000 000</a> · <a href="mailto:ocaso@ejemplo.es">ocaso@ejemplo.es</a></dd></div>
+      </dl>
+      <div class="donde__cierre">
+        <a class="cta" data-wa href="https://wa.me/34600000000?text=Hola%2C%20Ocaso.%20Querr%C3%ADamos%20reservar%20una%20mesa%20al%20atardecer." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.2A8.5 8.5 0 1 1 20.5 11.6Z"/><path d="M9 8.6c.3-.5.8-.6 1.1-.3l.9 1.6c.2.3.1.7-.2 1l-.5.5c.5 1.1 1.4 2 2.5 2.5l.5-.5c.3-.3.7-.4 1-.2l1.6.9c.3.2.3.8-.3 1.1-.7.5-1.6.6-2.4.3A8 8 0 0 1 8.9 11c-.4-.8-.3-1.8.1-2.4Z"/></svg><span data-live="cta-summary">Reservar por WhatsApp</span></a>
+        <a class="enlace" href="#reserva"><span data-i18n="cambiar">Cambiar día o personas</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="pie" data-ground="deep">
+  <p class="pie__marca">Ocaso</p>
+  <p data-i18n="pie_lugar">Restaurante y cócteles sobre las rocas · La Caleta, Adeje, Tenerife</p>
+  <p data-i18n="pie_ficcion">Diseño de muestra de Teide Digital · negocio ficticio</p>
+  <p data-i18n="pie_creditos">Fotos: Lora Georgieva y Phil Reid, en Unsplash. Precios de ejemplo.</p>
+</footer>
+
+<script>
+(() => {
+  'use strict';
+  const LAT = 28.097, LON = -16.754, TZ = 'Atlantic/Canary', WA = 'https://wa.me/34600000000';
+  const R = Math.PI / 180;
+  const root = document.documentElement;
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => Array.from(el.querySelectorAll(s));
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  /* ---- NOAA solar calculator (Meeus) ---- */
+  function solar(jd) {
+    const T = (jd - 2451545) / 36525;
+    const L0 = (280.46646 + T * (36000.76983 + T * 0.0003032)) % 360;
+    const M = 357.52911 + T * (35999.05029 - 0.0001537 * T);
+    const e = 0.016708634 - T * (0.000042037 + 0.0000001267 * T);
+    const C = Math.sin(M * R) * (1.914602 - T * (0.004817 + 0.000014 * T)) + Math.sin(2 * M * R) * (0.019993 - 0.000101 * T) + Math.sin(3 * M * R) * 0.000289;
+    const om = 125.04 - 1934.136 * T;
+    const lam = L0 + C - 0.00569 - 0.00478 * Math.sin(om * R);
+    const eps = 23 + (26 + (21.448 - T * (46.815 + T * (0.00059 - T * 0.001813))) / 60) / 60 + 0.00256 * Math.cos(om * R);
+    const decl = Math.asin(Math.sin(eps * R) * Math.sin(lam * R)) / R;
+    const y = Math.tan((eps / 2) * R) ** 2;
+    const eot = 4 / R * (y * Math.sin(2 * L0 * R) - 2 * e * Math.sin(M * R) + 4 * e * y * Math.sin(M * R) * Math.cos(2 * L0 * R) - 0.5 * y * y * Math.sin(4 * L0 * R) - 1.25 * e * e * Math.sin(2 * M * R));
+    return { decl, eot };
+  }
+  /* afternoon moment (minutes after 00:00 UTC) when the sun's centre is at altitude alt; -0.833 = sunset */
+  function sunEvent(y, m, d, alt) {
+    const jd0 = Date.UTC(y, m - 1, d) / 864e5 + 2440587.5;
+    let t = 720 - 4 * LON, out = null;
+    for (let i = 0; i < 3; i++) {
+      const s = solar(jd0 + t / 1440);
+      const cosH = (Math.sin(alt * R) - Math.sin(LAT * R) * Math.sin(s.decl * R)) / (Math.cos(LAT * R) * Math.cos(s.decl * R));
+      if (cosH < -1 || cosH > 1) return null;
+      t = 720 - 4 * LON - s.eot + 4 * Math.acos(cosH) / R;
+      const zen = (90 - alt) * R;
+      const cosAz = (Math.sin(LAT * R) * Math.cos(zen) - Math.sin(s.decl * R)) / (Math.cos(LAT * R) * Math.sin(zen));
+      out = { min: t, az: (Math.acos(Math.max(-1, Math.min(1, cosAz))) / R + 180) % 360 };
+    }
+    return out;
+  }
+
+  /* ---- dates in the Canaries ---- */
+  const partsFmt = new Intl.DateTimeFormat('en-CA', { timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
+  function canary(date) { const o = {}; for (const p of partsFmt.formatToParts(date)) o[p.type] = p.value; return { y: +o.year, m: +o.month, d: +o.day, h: +o.hour % 24, mi: +o.minute }; }
+  function makeDay(base, offset) {
+    const noon = new Date(Date.UTC(base.y, base.m - 1, base.d + offset, 12));
+    const y = noon.getUTCFullYear(), m = noon.getUTCMonth() + 1, d = noon.getUTCDate();
+    const at = (ev) => ev ? new Date(Date.UTC(y, m - 1, d) + Math.round(ev.min) * 6e4) : null;
+    const s = sunEvent(y, m, d, -0.833);
+    return { y, m, d, noon, sunset: at(s), az: s ? s.az : 270, golden: at(sunEvent(y, m, d, 6)), civil: at(sunEvent(y, m, d, -6)) };
+  }
+
+  /* ---- language ---- */
+  let lang = 'es';
+  try { const s = localStorage.getItem('ocaso-lang'); if (s === 'en' || s === 'es') lang = s; } catch (e) { /* storage blocked: stay in Spanish */ }
+  const enLocale = (navigator.languages || [navigator.language || '']).find((l) => /^en\b/i.test(l)) || 'en-GB';
+  const en12 = new Intl.DateTimeFormat(enLocale, { hour: 'numeric', timeZone: TZ }).resolvedOptions().hourCycle === 'h12';
+  const loc = () => (lang === 'es' ? 'es-ES' : enLocale);
+
+  const T = {
+    es: {
+      title: 'Ocaso · La mesa del atardecer en La Caleta, Adeje',
+      desc: 'Restaurante y terraza de cócteles sobre las rocas de La Caleta, Adeje. Cada día les decimos a qué hora se pone el sol y les guardamos la mesa de esa hora.',
+      skip: 'Saltar al contenido', nav_book: 'Reservar', nav_hours: 'Las horas de Ocaso',
+      dot_hoy: 'Hoy', dot_mediodia: 'Mediodía', dot_atardecer: 'Atardecer', dot_noche: 'Noche', dot_donde: 'Dónde',
+      hoy_texto: 'Cada tarde la terraza sobre las rocas se llena unos cuarenta minutos, y esos minutos cambian de hora cada día. Reserven la mesa de esa hora: se la guardamos media hora.',
+      reserva_titulo: 'Reservar mesa', dia_legend: 'Elijan el día', personas: 'Personas', menos: 'Quitar una persona', mas: 'Añadir una persona',
+      modo_legend: '¿A qué hora?', modo_sol: 'Al atardecer', modo_otra: 'Otra hora', otra_label: '¿A qué hora?', g_mediodia: 'Mediodía', g_noche: 'Noche',
+      cta: 'Reservar por WhatsApp', cta_sol: 'Reservar mesa al atardecer', reserva_pie: 'Se abre WhatsApp con el mensaje listo; ustedes lo envían.',
+      med_titulo: 'Mediodía, a la sombra', med_texto: 'Se come bajo el toldo, con el mar a un paso, de 12:30 a 16:00. Pescado del día, lapas, papas arrugadas: lo de aquí, sin prisa.',
+      med_foto: 'Pescado del día, a la plancha.', med_alt: 'Tres pescados enteros a la plancha, con dos cuñas de limón, en un plato verde azulado sobre una mesa de madera blanca.',
+      carta_titulo: 'De la cocina', p1: 'Pescado del día a la sal', p1d: 'por kilo, para compartir', p2: 'Vieja sancochada', p2d: 'con papas y mojo', p3: 'Cherne a la plancha', p4: 'Lapas con mojo verde', p5: 'Pulpo a la brasa', p6: 'Arroz caldoso de marisco', p6d: 'para dos', p7: 'Ceviche de pescado del día', p8: 'Papas arrugadas',
+      precios: 'Precios de ejemplo.',
+      noche_titulo: 'La noche, en la barra', noche_texto: 'Cócteles hasta las 24:00, y la cocina vuelve de 18:30 a 22:30. Cuando se va la luz, se encienden las bombillas del toldo.',
+      barra_titulo: 'De la barra', c1: 'ron miel, maracuyá y lima', c2: 'ginebra, flor de saúco y tónica', c3: 'mezcal y piña asada', c4: 'leche condensada, Licor 43, café, leche, canela y piel de limón', c5: 'canario, con hielo',
+      donde_titulo: 'Mañana, otra vez', donde_foto: 'La costa de Adeje al atardecer, a un paseo de La Caleta.',
+      donde_alt: 'El sol tocando el horizonte del Atlántico, un velero y una lancha en el agua y, a la derecha, una punta de roca volcánica oscura con palmeras.',
+      mapa_t: 'Mapa esquemático: el paseo marítimo de Costa Adeje termina en La Caleta, y Ocaso está al final, sobre las rocas, mirando al oeste hacia La Gomera.',
+      mapa_paseo: 'Paseo marítimo', mapa_costa: 'hacia Costa Adeje', mapa_gomera: 'La Gomera', mapa_oeste: 'unos 35 km al oeste',
+      mapa_link: 'Abrir en Google Maps (playa de La Caleta)', d_dir: 'Dirección', d_dir2: '· al final del paseo marítimo, sobre las rocas', d_ejemplo: '· dirección de ejemplo', d_hor: 'Horario',
+      d_hor2: 'Todos los días, de 12:30 a 24:00. Cocina de 12:30 a 16:00 y de 18:30 a 22:30.', d_con: 'Contacto', cambiar: 'Cambiar día o personas',
+      pie_lugar: 'Restaurante y cócteles sobre las rocas · La Caleta, Adeje, Tenerife', pie_ficcion: 'Diseño de muestra de Teide Digital · negocio ficticio',
+      pie_creditos: 'Fotos: Lora Georgieva y Phil Reid, en Unsplash. Precios de ejemplo.',
+      today: 'Hoy', lead: 'Hoy el sol se pone a las', leadPast: 'Hoy el sol se puso a las', sunsetSr: 'puesta de sol', pastSr: 'ya ha pasado',
+      where: { left: 'cae al mar, a la izquierda de La Gomera', south: 'cae junto al extremo sur de La Gomera', behind: 'se esconde detrás de La Gomera', north: 'cae junto al extremo norte de La Gomera', right: 'cae al mar, a la derecha de La Gomera' }
+    },
+    en: {
+      title: 'Ocaso · The sunset table at La Caleta, Adeje',
+      desc: 'Seafront restaurant and cocktail terrace on the rocks at La Caleta, Adeje. Every day we tell you when the sun sets, and we hold your table for that hour.',
+      skip: 'Skip to content', nav_book: 'Book', nav_hours: 'The hours of Ocaso',
+      dot_hoy: 'Today', dot_mediodia: 'Midday', dot_atardecer: 'Sunset', dot_noche: 'Night', dot_donde: 'Where',
+      hoy_texto: 'Every evening the terrace on the rocks fills up for about forty minutes, and those minutes move every day. Book the table for that hour: we hold it for half an hour.',
+      reserva_titulo: 'Book a table', dia_legend: 'Pick a day', personas: 'People', menos: 'One person fewer', mas: 'One person more',
+      modo_legend: 'What time?', modo_sol: 'At sunset', modo_otra: 'Another time', otra_label: 'What time?', g_mediodia: 'Midday', g_noche: 'Evening',
+      cta: 'Book on WhatsApp', cta_sol: 'Book a sunset table', reserva_pie: 'WhatsApp opens with the message ready; you just send it.',
+      med_titulo: 'Midday, in the shade', med_texto: 'Lunch is under the awning, a step from the sea, from 12:30 to 16:00. Catch of the day, limpets, wrinkled potatoes: local food, no hurry.',
+      med_foto: 'Catch of the day, grilled.', med_alt: 'Three whole grilled fish with two lemon wedges on a blue-green plate on a white wooden table.',
+      carta_titulo: 'From the kitchen', p1: 'Catch of the day baked in salt', p1d: 'per kilo, to share', p2: 'Vieja, Canarian parrotfish', p2d: 'poached, with potatoes and mojo', p3: 'Grilled wreckfish (cherne)', p4: 'Limpets with green mojo', p5: 'Chargrilled octopus', p6: 'Brothy seafood rice', p6d: 'for two', p7: 'Catch-of-the-day ceviche', p8: 'Papas arrugadas, wrinkled potatoes',
+      precios: 'Sample prices.',
+      noche_titulo: 'Night, at the bar', noche_texto: 'Cocktails until midnight, and the kitchen is back from 18:30 to 22:30. When the light goes, the bulbs on the awning come on.',
+      barra_titulo: 'From the bar', c1: 'honey rum, passion fruit and lime', c2: 'gin, elderflower and tonic', c3: 'mezcal and roasted pineapple', c4: 'condensed milk, Licor 43, espresso, milk, cinnamon and lemon peel', c5: 'Canarian honey rum, on ice',
+      donde_titulo: 'Tomorrow, again', donde_foto: 'The Adeje coast at sunset, a short walk from La Caleta.',
+      donde_alt: 'The sun touching the Atlantic horizon, a sailing boat and a launch on the water and, on the right, a dark volcanic headland with palm trees.',
+      mapa_t: 'Sketch map: the Costa Adeje promenade ends at La Caleta, and Ocaso sits at the very end, on the rocks, facing west towards La Gomera.',
+      mapa_paseo: 'Seafront promenade', mapa_costa: 'towards Costa Adeje', mapa_gomera: 'La Gomera', mapa_oeste: 'about 35 km west',
+      mapa_link: 'Open in Google Maps (La Caleta beach)', d_dir: 'Address', d_dir2: '· at the end of the promenade, on the rocks', d_ejemplo: '· example address', d_hor: 'Opening hours',
+      d_hor2: 'Every day, 12:30 to midnight. Kitchen 12:30 to 16:00 and 18:30 to 22:30.', d_con: 'Contact', cambiar: 'Change day or party size',
+      pie_lugar: 'Restaurant and cocktails on the rocks · La Caleta, Adeje, Tenerife', pie_ficcion: 'Sample design by Teide Digital · fictional business',
+      pie_creditos: 'Photos: Lora Georgieva and Phil Reid, on Unsplash. Sample prices.',
+      today: 'Today', lead: 'Today the sun sets at', leadPast: 'Today the sun set at', sunsetSr: 'sunset', pastSr: 'already passed',
+      where: { left: 'sets into the sea, left of La Gomera', south: 'sets by the southern tip of La Gomera', behind: 'goes down behind La Gomera', north: 'sets by the northern tip of La Gomera', right: 'sets into the sea, right of La Gomera' }
+    }
+  };
+
+  /* ---- formatting ---- */
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+  function tparts(date) {
+    const o = lang === 'es' || !en12 ? { timeZone: TZ, hour: '2-digit', minute: '2-digit', hourCycle: 'h23' } : { timeZone: TZ, hour: 'numeric', minute: '2-digit', hour12: true };
+    return new Intl.DateTimeFormat(lang === 'es' ? 'es-ES' : enLocale, o).formatToParts(date);
+  }
+  const ftime = (date) => tparts(date).map((p) => (p.type === 'literal' && /^\s+$/.test(p.value) ? ' ' : p.value)).join('').trim();
+  const fclock = (date) => tparts(date).filter((p) => p.type !== 'dayPeriod').map((p) => p.value).join('').trim();
+  const ftimeHTML = (date) => tparts(date).map((p) => (p.type === 'dayPeriod' ? '<span class="ampm">' + esc(p.value) + '</span>' : p.type === 'literal' && /^\s+$/.test(p.value) ? '' : esc(p.value))).join('');
+  const fdate = (dy, o) => new Intl.DateTimeFormat(loc(), Object.assign({ timeZone: 'UTC' }, o)).format(dy.noon);
+  const wday = (dy) => fdate(dy, { weekday: 'short' }).replace(/\.$/, '');
+  function longDate(dy) {
+    if (lang === 'es') return fdate(dy, { weekday: 'long' }) + ' ' + dy.d + ' de ' + fdate(dy, { month: 'long' });
+    return fdate(dy, { weekday: 'long', day: 'numeric', month: 'long' });
+  }
+  const dayMonth = (dy) => (lang === 'es' ? dy.d + ' de ' + fdate(dy, { month: 'long' }) : fdate(dy, { day: 'numeric', month: 'long' }));
+  function hm(h, mi) {
+    if (lang === 'en' && en12) return ((h + 11) % 12 + 1) + ':' + String(mi).padStart(2, '0') + ' ' + (h < 12 ? 'AM' : 'PM');
+    return String(h).padStart(2, '0') + ':' + String(mi).padStart(2, '0');
+  }
+  function arrival(dy) { const p = canary(new Date(dy.sunset.getTime() - 40 * 6e4)); const r = Math.floor((p.h * 60 + p.mi) / 5) * 5; return hm(Math.floor(r / 60), r % 60); }
+  function band(az) { return az < 257 ? 'left' : az < 261 ? 'south' : az <= 284 ? 'behind' : az <= 288 ? 'north' : 'right'; }
+  function dur(min) { const h = Math.floor(min / 60), m = min % 60; return (h ? h + ' h ' : '') + m + ' min'; }
+  const isoLocal = (date) => { const p = canary(date); return p.y + '-' + String(p.m).padStart(2, '0') + '-' + String(p.d).padStart(2, '0') + 'T' + String(p.h).padStart(2, '0') + ':' + String(p.mi).padStart(2, '0'); };
+
+  /* ---- state ---- */
+  const today = canary(new Date());
+  const days = Array.from({ length: 8 }, (_, i) => makeDay(today, i));
+  const state = { day: 0, people: 2, mode: 'sol', other: '14:00' };
+  const sunsetPast = () => Date.now() > days[0].sunset.getTime() + 20 * 6e4;
+  if (sunsetPast()) state.day = 1;
+
+  function message() {
+    const dy = days[state.day], n = state.people, t = T[lang];
+    const sunset = ftime(dy.sunset), when = longDate(dy);
+    const other = state.other.split(':'), otherTime = hm(+other[0], +other[1]);
+    if (lang === 'es') {
+      const pers = n + (n === 1 ? ' persona' : ' personas');
+      return state.mode === 'sol'
+        ? 'Hola, Ocaso. Querríamos reservar una mesa al atardecer para el ' + when + ', ' + pers + '. Ese día el sol se pone a las ' + sunset + '; llegaríamos hacia las ' + arrival(dy) + '. Gracias.'
+        : 'Hola, Ocaso. Querríamos reservar una mesa para el ' + when + ' a las ' + otherTime + ', ' + pers + '. (Ese día el sol se pone a las ' + sunset + '.) Gracias.';
+    }
+    const ppl = n + (n === 1 ? ' person' : ' people');
+    void t;
+    return state.mode === 'sol'
+      ? "Hello Ocaso, we'd like a sunset table on " + when + ' for ' + ppl + '. Sunset that day is at ' + sunset + "; we'd arrive around " + arrival(dy) + '. Thank you.'
+      : "Hello Ocaso, we'd like a table on " + when + ' at ' + otherTime + ' for ' + ppl + ' (sunset that day is at ' + sunset + '). Thank you.';
+  }
+
+  function setText(key, text) { for (const el of $$('[data-live="' + key + '"]')) el.textContent = text; }
+
+  function renderLive() {
+    const t = T[lang], past = sunsetPast(), d0 = days[0], show = past ? days[1] : d0;
+    /* hero */
+    setText('lead', past ? t.leadPast : t.lead);
+    const hero = $('[data-live="hero-time"]');
+    hero.innerHTML = ftimeHTML(d0.sunset); hero.setAttribute('datetime', isoLocal(d0.sunset));
+    const left = Math.round((d0.sunset.getTime() - Date.now()) / 6e4);
+    let status;
+    if (lang === 'es') {
+      status = left > 0 ? 'Faltan ' + dur(left) + ': ' + t.where[band(d0.az)] + '.'
+        : !past ? 'Se acaba de poner: hoy ' + t.where[band(d0.az)] + '.'
+        : 'Mañana se pone a las ' + ftime(days[1].sunset) + ' y ' + t.where[band(days[1].az)] + '.';
+    } else {
+      status = left > 0 ? dur(left) + ' to go: it ' + t.where[band(d0.az)] + '.'
+        : !past ? 'It has just set: today it ' + t.where[band(d0.az)] + '.'
+        : 'Tomorrow it sets at ' + ftime(days[1].sunset) + ' and ' + t.where[band(days[1].az)] + '.';
+    }
+    setText('status', status);
+    /* sunset chapter */
+    const word = lang === 'es' ? (past ? 'Mañana' : 'Hoy') : (past ? 'Tomorrow it' : 'Today it');
+    setText('where-title', word + ' ' + t.where[band(show.az)] + '.');
+    const behind = band(show.az) === 'behind';
+    setText('golden', lang === 'es'
+      ? 'La luz dorada empieza hacia las ' + ftime(show.golden) + ' (aprox.). ' + (behind ? 'El sol se esconde tras la isla unos minutos antes de las ' + ftime(show.sunset) + ', su hora sobre el mar,' : 'El sol toca el agua a las ' + ftime(show.sunset)) + ' y queda claridad hasta las ' + ftime(show.civil) + '. La mesa se la guardamos media hora.'
+      : 'Golden light starts around ' + ftime(show.golden) + ' (approx.). ' + (behind ? 'The sun slips behind the island a few minutes before ' + ftime(show.sunset) + ', its time over the sea,' : 'The sun touches the water at ' + ftime(show.sunset)) + ' and the light lasts until ' + ftime(show.civil) + '. We hold your table for half an hour.');
+    setText('sun-label', ftime(show.sunset) + ' · ' + Math.round(show.az) + '°');
+    setText('vista-label', lang === 'es' ? (past ? 'Mañana se pone aquí · ' : 'Hoy se pone aquí · ') + ftime(show.sunset) : (past ? 'Sets here tomorrow · ' : 'Sets here today · ') + ftime(show.sunset));
+    setText('blue', lang === 'es'
+      ? 'El «Hora azul» se pide hacia las ' + ftime(show.civil) + ', cuando el cielo se pone de ese color.'
+      : 'Order the «Hora azul» around ' + ftime(show.civil) + ', when the sky turns that colour.');
+    const t1 = past ? days[2] : days[1], t2 = past ? days[3] : days[2];
+    setText('tomorrow', lang === 'es'
+      ? 'Mañana el sol se pone a las ' + ftime(t1.sunset) + ', y el ' + wday(t2) + ' ' + t2.d + ', a las ' + ftime(t2.sunset) + '. Cambia un poco cada día, y aquí se lo decimos.'
+      : 'Tomorrow the sun sets at ' + ftime(t1.sunset) + ', and on ' + wday(t2) + ' ' + t2.d + ' at ' + ftime(t2.sunset) + '. It moves a little every day, and this page keeps count.');
+    placeScene(show);
+  }
+
+  function renderComposer() {
+    const t = T[lang], past = sunsetPast();
+    $$('.dia').forEach((lab, i) => {
+      const dy = days[i], input = $('input', lab);
+      $('.dia__nombre', lab).textContent = i === 0 ? t.today : wday(dy);
+      $('.dia__num', lab).textContent = dy.d;
+      $('.dia__sol', lab).textContent = fclock(dy.sunset);
+      const dis = i === 0 && past && state.mode === 'sol';
+      input.disabled = dis;
+      input.checked = i === state.day;
+      $('.dia__sr', lab).textContent = longDate(dy) + ', ' + t.sunsetSr + ' ' + ftime(dy.sunset) + (dis ? ', ' + t.pastSr : '');
+    });
+    $('#personas-num').textContent = state.people;
+    $$('.paso').forEach((b) => { b.disabled = (+b.dataset.step < 0 && state.people <= 1) || (+b.dataset.step > 0 && state.people >= 12); });
+    setText('arrival', arrival(days[state.day]));
+    $('.otra').hidden = state.mode !== 'otra';
+    for (const o of $$('#otra-hora option')) { const p = (o.value || o.textContent).split(':'); o.value = p[0] + ':' + p[1]; o.textContent = hm(+p[0], +p[1]); }
+    const href = WA + '?text=' + encodeURIComponent(message());
+    for (const a of $$('[data-wa]')) a.href = href;
+    setText('cta-summary', lang === 'es'
+      ? 'Reservar ' + wday(days[state.day]) + ' ' + days[state.day].d + ' · ' + state.people + (state.people === 1 ? ' persona' : ' personas')
+      : 'Book ' + wday(days[state.day]) + ' ' + days[state.day].d + ' · ' + state.people + (state.people === 1 ? ' person' : ' people'));
+  }
+
+  function applyLang() {
+    const t = T[lang];
+    root.lang = lang;
+    document.title = t.title;
+    $('meta[name="description"]').setAttribute('content', t.desc);
+    for (const el of $$('[data-i18n]')) { const v = t[el.dataset.i18n]; if (typeof v === 'string') el.textContent = v; }
+    for (const el of $$('[data-i18n-aria]')) { const v = t[el.dataset.i18nAria]; if (v) el.setAttribute('aria-label', v); }
+    for (const el of $$('[data-i18n-alt]')) { const v = t[el.dataset.i18nAlt]; if (v) el.setAttribute('alt', v); }
+    for (const el of $$('[data-i18n-label]')) { const v = t[el.dataset.i18nLabel]; if (v) el.setAttribute('label', v); }
+    for (const b of $$('[data-lang]')) b.setAttribute('aria-pressed', String(b.dataset.lang === lang));
+    renderLive(); renderComposer();
+  }
+  function setLang(l) {
+    if (l === lang) return;
+    try { localStorage.setItem('ocaso-lang', l); } catch (e) { /* not persisted: fine */ }
+    const swap = () => { lang = l; applyLang(); };
+    if (document.startViewTransition && !reduce.matches) document.startViewTransition(swap); else swap();
+  }
+
+  /* ---- the sunset scene: the sun at today's azimuth, La Gomera where it really is ---- */
+  function placeScene(dy) {
+    for (const sc of $$('[data-escena]')) {
+      const w = sc.clientWidth; if (!w) continue;
+      const F = 60 + Math.max(0, Math.min(1, (w - 480) / 960)) * 40;
+      const a0 = 270 - F / 2, x = (az) => ((az - a0) / F) * 100;
+      const fr = sc.querySelector('.vista__lateral');
+      const lo = Math.max(+(sc.dataset.escena || 7), fr ? ((fr.offsetWidth * 1.84 + 34) / w) * 100 : 0);
+      sc.style.setProperty('--sun-x', Math.max(lo, Math.min(93, x(dy.az))).toFixed(2) + '%');
+      sc.style.setProperty('--gom-l', x(259).toFixed(2) + '%');
+      sc.style.setProperty('--gom-w', (x(286) - x(259)).toFixed(2) + '%');
+    }
+  }
+
+  /* ---- events ---- */
+  $$('[data-lang]').forEach((b) => b.addEventListener('click', () => setLang(b.dataset.lang)));
+  $$('.dia input').forEach((inp) => inp.addEventListener('change', () => { state.day = +inp.value; renderComposer(); }));
+  $$('.paso').forEach((b) => b.addEventListener('click', () => { state.people = Math.max(1, Math.min(12, state.people + +b.dataset.step)); renderComposer(); }));
+  $$('input[name="modo"]').forEach((inp) => inp.addEventListener('change', () => {
+    state.mode = inp.value;
+    if (state.mode === 'sol' && state.day === 0 && sunsetPast()) state.day = 1;
+    renderComposer();
+  }));
+  $('#otra-hora').addEventListener('change', (e) => { state.other = e.target.value; renderComposer(); });
+  let rz; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => placeScene(sunsetPast() ? days[1] : days[0]), 120); });
+  setInterval(renderLive, 30000);
+
+  /* ---- the hour you are reading: relights the valance, the dots and the browser bar ---- */
+  const theme = $('meta[name="theme-color"]');
+  const tones = { noon: '#1E3FA6', sunset: '#5A2378', night: '#101A48' };
+  const chapters = $$('.cap');
+  const dots = new Map($$('[data-dot]').map((a) => [a.dataset.dot, a]));
+  function setHour(sec) {
+    root.dataset.hour = sec.dataset.hour;
+    theme.setAttribute('content', tones[sec.dataset.hour] || tones.noon);
+    for (const [id, a] of dots) { if (id === sec.id) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); }
+  }
+  if ('IntersectionObserver' in window) {
+    const spy = new IntersectionObserver((es) => { for (const e of es) if (e.isIntersecting) setHour(e.target); }, { rootMargin: '-45% 0px -54% 0px' });
+    chapters.forEach((c) => spy.observe(c));
+    /* each rail label takes the colour of the ground actually under it (one 1px observer line per label) */
+    const rail = $('.horas'), grounds = $$('[data-ground]');
+    let railIO = [];
+    const watchRail = () => {
+      railIO.forEach((io) => io.disconnect()); railIO = [];
+      if (getComputedStyle(rail).display === 'none') return;
+      const H = window.innerHeight;
+      for (const a of $$('a', rail)) {
+        const r = a.getBoundingClientRect(), y = Math.round(r.top + r.height / 2), hits = new Set();
+        const io = new IntersectionObserver((es) => {
+          for (const e of es) { if (e.isIntersecting) hits.add(e.target); else hits.delete(e.target); }
+          let g = null;
+          for (const el of hits) if (!el.classList.contains('cap')) { g = el.dataset.ground; break; }
+          if (!g) for (const el of hits) { g = el.dataset.ground; break; }
+          if (g) a.dataset.ground = g;
+        }, { rootMargin: -y + 'px 0px ' + -(H - y - 1) + 'px 0px' });
+        grounds.forEach((el) => io.observe(el)); railIO.push(io);
+      }
+    };
+    watchRail();
+    let rr; window.addEventListener('resize', () => { clearTimeout(rr); rr = setTimeout(watchRail, 150); });
+    /* the awning winds back for the sunset: native scroll-driven where supported; otherwise (or with reduced motion) a plain state switch */
+    const native = window.CSS && CSS.supports('timeline-scope', '--a') && CSS.supports('animation-timeline', 'view()');
+    if (!native || reduce.matches) {
+      const at = $('#atardecer');
+      const furl = new IntersectionObserver(([e]) => { root.classList.toggle('is-furled', e.boundingClientRect.top < window.innerHeight * 0.55); }, { threshold: Array.from({ length: 21 }, (_, i) => i / 20) });
+      furl.observe(at);
+    }
+  }
+
+  applyLang();
+})();
+</script>
+</body>
+</html>
