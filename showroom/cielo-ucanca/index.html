@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cielo de Ucanca · Estrellas en el Teide</title>
+<meta name="description" content="Excursiones en grupos de 14 al atardecer y a las estrellas en el Parque Nacional del Teide, con recogida en el sur de Tenerife. La puesta de sol y la luna de cada noche, calculadas.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#05080f">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2305080f'/%3E%3Cg fill='none' stroke='%23eef2fb' stroke-width='3'%3E%3Cpath d='M20 32a12 12 0 0 1 24 0' opacity='.55'/%3E%3Cpath d='M10 32a22 22 0 0 1 44 0' opacity='.3'/%3E%3C/g%3E%3Cpath d='M8 60 32 40l24 20z' fill='%2314234a'/%3E%3Ccircle cx='32' cy='32' r='4' fill='%23f3cf86'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/imbue-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/redhattext-var.woff2" as="font" type="font/woff2" crossorigin>
+<script>document.documentElement.classList.add('js')</script>
+<style>
+@font-face{font-family:"Imbue";src:url("assets/fonts/imbue-var.woff2") format("woff2");font-weight:150 500;font-display:swap}
+@font-face{font-family:"Red Hat Text";src:url("assets/fonts/redhattext-var.woff2") format("woff2");font-weight:400 700;font-display:swap}
+@font-face{font-family:"Imbue Fallback";src:local("Georgia"),local("Times New Roman");size-adjust:72%;ascent-override:96%;descent-override:26%}
+@font-face{font-family:"Red Hat Fallback";src:local("Arial"),local("Helvetica"),local("Roboto");size-adjust:100%}
+:root{
+  --land:#05080f;--sky:#0d1a3a;
+  --g1:#14234a;--g2:#111f43;--g3:#0c1735;--g4:#0a132d;--g5:#091127;--g6:#080f22;
+  --ink:#eef2fb;--ink-2:#b7c2dc;--ink-3:#8d9abb;
+  --gold:#f3cf86;
+  --act:#ff5b45;--act-hi:#ff8270;--on-act:#1a0603;
+  --rule:rgba(238,242,251,.15);--rule-2:#5d6c95;
+  --rail:15rem;--bar:3.25rem;--gut:1.25rem;
+  --f-d:"Imbue","Imbue Fallback",Georgia,serif;
+  --f-t:"Red Hat Text","Red Hat Fallback",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-padding-top:calc(var(--bar) + .5rem);scrollbar-color:var(--rule-2) var(--land)}
+input,select,textarea{caret-color:var(--ink);accent-color:var(--ink)}
+body{margin:0;background:var(--land);color:var(--ink);font:400 1.0625rem/1.6 var(--f-t);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img,svg,canvas{display:block;max-width:100%}
+a{color:inherit}
+p{margin:0}
+::selection{background:#2b4a8f;color:#fff}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+.skip{position:absolute;left:.75rem;top:-4rem;z-index:100;background:var(--ink);color:var(--land);padding:.75rem 1rem;font-weight:700;text-decoration:none}
+.skip:focus{top:.75rem}
+.num{font-variant-numeric:tabular-nums}
+.k{color:var(--gold);font-variant-numeric:tabular-nums;font-weight:600}
+
+/* ── rail: slim sticky bar on phones, fixed instrument rail on wide screens ── */
+.rail{position:sticky;top:0;z-index:40;height:var(--bar);display:flex;align-items:center;gap:.25rem;background:var(--land);border-bottom:1px solid var(--rule);padding:0 .25rem 0 .5rem}
+.rail__home{flex:none;display:grid;place-items:center;width:2.75rem;height:2.75rem;text-decoration:none}
+.rail__home svg{width:1.75rem;height:1.75rem}
+.rail__name,.rail__sub,.rail__night,.rail__book,.gauge__rung--info,.gauge__now,.gauge__line{display:none}
+.rail__nav{flex:1;min-width:0;display:flex;align-items:center;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x proximity;scroll-padding-inline:1.25rem;margin-right:.4rem;-webkit-mask:linear-gradient(90deg,transparent,#000 1rem,#000 calc(100% - 2.75rem),transparent);mask:linear-gradient(90deg,transparent,#000 1rem,#000 calc(100% - 2.75rem),transparent)}
+.rail__nav::-webkit-scrollbar{display:none}
+.rail__list{display:flex;align-items:center;gap:0;margin:0;padding:0 .25rem;list-style:none;white-space:nowrap}
+.rail__list:first-child{padding-left:.5rem}.rail__list:last-child{padding-right:1.5rem}
+.rail .rail__book{display:none}
+.rail__list a{display:flex;gap:.4rem;min-height:2.75rem;align-items:center;scroll-snap-align:start;scroll-margin-inline:1.25rem;padding:0 .7rem;font:600 .875rem/1 var(--f-t);color:var(--ink-2);text-decoration:none;border-bottom:2px solid transparent}
+.rail__list a[aria-current="location"]{color:var(--ink);border-bottom-color:var(--ink)}
+.rail__list .t{color:var(--gold);font-variant-numeric:tabular-nums;font-weight:600}
+.rail__list .chip-book{color:var(--act)}
+.lang{flex:none;display:flex;border:1px solid var(--rule-2)}
+.lang button{appearance:none;border:0;background:transparent;color:var(--ink-2);font:700 .75rem/1 var(--f-t);letter-spacing:.06em;min-width:2.5rem;height:2.25rem;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--land)}
+.rail__expo{position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--ink);transform-origin:0 50%;transform:scaleX(var(--expo,0))}
+
+/* ── hero: computed sky + the land that holds the action ── */
+.hero{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(15rem,1fr) auto;min-height:calc(100svh - var(--bar) + 1.9rem);background:var(--land);container:hero/inline-size}
+.sky{position:relative;overflow:hidden;background:linear-gradient(#0b1634,#13285a 70%,var(--land) 70%)}
+.sky__fallback,.sky__canvas{position:absolute;inset:0;width:100%;height:100%}
+.sky__fallback{object-fit:cover;object-position:50% 100%}
+.js .sky__fallback{display:none}
+.js .sky.is-fallback .sky__fallback{display:block}
+.sky__plate{position:absolute;left:0;top:0;max-width:min(26rem,100%);padding:.5rem .9rem .55rem var(--gut);background:var(--land);font:500 .75rem/1.35 var(--f-t);color:var(--ink-2);pointer-events:none}
+.sky__brand{display:block;font:300 1.65rem/1 var(--f-d);color:var(--ink);margin-bottom:.15rem}
+.sky.is-tight .sky__cap{display:none}
+html:not(.js) .needs-js{display:none}
+html:not(.js) .hero{grid-template-rows:minmax(25rem,1fr) auto}
+.sky.is-tight .sky__brand{margin:0}
+.land{position:relative;margin-top:-3.25rem;padding:0 var(--gut) 1.1rem}
+h1{font:300 4rem/.86 var(--f-d);font-size:clamp(3.35rem,15.6vw,6rem);letter-spacing:-.005em;margin:.2rem 0 .55rem;text-wrap:balance;font-optical-sizing:auto}
+.figs{font:500 .9375rem/1.45 var(--f-t);color:var(--ink-2)}
+.figs b{color:var(--gold);font-weight:600;font-variant-numeric:tabular-nums}
+.figs b.when{color:var(--ink)}
+.figs .sep{color:var(--ink-3)}
+.figs>span:not(.sep){white-space:nowrap}
+.composer{margin-top:.75rem;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:.45rem .5rem}
+.composer .field{position:relative;display:block}
+.composer .field label{position:absolute;left:.75rem;top:.4rem;font:600 .75rem/1 var(--f-t);color:var(--ink-3);pointer-events:none}
+.composer select{height:3rem;padding-top:1rem;background-position:right .7rem center}
+.composer .f-date,.composer .f-zone{grid-column:1/-1}
+.field{display:grid;gap:.3rem;min-width:0}
+.field label,.field .lbl{font:600 .8125rem/1.2 var(--f-t);color:var(--ink-2)}
+.composer__tour{grid-column:1/-1;font:600 .9375rem/1.3 var(--f-t);color:var(--ink);margin-bottom:.1rem}
+select,input[type=text]{appearance:none;-webkit-appearance:none;width:100%;height:2.75rem;border:1px solid var(--rule-2);border-radius:0;background:var(--land);color:var(--ink);font:500 1rem/1 var(--f-t);padding:0 .7rem}
+select{padding-right:2rem;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23b7c2dc' stroke-width='1.6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .7rem center;background-size:.75rem;text-overflow:ellipsis}
+select:hover,input[type=text]:hover{border-color:var(--ink-2)}
+select option{background:var(--land);color:var(--ink)}
+.btn{appearance:none;display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:3.375rem;padding:0 1.1rem;border:0;border-radius:0;background:var(--act);color:var(--on-act);font:700 1.0625rem/1.1 var(--f-t);letter-spacing:.01em;text-decoration:none;cursor:pointer;transition:background-color .15s,transform .15s var(--ease)}
+.btn:hover{background:var(--act-hi)}
+.btn:active{transform:translateY(1px)}
+.arr{flex:none;width:1.6rem;height:.75rem;fill:none;stroke:currentColor;stroke-width:1.6}
+.composer .btn{grid-column:1/-1;margin-top:.2rem}
+.fine{margin-top:.5rem;font:500 .8125rem/1.4 var(--f-t);color:var(--ink-3)}
+
+/* ── sections ── */
+.sec{position:relative;padding:4.5rem 1.25rem 4.25rem;background:var(--g)}
+.sec__in{max-width:70rem;margin:0 auto;container:sec/inline-size}
+h2{font:300 3.25rem/.88 var(--f-d);font-size:clamp(3rem,13.6vw,6rem);margin:0 0 1.4rem;max-width:11ch;text-wrap:balance;font-optical-sizing:auto}
+.ht{display:block;font:inherit;color:var(--gold);font-variant-numeric:lining-nums}
+.ht:empty{display:none}
+h3{font:600 1.375rem/1.3 var(--f-t);color:var(--ink);margin:0 0 .9rem}
+.prose{display:grid;gap:1rem;max-width:36em}
+.prose p{color:var(--ink-2)}
+.prose strong{color:var(--ink);font-weight:600}
+.lead{font-size:1.1875rem;line-height:1.55;color:var(--ink)!important}
+figure{margin:0}
+figcaption{margin-top:.7rem;font:500 .8125rem/1.45 var(--f-t);color:var(--ink-3);max-width:40em}
+.textlink{color:var(--ink);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.25em;font-weight:600}
+.textlink:hover{text-decoration-thickness:2px}
+
+/* subida */
+.sec--subida{--g:var(--g1)}
+.map{margin:2.25rem calc(-1 * var(--gut)) 0}
+.map__box{position:relative;aspect-ratio:1000/931}
+.map__box svg{position:absolute;inset:0;width:100%;height:100%}
+.map figcaption{padding:0 var(--gut)}
+.map .c{fill:none;stroke:#8193c4;stroke-width:1.1;opacity:.55;vector-effect:non-scaling-stroke}
+.map .c--coast{stroke:var(--ink);opacity:.9;stroke-width:1.5}
+.map .c--2000{stroke:var(--ink);opacity:1;stroke-width:1.6}
+.map .lead-l{stroke:var(--ink-2);stroke-width:1;vector-effect:non-scaling-stroke}
+.pin{position:absolute;transform:translate(-50%,-50%);width:.6rem;height:.6rem;border-radius:50%;background:var(--ink)}
+.pin--dest{width:1.05rem;height:1.05rem;background:transparent;border:2px solid var(--ink)}
+.pin--dest::after{content:"";position:absolute;inset:.18rem;border-radius:50%;background:var(--ink)}
+.pin--ref{background:var(--ink-3)}
+.lab{position:absolute;font:600 .75rem/1.25 var(--f-t);color:var(--ink);white-space:nowrap;background:var(--g1);padding:.2rem .4rem;transform:translateY(-50%)}
+.lab small{display:block;font-weight:500;color:var(--ink-2);font-size:.75rem}
+.lab--r{max-width:37%;white-space:normal}
+.climb{display:grid;gap:3rem;margin-top:3.5rem}
+.alt{display:grid;gap:1.25rem}
+.altgauge{position:relative;height:30rem;margin-left:.25rem}
+.altgauge::before{content:"";position:absolute;left:.25rem;top:0;bottom:0;width:1px;background:var(--rule-2)}
+.altgauge li{position:absolute;left:0;bottom:calc(var(--h) / 3800 * 100%);transform:translateY(50%);display:flex;align-items:center;gap:.75rem;list-style:none;font:500 .875rem/1.25 var(--f-t);color:var(--ink-2)}
+.altgauge li::before{content:"";width:.55rem;height:.55rem;border-radius:50%;background:var(--ink-2);flex:none}
+.altgauge li b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums;min-width:4.5rem}
+.altgauge li.is-here{display:block;transform:none;padding-left:1.4rem;color:var(--ink);font-size:1rem}
+.altgauge li.is-here::before{position:absolute;left:-.18rem;bottom:-.45rem;width:.9rem;height:.9rem;background:var(--ink)}
+.altgauge li.is-here::after{content:"";position:absolute;left:.25rem;bottom:0;width:min(21rem,78vw);height:1px;background:var(--ink)}
+.altgauge li.is-here b{display:block;font:300 clamp(4.5rem,23vw,6rem)/.8 var(--f-d);letter-spacing:-.01em;margin:0 0 .45rem;min-width:0}
+.altgauge li.is-here span{position:absolute;left:1.4rem;top:calc(100% + .65rem);width:min(17rem,calc(100vw - 4.5rem));font-weight:600}
+.altgauge li.is-off{color:var(--ink-3)}
+.altgauge li.is-off::before{background:transparent;border:1px solid var(--ink-3)}
+.altgauge ul{margin:0;padding:0}
+.photo{margin:0 calc(-1 * var(--gut))}
+.photo figcaption{padding:0 var(--gut)}
+.photo img{width:100%;height:auto}
+
+/* atardecer */
+.sec--atardecer{--g:var(--g2)}
+.row{display:grid}
+.row__inst{margin-top:.5rem}
+.band{margin:2.75rem calc(-1 * var(--gut)) 0}
+.band img{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover}
+.band figcaption{padding:0 var(--gut)}
+.ladder{list-style:none;margin:2.5rem 0 0;padding:0;display:grid;gap:0}
+.ladder li{position:relative;display:grid;grid-template-columns:4.25rem 1fr;gap:.25rem 1rem;padding:0 0 1.6rem 1.35rem}
+.ladder li::before{content:"";position:absolute;left:0;top:.45rem;width:.55rem;height:.55rem;border-radius:50%;background:var(--ink)}
+.ladder li::after{content:"";position:absolute;left:.25rem;top:1.15rem;bottom:0;width:1px;background:var(--rule-2)}
+.ladder li:last-child::after{display:none}
+.ladder .k{font-size:1.0625rem}
+.ladder strong{display:block;font:600 1rem/1.35 var(--f-t);color:var(--ink)}
+.ladder span.d{grid-column:2;color:var(--ink-2);font-size:.9375rem;line-height:1.5}
+.note{margin-top:.5rem;font:500 .875rem/1.5 var(--f-t);color:var(--ink-3);max-width:36em}
+
+/* telescopios */
+.sec--telescopios{--g:var(--g3)}
+.moon{position:relative;width:min(20rem,76vw);aspect-ratio:1;margin:0 auto}
+.moon img{width:100%;height:100%;border-radius:50%}
+.moon svg{position:absolute;inset:0;width:100%;height:100%}
+.moon .shade{fill:var(--g3);fill-opacity:1}
+.moon .limb{fill:none;stroke:rgba(238,242,251,.26);stroke-width:1;vector-effect:non-scaling-stroke}
+.row--moon .moon{margin:.75rem auto 2rem}
+.moondata{display:grid;gap:.4rem;text-align:center}
+.moondata .ph{font:300 2.5rem/1 var(--f-d)}
+.moondata .k{font-size:1.0625rem}
+.moonsay{margin-top:1.25rem}
+.facts{list-style:none;margin:2.75rem 0 0;padding:0;border-top:1px solid var(--rule)}
+.facts li{display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:baseline;padding:1rem 0;border-bottom:1px solid var(--rule);color:var(--ink-2)}
+.facts li::before{content:"";width:.45rem;height:.45rem;border-radius:50%;background:var(--ink);transform:translateY(-.1rem)}
+.facts strong{color:var(--ink);font-weight:600}
+
+/* salidas */
+.sec--salidas{--g:var(--g4)}
+.tours{list-style:none;margin:2rem 0 0;padding:0;border-top:1px solid var(--rule)}
+.tour{display:grid;gap:.75rem;padding:1.6rem 0 1.75rem;border-bottom:1px solid var(--rule)}
+.tour__name{font:300 2.4rem/.95 var(--f-d);font-size:clamp(2.1rem,9vw,3.4rem);margin:0;color:var(--ink)}
+.tour__meta{color:var(--ink-2);font-size:.9688rem;line-height:1.55}
+.tour__next{font:500 .9375rem/1.4 var(--f-t);color:var(--ink-2)}
+.tour__foot{display:flex;align-items:end;justify-content:space-between;gap:1rem;margin-top:.25rem}
+.tour__price{font:300 2.6rem/1 var(--f-d)}
+.tour__price small{display:block;font:500 .8125rem/1.3 var(--f-t);color:var(--ink-3);margin-top:.3rem}
+.btn--line{background:transparent;color:var(--ink);border:1px solid var(--ink-2);min-height:2.75rem;font-size:.9375rem}
+.btn--line:hover{background:var(--ink);color:var(--land)}
+
+/* qué llevar */
+.sec--llevar{--g:var(--g5)}
+.temp{margin-top:2rem;padding:1.4rem 0 1.5rem;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);display:grid;gap:.9rem}
+.temp label{font:600 .9375rem/1.3 var(--f-t);color:var(--ink)}
+.temp output{display:grid;gap:.15rem;font:300 2.3rem/1.05 var(--f-d);color:var(--ink)}
+.temp output .k{font:300 1em/1 var(--f-d)}
+.temp .tl>span:first-child{font:500 .9375rem/1 var(--f-t);color:var(--ink-2);display:inline-block;min-width:6.5rem}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:2.75rem;background:transparent;cursor:pointer;margin:0}
+input[type=range]::-webkit-slider-runnable-track{height:1px;background:var(--ink-2)}
+input[type=range]::-moz-range-track{height:1px;background:var(--ink-2)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:1.4rem;height:1.4rem;border-radius:50%;background:var(--ink);margin-top:-.7rem;border:0}
+input[type=range]::-moz-range-thumb{width:1.4rem;height:1.4rem;border-radius:50%;background:var(--ink);border:0}
+.list{list-style:none;margin:2rem 0 0;padding:0;display:grid;gap:1rem}
+.list li{display:grid;grid-template-columns:auto 1fr;gap:.9rem;align-items:baseline;color:var(--ink-2)}
+.list li::before{content:"";width:.45rem;height:.45rem;border-radius:50%;background:var(--ink);transform:translateY(-.1rem)}
+.list strong{color:var(--ink);font-weight:600}
+
+/* preguntas */
+.sec--preguntas{--g:var(--g6)}
+.faq{margin-top:2rem;border-top:1px solid var(--rule);padding-top:.35rem}
+.faq details{border-bottom:1px solid var(--rule)}
+.faq summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:center;min-height:3.5rem;padding:.9rem 0;font:600 1.0625rem/1.35 var(--f-t);color:var(--ink)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";width:1rem;height:1rem;background:linear-gradient(var(--ink),var(--ink)) center/100% 1.5px no-repeat,linear-gradient(var(--ink),var(--ink)) center/1.5px 100% no-repeat;transition:transform .2s var(--ease)}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 0 1.25rem;color:var(--ink-2);max-width:38em}
+
+/* reservar */
+.sec--reservar{--g:var(--land);padding-bottom:5rem}
+.book{display:grid;gap:1.4rem;margin-top:2rem}
+.tourpick{border:0;margin:0;padding:0;display:grid;gap:0;border-top:1px solid var(--rule)}
+.tourpick legend{padding:0;margin-bottom:.8rem}
+.tourpick label{display:grid;grid-template-columns:auto 1fr auto;gap:.9rem;align-items:center;min-height:3.5rem;padding:.6rem 0;border-bottom:1px solid var(--rule);cursor:pointer}
+.tourpick input{appearance:none;-webkit-appearance:none;margin:0;width:1.15rem;height:1.15rem;border-radius:50%;border:1.5px solid var(--ink-2);display:grid;place-items:center}
+.tourpick input::after{content:"";width:.55rem;height:.55rem;border-radius:50%;background:var(--ink);transform:scale(0);transition:transform .15s var(--ease)}
+.tourpick input:checked{border-color:var(--ink)}
+.tourpick input:checked::after{transform:scale(1)}
+.tourpick .tn{font:600 1rem/1.3 var(--f-t)}
+.tourpick .tp{font:500 .9375rem/1.2 var(--f-t);color:var(--ink-2);font-variant-numeric:tabular-nums}
+.book__grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem .5rem}
+.book__grid .wide{grid-column:1/-1}
+.msg{margin:0;padding:1.1rem 1.1rem 1.2rem;background:#0b1430;border:1px solid var(--rule-2);font:400 1rem/1.55 var(--f-t);color:var(--ink);white-space:pre-wrap;overflow-wrap:anywhere}
+.total{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;font:500 .9375rem/1.3 var(--f-t);color:var(--ink-2)}
+.total b{font:300 2.3rem/1 var(--f-d);color:var(--ink)}
+.warn{color:var(--ink);font-weight:600}
+
+/* footer */
+.foot{padding:3.5rem var(--gut) 2.5rem;background:var(--land);border-top:1px solid var(--rule)}
+.foot__in{max-width:70rem;margin:0 auto;display:grid;gap:1.75rem}
+.foot .foot__name{font:300 3rem/.9 var(--f-d);color:var(--ink)}
+.foot p{color:var(--ink-2);font-size:.9375rem}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:.5rem}
+.foot a{color:var(--ink);text-underline-offset:.2em}
+.foot .fict{color:var(--ink);font-weight:600}
+.foot .cred{font-size:.8125rem;color:var(--ink-3);max-width:46em}
+
+/* ── wide: the rail becomes the instrument ── */
+@media (min-width:64rem){
+  :root{--gut:clamp(2rem,4vw,4.5rem)}
+  html{scroll-padding-top:1rem}
+  .sky__plate{font-size:.8125rem;padding:.7rem 1.1rem .75rem var(--gut)}
+  .sky__brand{display:none}
+  .rail{position:fixed;inset:0 auto 0 0;width:var(--rail);height:auto;flex-direction:column;align-items:stretch;gap:0;padding:1.75rem 1.4rem 1.25rem;border-bottom:0;border-right:1px solid var(--rule);overflow-y:auto}
+  .rail__home{display:block;width:auto;height:auto;margin-bottom:.15rem}
+  .rail__home svg{display:none}
+  .rail__name{display:block;font:300 2.5rem/.9 var(--f-d);color:var(--ink)}
+  .rail__sub{display:block;margin-top:.55rem;font:500 .8125rem/1.4 var(--f-t);color:var(--ink-2)}
+  .rail__night{display:block;margin:2rem 0 .9rem;font:500 .875rem/1.3 var(--f-t);color:var(--ink-2)}
+  .rail__night b{color:var(--ink);font-weight:600}
+  .rail__nav{display:block;overflow:visible;flex:none;margin-right:0;scroll-snap-type:none;-webkit-mask:none;mask:none}
+  .rail__list{display:block;padding:0;white-space:normal}
+  .gauge{position:relative;height:clamp(15rem,40vh,22rem);margin-bottom:1.75rem}
+  .gauge .gauge__line{display:block;position:absolute;left:.3rem;right:auto;top:2%;bottom:2%;width:1px;transform:none;background:var(--rule-2)}
+  .gauge__expo{position:absolute;left:0;width:1px;background:var(--ink);top:calc((var(--a,56%) - 2%) / .96);height:calc((var(--b,98%) - var(--a,56%)) / .96 * var(--expo,0))}
+  .gauge li{position:absolute;left:0;right:0;top:var(--pos);transform:translateY(-50%)}
+  .gauge li:nth-child(2){--pos:2%}.gauge li:nth-child(3){--pos:34%}.gauge li:nth-child(4){--pos:56%}.gauge li:nth-child(5){--pos:98%}
+  .gauge a,.gauge .gauge__rung--info>span{display:grid;grid-template-columns:.65rem 3rem 1fr;align-items:center;gap:.6rem;min-height:2.25rem;padding:0;border:0;font:600 .875rem/1.2 var(--f-t)}
+  .gauge a::before,.gauge .gauge__rung--info>span::before{content:"";width:.65rem;height:.65rem;border-radius:50%;background:var(--ink);box-shadow:0 0 0 3px var(--land)}
+  .gauge__rung--info{display:block}
+  .gauge__rung--info>span{color:var(--ink-3)}
+  .gauge__rung--info>span::before{background:var(--land)!important;border:1px solid var(--ink-3)}
+  .gauge a[aria-current="location"]{color:var(--ink)}
+  .gauge a[aria-current="location"] .lb{text-decoration:underline;text-underline-offset:.3em}
+  .gauge__now{position:absolute;left:0;right:0;top:var(--now);transform:translateY(-50%);font:600 .6875rem/1 var(--f-t);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);display:none;align-items:center;gap:.55rem;padding-left:.05rem;pointer-events:none}
+  .gauge__now.is-on{display:flex}
+  .gauge__now::before{content:"";width:.55rem;height:.55rem;border-radius:50%;border:1.5px solid var(--gold);background:var(--land)}
+  .rail__more li a{min-height:2.25rem;padding:0;font-weight:600}
+  .rail__more .chip-book{display:none}
+  .rail .rail__book{display:flex;margin-top:1.5rem;min-height:3rem;font-size:.9375rem}
+  .lang{margin-top:auto;align-self:flex-start}
+  .rail__expo{display:none}
+  main,.foot{margin-left:var(--rail)}
+  .hero{min-height:100svh;grid-template-rows:minmax(24rem,1fr) auto}
+  .land{margin-top:-4.5rem;display:grid;gap:1.25rem;padding:0 var(--gut) 2rem}
+  h1{font-size:clamp(4.5rem,6vw,6rem);margin-bottom:.9rem}
+  .composer{margin-top:0;grid-template-columns:minmax(13rem,2fr) minmax(14rem,1.6fr) minmax(5.75rem,.8fr) minmax(6.75rem,.8fr)}
+  .composer .f-date,.composer .f-zone{grid-column:auto}
+  .sec{padding:7rem 3.5rem 6.5rem}
+  .map,.photo,.band{margin-left:0;margin-right:0}
+  .band figcaption{padding:0}
+  .band img{aspect-ratio:21/9;object-position:50% 62%}
+  .map figcaption{padding:0}
+  .photo figcaption{padding:0}
+  .moondata{text-align:left}
+  .tour{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) auto;align-items:end;gap:2rem}
+  .tour__foot{flex-direction:column;align-items:flex-end;justify-content:flex-end;margin-top:0;text-align:right}
+  .book{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2.5rem;align-items:start}
+  .foot__in{grid-template-columns:1.2fr 1fr 1fr}
+}
+@container hero (min-width: 72rem){
+  .land{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:1.5rem clamp(2rem,4vw,4rem);align-items:end}
+  .composer{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .composer .f-date,.composer .f-zone{grid-column:1/-1}
+}
+@container sec (min-width: 48rem){
+  .row{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"head inst" "text inst";column-gap:clamp(2.5rem,5vw,5rem);align-items:start}
+  .row__head{grid-area:head}.row__text{grid-area:text}.row__inst{grid-area:inst;margin-top:0}
+  .row--moon .row__inst{align-self:start;margin:.4rem auto 0;width:min(22rem,100%)}
+  .row--moon .moondata{text-align:left}
+}
+@container sec (min-width: 52rem){
+  .climb{grid-template-columns:minmax(17rem,.8fr) minmax(0,1.2fr);align-items:end;gap:clamp(2.5rem,5vw,5rem)}
+  .two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(2.5rem,5vw,5rem);align-items:start}
+  .two .map{margin-left:0;margin-right:0}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;scroll-behavior:auto!important}
+}
+</style>
+<script src="app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main" data-i18n="skip">Saltar al contenido</a>
+
+<header class="rail" id="top">
+  <a class="rail__home" href="#main" aria-label="Cielo de Ucanca, inicio" data-i18n-attr="aria-label:homeLabel">
+    <svg viewBox="0 0 28 28" aria-hidden="true"><g fill="none" stroke="#eef2fb" stroke-width="1.6"><path d="M7 14a7 7 0 0 1 14 0" opacity=".55"/><path d="M2.5 14a11.5 11.5 0 0 1 23 0" opacity=".3"/></g><path d="M3 27l11-9 11 9z" fill="#5d6c95"/><circle cx="14" cy="14" r="2.2" fill="#f3cf86"/></svg>
+    <span class="rail__name">Cielo de Ucanca</span>
+    <span class="rail__sub" data-i18n="railSub">Estrellas en el Teide · grupos de 14</span>
+  </a>
+  <p class="rail__night"><span data-i18n="railNight">La noche del</span> <b data-v="dateShort">–</b></p>
+  <nav class="rail__nav" aria-label="Secciones" data-i18n-attr="aria-label:navLabel">
+    <ol class="rail__list gauge">
+      <li class="gauge__line" aria-hidden="true"><span class="gauge__expo"></span></li>
+      <li><a href="#subida"><span class="t" data-k="pickup">–:–</span> <span class="lb" data-i18n="navSubida">Recogida</span></a></li>
+      <li><a href="#atardecer"><span class="t" data-k="sunset">–:–</span> <span class="lb" data-i18n="navAtardecer">Atardecer</span></a></li>
+      <li><a href="#telescopios"><span class="t" data-k="astro">–:–</span> <span class="lb" data-i18n="navTelescopios">Telescopios</span></a></li>
+      <li class="gauge__rung--info"><span><span class="t" data-k="ret">–:–</span> <span class="lb" data-i18n="navRegreso">Regreso al hotel</span></span></li>
+      <li class="gauge__now" aria-hidden="true"><span data-i18n="now">ahora</span> <span class="k" data-v="nowTime"></span></li>
+    </ol>
+    <ul class="rail__list rail__more">
+      <li><a href="#salidas" data-i18n="navSalidas">Salidas y precios</a></li>
+      <li><a href="#llevar" data-i18n="navLlevar">Qué llevar</a></li>
+      <li><a href="#preguntas" data-i18n="navPreguntas">Preguntas</a></li>
+      <li><a href="#reservar" class="chip-book" data-i18n="navReservar">Reservar</a></li>
+    </ul>
+  </nav>
+  <a class="btn rail__book" href="#reservar"><span data-i18n="navReservar">Reservar</span><svg class="arr" viewBox="0 0 26 12" aria-hidden="true"><path d="M0 6h24M19 1l5 5-5 5"/></svg></a>
+  <div class="lang" role="group" aria-label="Idioma / Language">
+    <button type="button" data-lang="es" aria-pressed="true" aria-label="Español">ES</button>
+    <button type="button" data-lang="en" aria-pressed="false" aria-label="English">EN</button>
+  </div>
+  <span class="rail__expo" aria-hidden="true"></span>
+</header>
+
+<main id="main">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="sky" id="sky">
+      <picture>
+        <source media="(min-width: 64rem)" srcset="assets/img/cielo-norte-1440.webp" width="1440" height="860">
+        <img class="sky__fallback" src="assets/img/cielo-norte-800.webp" width="800" height="820" alt="Cielo del norte calculado sobre el Teide desde el Llano de Ucanca: las estrellas trazan círculos alrededor de la Estrella Polar, encima de la cumbre." data-i18n-attr="alt:skyAlt" loading="lazy" decoding="async">
+      </picture>
+      <canvas class="sky__canvas" id="sky-canvas" role="img" aria-label="Cielo del norte calculado sobre el Teide desde el Llano de Ucanca: las estrellas trazan círculos alrededor de la Estrella Polar, encima de la cumbre." data-i18n-attr="aria-label:skyAlt"></canvas>
+      <p class="sky__plate"><strong class="sky__brand">Cielo de Ucanca</strong><span class="sky__cap"><span data-i18n="plate">Exposición calculada mirando al norte</span><span class="needs-js">, <span class="k" data-k="astro">–:–</span>–<span class="k" data-k="ret">–:–</span></span></span></p>
+    </div>
+    <div class="land">
+      <div>
+        <h1 id="hero-title" data-v="h1">Esta noche, el cielo gira sobre el Teide.</h1>
+        <p class="figs" aria-live="polite"><span class="needs-js"><b class="when" data-v="figWhen"></b> <span class="sep" aria-hidden="true">·</span> </span><span><span data-i18n="figSunset">Puesta de sol</span> <b data-k="sunset">–:–</b></span> <span class="sep" aria-hidden="true">·</span> <span><span data-i18n="figDark">Noche cerrada</span> <b data-k="astro">–:–</b></span> <span class="sep" aria-hidden="true">·</span> <span><span data-i18n="figMoon">Luna</span> <b data-k="illum">–</b></span></p>
+        <noscript><p class="fine">Las horas se calculan en su navegador: active JavaScript para verlas.</p></noscript>
+      </div>
+      <form class="composer" id="express" aria-label="Reserva rápida" data-i18n-attr="aria-label:expressLabel">
+        <p class="composer__tour num" data-i18n="kicker">Atardecer y estrellas · 69 € · niños 45 €</p>
+        <div class="field f-date"><label for="x-date" data-i18n="lDate">Fecha</label><select id="x-date" name="date"><option value="" data-i18n="dateAsk">La que nos diga</option></select></div>
+        <div class="field f-zone"><label for="x-zone" data-i18n="lZone">Recogida</label><select id="x-zone" name="zone"><option value="costa-adeje">Costa Adeje</option><option value="americas">Playa de las Américas</option><option value="cristianos">Los Cristianos</option><option value="golf-sur">Golf del Sur</option></select></div>
+        <div class="field f-ad"><label for="x-adults" data-i18n="lAdults">Adultos</label><select id="x-adults" name="adults"><option value="1">1</option><option value="2" selected>2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option></select></div>
+        <div class="field f-kid"><label for="x-kids" data-i18n="lKids">Niños 8–12</label><select id="x-kids" name="kids"><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option></select></div>
+        <a class="btn" id="x-go" href="https://wa.me/34600000000?text=Hola%2C%20Cielo%20de%20Ucanca.%20Quiero%20reservar%20%C2%ABAtardecer%20y%20estrellas%C2%BB." data-wa><span data-i18n="ctaBook">Reservar por WhatsApp</span><svg class="arr" viewBox="0 0 26 12" aria-hidden="true"><path d="M0 6h24M19 1l5 5-5 5"/></svg></a>
+      </form>
+      <p class="fine" data-i18n="fineHero">Precios de ejemplo · grupos de 14 como máximo · no apta para menores de 8 años</p>
+    </div>
+  </section>
+
+  <section class="sec sec--subida" id="subida" aria-labelledby="t-subida">
+    <div class="sec__in">
+      <div class="two">
+        <div>
+          <h2 id="t-subida"><span class="k ht" data-k="pickup"></span> <span data-i18n="h2Subida">De la playa a 2.000 metros.</span></h2>
+          <div class="prose">
+            <p class="lead" data-i18n="subidaLead">Les recogemos unas dos horas antes de la puesta de sol en Costa Adeje, Playa de las Américas, Los Cristianos o Golf del Sur.</p>
+            <p data-i18n="subidaP">La hora exacta de su zona se la confirmamos por WhatsApp. Luego, algo más de una hora de carretera por el parque nacional hasta el Llano de Ucanca, una llanura dentro de la caldera de Las Cañadas.</p>
+            <p><a class="textlink" href="https://www.google.com/maps/search/?api=1&amp;query=Llano%20de%20Ucanca%2C%20Tenerife" rel="noopener" data-i18n="mapsLink">Abrir el Llano de Ucanca en Google Maps</a></p>
+          </div>
+        </div>
+        <figure class="map" aria-labelledby="map-cap">
+          <div class="map__box">
+          <svg viewBox="0 0 1000 931" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><path class="c c--coast" d="M1136.2 -126.0L912.0 -126.0L908.2 -118.9L899.7 -117.0L898.4 -111.8L903.0 -104.7L892.0 -90.5L882.2 -88.6L875.1 -84.0L861.5 -86.6L855.0 -83.4L851.8 -78.9L849.2 -67.2L844.7 -63.4L841.4 -54.3L823.3 -42.0L815.5 -42.0L811.6 -38.8L791.6 -38.8L787.0 -36.9L773.4 -37.5L769.5 -42.7L761.1 -38.2L745.6 -39.4L730.7 -24.6L724.8 -25.2L710.6 -11.0L700.9 -11.0L691.1 -2.0L678.2 3.2L665.2 -1.3L653.6 11.0L627.0 11.0L621.2 7.7L613.4 7.1L588.8 11.0L579.7 3.9L567.4 8.4L561.6 7.7L549.3 -3.2L542.2 0.6L521.4 -2.6L515.6 4.5L515.6 12.3L507.2 18.1L481.9 11.0L480.6 24.5L467.7 33.0L453.4 33.6L434.6 27.1L426.9 36.2L427.5 39.4L424.3 42.7L423.6 47.8L413.9 47.2L410.7 39.4L407.4 38.8L402.9 42.7L396.4 43.3L378.3 60.1L374.4 61.4L367.9 59.5L364.0 54.9L353.7 53.0L349.1 53.6L342.0 60.1L333.6 54.3L321.3 56.2L305.7 52.4L297.9 56.2L289.5 48.5L278.5 49.1L274.0 46.5L267.5 50.4L237.1 27.1L232.5 16.8L219.6 15.5L206.6 20.7L203.4 26.5L190.4 26.5L175.5 42.0L169.7 44.6L167.1 51.1L159.3 51.1L152.2 54.3L143.1 63.3L130.8 67.9L122.4 67.2L118.5 72.4L108.1 76.3L86.1 76.3L64.7 82.7L51.1 97.0L49.8 108.0L55.0 123.5L62.2 123.5L74.5 131.3L82.2 133.2L89.4 142.9L99.1 148.7L99.1 154.5L105.6 169.4L114.0 178.5L129.5 187.5L127.6 201.8L130.2 208.9L138.6 216.0L147.7 216.6L152.8 228.9L160.0 238.0L165.8 240.6L163.2 252.2L170.3 268.4L176.8 273.0L187.2 273.0L192.4 278.1L192.4 285.9L202.1 291.1L208.6 300.1L209.2 316.3L202.1 328.6L202.1 335.7L196.2 342.9L196.2 346.1L203.4 357.1L204.0 364.9L202.1 368.8L208.6 373.9L207.9 382.4L214.4 392.1L215.0 412.8L220.2 423.2L229.3 429.0L232.5 443.9L238.4 449.1L246.8 469.8L249.4 471.7L257.8 471.1L272.0 489.9L271.4 508.0L275.3 519.7L283.7 530.7L285.6 540.4L291.5 546.9L294.1 556.0L304.4 564.4L309.6 579.3L318.0 587.1L323.2 598.7L331.0 605.2L334.9 613.7L341.3 614.3L343.3 620.1L351.1 620.8L355.0 624.0L361.4 639.6L372.4 646.1L380.2 656.4L400.3 670.7L403.5 677.8L403.5 692.7L409.4 701.8L410.7 717.4L404.8 727.8L403.5 738.8L416.5 745.3L424.9 744.0L433.3 751.1L441.1 749.2L450.2 755.6L453.4 766.0L451.5 781.6L454.7 790.0L463.1 801.1L459.9 812.1L461.2 823.8L459.2 830.9L463.1 840.0L469.0 846.5L484.5 856.2L497.5 859.4L512.4 859.4L525.3 846.5L533.1 846.5L537.6 838.0L548.0 834.1L554.5 842.6L564.8 839.3L572.6 847.8L577.8 848.4L585.6 845.2L589.4 838.0L599.2 836.7L601.1 829.6L613.4 816.0L625.1 815.3L648.4 806.9L667.8 794.6L677.5 797.2L686.0 793.3L702.2 793.3L713.2 788.7L722.9 792.6L729.4 792.6L740.4 784.8L749.4 790.0L754.0 802.4L762.4 803.0L773.4 788.7L771.5 784.2L766.3 780.3L767.6 771.2L771.5 766.0L778.0 762.1L784.4 762.1L789.0 749.2L797.4 749.2L807.1 742.0L810.3 731.0L818.8 728.4L823.3 720.0L835.6 710.9L835.0 703.8L842.7 692.1L863.5 684.3L867.3 665.5L879.7 656.4L886.1 644.8L900.4 633.1L901.0 626.0L919.8 612.4L918.5 600.7L941.2 584.5L945.7 578.7L945.7 570.9L948.3 567.0L958.0 566.3L957.4 558.6L964.5 550.8L972.9 552.7L987.8 539.8L988.5 532.0L982.0 528.1L977.5 528.1L972.9 522.9L972.9 518.4L978.1 506.1L987.8 504.1L990.4 498.9L990.4 495.1L982.7 483.4L988.5 469.1L985.9 454.2L995.6 441.9L997.5 436.1L993.0 419.9L1013.7 383.7L1020.2 376.5L1025.4 353.2L1034.5 340.9L1034.5 334.4L1043.5 321.5L1049.4 305.3L1062.3 289.1L1070.1 264.5L1069.5 245.8L1076.6 238.7L1081.1 229.6L1090.8 223.1L1096.7 214.1L1104.4 210.2L1109.0 203.7L1114.1 186.9L1113.5 170.7L1107.7 157.8L1108.3 143.5L1100.5 126.1L1096.0 94.4L1105.7 80.8L1106.4 73.0L1110.9 65.9L1113.5 45.2L1125.2 35.5L1136.2 31.0Z"/><path class="c" d="M1136.2 -126.0L958.0 -126.0L956.1 -119.6L942.5 -108.6L930.8 -86.6L930.2 -80.2L926.3 -73.1L914.0 -60.1L912.0 -48.5L906.2 -44.6L898.4 -43.3L894.6 -38.8L889.4 -38.2L886.1 -32.3L877.7 -34.3L873.2 -31.7L862.8 -31.7L846.6 -18.8L842.1 -9.1L843.4 -0.7L849.9 8.4L846.0 20.7L820.7 31.7L785.1 52.4L753.3 56.9L709.3 55.6L697.0 60.8L687.9 60.8L683.4 65.9L678.8 58.2L670.4 54.9L666.5 45.9L656.8 37.5L652.9 31.0L628.3 29.7L617.3 34.9L616.7 46.5L614.7 48.5L604.3 38.8L592.0 41.4L581.0 53.6L572.6 54.9L568.7 59.5L562.2 57.5L553.8 58.8L548.6 56.2L543.5 62.1L534.4 61.4L532.4 67.9L524.7 72.4L520.1 71.1L506.5 73.7L503.9 77.6L492.9 83.4L477.4 82.7L464.4 93.7L453.4 98.3L441.1 96.3L417.1 81.5L359.5 78.9L354.3 80.8L343.9 80.2L338.8 82.7L305.1 83.4L296.0 78.2L292.1 81.5L286.3 80.8L286.3 87.9L281.8 98.9L274.0 98.3L271.4 102.8L267.5 100.9L261.7 106.7L259.1 113.1L255.8 110.6L253.3 111.2L248.7 121.5L240.9 104.1L235.8 104.7L230.6 113.8L228.0 112.5L226.0 102.1L229.3 98.3L229.3 91.2L224.7 87.9L207.3 94.4L205.3 99.6L207.3 110.6L197.5 117.7L185.9 102.8L176.2 100.9L173.6 94.4L160.6 95.7L158.0 104.7L153.5 107.3L141.8 102.1L134.7 84.7L127.6 85.3L120.5 82.1L110.1 86.0L106.2 89.9L105.6 93.1L108.1 97.0L101.0 101.5L99.7 111.2L85.5 111.2L84.2 120.9L93.9 126.7L97.8 137.7L110.7 144.8L110.1 152.0L114.0 159.1L119.8 159.7L119.8 166.8L132.1 159.7L134.7 160.4L132.8 167.5L134.1 170.7L148.3 166.2L152.2 162.3L164.5 164.2L167.1 175.2L159.3 179.8L154.8 186.2L139.9 192.1L137.9 195.9L138.6 199.8L148.3 201.8L162.6 192.7L169.7 194.7L169.0 200.5L173.6 200.5L174.9 203.7L172.3 208.2L160.6 216.0L158.7 221.8L162.6 227.7L171.6 219.9L178.8 221.8L182.0 217.9L185.9 220.5L191.7 218.6L199.5 205.6L201.4 210.8L206.6 211.5L203.4 219.2L177.5 239.3L173.6 246.4L176.2 251.6L175.5 258.1L180.1 258.1L193.7 243.8L202.7 243.8L212.4 239.9L215.0 241.2L202.7 255.5L201.4 265.8L206.0 265.8L213.7 260.0L223.5 260.0L228.0 263.9L228.0 266.5L212.4 284.6L223.5 295.6L219.6 302.1L220.2 308.6L222.8 309.2L225.4 306.0L226.0 295.0L238.4 289.1L244.2 296.9L244.2 309.2L247.4 311.8L245.5 320.2L247.4 329.3L261.0 340.9L269.4 359.1L278.5 362.9L289.5 379.8L306.4 396.0L314.1 413.4L328.4 424.5L332.9 441.9L340.7 445.8L340.1 455.5L347.2 469.1L349.1 489.2L360.1 498.3L358.8 506.7L366.0 532.6L373.1 535.2L389.9 556.6L405.5 564.4L412.0 561.8L414.5 568.9L419.1 566.3L431.4 574.8L442.4 575.4L448.2 569.6L450.8 570.2L448.2 578.7L441.8 585.8L446.9 584.5L452.1 591.0L460.5 587.1L457.3 596.8L457.3 606.5L472.8 613.7L465.1 622.1L465.1 625.3L458.6 635.0L460.5 638.3L459.9 644.8L469.0 653.2L472.2 659.7L485.2 657.7L494.2 665.5L500.1 665.5L511.7 660.3L519.5 661.6L525.3 665.5L547.3 642.2L562.9 642.2L568.1 648.0L574.5 650.6L571.3 664.2L583.6 688.9L587.5 690.8L588.2 681.1L585.6 674.6L588.8 670.7L601.8 672.6L606.9 669.4L610.8 670.1L614.1 666.8L619.2 667.5L629.6 659.7L641.3 657.1L658.1 642.2L662.0 644.1L670.4 642.2L682.7 651.2L684.0 659.0L687.9 665.5L695.7 664.2L698.3 661.0L695.7 644.8L704.8 637.0L715.1 613.7L722.2 611.1L725.5 601.3L732.6 596.1L735.2 591.0L739.7 589.0L744.9 593.6L752.7 591.0L756.6 579.9L765.0 580.6L765.0 570.2L772.8 560.5L779.9 559.9L783.1 557.3L782.5 548.8L784.4 546.9L791.6 547.5L794.8 541.7L802.6 545.0L806.5 544.3L810.3 539.8L810.3 530.7L816.2 530.7L820.7 524.9L825.2 522.9L834.3 523.6L840.8 521.0L845.3 515.8L846.6 508.0L854.4 508.0L848.6 491.2L852.4 487.3L853.1 480.8L867.3 473.7L867.3 465.9L859.6 461.4L862.8 453.0L869.3 451.0L871.2 445.2L876.4 440.0L890.7 431.6L895.8 423.8L906.2 418.0L905.6 413.4L912.7 403.7L913.3 397.3L919.2 394.0L926.9 383.0L930.8 382.4L938.6 375.2L940.5 363.6L954.1 350.6L966.5 333.2L965.2 322.1L973.6 316.3L975.5 303.4L986.5 291.7L995.0 291.1L997.5 284.0L1014.4 271.7L1018.9 257.4L1023.5 252.9L1024.8 237.4L1028.0 232.8L1017.6 227.0L1005.3 227.7L996.9 224.4L979.4 207.6L983.3 203.1L980.7 197.9L985.2 192.7L984.6 172.7L993.0 159.1L992.4 139.7L996.9 126.7L995.6 120.3L1007.9 106.7L1013.7 104.1L1031.9 87.3L1033.8 78.9L1039.0 73.7L1041.6 65.9L1063.6 61.4L1065.6 44.6L1053.9 36.2L1055.8 33.0L1061.7 30.4L1064.9 25.8L1070.7 25.8L1074.0 22.6L1081.8 23.3L1090.8 11.0L1105.7 7.1L1107.7 5.2L1107.0 -1.3L1103.8 -5.8L1105.7 -10.4L1116.1 -14.9L1121.9 -21.3L1130.3 -22.0L1136.2 -25.2Z"/><path class="c" d="M488.4 589.7L485.2 589.0L479.3 592.9L481.9 594.9L487.1 594.2Z"/><path class="c" d="M1085.6 -110.5L1071.4 -119.6L1066.2 -112.5L1061.7 -111.2L1055.8 -112.5L1043.5 -107.3L1030.6 -109.2L1015.7 -94.4L1000.8 -85.3L997.5 -78.9L989.1 -80.8L985.9 -76.3L982.0 -78.2L978.8 -76.3L968.4 -51.7L961.3 -41.4L952.2 -35.6L947.7 -20.7L942.5 -23.3L933.4 -20.7L931.5 -11.7L925.0 -12.3L919.8 -9.7L913.3 -12.9L903.0 -5.2L890.7 -6.5L885.5 -2.6L873.2 -0.0L869.3 7.7L862.8 12.9L862.2 16.8L875.8 47.2L868.6 53.6L868.0 62.1L856.3 73.7L839.5 73.7L824.6 80.2L787.7 86.0L782.5 89.2L758.5 95.0L741.7 102.8L733.3 102.8L724.8 108.0L709.9 110.6L697.6 107.3L689.2 108.6L685.3 104.7L684.0 94.4L667.8 82.7L668.5 71.1L657.5 67.2L645.2 75.0L641.9 80.2L630.3 85.3L624.4 90.5L620.5 89.2L612.8 93.7L602.4 91.2L584.3 97.6L573.3 107.3L566.1 109.3L562.9 113.8L549.3 120.9L545.4 129.3L531.1 131.9L525.3 130.6L519.5 135.8L509.8 136.4L498.8 142.2L474.1 141.0L459.9 142.9L456.7 139.0L450.2 141.0L437.9 140.3L423.6 133.8L404.2 131.3L399.6 127.4L399.0 122.2L395.1 120.9L389.3 127.4L380.2 131.9L371.8 132.5L362.7 139.0L337.5 137.1L325.2 142.2L309.6 141.0L299.9 145.5L288.2 144.2L277.9 153.9L270.1 157.1L265.6 151.3L263.0 151.3L258.4 155.8L258.4 159.7L254.5 164.9L246.8 166.8L243.5 170.1L237.1 166.2L238.4 162.3L236.4 155.8L229.9 151.3L218.3 159.1L224.1 166.8L222.2 174.6L207.9 181.1L211.8 184.9L217.0 185.6L226.0 191.4L222.8 199.2L235.1 209.5L235.1 214.7L240.3 221.2L238.4 227.7L239.6 237.4L244.2 236.7L248.1 230.9L247.4 223.8L242.2 216.6L247.4 205.6L258.4 199.2L263.0 199.8L274.6 192.7L276.6 194.0L277.9 202.4L273.3 211.5L272.7 219.2L276.6 237.4L281.8 245.1L281.8 252.2L271.4 262.6L266.9 273.0L271.4 269.1L280.5 271.0L283.7 276.2L283.0 286.5L285.6 295.0L292.8 299.5L299.2 311.1L315.4 321.5L315.4 325.4L325.8 333.8L327.7 344.2L340.1 357.8L365.3 380.4L377.6 383.7L371.1 393.4L376.3 397.3L376.3 401.1L380.2 407.0L379.6 414.7L386.0 418.0L387.3 425.7L384.8 429.0L385.4 432.9L392.5 435.5L389.9 448.4L394.5 452.3L395.1 464.0L400.9 475.6L415.2 479.5L410.0 485.3L413.9 494.4L413.9 504.1L417.8 507.4L424.9 508.7L426.9 522.3L434.0 525.5L434.0 531.3L442.4 539.1L441.1 547.5L453.4 550.8L459.9 556.6L468.3 552.1L472.2 556.0L474.8 550.8L478.0 549.5L480.6 554.7L478.7 567.0L485.2 572.8L485.8 580.6L490.3 582.5L494.2 576.7L498.8 580.6L503.3 581.2L511.1 591.0L536.3 607.8L577.8 605.2L588.2 601.3L593.3 602.6L612.1 591.6L618.6 590.3L623.8 581.2L624.4 574.1L632.8 574.1L638.0 568.3L653.6 567.6L660.1 562.4L665.2 565.0L667.8 563.1L667.2 557.3L674.3 551.4L678.8 551.4L689.2 546.2L692.4 539.8L696.3 539.8L706.7 530.7L715.1 528.8L718.4 524.9L719.0 517.7L731.3 513.2L733.3 508.7L740.4 504.1L737.8 486.0L754.0 489.2L761.1 488.6L769.5 478.2L769.5 465.3L779.9 458.8L787.7 441.9L793.5 440.0L794.1 432.9L798.0 429.6L804.5 431.6L811.0 429.0L810.3 414.1L828.5 418.6L837.5 409.6L843.4 409.6L849.2 404.4L851.2 397.9L856.3 394.0L857.6 388.2L862.8 383.0L862.2 368.1L869.3 366.8L886.8 348.7L888.1 342.2L898.4 330.6L901.0 322.8L905.6 320.2L908.8 310.5L917.2 301.4L923.7 285.9L930.2 285.9L938.6 271.7L949.0 269.7L952.2 265.2L960.0 261.9L971.6 245.1L971.6 238.7L980.1 232.2L980.1 228.3L966.5 219.9L957.4 219.9L952.2 215.4L941.8 212.1L940.5 208.2L945.1 201.8L936.7 196.6L938.0 194.0L945.7 190.8L950.3 183.0L947.0 179.8L947.7 174.6L945.1 168.8L949.6 162.3L949.6 148.1L957.4 133.8L956.7 128.7L952.9 125.4L956.1 118.3L951.6 115.1L950.9 111.8L955.4 106.0L961.9 103.4L963.9 91.8L975.5 83.4L976.8 77.6L985.2 72.4L991.7 61.4L999.5 54.9L1000.8 46.5L1003.4 43.9L1015.0 43.3L1021.5 45.2L1027.3 39.4L1036.4 43.9L1026.7 25.8L1029.3 23.3L1036.4 23.9L1037.1 22.0L1029.9 16.1L1028.6 10.3L1023.5 7.1L1023.5 3.2L1029.9 0.6L1051.3 3.2L1064.3 -1.3L1065.6 -12.9L1071.4 -24.6L1070.1 -31.0L1075.3 -34.9L1075.9 -40.7L1088.2 -52.4L1086.3 -64.0L1088.2 -71.8L1084.4 -87.9L1090.2 -97.0Z"/><path class="c" d="M362.7 223.8L362.1 228.9L366.6 229.6L367.9 225.1Z"/><path class="c" d="M1009.2 -25.2L999.5 -28.5L989.8 -27.2L987.2 -18.1L987.8 -10.4L980.1 -3.2L972.9 -0.0L965.8 -5.2L961.9 1.3L958.0 1.9L956.7 5.8L941.8 12.9L936.7 22.0L928.2 18.1L922.4 23.9L917.2 25.2L914.0 32.3L907.5 29.1L904.3 41.4L893.3 40.1L892.6 54.9L901.0 60.8L900.4 69.8L890.0 74.3L895.2 84.0L893.9 86.0L884.8 86.6L879.0 96.3L870.6 98.3L868.0 101.5L868.6 109.3L853.1 120.3L840.8 115.1L814.2 121.5L792.9 133.2L783.1 142.9L779.2 150.0L772.1 154.5L759.8 154.5L739.1 148.7L728.7 149.4L717.7 144.8L702.8 144.8L698.3 142.2L691.1 142.2L684.7 135.1L673.0 111.8L669.1 110.6L663.9 115.1L656.2 117.0L645.8 127.4L639.3 125.4L635.4 128.0L635.4 133.2L630.9 137.1L634.1 144.8L630.9 150.0L612.1 157.8L605.0 156.5L590.1 163.6L576.5 174.6L567.4 175.2L560.9 180.4L548.0 184.3L539.6 190.1L527.9 192.1L522.7 187.5L508.5 188.2L498.1 184.9L488.4 190.8L477.4 186.2L465.1 189.5L462.5 193.4L440.5 192.1L434.0 195.3L430.1 192.7L421.0 192.1L399.6 194.0L392.5 206.3L379.6 212.1L377.0 217.3L377.6 223.8L360.1 250.3L361.4 273.0L369.9 287.2L371.1 297.5L382.8 317.6L384.1 324.7L398.4 342.2L408.1 350.0L410.0 356.5L418.4 361.0L419.1 366.8L410.7 368.8L412.0 375.9L419.7 379.1L415.2 386.2L428.8 390.8L419.7 397.9L419.7 400.5L423.6 403.7L421.7 418.0L426.2 420.6L437.2 418.6L430.1 431.6L434.0 442.6L445.0 453.6L452.8 454.2L455.4 463.3L462.5 466.6L468.3 475.0L465.7 484.0L479.3 491.2L495.5 491.2L502.6 498.3L507.8 498.9L515.0 504.1L519.5 502.8L522.1 508.0L532.4 507.4L538.3 504.1L540.2 510.0L544.8 511.9L546.7 517.1L557.1 510.0L568.7 518.4L568.7 524.9L572.6 528.8L575.2 527.5L580.4 511.9L589.4 501.5L594.6 506.1L601.1 503.5L604.3 510.0L608.9 511.9L616.7 510.6L627.0 519.0L654.9 515.8L661.4 511.9L666.5 502.8L676.3 495.1L685.3 476.3L693.1 475.6L699.6 471.7L702.2 467.2L708.6 464.6L709.3 459.4L713.2 454.2L709.9 438.1L720.3 443.2L724.2 438.1L737.8 430.9L737.8 422.5L743.0 421.2L748.2 415.4L755.3 418.6L761.1 417.3L764.3 408.9L763.1 397.3L779.9 387.5L783.8 387.5L790.9 377.8L794.8 379.8L796.1 385.0L805.2 391.4L812.3 392.1L812.9 383.7L820.1 383.7L822.0 381.1L816.8 358.4L823.9 348.7L822.6 342.2L830.4 340.3L833.0 331.9L846.6 323.4L849.9 315.7L860.9 305.3L863.5 298.2L872.5 287.8L871.9 283.3L880.9 261.3L892.6 250.3L896.5 250.3L910.1 234.1L917.2 234.8L935.4 228.3L935.4 222.5L931.5 216.6L915.9 214.1L904.9 202.4L906.9 196.6L912.7 191.4L915.3 181.1L911.4 177.2L920.5 160.4L915.9 152.0L922.4 148.7L926.9 136.4L923.7 131.3L925.6 127.4L921.1 122.2L936.0 115.7L934.1 104.7L937.3 98.9L933.4 93.1L933.4 89.2L942.5 82.7L945.7 75.6L943.8 69.8L952.2 67.2L954.8 59.5L953.5 54.3L960.6 49.8L960.6 42.0L968.4 38.1L966.5 33.0L972.9 30.4L974.2 23.3L978.8 20.0L985.2 20.7L992.4 15.5L998.8 21.3L1005.3 20.7L1011.8 23.9L1014.4 22.6L1013.7 18.7L1004.0 8.4L1003.4 -0.7L1000.8 -4.5L1010.5 -18.8Z"/><path class="c c--2000" d="M885.5 124.8L882.2 123.5L876.4 130.6L866.7 132.5L862.8 138.4L861.5 145.5L857.0 149.4L849.9 148.1L846.6 152.0L836.3 152.6L831.1 172.0L822.6 177.8L808.4 180.4L781.2 180.4L758.5 188.2L742.3 184.3L734.6 188.2L730.0 197.9L720.3 192.7L706.0 195.9L691.8 184.3L689.9 172.0L682.7 164.2L671.7 173.9L660.7 169.4L651.0 171.4L648.4 174.6L649.7 187.5L641.9 195.3L620.5 205.6L617.3 209.5L607.6 206.3L602.4 210.8L592.7 208.9L588.8 202.4L584.9 201.1L556.4 215.4L527.3 236.1L512.4 237.4L498.1 233.5L494.2 238.0L489.7 238.0L480.0 234.1L465.1 245.8L463.8 251.6L458.6 258.7L448.9 265.2L445.6 271.0L445.6 276.8L439.8 284.6L441.1 295.0L446.9 302.1L454.7 324.7L450.8 335.1L459.2 339.6L461.8 348.7L457.3 353.9L459.2 359.1L457.9 364.9L463.8 369.4L454.1 377.2L458.6 388.8L474.1 387.5L477.4 392.1L470.9 405.0L471.6 410.2L478.7 414.1L491.0 411.5L498.1 405.0L503.9 406.3L505.9 410.9L498.1 419.3L503.9 422.5L500.1 427.7L503.9 434.8L503.3 441.9L508.5 443.9L513.0 450.4L525.3 451.7L527.3 454.9L526.6 463.3L529.2 467.2L538.3 469.8L543.5 460.7L549.9 456.8L551.2 467.2L555.1 470.4L559.7 466.6L575.2 464.6L579.7 461.4L582.3 454.9L597.2 452.3L600.5 455.5L599.8 464.6L603.1 465.9L611.5 451.0L615.4 450.4L621.8 453.6L625.1 449.7L631.6 449.1L637.4 444.5L645.8 445.8L652.3 441.9L660.1 442.6L662.6 440.6L664.6 433.5L673.7 432.2L678.8 429.0L679.5 425.1L673.0 414.1L674.3 410.9L691.8 411.5L702.8 398.5L711.9 405.7L715.8 405.7L720.9 394.0L724.8 391.4L720.3 383.0L721.6 373.3L727.4 371.4L730.7 366.8L746.2 364.2L759.8 351.9L765.6 351.9L773.4 337.0L780.5 333.2L786.4 324.1L809.7 306.6L820.1 293.7L831.1 284.6L840.1 270.4L842.1 263.2L869.9 232.2L871.2 226.4L884.8 221.2L866.7 201.1L866.1 192.7L879.7 166.8L895.2 153.9L895.8 142.2L884.8 137.7Z"/><path class="c c--2000" d="M915.3 87.3L913.3 87.3L909.5 97.0L914.6 96.3Z"/><path class="c" d="M641.3 387.5L635.4 388.8L630.9 397.3L631.6 407.0L636.7 412.1L649.7 405.7L652.9 394.7L651.6 392.1Z"/><path class="c" d="M646.5 269.7L619.2 238.0L606.3 232.2L570.0 228.3L548.6 238.0L522.7 265.8L518.2 267.8L511.1 267.1L506.5 271.0L499.4 270.4L498.8 273.0L505.9 284.0L499.4 295.0L499.4 298.8L506.5 317.6L520.1 321.5L531.8 329.9L541.5 330.6L550.6 335.7L564.2 335.1L582.3 327.3L595.9 312.4L603.1 309.8L621.2 295.6L638.7 294.3L649.0 288.5Z"/><path class="c" d="M615.4 256.1L610.2 249.7L601.1 246.4L584.3 248.4L572.0 246.4L559.0 252.9L557.7 259.4L544.1 279.4L538.9 284.6L530.5 284.6L523.4 290.4L523.4 296.3L528.6 293.0L533.7 295.0L526.0 300.1L526.0 302.7L529.9 305.3L535.7 305.3L548.0 298.8L578.4 302.1L595.9 295.6L606.9 287.8L612.8 280.7L618.6 265.8Z"/><path class="c" d="M575.8 268.4L573.9 274.2L576.5 279.4L588.8 279.4L591.4 272.3L589.4 269.1L584.3 266.5Z"/>
+            <g class="lead-l">
+              <line x1="402" y1="676" x2="338" y2="618"/><line x1="413" y1="720" x2="338" y2="700"/><line x1="440" y1="752" x2="338" y2="782"/>
+            </g>
+          </svg>
+          <span class="pin" style="left:40.2%;top:72.6%"></span><span class="pin" style="left:41.3%;top:77.4%"></span><span class="pin" style="left:44%;top:80.8%"></span><span class="pin" style="left:64.4%;top:85.5%"></span>
+          <span class="pin pin--dest" style="left:58.2%;top:42.7%"></span><span class="pin pin--ref" style="left:58%;top:29.4%"></span><span class="pin pin--ref" style="left:82.9%;top:22.9%"></span>
+          <span class="lab" style="right:66.4%;top:66.4%">Costa Adeje</span>
+          <span class="lab" style="right:66.4%;top:75.2%" data-i18n="labAmericas">Las Américas</span>
+          <span class="lab" style="right:66.4%;top:84%">Los Cristianos</span>
+          <span class="lab lab--r" style="left:61.5%;top:88%">Golf del Sur</span>
+          <span class="lab lab--r" style="left:61.5%;top:41%">Llano de Ucanca<small data-i18n="labLlano">≈ 2.000 m · telescopios</small></span>
+          <span class="lab lab--r" style="left:61%;top:22.5%">Teide<small data-i18n="labTeide">más de 3.700 m</small></span>
+          <span class="lab" style="right:18.5%;top:13%;text-align:right" data-i18n="labIzana">Observatorio del Teide<small>Izaña · ≈ 2.400 m</small></span>
+          </div>
+          <figcaption id="map-cap" data-i18n="mapCap">Curvas de nivel cada 500 m, calculadas con datos de relieve. La línea clara es la de 2.000 m: el llano queda justo encima.</figcaption>
+        </figure>
+      </div>
+      <div class="climb">
+        <div class="alt">
+          <div class="altgauge" role="img" aria-label="Escala de altitud: costa 0 m; 1.000 m, unos 6,5 °C menos; Llano de Ucanca, unos 2.000 m y 13 °C menos; cumbre del Teide, más de 3.700 m." data-i18n-attr="aria-label:altAria">
+            <ul>
+              <li class="is-off" style="--h:3715"><b>3.700+ m</b><span data-i18n="altTeide">Cumbre del Teide · no subimos</span></li>
+              <li class="is-here" style="--h:2009"><b class="num">2.000 m</b><span data-i18n="altLlano">Llano de Ucanca · ≈ 13 °C menos que en la playa</span></li>
+              <li style="--h:1000"><b>1.000 m</b><span data-i18n="alt1000">≈ 6,5 °C menos</span></li>
+              <li style="--h:0"><b>0 m</b><span data-i18n="altCoast">Costa · recogida</span></li>
+            </ul>
+          </div>
+          <p class="note" data-i18n="altNote">Cada 1.000 m de altitud, unos 6,5 °C menos. Es una regla de la atmósfera, no una previsión.</p>
+        </div>
+        <figure class="photo">
+          <img src="assets/img/subida-canadas-800.webp" srcset="assets/img/subida-canadas-800.webp 800w, assets/img/subida-canadas-1600.webp 1600w" sizes="(min-width: 64rem) min(40rem, calc(60vw - 9rem)), 100vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Atardecer en el borde del pinar del Teide: matorral de alta montaña iluminado, mar de nubes y La Gomera al fondo." data-i18n-attr="alt:subidaAlt">
+          <figcaption data-i18n="subidaCap">Por encima del pinar empieza la alta montaña. Foto: Christian Buehner, Unsplash.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--atardecer" id="atardecer" aria-labelledby="t-atardecer">
+    <div class="sec__in">
+      <div class="row">
+        <h2 class="row__head" id="t-atardecer"><span class="k ht" data-k="sunset"></span> <span data-i18n="h2Atardecer">Por encima de las nubes.</span></h2>
+        <div class="prose row__text">
+          <p class="lead" data-i18n="atardecerLead">Paramos a ver la puesta antes de bajar al llano.</p>
+          <p data-i18n="atardecerP">Si esa tarde hay mar de nubes, lo verán desde arriba; si no, el océano y, con suerte, las otras islas. Después, el cielo se apaga por escalones. Estas son las horas de la noche que elijan:</p>
+        </div>
+        <div class="row__inst">
+          <ol class="ladder">
+            <li><span class="k" data-k="sunset">–:–</span><strong data-i18n="lad1">Puesta de sol</strong><span class="d" data-i18n="lad1d">El borde superior del Sol toca el horizonte.</span></li>
+            <li><span class="k" data-k="civil">–:–</span><strong data-i18n="lad2">Fin del crepúsculo civil</strong><span class="d" data-i18n="lad2d">Aparecen los planetas y las estrellas más brillantes.</span></li>
+            <li><span class="k" data-k="nautical">–:–</span><strong data-i18n="lad3">Crepúsculo náutico</strong><span class="d" data-i18n="lad3d">El horizonte se pierde; ya se reconocen las constelaciones.</span></li>
+            <li><span class="k" data-k="astro">–:–</span><strong data-i18n="lad4">Noche cerrada</strong><span class="d" data-i18n="lad4d">El Sol está 18° bajo el horizonte. A partir de aquí, solo la luna o las nubes iluminan el cielo.</span></li>
+          </ol>
+          <p class="note" data-i18n="ladNote">Horas calculadas para el Llano de Ucanca con los algoritmos astronómicos habituales. El tiempo que haga no lo calcula nadie.</p>
+        </div>
+      </div>
+      <figure class="band">
+        <img src="assets/img/atardecer-mar-de-nubes-800.webp" srcset="assets/img/atardecer-mar-de-nubes-800.webp 800w, assets/img/atardecer-mar-de-nubes-1600.webp 1600w" sizes="(min-width: 64rem) min(70rem, calc(100vw - 22rem)), 100vw" width="1600" height="1067" loading="lazy" decoding="async" alt="El sol se pone sobre un mar de nubes; a la izquierda, el perfil de La Gomera." data-i18n-attr="alt:atardecerAlt">
+        <figcaption data-i18n="atardecerCap">Foto: Ricard Geli Soler, Unsplash.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sec sec--telescopios" id="telescopios" aria-labelledby="t-telescopios">
+    <div class="sec__in">
+      <div class="row row--moon">
+        <h2 class="row__head" id="t-telescopios"><span class="k ht" data-k="astro"></span> <span data-i18n="h2Telescopios">La luna decide cuántas estrellas.</span></h2>
+        <figure class="moon row__inst">
+          <img src="assets/img/luna-480.webp" srcset="assets/img/luna-480.webp 480w, assets/img/luna-800.webp 800w" sizes="(min-width: 64rem) 20rem, 76vw" width="800" height="800" loading="lazy" decoding="async" alt="La Luna, con la fase calculada para la noche elegida." data-i18n-attr="alt:moonAlt">
+          <svg viewBox="-1 -1 2 2" aria-hidden="true"><defs><filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation=".025"/></filter></defs><path class="shade" id="moon-shade" d="" filter="url(#soft)"/><circle class="limb" r=".997"/></svg>
+        </figure>
+        <div class="row__text">
+          <div class="moondata">
+            <p class="ph" data-v="phaseName">–</p>
+            <p><span data-i18n="moonLit">Iluminada al</span> <span class="k" data-k="illum">–</span></p>
+            <p><span data-i18n="moonRise">Sale</span> <span class="k" data-k="moonrise">–:–</span> · <span data-i18n="moonSet">se pone</span> <span class="k" data-k="moonset">–:–</span></p>
+          </div>
+          <div class="prose moonsay">
+            <p class="lead" data-v="moonSay" aria-live="polite">–</p>
+            <p data-i18n="polarP">Desde el Llano de Ucanca, la Estrella Polar queda justo encima del Teide: todo el cielo gira alrededor de ese punto, unos 15° por hora. Es lo que dibuja la exposición de arriba.</p>
+            <p data-i18n="sessionP">Montamos dos telescopios en el llano y les guiamos por el cielo de esa noche: la Luna cuando está, los planetas que estén sobre el horizonte, cúmulos y estrellas dobles. Les acompañan Nayra, Jonay o Elena.</p>
+          </div>
+        </div>
+      </div>
+      <h3 class="vh" data-i18n="whyH">Por qué aquí</h3>
+      <ul class="facts">
+        <li><span data-i18n="fact1"><strong>El Llano de Ucanca</strong> está a unos 2.000 m, dentro de la caldera de Las Cañadas.</span></li>
+        <li><span data-i18n="fact2"><strong>A unos 2.400 m, en Izaña,</strong> está el Observatorio del Teide.</span></li>
+        <li><span data-i18n="fact3"><strong>Desde 1988,</strong> una ley protege la calidad astronómica de los observatorios de Canarias.</span></li>
+        <li><span data-i18n="fact4"><strong>El Parque Nacional del Teide</strong> es Patrimonio Mundial de la UNESCO desde 2007.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec sec--salidas" id="salidas" aria-labelledby="t-salidas">
+    <div class="sec__in">
+      <h2 id="t-salidas" data-i18n="h2Salidas">Tres maneras de subir.</h2>
+      <ul class="tours">
+        <li class="tour">
+          <div><h3 class="tour__name" id="tn-a" data-i18n="tourA">Atardecer y estrellas</h3></div>
+          <div><p class="tour__meta" data-i18n="tourAMeta">Todos los días que la carretera del parque está abierta. Recogida unas 2 h antes de la puesta de sol y vuelta unas 4 h después. No apta para menores de 8 años.</p><p class="tour__next needs-js"><span data-v="tourANext">Recogida hacia las</span> <span class="k" data-v="pickupFirst">–:–</span></p></div>
+          <div class="tour__foot"><p class="tour__price num"><span data-i18n="priceA">69 €</span><small data-i18n="tourAKids">niños 8–12: 45 €</small></p><button type="button" class="btn btn--line" data-pick="atardecer" aria-describedby="tn-a"><span data-i18n="pick">Elegir</span></button></div>
+        </li>
+        <li class="tour">
+          <div><h3 class="tour__name" id="tn-b" data-i18n="tourB">Amanecer sobre el mar de nubes</h3></div>
+          <div><p class="tour__meta" data-i18n="tourBMeta">Los sábados. Recogida a las 04:30 para ver salir el sol desde arriba.</p><p class="tour__next"><span data-i18n="tourBNext">Próximo:</span> <span class="k" data-v="nextSat">–</span></p></div>
+          <div class="tour__foot"><p class="tour__price num"><span data-i18n="priceB">59 €</span><small data-i18n="perPerson">por persona</small></p><button type="button" class="btn btn--line" data-pick="amanecer" aria-describedby="tn-b"><span data-i18n="pick">Elegir</span></button></div>
+        </li>
+        <li class="tour">
+          <div><h3 class="tour__name" id="tn-c" data-i18n="tourC">Luna llena</h3></div>
+          <div><p class="tour__meta" data-i18n="tourCMeta">Una noche al mes, la de luna llena: menos estrellas, un paseo por el llano a la luz de la luna y la Luna al telescopio.</p><p class="tour__next"><span data-i18n="tourCNext">Próxima:</span> <span class="k" data-v="nextFull">–</span></p></div>
+          <div class="tour__foot"><p class="tour__price num"><span data-i18n="priceB">59 €</span><small data-i18n="perPerson">por persona</small></p><button type="button" class="btn btn--line" data-pick="luna" aria-describedby="tn-c"><span data-i18n="pick">Elegir</span></button></div>
+        </li>
+      </ul>
+      <p class="note" data-i18n="toursNote">Precios de ejemplo. Si cancelamos por el tiempo o por cierre de la carretera, se devuelve todo.</p>
+    </div>
+  </section>
+
+  <section class="sec sec--llevar" id="llevar" aria-labelledby="t-llevar">
+    <div class="sec__in"><div class="two">
+      <div>
+        <h2 id="t-llevar" data-i18n="h2Llevar">Lleven abrigo. De verdad.</h2>
+        <div class="prose"><p class="lead" data-i18n="llevarLead">A 2.000 m hace unos 13 °C menos que en la playa, y de noche baja más. Si no traen abrigo, les prestamos una chaqueta.</p></div>
+      </div>
+      <div>
+        <div class="temp">
+          <label for="t-coast" data-i18n="tempLabel">Temperatura ahora en su hotel</label>
+          <input type="range" id="t-coast" min="14" max="34" step="1" value="24">
+          <output for="t-coast" id="t-out"><span class="tl"><span data-i18n="tBeach">En la playa</span> <span data-v="tCoast">24 °C</span></span><span class="tl"><span data-i18n="tPlain">En el llano</span> <span class="k" data-v="tLlano">≈ 11 °C</span></span></output>
+          <p class="note" data-i18n="tempNote">Estimación para el llano al atardecer, solo por la altitud (6,5 °C menos cada 1.000 m). No es una previsión.</p>
+        </div>
+        <ul class="list">
+          <li><span data-i18n="bring1"><strong>Abrigo o plumífero.</strong> Les prestamos chaquetas si las necesitan.</span></li>
+          <li><span data-i18n="bring2"><strong>Gorro y guantes</strong> de noviembre a abril.</span></li>
+          <li><span data-i18n="bring3"><strong>Calzado cerrado</strong>: el llano es tierra y piedra volcánica.</span></li>
+          <li><span data-i18n="bring4"><strong>Agua.</strong> La altitud seca más de lo que parece.</span></li>
+          <li><span data-i18n="bring5"><strong>El móvil con el brillo al mínimo.</strong> En el llano usamos linternas de luz roja: no deslumbran la vista acostumbrada a la oscuridad.</span></li>
+        </ul>
+      </div>
+    </div></div>
+  </section>
+
+  <section class="sec sec--preguntas" id="preguntas" aria-labelledby="t-preguntas">
+    <div class="sec__in"><div class="two">
+      <div>
+        <h2 id="t-preguntas" data-i18n="h2Preguntas">Antes de reservar.</h2>
+      </div>
+      <div class="faq">
+        <details><summary data-i18n="q1">¿Y si está nublado?</summary><p data-i18n="a1">Nadie puede prometer un cielo despejado, y nosotros tampoco. Lo miramos esa misma mañana; si hay que cancelar por el tiempo, se lo decimos por WhatsApp y les devolvemos todo.</p></details>
+        <details><summary data-i18n="q2">¿Pueden venir niños?</summary><p data-i18n="a2">Desde los 8 años; de 8 a 12 pagan 45 €. Menores de 8, no: volvemos tarde, hace frío y estamos a 2.000 m.</p></details>
+        <details><summary data-i18n="q3">¿Cuánto dura?</summary><p data-i18n="a3">Unas 6 horas puerta a puerta: les recogemos unas 2 h antes de la puesta de sol y vuelven unas 4 h después.</p></details>
+        <details><summary data-i18n="q4">¿Se nota la altitud?</summary><p data-i18n="a4">A 2.000 m la mayoría de la gente no nota nada. Si tienen problemas de corazón o respiratorios, o están embarazadas, consúltenlo antes con su médico.</p></details>
+        <details><summary data-i18n="q5">¿Y si cierran la carretera del parque?</summary><p data-i18n="a5">Solo salimos con la carretera abierta. Si la cierran, por nieve o por seguridad, cancelamos y les devolvemos todo.</p></details>
+        <details><summary data-i18n="q6">¿Puedo hacer fotos de las estrellas?</summary><p data-i18n="a6">Sí. Con un trípode y el modo noche, el móvil saca más de lo que parece; el guía les ayuda a encuadrar.</p></details>
+        <details><summary data-i18n="q7">¿Hace falta saber de astronomía?</summary><p data-i18n="a7">No. Se trata de mirar y preguntar.</p></details>
+      </div>
+    </div></div>
+  </section>
+
+  <section class="sec sec--reservar" id="reservar" aria-labelledby="t-reservar">
+    <div class="sec__in">
+      <h2 id="t-reservar" data-i18n="h2Reservar">Reservar es un mensaje.</h2>
+      <form class="book" id="book" aria-labelledby="t-reservar">
+        <div>
+          <fieldset class="tourpick">
+            <legend><span class="field"><span class="lbl" data-i18n="lTour">Salida</span></span></legend>
+            <label><input type="radio" name="tour" value="atardecer" checked><span class="tn" data-i18n="tourA">Atardecer y estrellas</span><span class="tp" data-i18n="priceA">69 €</span></label>
+            <label><input type="radio" name="tour" value="amanecer"><span class="tn" data-i18n="tourB">Amanecer sobre el mar de nubes</span><span class="tp" data-i18n="priceB">59 €</span></label>
+            <label><input type="radio" name="tour" value="luna"><span class="tn" data-i18n="tourC">Luna llena</span><span class="tp" data-i18n="priceB">59 €</span></label>
+          </fieldset>
+          <div class="book__grid" style="margin-top:1.25rem">
+            <div class="field wide"><label for="b-date" data-i18n="lDate">Fecha</label><select id="b-date" name="date"><option value="" data-i18n="dateAsk">La que nos diga</option></select></div>
+            <div class="field"><label for="b-adults" data-i18n="lAdults">Adultos</label><select id="b-adults" name="adults"><option value="1">1</option><option value="2" selected>2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option></select></div>
+            <div class="field"><label for="b-kids" data-i18n="lKids">Niños 8–12</label><select id="b-kids" name="kids"><option value="0" selected>0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option></select></div>
+            <div class="field wide"><label for="b-zone" data-i18n="lZone">Recogida</label><select id="b-zone" name="zone"><option value="costa-adeje">Costa Adeje</option><option value="americas">Playa de las Américas</option><option value="cristianos">Los Cristianos</option><option value="golf-sur">Golf del Sur</option></select></div>
+            <div class="field wide"><label for="b-name" data-i18n="lName">Su nombre (opcional)</label><input type="text" id="b-name" name="name" autocomplete="given-name" maxlength="40"></div>
+          </div>
+        </div>
+        <div style="display:grid;gap:1rem;align-content:start">
+          <span class="field"><span class="lbl" data-i18n="lMsg">Su mensaje</span></span>
+          <p class="msg" id="b-msg" aria-live="polite">Hola, Cielo de Ucanca. Quiero reservar «Atardecer y estrellas».</p>
+          <p class="total"><span data-i18n="total">Total aproximado (precios de ejemplo)</span> <b class="num" data-v="total">–</b></p>
+          <p class="warn" id="b-warn" hidden></p>
+          <a class="btn" id="b-go" href="https://wa.me/34600000000?text=Hola%2C%20Cielo%20de%20Ucanca.%20Quiero%20reservar%20%C2%ABAtardecer%20y%20estrellas%C2%BB." data-wa><span data-i18n="ctaSend">Enviar por WhatsApp</span><svg class="arr" viewBox="0 0 26 12" aria-hidden="true"><path d="M0 6h24M19 1l5 5-5 5"/></svg></a>
+          <p class="fine" data-i18n="bookFine">Les contestamos con la hora exacta de recogida. Grupos de 14 como máximo.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="foot__in">
+    <div>
+      <p class="foot__name">Cielo de Ucanca</p>
+      <p style="margin-top:.8rem" data-i18n="footAbout">Excursiones al atardecer y a las estrellas en el Parque Nacional del Teide, con recogida en el sur de Tenerife.</p>
+    </div>
+    <ul>
+      <li><a href="tel:+34922000000">+34 922 000 000</a></li>
+      <li><a href="https://wa.me/34600000000">WhatsApp +34 600 000 000</a></li>
+      <li><a href="mailto:hola@ejemplo.es">hola@ejemplo.es</a></li>
+    </ul>
+    <div style="display:grid;gap:.8rem">
+      <p class="fict" data-i18n="footFict">Diseño de muestra de Teide Digital · negocio ficticio</p>
+      <p class="cred" data-i18n="footCred">Cielo calculado con el Yale Bright Star Catalogue (5.ª ed.) y relieve SRTM (AWS Terrain Tiles). Fotos: Ricard Geli Soler, Christian Buehner y Michael, en Unsplash. Las horas del Sol y de la Luna se calculan en su navegador; no son una previsión del tiempo.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
