@@ -1,0 +1,1007 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Photo lab · Teide Digital</title>
+<meta name="description" content="Internal test page: twelve ways to show a small business's photos, rebuilt in plain CSS and a little vanilla JavaScript from ideas in public UI libraries.">
+<meta name="theme-color" content="#f2eee6">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7' fill='%23bf3912'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/geist.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+/* Motion is opt-in: hidden "before" states exist only under .motion, set here
+   before first paint and only when the visitor has not asked for reduced motion. */
+if (matchMedia('(prefers-reduced-motion: no-preference)').matches && 'IntersectionObserver' in window) document.documentElement.classList.add('motion');
+</script>
+<style>
+@font-face{font-family:"Geist";src:url("assets/fonts/geist.woff2") format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"Archivo";src:url("assets/fonts/archivo.woff2") format("woff2");font-weight:400 900;font-stretch:100% 125%;font-display:swap}
+@font-face{font-family:"Sofia Sans Extra Condensed";src:url("assets/fonts/sofia-sans-extra-condensed-latin-wght.woff2") format("woff2");font-weight:1 1000;font-display:swap}
+@font-face{font-family:"Imbue";src:url("assets/fonts/imbue-var.woff2") format("woff2");font-weight:150 500;font-display:swap}
+@font-face{font-family:"Ibarra Real Nova";src:url("assets/fonts/ibarra-latin.woff2") format("woff2");font-weight:400 700;font-display:swap}
+
+:root{--paper:#f2eee6;--ink:#171512;--mute:#6a645b;--rule:#d6cfc1;--hot:#bf3912;--g:clamp(16px,4vw,32px)}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1rem/1.55 "Geist",system-ui,sans-serif;overflow-x:clip}
+img{display:block;max-width:100%;height:auto}
+h1,h2,h3,h4{margin:0}
+a{color:inherit}
+.wrap{width:100%;max-width:72rem;margin:0 auto;padding:0 var(--g)}
+.btn{font:600 .875rem/1 "Geist",system-ui,sans-serif;letter-spacing:.02em;padding:.75rem 1.1rem;min-height:44px;border-radius:999px;border:1.5px solid currentColor;background:transparent;color:inherit;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.btn:focus-visible,a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--hot);outline-offset:3px}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* ---------- lab chrome (as lab 1) ---------- */
+.lab{padding:3.5rem 0 3rem}
+.lab h1{font-size:clamp(2.6rem,9vw,6.2rem);line-height:.95;letter-spacing:-.035em;font-weight:700;max-width:12ch}
+.lab__lede{margin:1.5rem 0 0;font-size:clamp(1.05rem,2.6vw,1.3rem);max-width:38rem}
+.lab__ask{margin:1rem 0 0;font-weight:600;max-width:38rem}
+.lab__index{list-style:none;margin:2.25rem 0 0;padding:0;display:grid;gap:0;border-top:1px solid var(--rule)}
+.lab__index a{display:flex;gap:1rem;align-items:baseline;padding:.8rem 0;border-bottom:1px solid var(--rule);text-decoration:none;font-weight:500}
+.lab__index a span{font-variant-numeric:tabular-nums;color:var(--hot);font-weight:700;min-width:2.6rem}
+@media (min-width:48rem){.lab__index{grid-template-columns:1fr 1fr;column-gap:2.5rem}}
+.lab__note{margin:1.5rem 0 0;font-size:.9rem;color:var(--mute);max-width:40rem}
+.lab__more{margin:1.5rem 0 0;display:flex;flex-wrap:wrap;align-items:center;gap:.25rem .5rem;font-size:.9rem}
+.lab__more b{font-weight:600;margin-right:.25rem}
+.lab__more a{display:inline-flex;align-items:center;min-height:44px;padding:0 .8rem;border:1px solid var(--rule);border-radius:999px;text-decoration:none;background:#fbf9f4}
+.lab__more span{display:inline-flex;align-items:center;min-height:44px;padding:0 .8rem;color:var(--mute)}
+
+.fx{border-top:1px solid var(--rule);content-visibility:auto;contain-intrinsic-size:auto 1200px}
+.fx__head{display:grid;grid-template-columns:auto minmax(0,1fr);gap:1rem;padding-top:2.5rem;padding-bottom:1.75rem}
+.fx__num{margin:0;font-size:clamp(2.2rem,7vw,3.6rem);line-height:.9;font-weight:700;color:var(--hot);font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.fx__head h2{font-size:clamp(1.45rem,4.4vw,2.2rem);line-height:1.08;letter-spacing:-.02em;font-weight:650}
+.fx__for{margin:.55rem 0 0;max-width:40rem;color:#3a362f}
+.fx__meta{list-style:none;margin:.85rem 0 0;padding:0;display:flex;flex-wrap:wrap;gap:.4rem}
+.fx__meta li{font-size:.75rem;letter-spacing:.03em;padding:.3rem .6rem;border:1px solid var(--rule);border-radius:999px;color:var(--mute);background:#fbf9f4}
+.stage{position:relative}
+.st-kicker{margin:0;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase}
+.st-note{margin:1rem 0 0;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase}
+
+/* shared world type */
+.casa-h{font:500 clamp(2rem,7vw,3.5rem)/1.02 "Ibarra Real Nova",Georgia,serif;letter-spacing:-.01em;margin-top:.6rem;max-width:20ch}
+.lun-h{font:800 clamp(2.6rem,10.5vw,5.2rem)/.9 "Sofia Sans Extra Condensed",sans-serif;text-transform:uppercase;margin-top:.5rem;letter-spacing:.005em}
+.tasca-h{font:900 clamp(2.1rem,8.6vw,4.6rem)/.92 "Archivo",sans-serif;font-stretch:125%;text-transform:uppercase;letter-spacing:-.01em;margin-top:.5rem;max-width:16ch}
+.cielo-h{font:300 clamp(2.4rem,9vw,4.8rem)/.98 "Imbue",Georgia,serif;letter-spacing:-.01em;margin-top:.45rem;max-width:16ch}
+.st-lede{margin:.85rem 0 0;max-width:34rem}
+
+/* ---------- P1 before / after (Casa Tea) ---------- */
+.st-ba{background:#F0F2F0;color:#1E2223;padding:3rem 0 3.5rem}
+.st-ba .st-kicker{color:#7E2A1D}
+.ba-fig{margin:1.5rem 0 0}
+.ba{--p:.5;--pos:calc(24px + (100% - 48px) * var(--p));position:relative;overflow:hidden;border-radius:.5rem;aspect-ratio:4/5;background:#1E2223;touch-action:pan-y;-webkit-user-select:none;user-select:none}
+@media (min-width:48rem){.ba{aspect-ratio:16/10}.ba-fig{max-width:60rem}}
+.ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ba__before{clip-path:inset(0 calc(100% - var(--pos)) 0 0)}
+.ba__tag{position:absolute;top:.75rem;padding:.4rem .7rem;border-radius:999px;font:600 .8rem/1 "Geist",sans-serif;letter-spacing:.06em;text-transform:uppercase;pointer-events:none;z-index:1}
+.ba__tag--a{left:.75rem;background:#1E2223;color:#F0F2F0}
+.ba__tag--d{right:.75rem;background:#F0F2F0;color:#1E2223}
+.ba__line{position:absolute;top:0;bottom:0;left:var(--pos);width:2px;margin-left:-1px;background:#F8F9F8;pointer-events:none;z-index:1;box-shadow:0 0 0 1px rgba(30,34,35,.18)}
+.ba__grip{position:absolute;top:50%;left:50%;width:48px;height:48px;margin:-24px 0 0 -24px;border-radius:50%;background:#F8F9F8;color:#7E2A1D;display:grid;place-items:center;box-shadow:0 8px 22px rgba(0,0,0,.35)}
+.ba__grip svg{width:24px;height:24px}
+.ba__range{position:absolute;inset:0;z-index:2;width:100%;height:100%;margin:0;padding:0;opacity:0;cursor:ew-resize;touch-action:pan-y;-webkit-appearance:none;appearance:none;background:none}
+.ba__range::-webkit-slider-runnable-track{height:100%;background:none}
+.ba__range::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:48px;height:100%;background:none;border:0}
+.ba__range::-moz-range-track{height:100%;background:none;border:0}
+.ba__range::-moz-range-thumb{width:48px;height:100%;background:none;border:0;border-radius:0}
+.ba:has(.ba__range:focus-visible) .ba__grip{outline:3px solid var(--hot);outline-offset:3px}
+.ba-fig figcaption{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem 1rem}
+.ba-fig figcaption span{color:#4A5150}
+
+/* ---------- P2 photo hotspots (Casa Tea) ---------- */
+.st-hs{background:#1E2223;color:#EEF0EF;padding:3rem 0 3.5rem}
+.st-hs .st-kicker{color:#AEB5B3}
+.hs-grid{display:grid;gap:1.75rem}
+@media (min-width:48rem){.hs-grid{grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);align-items:center;gap:3.5rem}}
+.hs-legend{list-style:none;margin:1.5rem 0 0;padding:0;display:grid;gap:.65rem;counter-reset:hs}
+.hs-legend li{display:flex;gap:.75rem;align-items:center;font:500 1.2rem/1.2 "Ibarra Real Nova",Georgia,serif}
+.hs-legend li::before{counter-increment:hs;content:counter(hs);flex:0 0 auto;display:grid;place-items:center;width:1.75rem;height:1.75rem;border-radius:50%;background:#F8F9F8;color:#7E2A1D;font:700 .8rem/1 "Geist",sans-serif}
+.hs{position:relative;margin:0;max-width:34rem}
+.hs>img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:.5rem}
+.hs__dot{position:absolute;left:var(--x);top:var(--y);width:34px;height:34px;margin:-17px 0 0 -17px;padding:0;border-radius:50%;border:2px solid #7E2A1D;background:#F8F9F8;color:#7E2A1D;font:700 .85rem/1 "Geist",sans-serif;cursor:pointer;display:grid;place-items:center;box-shadow:0 0 0 4px rgba(248,249,248,.3),0 6px 16px rgba(0,0,0,.4)}
+.hs__dot::before{content:"";position:absolute;inset:-6px;border-radius:50%}
+.hs__dot:has(+ .hs__pop:popover-open){background:#7E2A1D;color:#F8F9F8;border-color:#F8F9F8}
+.motion .hs.is-in .hs__dot::after{content:"";position:absolute;inset:-2px;border-radius:50%;border:2px solid #F8F9F8;pointer-events:none;animation:hs-ping 1.9s cubic-bezier(.2,.6,.3,1) 3 both;animation-delay:calc(var(--d) * 220ms)}
+@keyframes hs-ping{from{transform:scale(1);opacity:.95}to{transform:scale(2);opacity:0}}
+.hs__pop{margin:auto;padding:1rem 3rem 1.1rem 1.1rem;width:min(16rem,calc(100vw - 2.5rem));border:0;border-radius:.6rem;background:#F8F9F8;color:#1E2223;box-shadow:0 18px 44px -10px rgba(0,0,0,.6);font:400 .95rem/1.45 "Geist",sans-serif}
+.hs__pop p{margin:0}
+.hs__pop b{display:block;margin-bottom:.3rem;font:600 1.35rem/1.1 "Ibarra Real Nova",Georgia,serif;color:#7E2A1D}
+.hs__x{position:absolute;top:.25rem;right:.25rem;width:44px;height:44px;border:0;border-radius:50%;background:none;color:#1E2223;font-size:1.5rem;line-height:1;cursor:pointer}
+.hs__pop::backdrop{background:transparent}
+@supports (anchor-name:--a){
+  .hs__pop{inset:auto;margin:12px 0;position-area:top;position-try-fallbacks:flip-block}
+  .hs__pop.to-r{position-area:top span-right}
+  .hs__pop.to-l{position-area:top span-left}
+}
+.motion .hs__pop:popover-open{transition:opacity .22s ease-out,transform .26s cubic-bezier(.2,.8,.2,1)}
+@starting-style{.motion .hs__pop:popover-open{opacity:0;transform:translateY(8px) scale(.96)}}
+
+/* ---------- P3 sticky photo, crossfading steps (Lúnula) ---------- */
+.st-rit{background:#2945F0;color:#fff;padding:3rem 0 3.5rem}
+.rit{position:relative;margin-top:1.75rem}
+.rit__media{display:none}
+.rit__steps{list-style:none;margin:0;padding:0;display:grid;gap:2.25rem}
+.rit__step{display:grid;gap:.85rem;align-content:start}
+.rit__inline{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:1rem}
+.rit__n{margin:0;font:600 .8rem/1 "Geist",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#E3E8FF}
+.rit__step h4{font:800 clamp(2.4rem,9vw,3.6rem)/.9 "Sofia Sans Extra Condensed",sans-serif;text-transform:uppercase}
+.rit__step p{margin:0;max-width:30rem}
+.rit__price{font:800 2rem/1 "Sofia Sans Extra Condensed",sans-serif}
+.rit__price small{font:500 .78rem/1 "Geist",sans-serif;letter-spacing:.06em;text-transform:uppercase;margin-left:.4rem;color:#E3E8FF}
+@media (min-width:48rem){.rit__steps{grid-template-columns:1fr 1fr;gap:2.5rem}}
+
+/* ---------- P4 tilted photo wall (Tasca Picón) ---------- */
+.st-w3d{background:#151110;color:#f5f7f6;padding:3rem 0 3.5rem}
+.st-w3d .st-kicker{color:#ff8a78}
+.w3d{position:relative;margin-top:1.5rem;height:clamp(24rem,112vw,36rem);overflow:hidden;border-radius:1rem;background:#221a17}
+.w3d__plane{position:absolute;left:50%;top:50%;width:clamp(25rem,40vw + 14rem,54rem);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(.6rem,1.4vw,1.1rem);transform:translate(-50%,-50%) rotateX(52deg) rotateZ(-42deg);transform-style:preserve-3d}
+.w3d__col{display:grid;gap:clamp(.6rem,1.4vw,1.1rem);align-content:start;container-type:inline-size}
+.w3d__col:nth-child(even){margin-top:18%}
+.w3d__t{margin:0;aspect-ratio:4/5;border-radius:.55rem;overflow:hidden;background:#0d0908}
+.w3d__t img{width:100%;height:100%;object-fit:cover}
+.w3d__w{margin:0;aspect-ratio:4/5;border-radius:.55rem;display:grid;place-content:center;padding:.5rem;text-align:center;font:900 15cqi/.95 "Archivo",sans-serif;font-stretch:118%;overflow-wrap:anywhere;text-transform:uppercase;color:#110b0a}
+.w3d__w small{display:block;margin-top:.45rem;font:600 7.5cqi/1.15 "Geist",sans-serif;letter-spacing:.04em;text-transform:none}
+.w3d__w--r{background:#ff3d24}.w3d__w--g{background:#7be33b}.w3d__w--p{background:#f5f7f6}
+.w3d-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem 1rem;margin-top:1rem}
+.w3d-bar .st-note{margin:0}
+.w3d__pause{display:none;color:#f5f7f6}
+.motion .w3d__pause{display:inline-flex}
+.motion .w3d.is-in .w3d__col{animation:w3d-a 9s ease-in-out 8 alternate both}
+.motion .w3d.is-in .w3d__col:nth-child(even){animation-name:w3d-b}
+.w3d:hover .w3d__col,.w3d:focus-within .w3d__col,.w3d.is-paused .w3d__col{animation-play-state:paused!important}
+@keyframes w3d-a{from{transform:translateY(0)}to{transform:translateY(-16%)}}
+@keyframes w3d-b{from{transform:translateY(-16%)}to{transform:translateY(0)}}
+
+/* ---------- P5 dithered photo, clean reveal (Fase Neutro) ---------- */
+.st-fase{background:#f4f7fa;color:#10151f;padding:3rem 0 3.5rem}
+.st-fase .st-kicker{color:#1730b8}
+.fase-grid{display:grid;gap:1.75rem}
+@media (min-width:48rem){.fase-grid{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);align-items:center;gap:3.5rem}}
+.fase-h{font:800 clamp(2rem,7vw,3.6rem)/.98 "Archivo",sans-serif;font-stretch:106%;letter-spacing:-.02em;margin-top:.5rem}
+.fase-list{list-style:none;margin:1.25rem 0 0;padding:0;border-top:1px solid #c8d1e8}
+.fase-list li{display:flex;justify-content:space-between;gap:1rem;padding:.65rem 0;border-bottom:1px solid #c8d1e8}
+.fase-list li span:last-child{font-weight:600;color:#1730b8;white-space:nowrap}
+.dz{margin:0}
+.dz__frame{position:relative;overflow:clip;border-radius:.35rem;aspect-ratio:5/4;isolation:isolate;background:#fff}
+.dz__frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.dz__dith{position:absolute;inset:0;filter:contrast(60)}
+.dz__dith img{filter:grayscale(1) contrast(.62) brightness(1.04)}
+.dz__bayer{position:absolute;inset:0;background:url("assets/img/bayer-8.png") 0 0/16px 16px;image-rendering:pixelated;mix-blend-mode:overlay}
+.dz__tint{position:absolute;inset:0;background:#2141e6;mix-blend-mode:lighten}
+.dz__clean{clip-path:inset(0 0 0 50%)}
+.dz__lab{position:absolute;bottom:.6rem;z-index:1;padding:.35rem .6rem;border-radius:.3rem;font:600 .72rem/1 "Geist",sans-serif;letter-spacing:.08em;text-transform:uppercase;background:#10151f;color:#f4f7fa}
+.dz__lab--a{left:.6rem}.dz__lab--b{right:.6rem}
+
+/* ---------- P6 hand-drawn photo frames (Alisio) ---------- */
+.st-org{background:#D7ECF8;color:#0A2240;padding:3rem 0 3.5rem}
+.st-org .st-kicker{color:#B0301B}
+.alisio-h{font:900 clamp(2.2rem,8.6vw,4.4rem)/.95 "Archivo",sans-serif;font-stretch:118%;letter-spacing:-.015em;margin-top:.5rem;color:#1435C8;max-width:15ch}
+.org{list-style:none;margin:2rem 0 0;padding:0;display:grid;gap:1.75rem}
+.org li{width:min(100%,var(--w,100%))}
+.org li:nth-child(1){--w:88%}
+.org li:nth-child(2){--w:76%;margin-left:auto}
+.org li:nth-child(3){--w:94%}
+.org__f{margin:0}
+.org__box{position:relative}
+.org__m{aspect-ratio:var(--ar)}
+.org__m img{width:100%;height:100%;object-fit:cover}
+.org__line{position:absolute;inset:-6px;width:calc(100% + 12px);height:calc(100% + 12px);overflow:visible;pointer-events:none;transform:rotate(var(--tw,-2deg))}
+.org__line path{fill:none;stroke:#0A2240;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.org__f figcaption{margin-top:1rem;font:800 1.25rem/1.15 "Archivo",sans-serif;font-stretch:110%}
+.org__f figcaption small{display:block;margin-top:.2rem;font:500 .85rem/1.3 "Geist",sans-serif;color:#34496A}
+@media (min-width:48rem){
+  .org{grid-template-columns:repeat(3,minmax(0,1fr));gap:2.5rem;align-items:start}
+  .org li{width:100%;margin:0}
+  .org li:nth-child(2){margin-top:4rem}
+  .org li:nth-child(3){margin-top:1.5rem}
+}
+@media (hover:hover){
+  .motion .org__m{transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+  .motion .org__box:hover .org__m{transform:scale(1.035) rotate(-1deg)}
+}
+
+/* ---------- P7 expanding image strip (Lúnula) ---------- */
+.st-strip{background:#F7F8FC;color:#0B0C12;padding:3rem 0 3.5rem}
+.st-strip .st-kicker,.st-strip .lun-h{color:#2945F0}
+.strip{border:0;margin:1.5rem 0 0;padding:0;min-width:0;display:flex;flex-direction:column;gap:.5rem;height:36rem}
+.strip__p{position:relative;flex:1 1 0;min-height:0;min-width:0;border-radius:1rem;overflow:hidden;cursor:pointer;background:#0B0C12}
+.strip__p img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.strip__cap{position:absolute;left:.6rem;right:.6rem;bottom:.6rem;display:flex;flex-direction:column;align-items:flex-start;gap:.45rem}
+.strip__name{background:#F7F8FC;color:#0B0C12;padding:.4rem .65rem .35rem;border-radius:.5rem;font:800 1.35rem/1 "Sofia Sans Extra Condensed",sans-serif;text-transform:uppercase;white-space:nowrap}
+.strip__more{display:none;background:#2945F0;color:#fff;padding:.65rem .8rem;border-radius:.6rem;font-size:.92rem;line-height:1.35;max-width:21rem}
+.strip__more b{display:block;margin-top:.2rem;font:800 1.5rem/1 "Sofia Sans Extra Condensed",sans-serif}
+.strip__p:has(:checked){flex-grow:5}
+.strip__p:has(:checked) .strip__more{display:block}
+.strip__p:has(:checked) .strip__name{font-size:2.2rem;background:#2945F0;color:#fff}
+.strip__p:has(:focus-visible){outline:3px solid var(--hot);outline-offset:3px}
+.motion .strip__p{transition:flex-grow .6s cubic-bezier(.2,.75,.2,1)}
+.motion .strip__p:has(:checked) .strip__more{animation:fade-up .45s .18s both}
+@keyframes fade-up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (min-width:48rem){
+  .strip{flex-direction:row;height:30rem}
+  .strip__p:not(:has(:checked)) .strip__name{writing-mode:vertical-rl;transform:rotate(180deg)}
+}
+@media (hover:hover) and (min-width:48rem){
+  .strip:has(.strip__p:hover) .strip__p:has(:checked):not(:hover){flex-grow:1}
+  .strip:has(.strip__p:hover) .strip__p:has(:checked):not(:hover) .strip__more{display:none}
+  .strip:has(.strip__p:hover) .strip__p:has(:checked):not(:hover) .strip__name{writing-mode:vertical-rl;transform:rotate(180deg);font-size:1.35rem;background:#F7F8FC;color:#0B0C12}
+  .strip .strip__p:not(:has(:checked)):hover{flex-grow:5}
+  .strip .strip__p:not(:has(:checked)):hover .strip__more{display:block}
+  .strip .strip__p:not(:has(:checked)):hover .strip__name{writing-mode:horizontal-tb;transform:none;font-size:2.2rem;background:#2945F0;color:#fff}
+}
+
+/* ---------- P8 multi-speed photo columns (Casa Tea) ---------- */
+.st-cols{background:#7E2A1D;color:#F8F9F8;padding:3rem 0 3.5rem}
+.st-cols .st-kicker{color:#F0D8CF}
+.cols-win{margin-top:1.5rem;border-radius:.6rem}
+.st-cols .st-note{position:relative;z-index:1;margin:0;padding-top:1rem;background:#7E2A1D}
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.6rem;align-items:start}
+.cols__c{list-style:none;margin:0;padding:0;display:grid;gap:.6rem}
+.cols__c:nth-child(3){display:none}
+.cols__t{margin:0;border-radius:.4rem;overflow:hidden;aspect-ratio:2/3;background:#64200F}
+.cols__t img{width:100%;height:100%;object-fit:cover}
+.cols__w{margin:0;aspect-ratio:1;border-radius:.4rem;display:flex;flex-direction:column;justify-content:center;padding:1rem;background:#F0F2F0;color:#1E2223;font:500 clamp(1.3rem,4.6vw,2rem)/1.05 "Ibarra Real Nova",Georgia,serif}
+.cols__w small{display:block;margin-top:.5rem;font:500 .72rem/1.3 "Geist",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#7E2A1D}
+@media (min-width:48rem){
+  .cols{grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+  .cols__c{gap:1rem}
+  .cols__c:nth-child(3){display:grid}
+  .cols__t{aspect-ratio:4/5}
+  .cols__w{padding:1.5rem}
+}
+
+/* ---------- P9 3D spinning gallery (Cielo Ucanca) ---------- */
+.st-cyl{background:#0d1a3a;color:#eef2fb;padding:3rem 0 3.5rem;overflow:hidden}
+.st-cyl .st-kicker{color:#f3cf86}
+.cyl{position:relative;margin-top:1.5rem}
+.cyl__ring{list-style:none;margin:0;padding:.25rem var(--g) 1rem;display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.cyl__ring::-webkit-scrollbar{display:none}
+.cyl__p{flex:0 0 min(62vw,15rem);scroll-snap-align:center}
+.cyl__p figure{margin:0}
+.cyl__p img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:.6rem;pointer-events:none}
+.cyl__p figcaption{margin-top:.6rem;font:400 1.3rem/1.1 "Imbue",Georgia,serif}
+.cyl__p figcaption small{display:block;margin-top:.25rem;font:500 .75rem/1.3 "Geist",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#b7c2dc}
+.cyl__btns{display:none;gap:.6rem;justify-content:center;margin-top:1rem}
+.cyl__btns .btn{width:48px;padding:0;font-size:1.1rem;color:#eef2fb}
+.has-js .cyl__btns{display:flex}
+.cyl.is-3d{--w:clamp(9.5rem,26vw,17rem);--r:calc(var(--w) * .866 + 1.25rem);height:calc(var(--w) * 4 / 3 + 5rem);perspective:1100px;perspective-origin:50% 40%;touch-action:pan-y;cursor:grab;-webkit-user-select:none;user-select:none}
+.cyl.is-3d:active{cursor:grabbing}
+.cyl.is-3d .cyl__ring{position:absolute;left:50%;top:.5rem;width:var(--w);height:calc(var(--w) * 4 / 3);margin-left:calc(var(--w) / -2);padding:0;overflow:visible;display:block;transform-style:preserve-3d;transform:translateZ(calc(var(--r) * -1)) rotateY(var(--a,0deg))}
+.cyl.is-3d .cyl__ring.ease{transition:transform .65s cubic-bezier(.2,.8,.2,1)}
+.cyl.is-3d .cyl__p{position:absolute;left:0;top:0;width:100%;transform:rotateY(calc(var(--i) * 60deg)) translateZ(var(--r));backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.cyl.is-3d .cyl__p figcaption{text-align:center}
+
+/* ---------- P10 fanned card stack (Tasca Picón) ---------- */
+.st-deck{background:#f5f7f6;color:#110b0a;padding:3rem 0 3.5rem;overflow:hidden}
+.st-deck .st-kicker{color:#b3200c}
+.deck-grid{display:grid;gap:1.5rem}
+@media (min-width:48rem){.deck-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:3rem}.deck.is-stack{max-width:25rem}.deck__card{min-height:18rem;padding:1.8rem 1.8rem 1.5rem}.deck__card blockquote{font-size:1.8rem}}
+.deck{list-style:none;margin:0;padding:0;display:grid;gap:1rem}
+.deck__card{margin:0;padding:1.4rem 1.4rem 1.2rem;border-radius:1rem;background:var(--bg);color:var(--fg,#110b0a);min-height:15rem;display:flex;flex-direction:column;box-shadow:0 1px 0 rgba(17,11,10,.08),0 18px 34px -20px rgba(17,11,10,.55)}
+.deck__card blockquote{margin:0;font:800 1.45rem/1.12 "Archivo",sans-serif;font-stretch:104%}
+.deck__card figcaption{margin-top:auto;padding-top:1.1rem;font-size:.9rem;display:flex;justify-content:space-between;gap:1rem}
+.deck__stars{letter-spacing:.12em}
+.deck-ctl{display:none;align-items:center;gap:.6rem;margin-top:1.5rem}
+.deck-ctl p{margin:0 0 0 .4rem;font-size:.9rem}
+.has-js .deck-ctl{display:flex}
+.deck.is-stack{grid-template-areas:"s";gap:0;max-width:21rem;margin:0 auto;padding:1rem 1rem 1.5rem}
+.deck.is-stack .deck__card{grid-area:s;z-index:var(--z);transform:translate(calc(var(--k) * .45rem),calc(var(--k) * .3rem)) rotate(var(--rot));touch-action:pan-y;-webkit-user-select:none;user-select:none;cursor:grab}
+.motion .deck.is-stack .deck__card{transition:transform .45s cubic-bezier(.2,.75,.2,1)}
+.motion .deck.is-stack .deck__card.is-drag{transition:none;cursor:grabbing}
+
+/* ---------- P11 orbit gallery (Lúnula) ---------- */
+.st-orb{background:#0B0C12;color:#F7F8FC;padding:3rem 0 3.5rem}
+.st-orb .st-kicker{color:#A9B6FF}
+.orb-grid{display:grid;gap:1.75rem}
+@media (min-width:48rem){.orb-grid{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);align-items:center;gap:3rem}}
+.orb{position:relative;width:min(100%,32rem);aspect-ratio:1;margin:0 auto;--R:40.5%}
+.orb::before{content:"";position:absolute;inset:9.5%;border-radius:50%;border:1.5px dashed #4a5be0}
+.orb__c{position:absolute;left:50%;top:50%;width:50%;aspect-ratio:1;transform:translate(-50%,-50%);margin:0}
+.orb__c img,.orb__gift{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.orb__gift{display:grid;place-content:center;text-align:center;background:#2945F0;color:#fff;font:800 clamp(1.6rem,6vw,2.6rem)/.9 "Sofia Sans Extra Condensed",sans-serif;text-transform:uppercase}
+.orb__gift[hidden],.orb__c img[hidden]{display:none}
+.orb__t{position:absolute;left:calc(50% + cos(var(--a)) * var(--R));top:calc(50% + sin(var(--a)) * var(--R));width:clamp(58px,18%,92px);aspect-ratio:1;transform:translate(-50%,-50%);padding:0;border:3px solid #0B0C12;border-radius:50%;background:#2945F0;color:#fff;cursor:pointer;box-shadow:0 0 0 2px #2a2d40}
+.orb__t img,.orb__gt{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.orb__gt{display:grid;place-content:center;font:800 .95rem/1 "Sofia Sans Extra Condensed",sans-serif;text-transform:uppercase}
+.orb__t[aria-pressed="true"]{box-shadow:0 0 0 3px #F7F8FC}
+.orb-cap h3{font:800 clamp(2.4rem,9vw,4rem)/.9 "Sofia Sans Extra Condensed",sans-serif;text-transform:uppercase}
+.orb-cap p{margin:.75rem 0 0;max-width:28rem}
+.orb-cap .orb__price{font:800 2rem/1 "Sofia Sans Extra Condensed",sans-serif;color:#A9B6FF}
+::view-transition-group(orb-pic){animation-duration:.5s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+
+/* ---------- P12 hover-scrub card (Cielo Ucanca) ---------- */
+.st-scrub{background:#091127;color:#eef2fb;padding:3rem 0 3.5rem}
+.st-scrub .st-kicker{color:#f3cf86}
+.scrub-grid{display:grid;gap:1.75rem}
+@media (min-width:48rem){.scrub-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:3.5rem}}
+.tour{background:#14234a;border-radius:1.1rem;overflow:hidden;max-width:30rem}
+.scrub{position:relative;aspect-ratio:4/3;overflow:hidden;background:#05080f}
+.scrub__i{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.scrub__i:not(.i1){opacity:0}
+.scrub__ui{position:absolute;inset:0}
+.scrub__zones{position:absolute;inset:0;display:flex}
+.scrub__z{position:relative;flex:1;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.scrub__z input{position:absolute;left:0;top:0;width:1px;height:1px;margin:0;opacity:0;pointer-events:none}
+.scrub__lab{position:absolute;left:.75rem;top:.75rem;padding:.4rem .6rem;border-radius:.35rem;background:#091127;color:#f3cf86;font:600 .75rem/1 "Geist",sans-serif;letter-spacing:.08em;text-transform:uppercase;opacity:0;pointer-events:none}
+.scrub__lab.l1{opacity:1}
+.scrub__dots{position:absolute;left:50%;bottom:.7rem;transform:translateX(-50%);display:flex;gap:7px;padding:7px 9px;border-radius:999px;background:rgba(9,17,39,.72);pointer-events:none}
+.scrub__dots i{width:7px;height:7px;border-radius:50%;background:rgba(238,242,251,.45)}
+.scrub__dots .d1{background:#eef2fb}
+.scrub:has(.z2:hover) .i2,.scrub:has(.z3:hover) .i3,.scrub:has(.z4:hover) .i4,
+.scrub:not(:has(.scrub__z:hover)):has(.z2 :checked) .i2,.scrub:not(:has(.scrub__z:hover)):has(.z3 :checked) .i3,.scrub:not(:has(.scrub__z:hover)):has(.z4 :checked) .i4,
+.scrub:has(.z2:hover) .l2,.scrub:has(.z3:hover) .l3,.scrub:has(.z4:hover) .l4,
+.scrub:not(:has(.scrub__z:hover)):has(.z2 :checked) .l2,.scrub:not(:has(.scrub__z:hover)):has(.z3 :checked) .l3,.scrub:not(:has(.scrub__z:hover)):has(.z4 :checked) .l4{opacity:1}
+.scrub:has(.scrub__z:not(.z1):hover) :is(.i1,.l1),.scrub:not(:has(.scrub__z:hover)):has(.scrub__z:not(.z1) :checked) :is(.i1,.l1){opacity:0}
+.scrub:has(.z2:hover) .d2,.scrub:has(.z3:hover) .d3,.scrub:has(.z4:hover) .d4,
+.scrub:not(:has(.scrub__z:hover)):has(.z2 :checked) .d2,.scrub:not(:has(.scrub__z:hover)):has(.z3 :checked) .d3,.scrub:not(:has(.scrub__z:hover)):has(.z4 :checked) .d4{background:#eef2fb}
+.scrub:has(.scrub__z:not(.z1):hover) .d1,.scrub:not(:has(.scrub__z:hover)):has(.scrub__z:not(.z1) :checked) .d1{background:rgba(238,242,251,.45)}
+.motion .scrub__i,.motion .scrub__lab{transition:opacity .2s}
+.tour__b{padding:1.25rem 1.25rem 1.4rem}
+.tour__b h3{font:400 2rem/1 "Imbue",Georgia,serif}
+.tour__b p{margin:.6rem 0 0;color:#cdd5ea}
+.tour__row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem;margin-top:1.1rem}
+.tour__price{font:400 1.7rem/1 "Imbue",Georgia,serif;color:#f3cf86}
+.tour__price small{font:500 .72rem/1 "Geist",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#b7c2dc;margin-left:.35rem}
+.tour .btn{color:#eef2fb}
+.scrub-side ol{list-style:none;margin:1.25rem 0 0;padding:0;border-top:1px solid #2a3a66}
+.scrub-side li{display:grid;grid-template-columns:4.2rem minmax(0,1fr);gap:.75rem;padding:.7rem 0;border-bottom:1px solid #2a3a66}
+.scrub-side li b{font-weight:600;color:#f3cf86;font-variant-numeric:tabular-nums}
+.labfoot{padding:1.5rem 0 2.5rem;font-size:.82rem;color:var(--mute)}
+
+/* ---------- scroll-linked effects: P3, P5, P8 ----------
+   Only where scroll timelines exist AND motion is welcome. Every "from" state
+   still shows the photo (an earlier step's photo, the dithered photo, a column
+   offset) — nothing can be left invisible. */
+@media (prefers-reduced-motion:no-preference){
+  @supports (timeline-scope:--x) and (animation-timeline:view()){
+    .rit{timeline-scope:--rs1,--rs2,--rs3,--rs4}
+    .rit__media{display:block;position:sticky;top:0;z-index:1;height:44svh;margin:0 calc(var(--g) * -1);overflow:hidden;background:#1c2fa8}
+    .rit__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .rit__inline{display:none}
+    .rit__steps{grid-template-columns:1fr;gap:0}
+    .rit__step{position:relative;min-height:58svh;padding:1.75rem 0 2rem}
+    .rit__step:last-child{min-height:46svh}
+    .rit__step::after{content:attr(data-n) / "";position:absolute;right:-.04em;bottom:.35rem;font:800 clamp(8rem,42vw,15rem)/.78 "Sofia Sans Extra Condensed",sans-serif;color:#4a63f6;pointer-events:none;z-index:-1}
+    .rit__steps{position:relative;z-index:0}
+    .rit__step:nth-child(1){view-timeline:--rs1 block}
+    .rit__step:nth-child(2){view-timeline:--rs2 block}
+    .rit__step:nth-child(3){view-timeline:--rs3 block}
+    .rit__step:nth-child(4){view-timeline:--rs4 block}
+    .rit__media img:nth-child(2){animation:rit-in linear both;animation-timeline:--rs2;animation-range:entry 20% entry 60%}
+    .rit__media img:nth-child(3){animation:rit-in linear both;animation-timeline:--rs3;animation-range:entry 20% entry 60%}
+    .rit__media img:nth-child(4){animation:rit-in linear both;animation-timeline:--rs4;animation-range:entry 20% entry 60%}
+    @media (min-width:48rem){
+      .rit{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:4rem;align-items:start}
+      .rit__media{top:10vh;height:80vh;margin:0;border-radius:1.25rem}
+      .rit__step{min-height:72vh;align-content:center;padding:0}
+      .rit__step::after{bottom:0;font-size:13rem}
+      .rit__step:last-child{min-height:80vh}
+    }
+
+    .dz{view-timeline:--dz block}
+    .dz__clean{animation:dz-open linear both;animation-timeline:--dz;animation-range:cover 22% cover 58%}
+    .dz__lab{display:none}
+
+    .cols-win{height:78svh;overflow:hidden;view-timeline:--cols block}
+    .cols__c{animation:cols-move linear both;animation-timeline:--cols;animation-range:cover 0% cover 100%}
+    .cols__c:nth-child(1){--a:0%;--b:-34%}
+    .cols__c:nth-child(2){--a:-34%;--b:-2%}
+    .cols__c:nth-child(3){--a:-4%;--b:-30%}
+    @media (min-width:48rem){
+      .cols-win{height:82vh}
+      .cols__c:nth-child(1){--a:0%;--b:-46%}
+      .cols__c:nth-child(2){--a:-42%;--b:0%}
+      .cols__c:nth-child(3){--a:-10%;--b:-34%}
+    }
+  }
+}
+@keyframes rit-in{from{opacity:0;transform:scale(1.08)}to{opacity:1;transform:none}}
+@keyframes dz-open{from{clip-path:circle(0% at 44% 42%)}to{clip-path:circle(78% at 44% 42%)}}
+@keyframes cols-move{from{transform:translateY(var(--a))}to{transform:translateY(var(--b))}}
+</style>
+</head>
+<body>
+
+<header class="lab">
+  <div class="wrap">
+    <h1>Photos, rebuilt our way.</h1>
+    <p class="lab__lede">Twelve ways to show a client's photos, with ideas from Motion Primitives, daisyUI, Aceternity, Cult UI, Skiper UI and Watermelon UI, rebuilt in plain CSS and about 6 KB of our own script. Nothing stays hidden if a script fails, and motion switches off for people who ask their phone for less.</p>
+    <p class="lab__ask">Scroll through on your phone, then send me the codes worth keeping.</p>
+    <ol class="lab__index">
+      <li><a href="#P1"><span>P1</span>Before/after drag slider</a></li>
+      <li><a href="#P2"><span>P2</span>Photo hotspots with notes</a></li>
+      <li><a href="#P3"><span>P3</span>Pinned photo that changes with the steps</a></li>
+      <li><a href="#P4"><span>P4</span>Tilted photo wall</a></li>
+      <li><a href="#P5"><span>P5</span>Dithered photo, clean reveal</a></li>
+      <li><a href="#P6"><span>P6</span>Hand-drawn photo frames</a></li>
+      <li><a href="#P7"><span>P7</span>Expanding photo strip</a></li>
+      <li><a href="#P8"><span>P8</span>Photo columns at different speeds</a></li>
+      <li><a href="#P9"><span>P9</span>3D spinning gallery</a></li>
+      <li><a href="#P10"><span>P10</span>Fanned card stack you swipe</a></li>
+      <li><a href="#P11"><span>P11</span>Orbit gallery</a></li>
+      <li><a href="#P12"><span>P12</span>Hover-scrub photo card</a></li>
+    </ol>
+    <p class="lab__note">P3, P5 and P8 follow your finger as you scroll. They run in Chrome, Edge, Samsung Internet and Safari 26 or newer; older browsers show the finished state, with nothing missing. P2's notes open beside the dot where the browser has anchor positioning, and in the middle of the screen elsewhere. The businesses are the fictional showroom ones; every price, review and claim is an example.</p>
+    <nav class="lab__more" aria-label="More labs"><b>More labs</b><a href="../motion-lab/">Lab 1: eleven effects</a><a href="../motion-lab-type/">Type</a><a href="../motion-lab-atmos/">Atmosphere</a><a href="../motion-lab-interact/">Interaction</a><span>Photos (this page)</span></nav>
+  </div>
+</header>
+
+<main>
+
+<!-- P1 -->
+<section class="fx" id="P1" aria-labelledby="P1-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">P1</p>
+    <div>
+      <h2 id="P1-t">Before/after drag slider</h2>
+      <p class="fx__for">Two photos stacked; drag the line, or use the arrow keys, to wipe between them. For renovations, cleaning and detailing, hair and nails. Demo pair: one photo, graded two ways. In a real build this is the client's own before and after.</p>
+      <ul class="fx__meta"><li>~0.3 KB script</li><li>Drag or keys</li><li>Idea: Motion Primitives, daisyUI, Bearnie</li></ul>
+    </div>
+  </div>
+  <div class="stage st-ba" lang="es">
+    <div class="wrap">
+      <p class="st-kicker">Casa Tea · La Orotava</p>
+      <h3 class="casa-h">La habitación Lagar, antes y después de la reforma.</h3>
+      <figure class="ba-fig">
+        <div class="ba">
+          <img src="assets/img/lagar-640.webp" srcset="assets/img/lagar-640.webp 640w, assets/img/lagar-1200.webp 1200w" sizes="(min-width: 72rem) 68rem, 100vw" width="1200" height="800" alt="Después: dormitorio luminoso con techo de vigas y caña, cama de madera y suelo de cemento pulido" loading="lazy" decoding="async">
+          <img class="ba__before" src="assets/img/lagar-antes-640.webp" srcset="assets/img/lagar-antes-640.webp 640w, assets/img/lagar-antes-1200.webp 1200w" sizes="(min-width: 72rem) 68rem, 100vw" width="1200" height="800" alt="Antes: el mismo dormitorio, oscuro, gris y apagado" loading="lazy" decoding="async">
+          <span class="ba__tag ba__tag--a">Antes</span><span class="ba__tag ba__tag--d">Después</span>
+          <span class="ba__line" aria-hidden="true"><span class="ba__grip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6 3 12l6 6M15 6l6 6-6 6"/></svg></span></span>
+          <input class="ba__range" type="range" min="0" max="100" value="50" step="1" aria-label="Comparar antes y después" aria-valuetext="50 % antes, 50 % después">
+        </div>
+        <figcaption class="st-note"><span>Pareja de ejemplo: una sola foto, editada de dos maneras</span><span>Habitación Lagar · 98 € la noche · ejemplo</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- P2 -->
+<section class="fx" id="P2" aria-labelledby="P2-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">P2</p>
+    <div>
+      <h2 id="P2-t">Photo hotspots with notes</h2>
+      <p class="fx__for">Numbered dots on a photo; tap one and a small note opens right next to it. Escape or a tap outside closes it. For a patio, a room, a dish or a finished job, where the details sell it.</p>
+      <ul class="fx__meta"><li>0 KB JavaScript</li><li>Tap</li><li>Older browsers: note opens centred</li><li>Idea: Chrome anchor positioning + popover</li></ul>
+    </div>
+  </div>
+  <div class="stage st-hs" lang="es">
+    <div class="wrap hs-grid">
+      <div class="hs-copy">
+        <p class="st-kicker">Casa Tea · La Orotava</p>
+        <h3 class="casa-h">Asómense al patio.</h3>
+        <p class="st-lede">Toquen los puntos: cada uno cuenta un detalle de la casa.</p>
+        <ol class="hs-legend"><li>Farol de la galería</li><li>Balcón de tea</li><li>Helechos</li><li>Patio canario</li></ol>
+      </div>
+      <figure class="hs" data-reveal>
+        <img src="assets/img/casa-560.webp" srcset="assets/img/casa-560.webp 560w, assets/img/casa-1080.webp 1080w" sizes="(min-width: 48rem) 34rem, 100vw" width="1080" height="1350" alt="Patio canario visto desde abajo: galería de madera con balaustres torneados, un farol y helechos colgantes" loading="lazy" decoding="async">
+        <button class="hs__dot" type="button" popovertarget="hs1" aria-label="1: Farol de la galería" style="--x:50%;--y:25%;--d:0;anchor-name:--hs1"><span aria-hidden="true">1</span></button>
+        <div class="hs__pop" id="hs1" popover style="position-anchor:--hs1"><p><b>Farol de la galería</b>De forja, sobre la entrada. Se enciende al caer la tarde.</p><button class="hs__x" type="button" popovertarget="hs1" popovertargetaction="hide" aria-label="Cerrar nota">×</button></div>
+        <button class="hs__dot" type="button" popovertarget="hs2" aria-label="2: Balcón de tea" style="--x:72%;--y:43%;--d:1;anchor-name:--hs2"><span aria-hidden="true">2</span></button>
+        <div class="hs__pop to-l" id="hs2" popover style="position-anchor:--hs2"><p><b>Balcón de tea</b>La tea es el corazón resinoso del pino canario. La familia restauró cada balaustre.</p><button class="hs__x" type="button" popovertarget="hs2" popovertargetaction="hide" aria-label="Cerrar nota">×</button></div>
+        <button class="hs__dot" type="button" popovertarget="hs3" aria-label="3: Helechos" style="--x:17%;--y:69%;--d:2;anchor-name:--hs3"><span aria-hidden="true">3</span></button>
+        <div class="hs__pop to-r" id="hs3" popover style="position-anchor:--hs3"><p><b>Helechos</b>Cuelgan de la galería y dan sombra al patio todo el año.</p><button class="hs__x" type="button" popovertarget="hs3" popovertargetaction="hide" aria-label="Cerrar nota">×</button></div>
+        <button class="hs__dot" type="button" popovertarget="hs4" aria-label="4: Patio canario" style="--x:55%;--y:87%;--d:3;anchor-name:--hs4"><span aria-hidden="true">4</span></button>
+        <div class="hs__pop" id="hs4" popover style="position-anchor:--hs4"><p><b>Patio canario</b>Todas las habitaciones dan aquí. El desayuno se sirve en el patio, de 8:00 a 10:30 (ejemplo).</p><button class="hs__x" type="button" popovertarget="hs4" popovertargetaction="hide" aria-label="Cerrar nota">×</button></div>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- P3 -->
+<section class="fx" id="P3" aria-labelledby="P3-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">P3</p>
+    <div>
+      <h2 id="P3-t">Pinned photo that changes with the steps</h2>
+      <p class="fx__for">The photo stays put while the steps scroll past, and it fades to each step's picture. On a phone it sits pinned above the text. For a treatment ritual, a stay, a tour day or how a job runs.</p>
+      <ul class="fx__meta"><li>0 KB JavaScript</li><li>Scroll-linked</li><li>Idea: Cult UI, Bramus</li></ul>
+    </div>
+  </div>
+  <div class="stage st-rit" lang="es">
+    <div class="wrap">
+      <p class="st-kicker">Lúnula Studio · Los Cristianos</p>
+      <h3 class="lun-h">Una mañana en Lúnula</h3>
+      <div class="rit">
+        <div class="rit__media">
+          <img src="assets/img/pestanas-macro-900.webp" srcset="assets/img/pestanas-macro-900.webp 900w, assets/img/pestanas-macro-1600.webp 1600w" sizes="(min-width: 48rem) 34rem, 100vw" width="1600" height="1067" alt="Ojo verde en primer plano con pestañas largas y definidas" loading="lazy" decoding="async">
+          <img src="assets/img/pestanas-pelo-a-pelo-600.webp" srcset="assets/img/pestanas-pelo-a-pelo-600.webp 600w, assets/img/pestanas-pelo-a-pelo-1100.webp 1100w" sizes="(min-width: 48rem) 34rem, 100vw" width="1100" height="1375" alt="Aplicación de extensiones de pestañas pelo a pelo con pinzas" loading="lazy" decoding="async">
+          <img src="assets/img/cejas-laminado-600.webp" srcset="assets/img/cejas-laminado-600.webp 600w, assets/img/cejas-laminado-1100.webp 1100w" sizes="(min-width: 48rem) 34rem, 100vw" width="1100" height="1100" alt="Laminado de cejas con cepillo" loading="lazy" decoding="async">
+          <img src="assets/img/unas-gel-600.webp" srcset="assets/img/unas-gel-600.webp 600w, assets/img/unas-gel-1100.webp 1100w" sizes="(min-width: 48rem) 34rem, 100vw" width="1100" height="1375" alt="Manos con uñas de gel largas en tono lila" loading="lazy" decoding="async">
+        </div>
+        <ol class="rit__steps">
+          <li class="rit__step" data-n="01">
+            <img class="rit__inline" src="assets/img/pestanas-macro-900.webp" width="900" height="600" alt="Ojo verde en primer plano con pestañas largas y definidas" loading="lazy" decoding="async">
+            <p class="rit__n">Paso 1 · 10 min</p><h4>Consulta</h4><p>Miramos tu pestaña y tu uña natural y decidimos juntas qué te va.</p><p class="rit__price">Gratis</p>
+          </li>
+          <li class="rit__step" data-n="02">
+            <img class="rit__inline" src="assets/img/pestanas-pelo-a-pelo-600.webp" width="600" height="750" alt="Aplicación de extensiones de pestañas pelo a pelo con pinzas" loading="lazy" decoding="async">
+            <p class="rit__n">Paso 2 · 90 min</p><h4>Pestañas pelo a pelo</h4><p>Una extensión en cada pestaña, con pinzas y sin prisa. Puedes dormir.</p><p class="rit__price">65 €<small>ejemplo</small></p>
+          </li>
+          <li class="rit__step" data-n="03">
+            <img class="rit__inline" src="assets/img/cejas-laminado-600.webp" width="600" height="600" alt="Laminado de cejas con cepillo" loading="lazy" decoding="async">
+            <p class="rit__n">Paso 3 · 30 min</p><h4>Laminado de cejas</h4><p>Peinadas hacia arriba y fijadas, para que te duren semanas.</p><p class="rit__price">35 €<small>ejemplo</small></p>
+          </li>
+          <li class="rit__step" data-n="04">
+            <img class="rit__inline" src="assets/img/unas-gel-600.webp" width="600" height="750" alt="Manos con uñas de gel largas en tono lila" loading="lazy" decoding="async">
+            <p class="rit__n">Paso 4 · 60 min</p><h4>Uñas de gel</h4><p>Construcción en gel y sales con las manos listas para la boda.</p><p class="rit__price">45 €<small>ejemplo</small></p>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P4 -->
+<section class="fx" id="P4" aria-labelledby="P4-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">P4</p>
+    <div>
+      <h2 id="P4-t">Tilted photo wall</h2>
+      <p class="fx__for">A wall of small photos and words on a tilted plane, the columns drifting slowly in opposite directions. It stops after about a minute, pauses on touch or hover, and has a pause button. For a carta, a portfolio or a "this week" block.</p>
+      <ul class="fx__meta"><li>Small shared script (pause)</li><li>Plays a few cycles</li><li>Idea: Aceternity 3D Marquee</li></ul>
+    </div>
+  </div>
+  <div class="stage st-w3d" lang="es">
+    <div class="wrap">
+      <p class="st-kicker">Tasca Picón · Puerto de la Cruz</p>
+      <h3 class="tasca-h">Esta semana en la barra</h3>
+      <div class="w3d" id="w3d" data-reveal>
+        <div class="w3d__plane">
+          <div class="w3d__col">
+            <figure class="w3d__t"><img src="assets/img/pulpo-400.webp" width="400" height="500" alt="Pulpo a la brasa con brotes verdes" loading="lazy" decoding="async"></figure>
+            <p class="w3d__w w3d__w--r">Mojo rojo</p>
+            <figure class="w3d__t"><img src="assets/img/ajo-320.webp" width="320" height="301" alt="Cabeza de ajo sobre fondo negro" loading="lazy" decoding="async"></figure>
+            <p class="w3d__w w3d__w--g">Vino de la isla<small>desde 3 € · ejemplo</small></p>
+          </div>
+          <div class="w3d__col">
+            <p class="w3d__w w3d__w--p">Papas arrugadas</p>
+            <figure class="w3d__t"><img src="assets/img/guindillas-360.webp" width="360" height="630" alt="Dos guindillas rojas sobre fondo negro" loading="lazy" decoding="async"></figure>
+            <p class="w3d__w w3d__w--r">Pulpo<small>16 € · ejemplo</small></p>
+            <figure class="w3d__t"><img src="assets/img/pescado-400.webp" width="400" height="267" alt="Tres pescados a la plancha con limón" loading="lazy" decoding="async"></figure>
+          </div>
+          <div class="w3d__col">
+            <figure class="w3d__t"><img src="assets/img/cilantro-400.webp" width="400" height="284" alt="Manojos de cilantro fresco sobre fondo negro" loading="lazy" decoding="async"></figure>
+            <p class="w3d__w w3d__w--g">Mojo verde</p>
+            <figure class="w3d__t"><img src="assets/img/pulpo-400.webp" width="400" height="500" alt="Pulpo a la brasa, de cerca" loading="lazy" decoding="async"></figure>
+            <p class="w3d__w w3d__w--p">Mar–dom<small>19:00–23:30 · ejemplo</small></p>
+          </div>
+          <div class="w3d__col">
+            <p class="w3d__w w3d__w--r">Lapas</p>
+            <figure class="w3d__t"><img src="assets/img/pescado-400.webp" width="400" height="267" alt="Pescado del día a la plancha" loading="lazy" decoding="async"></figure>
+            <p class="w3d__w w3d__w--p">Queso asado</p>
+            <figure class="w3d__t"><img src="assets/img/guindillas-360.webp" width="360" height="630" alt="Guindillas rojas para el mojo picón" loading="lazy" decoding="async"></figure>
+          </div>
+        </div>
+      </div>
+      <div class="w3d-bar"><p class="st-note">Carta y precios de ejemplo</p><button class="btn w3d__pause" type="button" data-pause="w3d">Pausar</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- P5 -->
+<section class="fx" id="P5" aria-labelledby="P5-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">P5</p>
+    <div>
+      <h2 id="P5-t">Dithered photo, clean reveal</h2>
+      <p class="fx__for">The photo starts as a two-ink dot pattern, like a risograph print, and the clean photo opens out of it as you scroll. Without scroll timelines you see both halves side by side. For barbers, bars, trades and editorial looks.</p>
+      <ul class="fx__meta"><li>0 KB JavaScript</li><li>Scroll-linked</li><li>Idea: Cult UI dither-image</li></ul>
+    </div>
+  </div>
+  <div class="stage st-fase" lang="es">
+    <div class="wrap fase-grid">
+      <div>
+        <p class="st-kicker">Fase Neutro · Adeje</p>
+        <h3 class="fase-h">Revisamos tu cuadro antes de que salte.</h3>
+        <ul class="fase-list"><li><span>Revisión del cuadro</span><span>60 € · ejemplo</span></li><li><span>Diferenciales y tierra</span><span>incluido</span></li><li><span>Informe por escrito</span><span>el mismo día</span></li></ul>
+      </div>
+      <figure class="dz">
+        <div class="dz__frame">
+          <div class="dz__dith" aria-hidden="true">
+            <img src="assets/img/manos-720.webp" srcset="assets/img/manos-720.webp 720w, assets/img/manos-1280.webp 1280w" sizes="(min-width: 48rem) 38rem, 100vw" width="1280" height="1024" alt="" loading="lazy" decoding="async">
+            <span class="dz__bayer"></span>
+          </div>
+          <span class="dz__tint" aria-hidden="true"></span>
+          <img class="dz__clean" src="assets/img/manos-720.webp" srcset="assets/img/manos-720.webp 720w, assets/img/manos-1280.webp 1280w" sizes="(min-width: 48rem) 38rem, 100vw" width="1280" height="1024" alt="Manos con guantes comprobando un cuadro eléctrico con las puntas de un polímetro" loading="lazy" decoding="async">
+          <span class="dz__lab dz__lab--a" aria-hidden="true">Tramada</span><span class="dz__lab dz__lab--b" aria-hidden="true">Limpia</span>
+        </div>
+        <figcaption class="st-note">Foto en dos tintas · al bajar se abre la foto limpia</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- P6 -->
+<section class="fx" id="P6" aria-labelledby="P6-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">P6</p>
+    <div>
+      <h2 id="P6-t">Hand-drawn photo frames</h2>
+      <p class="fx__for">Photos cut into wobbly, hand-drawn shapes, each one different, with a loose pencil line around it. No motion; on a desktop the photo leans in a touch under the cursor. For bakeries, cafés, crafts and kids' activities.</p>
+      <ul class="fx__meta"><li>0 KB JavaScript</li><li>Static</li><li>Hover lean: desktop extra</li><li>Idea: Skiper UI</li></ul>
+    </div>
+  </div>
+  <div class="stage st-org" lang="es">
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+      <clipPath id="org-a" clipPathUnits="objectBoundingBox"><path d="M0.942 0.481C0.937 0.555 0.903 0.678 0.860 0.750C0.817 0.822 0.748 0.879 0.685 0.914C0.622 0.949 0.557 0.966 0.483 0.960C0.409 0.954 0.306 0.925 0.241 0.876C0.176 0.827 0.127 0.750 0.094 0.667C0.060 0.583 0.026 0.453 0.040 0.374C0.055 0.295 0.111 0.250 0.179 0.191C0.246 0.132 0.360 0.037 0.446 0.020C0.532 0.004 0.622 0.042 0.697 0.090C0.771 0.138 0.851 0.242 0.892 0.307C0.933 0.372 0.947 0.407 0.942 0.481Z"/></clipPath>
+      <clipPath id="org-b" clipPathUnits="objectBoundingBox"><path d="M0.976 0.462C0.975 0.528 0.970 0.663 0.952 0.736C0.934 0.810 0.932 0.863 0.868 0.902C0.805 0.941 0.650 0.960 0.571 0.970C0.492 0.980 0.451 0.965 0.394 0.960C0.337 0.955 0.285 0.981 0.229 0.938C0.172 0.895 0.087 0.782 0.055 0.703C0.024 0.625 0.039 0.531 0.039 0.467C0.038 0.403 0.022 0.388 0.053 0.319C0.083 0.249 0.158 0.099 0.222 0.050C0.286 0.002 0.381 0.029 0.436 0.026C0.491 0.024 0.488 0.024 0.552 0.036C0.617 0.047 0.754 0.045 0.822 0.096C0.890 0.146 0.935 0.276 0.961 0.337C0.986 0.398 0.978 0.395 0.976 0.462Z"/></clipPath>
+      <clipPath id="org-c" clipPathUnits="objectBoundingBox"><path d="M0.981 0.514C0.984 0.590 0.973 0.692 0.938 0.759C0.902 0.827 0.821 0.889 0.767 0.920C0.712 0.951 0.692 0.942 0.610 0.943C0.528 0.943 0.358 0.953 0.276 0.924C0.193 0.895 0.153 0.821 0.115 0.768C0.077 0.716 0.062 0.674 0.049 0.610C0.035 0.546 0.025 0.447 0.034 0.385C0.043 0.323 0.062 0.292 0.105 0.237C0.149 0.182 0.216 0.084 0.296 0.056C0.375 0.028 0.500 0.054 0.584 0.069C0.668 0.083 0.743 0.103 0.799 0.142C0.856 0.181 0.892 0.240 0.922 0.302C0.953 0.364 0.979 0.437 0.981 0.514Z"/></clipPath>
+    </svg>
+    <div class="wrap">
+      <p class="st-kicker">Café Alisio · El Médano</p>
+      <h3 class="alisio-h">Desayunos con viento a favor.</h3>
+      <ul class="org">
+        <li><figure class="org__f">
+          <div class="org__box"><div class="org__m" style="--ar:1;clip-path:url(#org-a)"><img src="assets/img/tostada-aguacate-400.webp" srcset="assets/img/tostada-aguacate-400.webp 400w, assets/img/tostada-aguacate-800.webp 800w" sizes="(min-width: 48rem) 22rem, 88vw" width="800" height="800" alt="Tostada de aguacate con sésamo en un plato blanco sobre fondo azul claro" loading="lazy" decoding="async"></div>
+          <svg class="org__line" viewBox="0 0 1 1" preserveAspectRatio="none" aria-hidden="true" focusable="false" style="--tw:-3deg"><path d="M0.942 0.481C0.937 0.555 0.903 0.678 0.860 0.750C0.817 0.822 0.748 0.879 0.685 0.914C0.622 0.949 0.557 0.966 0.483 0.960C0.409 0.954 0.306 0.925 0.241 0.876C0.176 0.827 0.127 0.750 0.094 0.667C0.060 0.583 0.026 0.453 0.040 0.374C0.055 0.295 0.111 0.250 0.179 0.191C0.246 0.132 0.360 0.037 0.446 0.020C0.532 0.004 0.622 0.042 0.697 0.090C0.771 0.138 0.851 0.242 0.892 0.307C0.933 0.372 0.947 0.407 0.942 0.481Z"/></svg></div>
+          <figcaption>Tostada de aguacate<small>Tomate y aceite de oliva · 6,50 € · ejemplo</small></figcaption>
+        </figure></li>
+        <li><figure class="org__f">
+          <div class="org__box"><div class="org__m" style="--ar:4/5;clip-path:url(#org-b)"><img src="assets/img/desayuno-560.webp" srcset="assets/img/desayuno-560.webp 560w, assets/img/desayuno-1080.webp 1080w" sizes="(min-width: 48rem) 22rem, 76vw" width="1080" height="1350" alt="Desayuno en una mesa con mantel de cuadros rojos, fruta, yogur y mermeladas" loading="lazy" decoding="async"></div>
+          <svg class="org__line" viewBox="0 0 1 1" preserveAspectRatio="none" aria-hidden="true" focusable="false" style="--tw:2deg"><path d="M0.976 0.462C0.975 0.528 0.970 0.663 0.952 0.736C0.934 0.810 0.932 0.863 0.868 0.902C0.805 0.941 0.650 0.960 0.571 0.970C0.492 0.980 0.451 0.965 0.394 0.960C0.337 0.955 0.285 0.981 0.229 0.938C0.172 0.895 0.087 0.782 0.055 0.703C0.024 0.625 0.039 0.531 0.039 0.467C0.038 0.403 0.022 0.388 0.053 0.319C0.083 0.249 0.158 0.099 0.222 0.050C0.286 0.002 0.381 0.029 0.436 0.026C0.491 0.024 0.488 0.024 0.552 0.036C0.617 0.047 0.754 0.045 0.822 0.096C0.890 0.146 0.935 0.276 0.961 0.337C0.986 0.398 0.978 0.395 0.976 0.462Z"/></svg></div>
+          <figcaption>Desayuno largo<small>Fruta del sur, yogur y mermeladas · ejemplo</small></figcaption>
+        </figure></li>
+        <li><figure class="org__f">
+          <div class="org__box"><div class="org__m" style="--ar:4/3;clip-path:url(#org-c)"><img src="assets/img/medano-kites-800.webp" srcset="assets/img/medano-kites-800.webp 800w, assets/img/medano-kites-1600.webp 1600w" sizes="(min-width: 48rem) 22rem, 94vw" width="1600" height="731" alt="Costa de El Médano con cometas de kitesurf en el cielo y Montaña Roja al fondo" loading="lazy" decoding="async"></div>
+          <svg class="org__line" viewBox="0 0 1 1" preserveAspectRatio="none" aria-hidden="true" focusable="false" style="--tw:-1.5deg"><path d="M0.981 0.514C0.984 0.590 0.973 0.692 0.938 0.759C0.902 0.827 0.821 0.889 0.767 0.920C0.712 0.951 0.692 0.942 0.610 0.943C0.528 0.943 0.358 0.953 0.276 0.924C0.193 0.895 0.153 0.821 0.115 0.768C0.077 0.716 0.062 0.674 0.049 0.610C0.035 0.546 0.025 0.447 0.034 0.385C0.043 0.323 0.062 0.292 0.105 0.237C0.149 0.182 0.216 0.084 0.296 0.056C0.375 0.028 0.500 0.054 0.584 0.069C0.668 0.083 0.743 0.103 0.799 0.142C0.856 0.181 0.892 0.240 0.922 0.302C0.953 0.364 0.979 0.437 0.981 0.514Z"/></svg></div>
+          <figcaption>La terraza<small>Cometas y Montaña Roja de fondo · 08:00–15:00 · ejemplo</small></figcaption>
+        </figure></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- P7 -->
+<section class="fx" id="P7" aria-labelledby="P7-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">P7</p>
+    <div>
+      <h2 id="P7-t">Expanding photo strip</h2>
+      <p class="fx__for">A row of photo panels; the chosen one opens wide with its caption. Tap on a phone (where it stacks), arrow keys on a keyboard, hover on a desktop. For services, rooms or tours.</p>
+      <ul class="fx__meta"><li>0 KB JavaScript</li><li>Tap, keys, hover</li><li>Idea: Skiper UI</li></ul>
+    </div>
+  </div>
+  <div class="stage st-strip" lang="es">
+    <div class="wrap">
+      <p class="st-kicker">Lúnula Studio · servicios</p>
+      <h3 class="lun-h">Elige y mira de cerca</h3>
+      <fieldset class="strip">
+        <legend class="sr-only">Elige un servicio</legend>
+        <label class="strip__p"><input class="sr-only" type="radio" name="lun-srv" aria-label="Uñas de gel" checked>
+          <img src="assets/img/unas-gel-600.webp" srcset="assets/img/unas-gel-600.webp 600w, assets/img/unas-gel-1100.webp 1100w" sizes="(min-width: 48rem) 40rem, 100vw" width="1100" height="1375" alt="Manos con uñas de gel largas en tono lila" loading="lazy" decoding="async">
+          <span class="strip__cap"><span class="strip__name">Uñas de gel</span><span class="strip__more">Construcción completa, forma y largo a tu gusto.<b>45 € · ejemplo</b></span></span></label>
+        <label class="strip__p"><input class="sr-only" type="radio" name="lun-srv" aria-label="Manicura francesa">
+          <img src="assets/img/unas-francesa-600.webp" srcset="assets/img/unas-francesa-600.webp 600w, assets/img/unas-francesa-1100.webp 1100w" sizes="(min-width: 48rem) 40rem, 100vw" width="1100" height="1375" alt="Manicura francesa sosteniendo una flor pequeña" loading="lazy" decoding="async">
+          <span class="strip__cap"><span class="strip__name">Francesa</span><span class="strip__more">Semipermanente con punta blanca, natural y limpia.<b>25 € · ejemplo</b></span></span></label>
+        <label class="strip__p"><input class="sr-only" type="radio" name="lun-srv" aria-label="Pestañas pelo a pelo">
+          <img src="assets/img/pestanas-pelo-a-pelo-600.webp" srcset="assets/img/pestanas-pelo-a-pelo-600.webp 600w, assets/img/pestanas-pelo-a-pelo-1100.webp 1100w" sizes="(min-width: 48rem) 40rem, 100vw" width="1100" height="1375" alt="Aplicación de extensiones de pestañas pelo a pelo con pinzas" loading="lazy" decoding="async">
+          <span class="strip__cap"><span class="strip__name">Pelo a pelo</span><span class="strip__more">Una extensión en cada pestaña natural.<b>65 € · ejemplo</b></span></span></label>
+        <label class="strip__p"><input class="sr-only" type="radio" name="lun-srv" aria-label="Lifting de pestañas">
+          <img src="assets/img/pestanas-macro-900.webp" srcset="assets/img/pestanas-macro-900.webp 900w, assets/img/pestanas-macro-1600.webp 1600w" sizes="(min-width: 48rem) 40rem, 100vw" width="1600" height="1067" alt="Ojo verde en primer plano con pestañas largas y curvadas" loading="lazy" decoding="async">
+          <span class="strip__cap"><span class="strip__name">Lifting</span><span class="strip__more">Lifting de pestañas con tinte, sin extensiones.<b>40 € · ejemplo</b></span></span></label>
+        <label class="strip__p"><input class="sr-only" type="radio" name="lun-srv" aria-label="Laminado de cejas">
+          <img src="assets/img/cejas-laminado-600.webp" srcset="assets/img/cejas-laminado-600.webp 600w, assets/img/cejas-laminado-1100.webp 1100w" sizes="(min-width: 48rem) 40rem, 100vw" width="1100" height="1100" alt="Laminado de cejas con cepillo" loading="lazy" decoding="async">
+          <span class="strip__cap"><span class="strip__name">Cejas</span><span class="strip__more">Laminado: cejas peinadas y fijadas.<b>35 € · ejemplo</b></span></span></label>
+      </fieldset>
+    </div>
+  </div>
+</section>
+
+<!-- P8 -->
+<section class="fx" id="P8" aria-labelledby="P8-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">P8</p>
+    <div>
+      <h2 id="P8-t">Photo columns at different speeds</h2>
+      <p class="fx__for">A photo wall whose columns slide at different speeds, some up and some down, as you scroll. Two columns on a phone, three on a desktop. For restaurants, spas and rural houses with plenty of good photos.</p>
+      <ul class="fx__meta"><li>0 KB JavaScript</li><li>Scroll-linked</li><li>Idea: Skiper UI</li></ul>
+    </div>
+  </div>
+  <div class="stage st-cols" lang="es">
+    <div class="wrap">
+      <p class="st-kicker">Casa Tea · La Orotava</p>
+      <h3 class="casa-h">Rincón a rincón.</h3>
+      <div class="cols-win">
+        <div class="cols">
+          <ul class="cols__c">
+            <li><figure class="cols__t"><img src="assets/img/casa-400.webp" srcset="assets/img/casa-400.webp 400w, assets/img/casa-560.webp 560w" sizes="(min-width: 48rem) 22rem, 46vw" width="560" height="700" alt="Galería de madera del patio con helechos colgantes" loading="lazy" decoding="async"></figure></li>
+            <li><figure class="cols__t"><img src="assets/img/drago-400.webp" srcset="assets/img/drago-400.webp 400w, assets/img/drago-560.webp 560w" sizes="(min-width: 48rem) 22rem, 46vw" width="560" height="700" alt="Habitación Drago: cortinas blancas y luz de ventana" loading="lazy" decoding="async"></figure></li>
+            <li><p class="cols__w">Cinco habitaciones, una familia.<small>Casa del siglo XVIII · ejemplo</small></p></li>
+            <li><figure class="cols__t"><img src="assets/img/teide-400.webp" srcset="assets/img/teide-400.webp 400w, assets/img/teide-560.webp 560w" sizes="(min-width: 48rem) 22rem, 46vw" width="560" height="700" alt="El Teide sobre un mar de nubes" loading="lazy" decoding="async"></figure></li>
+            <li><figure class="cols__t"><img src="assets/img/lagar-400.webp" srcset="assets/img/lagar-400.webp 400w, assets/img/lagar-640.webp 640w" sizes="(min-width: 48rem) 22rem, 46vw" width="640" height="427" alt="Habitación Lagar con techo de vigas y caña" loading="lazy" decoding="async"></figure></li>
+          </ul>
+          <ul class="cols__c">
+            <li><p class="cols__w">Desayuno en el patio.<small>08:00–10:30 · ejemplo</small></p></li>
+            <li><figure class="cols__t"><img src="assets/img/desayuno-400.webp" srcset="assets/img/desayuno-400.webp 400w, assets/img/desayuno-560.webp 560w" sizes="(min-width: 48rem) 22rem, 46vw" width="560" height="700" alt="Desayuno con mermeladas sobre mantel de cuadros" loading="lazy" decoding="async"></figure></li>
+            <li><figure class="cols__t"><img src="assets/img/retama-400.webp" srcset="assets/img/retama-400.webp 400w, assets/img/retama-560.webp 560w" sizes="(min-width: 48rem) 22rem, 46vw" width="560" height="700" alt="Habitación Retama bajo cubierta, con muro de piedra y claraboya" loading="lazy" decoding="async"></figure></li>
+            <li><figure class="cols__t"><img src="assets/img/balcon-400.webp" srcset="assets/img/balcon-400.webp 400w, assets/img/balcon-560.webp 560w" sizes="(min-width: 48rem) 22rem, 46vw" width="560" height="560" alt="Ventana abierta al jardín desde la habitación Balcón" loading="lazy" decoding="async"></figure></li>
+            <li><figure class="cols__t"><img src="assets/img/hero-400.webp" srcset="assets/img/hero-400.webp 400w, assets/img/hero-720.webp 720w" sizes="(min-width: 48rem) 22rem, 46vw" width="720" height="480" alt="Balcón canario de madera tallada" loading="lazy" decoding="async"></figure></li>
+          </ul>
+          <ul class="cols__c">
+            <li><figure class="cols__t"><img src="assets/img/balcon-400.webp" srcset="assets/img/balcon-400.webp 400w, assets/img/balcon-560.webp 560w" sizes="22rem" width="560" height="560" alt="Ventana de la habitación Balcón abierta a los árboles" loading="lazy" decoding="async"></figure></li>
+            <li><p class="cols__w">El casco viejo, en la puerta.<small>La Orotava · ejemplo</small></p></li>
+            <li><figure class="cols__t"><img src="assets/img/drago-400.webp" srcset="assets/img/drago-400.webp 400w, assets/img/drago-560.webp 560w" sizes="22rem" width="560" height="700" alt="Cortinas blancas y luz de mañana en la habitación Drago" loading="lazy" decoding="async"></figure></li>
+            <li><figure class="cols__t"><img src="assets/img/casa-400.webp" srcset="assets/img/casa-400.webp 400w, assets/img/casa-560.webp 560w" sizes="22rem" width="560" height="700" alt="Helechos y balaustres del patio, desde abajo" loading="lazy" decoding="async"></figure></li>
+          </ul>
+        </div>
+      </div>
+      <p class="st-note">Datos de ejemplo</p>
+    </div>
+  </div>
+</section>
+
+<!-- P9 -->
+<section class="fx" id="P9" aria-labelledby="P9-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">P9</p>
+    <div>
+      <h2 id="P9-t">3D spinning gallery</h2>
+      <p class="fx__for">Photos on a 3D drum; drag it sideways and it spins on with a little momentum, then settles on a photo. Arrow buttons too. With less motion asked for, it is a normal swipe row. For tours, rooms and portfolios.</p>
+      <ul class="fx__meta"><li>~1.8 KB script</li><li>Drag or buttons</li><li>Idea: Cult UI three-d-carousel</li></ul>
+    </div>
+  </div>
+  <div class="stage st-cyl" lang="es">
+    <div class="wrap">
+      <p class="st-kicker">Cielo Ucanca · Atardecer y estrellas</p>
+      <h3 class="cielo-h">Una tarde, de la costa a las estrellas.</h3>
+    </div>
+    <div class="cyl" id="cyl">
+      <ul class="cyl__ring" tabindex="0" aria-label="Fotos de la excursión">
+        <li class="cyl__p" style="--i:0" data-t="Recogida en la costa"><figure><img src="assets/img/costa-adeje-800.webp" width="800" height="600" alt="Puesta de sol sobre el mar en la costa de Adeje" loading="lazy" decoding="async"><figcaption>Recogida en la costa<small>Costa Adeje · ejemplo</small></figcaption></figure></li>
+        <li class="cyl__p" style="--i:1" data-t="Subida por Las Cañadas"><figure><img src="assets/img/subida-canadas-800.webp" width="800" height="534" alt="Laderas doradas de Las Cañadas con el sol bajo" loading="lazy" decoding="async"><figcaption>Subida por Las Cañadas<small>Minibús · 14 plazas</small></figcaption></figure></li>
+        <li class="cyl__p" style="--i:2" data-t="El Teide"><figure><img src="assets/img/teide-560.webp" width="560" height="700" alt="El Teide sobre un mar de nubes" loading="lazy" decoding="async"><figcaption>El Teide<small>Parada en el mirador</small></figcaption></figure></li>
+        <li class="cyl__p" style="--i:3" data-t="Mar de nubes"><figure><img src="assets/img/atardecer-mar-de-nubes-800.webp" width="800" height="533" alt="El sol poniéndose sobre un mar de nubes" loading="lazy" decoding="async"><figcaption>Mar de nubes<small>Puesta de sol</small></figcaption></figure></li>
+        <li class="cyl__p" style="--i:4" data-t="Luna"><figure><img src="assets/img/luna-480.webp" width="480" height="480" alt="Luna llena vista por telescopio" loading="lazy" decoding="async"><figcaption>Luna<small>Telescopio</small></figcaption></figure></li>
+        <li class="cyl__p" style="--i:5" data-t="Estrellas en Ucanca"><figure><img src="assets/img/cielo-norte-800.webp" width="800" height="820" alt="Estrellas girando sobre la silueta de una montaña" loading="lazy" decoding="async"><figcaption>Estrellas en Ucanca<small>Llano de Ucanca</small></figcaption></figure></li>
+      </ul>
+    </div>
+    <div class="cyl__btns" id="cyl-btns"><button class="btn" type="button" data-cyl="-1" aria-label="Foto anterior">←</button><button class="btn" type="button" data-cyl="1" aria-label="Foto siguiente">→</button></div>
+    <p class="sr-only" aria-live="polite" id="cyl-live"></p>
+  </div>
+</section>
+
+<!-- P10 -->
+<section class="fx" id="P10" aria-labelledby="P10-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">P10</p>
+    <div>
+      <h2 id="P10-t">Fanned card stack you swipe</h2>
+      <p class="fx__for">A fanned stack of cards; swipe the top one sideways and it goes to the back. Buttons do the same. Used here for reviews, but it works for photos too. Without JavaScript it is a plain list.</p>
+      <ul class="fx__meta"><li>~1.6 KB script</li><li>Drag or buttons</li><li>Idea: Watermelon UI revealing cards</li></ul>
+    </div>
+  </div>
+  <div class="stage st-deck" lang="es">
+    <div class="wrap deck-grid">
+      <div>
+        <p class="st-kicker">Tasca Picón · reseñas de ejemplo</p>
+        <h3 class="tasca-h">Lo que dicen en la barra</h3>
+        <p class="st-lede">Desliza la tarjeta de arriba hacia un lado.</p>
+        <div class="deck-ctl" id="deck-ctl"><button class="btn" type="button" data-deck="-1" aria-label="Reseña anterior">←</button><button class="btn" type="button" data-deck="1" aria-label="Reseña siguiente">→</button><p id="deck-n" aria-live="polite">Reseña 1 de 5</p></div>
+      </div>
+      <ul class="deck" id="deck">
+        <li class="deck__card" style="--bg:#151110;--fg:#f5f7f6"><figure style="margin:0;display:contents"><blockquote>“Las papas con los dos mojos. El verde me lo llevaría a casa.”</blockquote><figcaption><span>Marta · Puerto de la Cruz</span><span class="deck__stars" aria-label="5 de 5">★★★★★</span></figcaption></figure></li>
+        <li class="deck__card" style="--bg:#ff3d24"><figure style="margin:0;display:contents"><blockquote>“Pulpo tierno, vino de Tacoronte y nadie con prisa.”</blockquote><figcaption><span>Jonas · Hamburgo</span><span class="deck__stars" aria-label="5 de 5">★★★★★</span></figcaption></figure></li>
+        <li class="deck__card" style="--bg:#7be33b"><figure style="margin:0;display:contents"><blockquote>“Un viernes ruidoso, como tiene que ser. Volveremos.”</blockquote><figcaption><span>Ana y Luis</span><span class="deck__stars" aria-label="4 de 5">★★★★☆</span></figcaption></figure></li>
+        <li class="deck__card" style="--bg:#ffffff"><figure style="margin:0;display:contents"><blockquote>“Fuimos sin reserva, dos en la barra, y en cinco minutos teníamos sitio.”</blockquote><figcaption><span>Carmen · La Orotava</span><span class="deck__stars" aria-label="5 de 5">★★★★★</span></figcaption></figure></li>
+        <li class="deck__card" style="--bg:#f2c94c"><figure style="margin:0;display:contents"><blockquote>“El queso asado con miel de palma. No digo más.”</blockquote><figcaption><span>Pedro</span><span class="deck__stars" aria-label="5 de 5">★★★★★</span></figcaption></figure></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- P11 -->
+<section class="fx" id="P11" aria-labelledby="P11-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">P11</p>
+    <div>
+      <h2 id="P11-t">Orbit gallery</h2>
+      <p class="fx__for">Thumbnails around a circle; tap one and it flies into the centre, large, with its caption. Where the browser has no View Transitions it simply swaps. For services, a team, rooms or dishes.</p>
+      <ul class="fx__meta"><li>~1.1 KB script</li><li>Tap</li><li>Idea: Watermelon UI radial carousel</li></ul>
+    </div>
+  </div>
+  <div class="stage st-orb" lang="es">
+    <div class="wrap orb-grid">
+      <div class="orb" id="orb">
+        <figure class="orb__c">
+          <img src="assets/img/unas-gel-600.webp" width="600" height="750" alt="Manos con uñas de gel largas en tono lila" loading="lazy" decoding="async">
+          <div class="orb__gift" hidden>Tarjeta regalo</div>
+        </figure>
+        <button class="orb__t" type="button" aria-pressed="true" aria-label="Ver uñas de gel" style="--a:-90deg" data-name="Uñas de gel" data-desc="Construcción completa en gel, forma y largo a tu gusto." data-price="45 € · ejemplo"><img src="assets/img/unas-gel-600.webp" width="600" height="750" alt="Manos con uñas de gel largas en tono lila" loading="lazy" decoding="async"></button>
+        <button class="orb__t" type="button" aria-pressed="false" aria-label="Ver manicura francesa" style="--a:-30deg" data-name="Francesa" data-desc="Semipermanente con punta blanca, natural y limpia." data-price="25 € · ejemplo"><img src="assets/img/unas-francesa-600.webp" width="600" height="750" alt="Manicura francesa sosteniendo una flor pequeña" loading="lazy" decoding="async"></button>
+        <button class="orb__t" type="button" aria-pressed="false" aria-label="Ver pestañas pelo a pelo" style="--a:30deg" data-name="Pelo a pelo" data-desc="Una extensión en cada pestaña natural. Unos 90 minutos." data-price="65 € · ejemplo"><img src="assets/img/pestanas-pelo-a-pelo-600.webp" width="600" height="750" alt="Aplicación de extensiones de pestañas pelo a pelo con pinzas" loading="lazy" decoding="async"></button>
+        <button class="orb__t" type="button" aria-pressed="false" aria-label="Ver tarjeta regalo" style="--a:90deg" data-gift data-name="Tarjeta regalo" data-desc="Para cualquier servicio. Se la mandamos por WhatsApp a quien tú digas." data-price="desde 25 € · ejemplo"><span class="orb__gt" aria-hidden="true">Regalo</span></button>
+        <button class="orb__t" type="button" aria-pressed="false" aria-label="Ver laminado de cejas" style="--a:150deg" data-name="Cejas" data-desc="Laminado: peinadas hacia arriba y fijadas." data-price="35 € · ejemplo"><img src="assets/img/cejas-laminado-600.webp" width="600" height="600" alt="Laminado de cejas con cepillo" loading="lazy" decoding="async"></button>
+        <button class="orb__t" type="button" aria-pressed="false" aria-label="Ver lifting de pestañas" style="--a:210deg" data-name="Lifting" data-desc="Lifting de pestañas con tinte, sin extensiones." data-price="40 € · ejemplo"><img src="assets/img/pestanas-macro-900.webp" width="900" height="600" alt="Ojo verde en primer plano con pestañas curvadas" loading="lazy" decoding="async"></button>
+      </div>
+      <div class="orb-cap" id="orb-cap" aria-live="polite">
+        <p class="st-kicker">Lúnula Studio · toca una foto</p>
+        <h3 class="orb__name">Uñas de gel</h3>
+        <p class="orb__desc">Construcción completa en gel, forma y largo a tu gusto.</p>
+        <p class="orb__price">45 € · ejemplo</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P12 -->
+<section class="fx" id="P12" aria-labelledby="P12-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">P12</p>
+    <div>
+      <h2 id="P12-t">Hover-scrub photo card</h2>
+      <p class="fx__for">Move the cursor across the photo and it flips through four shots, like scrubbing a video. On a phone, tap the left or right part of the photo to see another; the dots show there are more. For rooms, products, portfolios and tours.</p>
+      <ul class="fx__meta"><li>0 KB JavaScript</li><li>Desktop extra</li><li>Idea: daisyUI hover gallery</li></ul>
+    </div>
+  </div>
+  <div class="stage st-scrub" lang="es">
+    <div class="wrap scrub-grid">
+      <article class="tour">
+        <div class="scrub">
+          <img class="scrub__i i1" src="assets/img/subida-canadas-800.webp" width="800" height="534" alt="Laderas doradas de Las Cañadas con el sol bajo" loading="lazy" decoding="async">
+          <img class="scrub__i i2" src="assets/img/teide-560.webp" width="560" height="700" alt="El Teide sobre un mar de nubes" loading="lazy" decoding="async" style="object-position:50% 30%">
+          <img class="scrub__i i3" src="assets/img/atardecer-mar-de-nubes-800.webp" width="800" height="533" alt="El sol poniéndose sobre un mar de nubes" loading="lazy" decoding="async">
+          <img class="scrub__i i4" src="assets/img/cielo-norte-800.webp" width="800" height="820" alt="Estrellas girando sobre la silueta de una montaña" loading="lazy" decoding="async">
+          <div class="scrub__ui" aria-hidden="true">
+            <span class="scrub__lab l1">17:30 · Las Cañadas</span><span class="scrub__lab l2">18:15 · El Teide</span><span class="scrub__lab l3">19:00 · Atardecer</span><span class="scrub__lab l4">20:30 · Estrellas</span>
+            <span class="scrub__dots"><i class="d1"></i><i class="d2"></i><i class="d3"></i><i class="d4"></i></span>
+            <span class="scrub__zones"><label class="scrub__z z1"><input type="radio" name="scrub" tabindex="-1" aria-label="Foto 1" checked></label><label class="scrub__z z2"><input type="radio" name="scrub" tabindex="-1" aria-label="Foto 2"></label><label class="scrub__z z3"><input type="radio" name="scrub" tabindex="-1" aria-label="Foto 3"></label><label class="scrub__z z4"><input type="radio" name="scrub" tabindex="-1" aria-label="Foto 4"></label></span>
+          </div>
+        </div>
+        <div class="tour__b">
+          <h3>Atardecer y estrellas</h3>
+          <p>Recogida en el sur, puesta de sol sobre el mar de nubes y telescopios en el Llano de Ucanca. Llévense abrigo.</p>
+          <div class="tour__row"><p class="tour__price">69 €<small>adulto · ejemplo</small></p><a class="btn" href="#P12">Ver la excursión</a></div>
+        </div>
+      </article>
+      <div class="scrub-side">
+        <p class="st-kicker">Cielo Ucanca · la tarde, en cuatro fotos</p>
+        <h3 class="cielo-h">Pasen el cursor por la foto.</h3>
+        <ol>
+          <li><b>17:30</b><span>Subida por Las Cañadas</span></li>
+          <li><b>18:15</b><span>Parada frente al Teide</span></li>
+          <li><b>19:00</b><span>Puesta de sol sobre el mar de nubes</span></li>
+          <li><b>20:30</b><span>Estrellas y telescopios</span></li>
+        </ol>
+        <p class="st-note">Horarios de ejemplo</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="labfoot wrap">Motion lab · Teide Digital · internal, not indexed. Photos: Unsplash licence, from the showroom samples.</footer>
+
+<script>
+(() => {
+// motion lab: reveals, P1 slider, P4 pause, P9 drum, P10 deck, P11 orbit
+const motion = document.documentElement.classList.contains('motion');
+const $ = (s, r = document) => r.querySelector(s);
+const reveals = [...document.querySelectorAll('[data-reveal]')];
+const show = (el) => el.classList.add('is-in');
+if (motion) {
+const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { show(e.target); io.unobserve(e.target); } }), { rootMargin: '0px 0px -15% 0px' });
+reveals.forEach((el) => io.observe(el));
+const sweep = () => reveals.forEach((el) => { if (el.getBoundingClientRect().top < innerHeight) show(el); });
+let t;
+addEventListener('scroll', () => { clearTimeout(t); t = setTimeout(sweep, 1200); }, { passive: true });
+setTimeout(sweep, 3000);
+} else reveals.forEach(show);
+document.querySelectorAll('.ba').forEach((b) => {
+const r = $('input', b);
+const f = () => { b.style.setProperty('--p', r.value / 100); r.setAttribute('aria-valuetext', `${r.value} % antes, ${100 - r.value} % después`); };
+r.addEventListener('input', f); f();
+});
+document.querySelectorAll('[data-pause]').forEach((b) => b.addEventListener('click', () => {
+const p = document.getElementById(b.dataset.pause).classList.toggle('is-paused');
+b.textContent = p ? 'Seguir' : 'Pausar';
+}));
+const cyl = $('#cyl');
+if (cyl) {
+const ring = $('.cyl__ring', cyl), items = [...ring.children], n = items.length, step = 360 / n, live = $('#cyl-live');
+const btns = document.querySelectorAll('[data-cyl]');
+cyl.parentElement.classList.add('has-js');
+if (!motion) {
+btns.forEach((b) => b.addEventListener('click', () => ring.scrollBy({ left: b.dataset.cyl * (items[0].offsetWidth + 16) })));
+} else {
+cyl.classList.add('is-3d');
+ring.removeAttribute('tabindex');
+let a = 0, v = 0, lx = 0, lt = 0, pid = null, raf = 0;
+const draw = () => ring.style.setProperty('--a', a + 'deg');
+const settle = (to) => {
+ring.classList.add('ease'); a = to; draw();
+const i = ((Math.round(-a / step) % n) + n) % n;
+live.textContent = `Foto ${i + 1} de ${n}: ${items[i].dataset.t}`;
+};
+btns.forEach((b) => b.addEventListener('click', () => { cancelAnimationFrame(raf); settle(Math.round(a / step) * step - b.dataset.cyl * step); }));
+cyl.addEventListener('pointerdown', (e) => {
+if (pid !== null || e.button > 0) return;
+pid = e.pointerId; lx = e.clientX; lt = e.timeStamp; v = 0;
+cancelAnimationFrame(raf); ring.classList.remove('ease'); cyl.setPointerCapture(pid);
+});
+cyl.addEventListener('pointermove', (e) => {
+if (e.pointerId !== pid) return;
+const dx = e.clientX - lx, dt = Math.max(8, e.timeStamp - lt);
+a += dx * 0.35; v = (dx * 0.35) / dt; lx = e.clientX; lt = e.timeStamp; draw();
+});
+const up = (e) => {
+if (e.pointerId !== pid) return;
+pid = null;
+let t = performance.now();
+const tick = (now) => {
+const dt = Math.min(48, now - t); t = now;
+a += v * dt; v *= Math.pow(0.93, dt / 16); draw();
+if (Math.abs(v) > 0.03) raf = requestAnimationFrame(tick); else settle(Math.round(a / step) * step);
+};
+raf = requestAnimationFrame(tick);
+};
+cyl.addEventListener('pointerup', up);
+cyl.addEventListener('pointercancel', up);
+}
+}
+const deck = $('#deck');
+if (deck) {
+let cards = [...deck.children];
+const n = cards.length, ROT = [0, -5, 4, -8, 7], count = $('#deck-n');
+cards.forEach((c, i) => { c.dataset.i = i; });
+deck.classList.add('is-stack');
+deck.parentElement.classList.add('has-js');
+const lay = () => {
+cards.forEach((c, k) => { c.style.setProperty('--k', k); c.style.setProperty('--rot', ROT[k] + 'deg'); c.style.setProperty('--z', n - k); c.style.transform = ''; });
+count.textContent = `Reseña ${+cards[0].dataset.i + 1} de ${n}`;
+};
+const go = (d) => { if (d > 0) cards.push(cards.shift()); else cards.unshift(cards.pop()); lay(); };
+document.querySelectorAll('[data-deck]').forEach((b) => b.addEventListener('click', () => go(+b.dataset.deck)));
+let pid = null, sx = 0, dx = 0;
+deck.addEventListener('pointerdown', (e) => {
+const c = cards[0];
+if (pid !== null || e.button > 0 || !c.contains(e.target)) return;
+pid = e.pointerId; sx = e.clientX; dx = 0; c.classList.add('is-drag'); c.setPointerCapture(pid);
+});
+deck.addEventListener('pointermove', (e) => {
+if (e.pointerId !== pid) return;
+dx = e.clientX - sx; cards[0].style.transform = `translateX(${dx}px) rotate(${dx * 0.06}deg)`;
+});
+const end = (e) => {
+if (e.pointerId !== pid) return;
+pid = null;
+const c = cards[0];
+c.classList.remove('is-drag');
+if (Math.abs(dx) > Math.min(100, c.offsetWidth * 0.3)) {
+const s = Math.sign(dx);
+c.style.transform = `translateX(${s * 125}%) rotate(${s * 16}deg)`;
+setTimeout(() => go(1), motion ? 230 : 0);
+} else c.style.transform = '';
+};
+deck.addEventListener('pointerup', end);
+deck.addEventListener('pointercancel', end);
+lay();
+}
+const orb = $('#orb');
+if (orb) {
+const img = $('.orb__c img', orb), gift = $('.orb__gift', orb), cap = $('#orb-cap');
+const thumbs = orb.querySelectorAll('.orb__t');
+thumbs.forEach((b) => b.addEventListener('click', () => {
+if (b.getAttribute('aria-pressed') === 'true') return;
+const d = b.dataset, isGift = 'gift' in d, from = $('img, .orb__gt', b);
+const apply = async () => {
+thumbs.forEach((x) => x.setAttribute('aria-pressed', x === b));
+gift.hidden = !isGift; img.hidden = isGift;
+if (!isGift) { img.src = from.currentSrc || from.src; img.alt = from.alt; await img.decode().catch(() => {}); }
+$('.orb__name', cap).textContent = d.name; $('.orb__desc', cap).textContent = d.desc; $('.orb__price', cap).textContent = d.price;
+};
+if (motion && document.startViewTransition) {
+from.style.viewTransitionName = 'orb-pic';
+const t = document.startViewTransition(async () => { from.style.viewTransitionName = ''; await apply(); (isGift ? gift : img).style.viewTransitionName = 'orb-pic'; });
+t.finished.finally(() => { img.style.viewTransitionName = ''; gift.style.viewTransitionName = ''; });
+} else apply();
+}));
+}
+})();
+</script>
+</body>
+</html>
