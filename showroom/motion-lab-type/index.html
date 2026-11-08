@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Type lab · Teide Digital</title>
+<meta name="description" content="Internal test page: twelve headline and text effects from Magic UI, React Bits, daisyUI and others, rebuilt in plain CSS for small-business sites.">
+<meta name="theme-color" content="#f2eee6">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7' fill='%23bf3912'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/geist.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+/* Motion is opt-in: the hidden "before" states below exist only under .motion,
+   which is set here, before first paint, and only when the visitor has not asked
+   for reduced motion. No JS, an old browser or reduced motion = everything shown. */
+if (matchMedia('(prefers-reduced-motion: no-preference)').matches && 'IntersectionObserver' in window) document.documentElement.classList.add('motion');
+</script>
+<style>
+@font-face{font-family:"Geist";src:url("assets/fonts/geist.woff2") format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"Archivo";src:url("assets/fonts/archivo.woff2") format("woff2");font-weight:400 900;font-stretch:100% 125%;font-display:swap}
+@font-face{font-family:"Sofia Sans";src:url("assets/fonts/sofia-sans-latin-wght.woff2") format("woff2");font-weight:1 1000;font-display:swap}
+@font-face{font-family:"Ibarra Real Nova";src:url("assets/fonts/ibarra-latin.woff2") format("woff2");font-weight:400 700;font-display:swap}
+@font-face{font-family:"Anybody";src:url("assets/fonts/anybody-latin.woff2") format("woff2");font-weight:500 900;font-stretch:75% 150%;font-display:swap}
+
+:root{--paper:#f2eee6;--ink:#171512;--mute:#6a645b;--rule:#d6cfc1;--hot:#bf3912;--g:clamp(16px,4vw,32px)}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1rem/1.55 "Geist",system-ui,sans-serif;overflow-x:clip}
+img{display:block;max-width:100%;height:auto}
+h1,h2,h3{margin:0}
+a{color:inherit}
+.wrap{width:100%;max-width:72rem;margin:0 auto;padding:0 var(--g)}
+.btn{font:600 .875rem/1 "Geist",system-ui,sans-serif;letter-spacing:.02em;padding:.75rem 1.1rem;min-height:44px;border-radius:999px;border:1.5px solid currentColor;background:transparent;color:inherit;cursor:pointer}
+.btn:focus-visible,a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--hot);outline-offset:3px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* ---------- lab chrome ---------- */
+.lab{padding:3.5rem 0 3rem}
+.lab h1{font-size:clamp(2.6rem,9vw,6.2rem);line-height:.95;letter-spacing:-.035em;font-weight:700;max-width:12ch}
+.lab__lede{margin:1.5rem 0 0;font-size:clamp(1.05rem,2.6vw,1.3rem);max-width:38rem}
+.lab__ask{margin:1rem 0 0;font-weight:600;max-width:38rem}
+.lab__index{list-style:none;margin:2.25rem 0 0;padding:0;display:grid;gap:0;border-top:1px solid var(--rule)}
+.lab__index a{display:flex;gap:1rem;align-items:baseline;padding:.8rem 0;border-bottom:1px solid var(--rule);text-decoration:none;font-weight:500}
+.lab__index a span{font-variant-numeric:tabular-nums;color:var(--hot);font-weight:700;min-width:2.6rem}
+@media (min-width:48rem){.lab__index{grid-template-columns:1fr 1fr;column-gap:2.5rem}}
+.lab__note{margin:1.5rem 0 0;font-size:.9rem;color:var(--mute);max-width:40rem}
+.lab__more{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:1.75rem 0 0;font-size:.85rem}
+.lab__more p{margin:0 .4rem 0 0;font-weight:600}
+.lab__more a{display:inline-flex;align-items:center;min-height:44px;padding:0 .95rem;border:1px solid var(--rule);border-radius:999px;background:#fbf9f4;text-decoration:none}
+.lab__more a[aria-current]{border-color:var(--ink);font-weight:600}
+
+/* Off-screen sections skip layout until they come near the viewport, so each
+   section's font is only fetched when you scroll to it, not all five on load. */
+.fx{border-top:1px solid var(--rule);content-visibility:auto;contain-intrinsic-size:auto 1200px}
+.fx__head{display:grid;grid-template-columns:auto minmax(0,1fr);gap:1rem;padding-top:2.5rem;padding-bottom:1.75rem}
+.fx__num{margin:0;font-size:clamp(2.2rem,7vw,3.6rem);line-height:.9;font-weight:700;color:var(--hot);font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.fx__head h2{font-size:clamp(1.45rem,4.4vw,2.2rem);line-height:1.08;letter-spacing:-.02em;font-weight:650}
+.fx__for{margin:.55rem 0 0;max-width:40rem;color:#3a362f}
+.fx__meta{list-style:none;margin:.85rem 0 0;padding:0;display:flex;flex-wrap:wrap;gap:.4rem}
+.fx__meta li{font-size:.75rem;letter-spacing:.03em;padding:.3rem .6rem;border:1px solid var(--rule);border-radius:999px;color:var(--mute);background:#fbf9f4}
+.stage{position:relative}
+.st-kicker{margin:0;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase}
+.st-note{margin:1.25rem 0 0;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase}
+.replay{margin-top:1.5rem}
+
+@keyframes settle{from{transform:scale(1.35)}to{transform:none}}
+
+/* ---------- T1 rotating word (Fase Neutro) ---------- */
+.st-fn{background:#f4f7fa;color:#10151f;padding:3rem 0 3.25rem}
+.st-fn .st-kicker{color:#2141e6}
+.rot-h{margin-top:1rem;font:800 clamp(2.35rem,10vw,6rem)/1.06 "Archivo",sans-serif;font-stretch:104%;letter-spacing:-.02em;max-width:15ch;text-wrap:balance}
+/* every word sits in the same grid cell, so the slot is as wide as the longest
+   word from the start and the line never reflows while the words change */
+.rot{--D:1.7s;--C:calc(var(--D) * 3);display:inline-grid;justify-items:center;background:#2141e6;color:#fff;border-radius:.14em;padding:0 .2em .06em;clip-path:inset(0 round .14em)}
+.rot>span{grid-area:1/1}
+.rot>span+span{opacity:0}
+.rot-sub{margin:1.4rem 0 0;font-size:1.05rem;color:#4a5263;max-width:34rem}
+.motion [data-reveal].is-in .rot>span{animation:rot var(--C) cubic-bezier(.3,.7,.2,1) calc(var(--k) * var(--D) - var(--C) * .06) 3 both;animation-iteration-count:calc(3 - var(--k) * .3)}
+.motion [data-reveal].is-in .rot>span:first-child{animation:rot var(--C) cubic-bezier(.3,.7,.2,1) calc(var(--C) * -.06) 3 both,rot-in calc(var(--C) * .06) cubic-bezier(.3,.7,.2,1) calc(var(--C) * 2.94) forwards}
+/* hover pause must out-rank the reveal rules, whose animation shorthand resets play-state */
+.motion [data-reveal].is-in .rot-h:hover .rot>span:nth-child(n){animation-play-state:paused}
+@keyframes rot{0%{opacity:0;transform:translateY(105%)}6%,33.33%{opacity:1;transform:none}39.33%,100%{opacity:0;transform:translateY(-105%)}}
+@keyframes rot-in{from{opacity:0;transform:translateY(105%)}to{opacity:1;transform:none}}
+
+/* ---------- T2 marker + circle (Lúnula) ---------- */
+.st-lun{background:#f7f8fc;color:#0b0c12;padding:3rem 0 3.5rem}
+.st-lun .st-kicker{color:#2945f0}
+.mk-h{margin-top:1rem;font:800 clamp(2.3rem,9.6vw,5.6rem)/1.08 "Sofia Sans",sans-serif;letter-spacing:-.015em;max-width:14ch;view-timeline:--mk block}
+.mk{color:inherit;background:linear-gradient(100deg,#b3c0ff00 0,#b3c0ff 1.5%,#c6cfff 45%,#b3c0ff 98%,#b3c0ff00 100%) 0 88%/100% 74% no-repeat;-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:0 .14em;margin:0 -.06em;border-radius:.18em .5em .28em .42em}
+.mk-price{margin:2.25rem 0 0;font:600 clamp(1.25rem,4.6vw,1.9rem)/1.5 "Sofia Sans",sans-serif;max-width:32ch}
+.circ{position:relative;display:inline-block;padding:0 .25em;font-size:1.3em;font-weight:850;color:#2945f0;white-space:nowrap;view-timeline:--circ block}
+.circ svg{position:absolute;left:-.4em;top:-.42em;width:calc(100% + .8em);height:calc(100% + .82em);overflow:visible;pointer-events:none}
+.circ path{fill:none;stroke:#2945f0;stroke-width:4.2;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- T3 paragraph inks in (Casa Tea) ---------- */
+.st-tea{background:#efe6d8;color:#2b2118;padding:3rem 0 3.5rem}
+.st-tea .st-kicker{color:#7a4a26}
+.ink{margin:1.25rem 0 0;font:400 clamp(1.5rem,5.6vw,2.65rem)/1.32 "Ibarra Real Nova",Georgia,serif;max-width:31ch;view-timeline:--ink block}
+.sig{display:flex;align-items:center;gap:1rem;margin-top:2rem}
+.sig img{width:4.5rem;height:4.5rem;border-radius:50%;object-fit:cover}
+.sig p{margin:0;font-size:.95rem;line-height:1.4}
+.sig b{display:block;font:500 1.3rem/1.2 "Ibarra Real Nova",Georgia,serif}
+
+/* ---------- T4 photo pill (Tasca Picón) ---------- */
+.st-tasca{background:#f8ecd8;color:#1d120d;padding:3rem 0 3.5rem}
+.st-tasca .st-kicker{color:#b4231a}
+.pill-h{margin-top:1rem;font:900 clamp(2.7rem,12.5vw,7.6rem)/1.02 "Archivo",sans-serif;font-stretch:112%;letter-spacing:-.025em;text-wrap:balance}
+.pill{display:inline-block;width:2.2em;height:.78em;vertical-align:-.03em;margin:0 .04em;border-radius:999px;overflow:hidden;background:#b4231a}
+.pill img{width:100%;height:100%;object-fit:cover;object-position:50% 52%}
+.motion [data-reveal]:not(.is-in) .pill{clip-path:inset(0 calc(50% - .39em) round 999px)}
+.motion [data-reveal]:not(.is-in) .pill img{transform:scale(1.35)}
+.motion [data-reveal].is-in .pill{animation:pill-open 1.05s cubic-bezier(.2,.75,.15,1) .15s both}
+.motion [data-reveal].is-in .pill img{animation:settle 1.6s cubic-bezier(.2,.6,.2,1) .15s both}
+@keyframes pill-open{from{clip-path:inset(0 calc(50% - .39em) round 999px)}to{clip-path:inset(0 0 round 999px)}}
+.pill-sub{margin:1.4rem 0 0;font-size:1.1rem;max-width:30rem;color:#4a3426}
+.st-tasca .btn{color:#1d120d}
+
+/* ---------- T5 hatched shadow (Alisio) ---------- */
+.st-alisio{background:#ffd23a;color:#0a2240;padding:3rem 0 3.5rem;overflow:clip}
+.st-alisio .wrap{container-type:inline-size}
+.hs{display:grid;margin:1.25rem 0 0;font:900 min(14rem,19.5cqi)/.84 "Anybody",sans-serif;font-stretch:125%;text-transform:uppercase;letter-spacing:-.01em}
+.hs>span{grid-area:1/1}
+.hs__sh{transform:translate(.06em,.06em);color:#d23b22}
+.hs--sm{margin-top:1.4rem;font-size:clamp(1.55rem,6.4vw,4rem);font-stretch:108%;line-height:1}
+.hs--sm .hs__sh{transform:translate(.08em,.08em)}
+@supports (background-clip:text) or (-webkit-background-clip:text){
+  .hs__sh{color:transparent;background:linear-gradient(45deg,#d23b22 25%,#0000 25% 50%,#d23b22 50% 75%,#0000 75%) 0 0/7px 7px;-webkit-background-clip:text;background-clip:text}
+  .hs--sm .hs__sh{background-size:5px 5px}
+}
+.hs-sub{margin:1.75rem 0 0;font:600 1.1rem/1.45 "Anybody",sans-serif;font-stretch:100%;max-width:28rem}
+
+/* ---------- T6 split-flap board (Cielo Ucanca) ---------- */
+.st-cielo{background:#0b1326;color:#e8edfb;padding:3rem 0 3.5rem}
+.st-cielo .st-kicker{color:#f3cf86}
+.board{margin-top:1.5rem;max-width:46rem;background:#05080f;border-radius:1.1rem;padding:1.25rem 1rem 1.4rem;box-shadow:inset 0 0 0 1px #1d2740}
+.board__lbl{margin:0 0 .7rem;font:600 .75rem/1 "Geist",sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#93a3c8}
+.board__row{display:flex;flex-wrap:wrap;gap:.22em .45em;font:700 clamp(2.4rem,12.6vw,4.6rem)/1 "Geist",sans-serif}
+.board__row--sm{font-size:clamp(1.1rem,5.6vw,1.8rem);margin-top:.5em}
+.board hr{border:0;border-top:1px solid #1d2740;margin:1.25rem 0 1rem}
+.grp{display:flex;gap:.06em}
+.t{position:relative;display:grid;place-items:center;width:.8em;height:1.14em;border-radius:.09em;background:linear-gradient(#1c2438 50%,#161d2f 50%);color:#f3cf86;font-variant-numeric:tabular-nums}
+.t::after{content:"";position:absolute;z-index:2;left:0;right:0;top:calc(50% - .5px);height:1px;background:#05080f}
+.t i{position:absolute;inset:0;display:grid;place-items:center;font-style:normal;border-radius:inherit;backface-visibility:hidden}
+.t .a,.t .c{clip-path:inset(0 0 50% 0);background:#1c2438}
+.t .b,.t .d{clip-path:inset(50% 0 0 0);background:#161d2f}
+.t .c{animation:flap-top .05s ease-in both}
+.t .d{animation:flap-bot .05s ease-out .05s both}
+@keyframes flap-top{from{transform:perspective(3em) rotateX(0)}to{transform:perspective(3em) rotateX(-90deg)}}
+@keyframes flap-bot{from{transform:perspective(3em) rotateX(90deg)}to{transform:perspective(3em) rotateX(0)}}
+.board-foot{margin:1.1rem 0 0;font-size:.95rem;color:#c6cfe6}
+.st-cielo .btn{color:#e8edfb}
+
+/* ---------- T7 circular badge (Tasca Picón) ---------- */
+.st-picon{background:#151110;color:#f5f0e6;padding:3rem 0 3.5rem;overflow:clip}
+.st-picon .st-kicker{color:#7be33b}
+.bd{display:grid;gap:2rem;align-items:center}
+.bd h3{margin-top:1rem;font:900 clamp(2.5rem,11vw,4.4rem)/1 "Archivo",sans-serif;font-stretch:118%;letter-spacing:-.02em;text-wrap:balance}
+.bd__sub{margin:1rem 0 0;font-size:1.05rem;color:#d8cfc0;max-width:26rem}
+.bd__fig{position:relative;width:min(100%,24rem);margin:0 auto;min-height:19rem}
+.bd__fig img{width:58%;margin-left:auto;margin-right:4%}
+.badge{position:absolute;left:0;top:12%;width:min(48vw,12.5rem);aspect-ratio:1}
+.badge svg{position:absolute;inset:0;width:100%;height:100%}
+.badge__ring text{font:800 14.6px "Archivo",sans-serif;font-stretch:112%;letter-spacing:1.1px;fill:#151110}
+@media (min-width:48rem){.bd{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.bd__fig{min-height:26rem}.badge{width:14rem}}
+
+/* ---------- T8 letters assemble (Cielo Ucanca) ---------- */
+.st-stars{position:relative;background:linear-gradient(#0d1a3a,#081024 70%,#05080f);color:#eef2fb;padding:3.5rem 0 4rem;overflow:clip;text-align:center}
+.st-stars .wrap{position:relative}
+.st-stars .st-kicker{color:#f3cf86}
+.stars{position:absolute;inset:0;width:100%;height:100%;fill:#eef2fb}
+.asm{margin-top:2.25rem;font:300 clamp(2.7rem,13.6vw,9.5rem)/1 "Geist",sans-serif;letter-spacing:.03em;white-space:nowrap;view-timeline:--asm block}
+.asm span{display:inline-block}
+.asm-sub{margin:2rem auto 0;font-size:1.15rem;max-width:26rem}
+.asm-sub small{display:block;margin-top:.4rem;font-size:.85rem;color:#a9b6d6}
+
+/* ---------- T9 link hovers (Casa Tea) ---------- */
+.st-nav{background:#2b2118;color:#f3ead9;padding:3rem 0 3.5rem}
+.st-nav .st-kicker{color:#e3b77a}
+.mock{margin-top:1.25rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem 2rem;padding:1rem 1.25rem;border:1px solid #4d3d2e;border-radius:1rem}
+.mock+.mock{margin-top:1rem}
+.mock__logo{font:500 1.7rem/1 "Ibarra Real Nova",Georgia,serif}
+.mock__tag{display:block;width:100%;margin:0;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#c9b89e}
+.nv{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:0 1.6rem}
+.nv a{position:relative;display:inline-flex;align-items:center;min-height:44px;text-decoration:none}
+.nv--roll a{font:600 .82rem/1 "Geist",sans-serif;letter-spacing:.14em;text-transform:uppercase}
+.roll{position:relative;display:block;height:1.3em;line-height:1.3;overflow:hidden}
+.roll__row{display:block;white-space:nowrap}
+.roll__row+.roll__row{position:absolute;left:0;top:100%;color:#e3b77a}
+.roll__row span{display:inline-block;white-space:pre}
+.nv--line a{font:500 1.35rem/1 "Ibarra Real Nova",Georgia,serif}
+.nv--line a::after{content:"";position:absolute;left:0;right:0;bottom:.5rem;height:1.5px;background:currentColor;transform:scaleX(0);transform-origin:100% 50%}
+.nv--line a:focus-visible::after{transform:scaleX(1);transform-origin:0 50%}
+@media (hover:hover){.nv--line a:hover::after{transform:scaleX(1);transform-origin:0 50%}}
+@media (hover:hover) and (prefers-reduced-motion:no-preference){
+  .nv--roll a:hover .roll__row span{transform:translateY(-100%)}
+}
+@media (prefers-reduced-motion:no-preference){
+  .roll__row span{transition:transform .42s cubic-bezier(.65,0,.25,1);transition-delay:calc(var(--i) * 22ms)}
+  .nv--roll a:focus-visible .roll__row span{transform:translateY(-100%)}
+  .nv--line a::after{transition:transform .45s cubic-bezier(.65,0,.25,1)}
+}
+.nav-note{margin:1.25rem 0 0;font-size:.9rem;color:#c9b89e;max-width:34rem}
+
+/* ---------- T10 photo-filled word (Ocaso) ---------- */
+.st-ocaso{background:#2b1650;color:#f7eaf4;padding:3rem 0 3.5rem;overflow:clip}
+.st-ocaso .wrap{container-type:inline-size}
+.st-ocaso .st-kicker{color:#ffe1a6}
+.fill{width:fit-content;margin:.6rem 0 0;font:900 33cqi/.82 "Archivo",sans-serif;font-stretch:125%;letter-spacing:-.035em;text-transform:uppercase;color:#ffc85c}
+.fill--grad{margin-top:.2rem;font-size:min(15rem,23.5cqi);text-transform:none;letter-spacing:-.03em;line-height:.95;padding-bottom:.06em}
+@supports (background-clip:text) or (-webkit-background-clip:text){
+  .fill--photo{-webkit-text-fill-color:transparent;background:#ffc85c url("assets/img/costa-adeje-800.webp") 12% 26%/125% auto no-repeat;-webkit-background-clip:text;background-clip:text}
+  .fill--grad{-webkit-text-fill-color:transparent;background:linear-gradient(100deg,#ffe1a6 0%,#ffb36b 20%,#ff8a7a 40%,#f7b7e0 60%,#ffcf8a 80%,#ffe1a6 100%) 0 50%/300% 100%;-webkit-background-clip:text;background-clip:text}
+}
+@media (min-width:48rem){@supports (background-clip:text) or (-webkit-background-clip:text){.fill--photo{background-image:url("assets/img/costa-adeje-1400.webp")}}}
+.motion [data-reveal].is-in .fill--grad{animation:drift 9s ease-in-out 4 alternate both}
+.motion [data-reveal].is-in .fill--grad:hover{animation-play-state:paused}
+@keyframes drift{from{background-position:0 50%}to{background-position:100% 50%}}
+.fill-tag{margin:1.5rem 0 0;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:#d9c6e6}
+.fill-line{margin:.9rem 0 0;font-size:1.15rem;max-width:26rem}
+.st-ocaso .btn{color:#f7eaf4}
+
+/* ---------- T11 breathing word (Lúnula) ---------- */
+.st-breath{background:#2945f0;color:#fff;padding:3.25rem 0 3.5rem}
+.br{margin-top:.75rem;font:300 clamp(4.4rem,23vw,14rem)/1.05 "Sofia Sans",sans-serif}
+/* each letter reserves the width of its own heaviest weight (the hidden ghost),
+   so the neighbours never move while the weight swells */
+.br>span{display:inline-grid}
+.br>span>span{grid-area:1/1;justify-self:center}
+.br .gh{font-weight:900;visibility:hidden}
+.motion [data-reveal].is-in .br .lt{animation:breathe 2.6s ease-in-out calc(var(--i) * 140ms) 3 both}
+.motion [data-reveal].is-in .br:hover .lt{animation-play-state:paused}
+@keyframes breathe{0%,100%{font-weight:300}50%{font-weight:900}}
+.br-sub{margin:1rem 0 0;font:500 1.15rem/1.45 "Sofia Sans",sans-serif;max-width:28rem}
+.st-breath .btn{color:#fff}
+
+/* ---------- T12 text on a wave (Alisio) ---------- */
+/* the wave box is never wider than 5:1, so the 1200x240 drawing always fits its
+   height and the wave troughs sit at a fixed 31.5% of it: the photo overlap covers them */
+.st-wave{--wh:max(12rem,20vw);background:#1435c8;color:#fff;padding:0 0 3rem;overflow:clip}
+.st-wave .btn{color:#fff}
+.wave-photo img{width:100%;height:clamp(14rem,46vw,34rem);object-fit:cover;object-position:50% 40%}
+.wave{display:block;width:100%;height:var(--wh);margin-top:calc(var(--wh) * -.335);margin-bottom:-1px}
+.wave text{font:800 54px "Anybody",sans-serif;font-stretch:112%;fill:#0a2240}
+.wave__fill{fill:#d7ecf8}
+.wave__band{fill:#1435c8}
+.wave-copy{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem 2rem;padding-top:1.25rem}
+.wave-copy p{margin:0;font-size:1.05rem;max-width:30rem}
+.wave-btn{display:none}
+.motion .wave-btn{display:inline-flex;align-items:center}
+.labfoot{padding:1.5rem 0 2.5rem;font-size:.82rem;color:var(--mute)}
+
+/* ---------- scroll-linked effects: T2, T3, T7, T8 ----------
+   Only where the browser supports scroll timelines AND motion is welcome.
+   Every "from" state still shows the content (half-drawn mark, soft brown
+   words, scattered letters): none of them can leave anything invisible. */
+@media (prefers-reduced-motion:no-preference){
+  @supports (animation-timeline:view()){
+    .mk{animation:swipe linear both;animation-timeline:--mk;animation-range:entry 80% cover 42%}
+    .circ path{stroke-dasharray:1;animation:draw linear both;animation-timeline:--circ;animation-range:entry 100% cover 48%}
+    .ink span{animation:ink linear both;animation-timeline:--ink;animation-range:cover calc(8% + var(--i) * .8%) cover calc(14% + var(--i) * .8%)}
+    .badge__ring{animation:spin linear both;animation-timeline:view();animation-range:cover 0% cover 100%}
+    .asm span{animation:asm linear both;animation-timeline:--asm;animation-range:entry 0% cover 48%}
+  }
+}
+@keyframes swipe{from{background-size:0% 74%}to{background-size:100% 74%}}
+@keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes ink{from{color:#72604b}to{color:#2b2118}}
+@keyframes spin{from{transform:rotate(-140deg)}to{transform:rotate(220deg)}}
+@keyframes asm{from{transform:translate(calc(var(--d) * .45em),calc(var(--y) * .8em)) rotate(calc(var(--r) * 1deg)) scale(.84);opacity:.55}to{transform:none;opacity:1}}
+</style>
+</head>
+<body>
+
+<header class="lab">
+  <div class="wrap">
+    <h1>Headlines and text, rebuilt our way.</h1>
+    <p class="lab__lede">Twelve type effects with ideas from Magic UI, React Bits, daisyUI, Kokonut UI, Fancy Components and others, rebuilt in plain CSS and a few lines of script. No word hides if a script fails, and every effect holds still for people who ask their phone for less motion.</p>
+    <p class="lab__ask">Scroll through on your phone, then send me the codes worth keeping.</p>
+    <ol class="lab__index">
+      <li><a href="#T1"><span>T1</span>Rotating word in a headline</a></li>
+      <li><a href="#T2"><span>T2</span>Marker and circle that draw on view</a></li>
+      <li><a href="#T3"><span>T3</span>Paragraph that inks in as you read</a></li>
+      <li><a href="#T4"><span>T4</span>Photo pill between headline words</a></li>
+      <li><a href="#T5"><span>T5</span>Screen-print hatched shadow</a></li>
+      <li><a href="#T6"><span>T6</span>Split-flap departures board</a></li>
+      <li><a href="#T7"><span>T7</span>Circular badge that turns as you scroll</a></li>
+      <li><a href="#T8"><span>T8</span>Letters that assemble as you scroll</a></li>
+      <li><a href="#T9"><span>T9</span>Link hovers: letter roll and underline</a></li>
+      <li><a href="#T10"><span>T10</span>Photo-filled headline</a></li>
+      <li><a href="#T11"><span>T11</span>Breathing variable-font word</a></li>
+      <li><a href="#T12"><span>T12</span>Text riding a wave</a></li>
+    </ol>
+    <p class="lab__note">T2, T3, T7 and T8 follow your scroll. They run in Chrome, Edge, Samsung Internet and Safari 26 or newer; in older browsers you see the finished text, with nothing missing. T9 only moves with a mouse or keyboard. The businesses are the fictional showroom ones, and every price, date and time is an example.</p>
+    <nav class="lab__more" aria-label="More labs">
+      <p>More labs</p>
+      <a href="../motion-lab/">Lab 1: eleven effects</a>
+      <a href="../motion-lab-photos/">Photos</a>
+      <a href="../motion-lab-type/" aria-current="page">Type</a>
+      <a href="../motion-lab-atmos/">Atmosphere</a>
+      <a href="../motion-lab-interact/">Interaction</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- T1 -->
+<section class="fx" id="T1" aria-labelledby="T1-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">T1</p>
+    <div>
+      <h2 id="T1-t">Rotating word in a headline</h2>
+      <p class="fx__for">One word in the headline swaps between three services, goes round three times, then stops on the first. Screen readers hear one plain sentence. For barbers, salons and trades with a few headline services.</p>
+      <ul class="fx__meta"><li>Small shared script</li><li>Plays once, 3 rounds</li><li>Idea: daisyUI, Magic UI</li></ul>
+    </div>
+  </div>
+  <div class="stage st-fn" lang="es">
+    <div class="wrap" id="t1" data-reveal>
+      <p class="st-kicker">Fase Neutro · Adeje</p>
+      <h3 class="rot-h"><span class="sr-only">Te instalamos cargadores, enchufes y cuadros, sin obras ni sustos.</span><span aria-hidden="true">Te instalamos <span class="rot"><span style="--k:0">cargadores</span><span style="--k:1">enchufes</span><span style="--k:2">cuadros</span></span> sin obras ni sustos.</span></h3>
+      <p class="rot-sub">Electricista en Adeje y alrededores. Presupuesto en 24 horas (ejemplo).</p>
+      <button class="btn replay" type="button" data-replay="t1">Play again</button>
+    </div>
+  </div>
+</section>
+
+<!-- T2 -->
+<section class="fx" id="T2" aria-labelledby="T2-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">T2</p>
+    <div>
+      <h2 id="T2-t">Marker and circle that draw on view</h2>
+      <p class="fx__for">A highlighter swipes behind the key phrase and a pen circles the price as they scroll into view. The finished marks are the default, so nothing depends on the motion. For "sin cita previa", "24 h" or an offer price.</p>
+      <ul class="fx__meta"><li>0 KB JavaScript</li><li>Scroll-linked</li><li>Idea: Kokonut UI, Rough Notation, Magic UI</li></ul>
+    </div>
+  </div>
+  <div class="stage st-lun" lang="es">
+    <div class="wrap">
+      <p class="st-kicker">Lúnula Studio · Los Cristianos</p>
+      <h3 class="mk-h">Uñas y pestañas <mark class="mk">sin cita previa</mark>, de lunes a sábado.</h3>
+      <p class="mk-price">Semipermanente en 30 minutos, <span class="circ">desde 12 €<svg viewBox="0 0 240 84" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d="M9.5 35.7 C11.6 34.4 17.2 30.5 22.1 27.8 C27.1 25 32.6 21.7 39.1 19.1 C45.6 16.6 53.4 14.5 61.1 12.7 C68.8 11 76.8 9.4 85.5 8.7 C94.1 8 103.8 8.9 113 8.5 C122.1 8 131.2 6 140.1 6.1 C149.1 6.2 158.7 8.2 166.8 9.1 C174.9 9.9 182.1 9.8 188.9 11.2 C195.7 12.5 201.7 15 207.6 17.3 C213.6 19.7 220.6 22.7 224.7 25.4 C228.9 28 231.4 30.5 232.6 33.3 C233.7 36 232.5 39 231.5 41.9 C230.5 44.8 229.6 47.8 226.8 50.7 C224.1 53.7 219.7 56.9 215 59.6 C210.3 62.3 205.1 64.8 198.7 66.9 C192.4 69 184.2 70.8 176.7 72.4 C169.2 73.9 162 75.1 153.7 76.2 C145.4 77.4 135.9 79.2 127 79.4 C118.1 79.6 108.9 78.2 100.3 77.6 C91.8 77 83.5 76.7 75.6 75.6 C67.8 74.5 59.5 72.8 53 71 C46.4 69.1 41 66.7 36.3 64.3 C31.7 61.9 27.8 59.4 24.9 56.7 C22 54 20.5 51.2 19.2 48.2 C17.8 45.1 16.2 41.7 16.9 38.5 C17.6 35.4 20.2 32.5 23.2 29.3 C26.1 26.2 29.8 22.1 34.6 19.5 C39.5 16.8 49.5 14.4 52.5 13.4"/></svg></span></p>
+      <p class="st-note">Precio de ejemplo</p>
+    </div>
+  </div>
+</section>
+
+<!-- T3 -->
+<section class="fx" id="T3" aria-labelledby="T3-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">T3</p>
+    <div>
+      <h2 id="T3-t">Paragraph that inks in as you read</h2>
+      <p class="fx__for">Each word darkens from a soft brown to full ink as the paragraph scrolls up, as if the pen were catching up with you. The soft brown already passes contrast, so it reads fine before it inks. For an about-us paragraph on a casa rural or a family restaurant.</p>
+      <ul class="fx__meta"><li>0 KB JavaScript</li><li>Scroll-linked</li><li>Idea: Magic UI, Bramus</li></ul>
+    </div>
+  </div>
+  <div class="stage st-tea" lang="es">
+    <div class="wrap">
+      <p class="st-kicker">Casa Tea · La Orotava</p>
+      <p class="ink"><span style="--i:0">Somos</span> <span style="--i:1">Tea</span> <span style="--i:2">y</span> <span style="--i:3">Domingo.</span> <span style="--i:4">Hace</span> <span style="--i:5">veinte</span> <span style="--i:6">años</span> <span style="--i:7">rehicimos,</span> <span style="--i:8">piedra</span> <span style="--i:9">a</span> <span style="--i:10">piedra,</span> <span style="--i:11">la</span> <span style="--i:12">casa</span> <span style="--i:13">de</span> <span style="--i:14">los</span> <span style="--i:15">abuelos</span> <span style="--i:16">en</span> <span style="--i:17">lo</span> <span style="--i:18">alto</span> <span style="--i:19">de</span> <span style="--i:20">La</span> <span style="--i:21">Orotava.</span> <span style="--i:22">Hoy</span> <span style="--i:23">tiene</span> <span style="--i:24">cuatro</span> <span style="--i:25">habitaciones,</span> <span style="--i:26">un</span> <span style="--i:27">patio</span> <span style="--i:28">con</span> <span style="--i:29">helechos</span> <span style="--i:30">y</span> <span style="--i:31">un</span> <span style="--i:32">desayuno</span> <span style="--i:33">con</span> <span style="--i:34">lo</span> <span style="--i:35">que</span> <span style="--i:36">da</span> <span style="--i:37">la</span> <span style="--i:38">finca.</span> <span style="--i:39">Ven</span> <span style="--i:40">sin</span> <span style="--i:41">prisa:</span> <span style="--i:42">aquí</span> <span style="--i:43">el</span> <span style="--i:44">reloj</span> <span style="--i:45">lo</span> <span style="--i:46">marcan</span> <span style="--i:47">las</span> <span style="--i:48">nubes.</span></p>
+      <div class="sig">
+        <img src="assets/img/casa-560.webp" width="560" height="700" alt="Patio canario con balcones de madera y helechos" loading="lazy" decoding="async">
+        <p><b>Tea y Domingo</b>Casa Tea, La Orotava · texto de ejemplo</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- T4 -->
+<section class="fx" id="T4" aria-labelledby="T4-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">T4</p>
+    <div>
+      <h2 id="T4-t">Photo pill between headline words</h2>
+      <p class="fx__for">A round-ended photo sits inside the headline like a word. It opens from a dot to a full pill once, and its space is kept from the start, so nothing jumps. For a restaurant, bakery or florist headline.</p>
+      <ul class="fx__meta"><li>Small shared script</li><li>Plays once</li><li>Idea: Fancy Components</li></ul>
+    </div>
+  </div>
+  <div class="stage st-tasca" lang="es">
+    <div class="wrap" id="t4" data-reveal>
+      <p class="st-kicker">Tasca Picón · Puerto de la Cruz</p>
+      <h3 class="pill-h">Cocina <span class="pill"><img src="assets/img/pulpo-480.webp" width="480" height="600" alt="" loading="lazy" decoding="async"></span> canaria, sin prisa.</h3>
+      <p class="pill-sub">Pulpo a la brasa, papas arrugadas y mojo hecho cada mañana. En la foto, el pulpo de la casa (plato de ejemplo).</p>
+      <button class="btn replay" type="button" data-replay="t4">Play again</button>
+    </div>
+  </div>
+</section>
+
+<!-- T5 -->
+<section class="fx" id="T5" aria-labelledby="T5-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">T5</p>
+    <div>
+      <h2 id="T5-t">Screen-print hatched shadow</h2>
+      <p class="fx__for">A big name with an offset shadow made of diagonal hatching, like a screen-printed T-shirt or a painted shop sign. Screen readers read the name once. For barbers, bars and surf shops.</p>
+      <ul class="fx__meta"><li>0 KB JavaScript</li><li>Static</li><li>Idea: Magic UI</li></ul>
+    </div>
+  </div>
+  <div class="stage st-alisio" lang="es">
+    <div class="wrap">
+      <p class="st-kicker">El Médano · Tenerife sur</p>
+      <h3 class="hs"><span class="hs__sh" aria-hidden="true">Alisio</span><span>Alisio</span></h3>
+      <p class="hs hs--sm"><span class="hs__sh" aria-hidden="true">Surf · kite · café</span><span>Surf · kite · café</span></p>
+      <p class="hs-sub">Escuela de kite, alquiler de tablas y café de playa, a cien metros del agua (ejemplo).</p>
+    </div>
+  </div>
+</section>
+
+<!-- T6 -->
+<section class="fx" id="T6" aria-labelledby="T6-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">T6</p>
+    <div>
+      <h2 id="T6-t">Split-flap departures board</h2>
+      <p class="fx__for">The page loads showing the real times. When the board comes into view, each tile flips through random letters and settles, like an old station board. For tour departures, opening hours or a menú del día.</p>
+      <ul class="fx__meta"><li>~1 KB script</li><li>Plays once</li><li>Idea: React Bits, Kokonut UI</li></ul>
+    </div>
+  </div>
+  <div class="stage st-cielo" lang="es">
+    <div class="wrap" id="t6" data-reveal data-flap>
+      <p class="st-kicker">Cielo Ucanca · excursiones al Teide</p>
+      <p class="sr-only">Próxima salida: 09:30, Teide. Siguientes: 12:00, Cañadas; 18:15, Ucanca. Horario de ejemplo.</p>
+      <div class="board" aria-hidden="true">
+        <p class="board__lbl">Próxima salida</p>
+        <div class="board__row"><span class="grp"><b class="t">0</b><b class="t">9</b><b class="t">:</b><b class="t">3</b><b class="t">0</b></span><span class="grp"><b class="t">T</b><b class="t">E</b><b class="t">I</b><b class="t">D</b><b class="t">E</b></span></div>
+        <hr>
+        <p class="board__lbl">Siguientes</p>
+        <div class="board__row board__row--sm"><span class="grp"><b class="t">1</b><b class="t">2</b><b class="t">:</b><b class="t">0</b><b class="t">0</b></span><span class="grp"><b class="t">C</b><b class="t">A</b><b class="t">Ñ</b><b class="t">A</b><b class="t">D</b><b class="t">A</b><b class="t">S</b></span></div>
+        <div class="board__row board__row--sm"><span class="grp"><b class="t">1</b><b class="t">8</b><b class="t">:</b><b class="t">1</b><b class="t">5</b></span><span class="grp"><b class="t">U</b><b class="t">C</b><b class="t">A</b><b class="t">N</b><b class="t">C</b><b class="t">A</b></span></div>
+      </div>
+      <p class="board-foot">Recogida en Puerto de la Cruz · horario de ejemplo</p>
+      <button class="btn replay" type="button" data-replay="t6">Play again</button>
+    </div>
+  </div>
+</section>
+
+<!-- T7 -->
+<section class="fx" id="T7" aria-labelledby="T7-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">T7</p>
+    <div>
+      <h2 id="T7-t">Circular badge that turns as you scroll</h2>
+      <p class="fx__for">The business name runs round a circle that turns only while you scroll, and stops when you stop. For a "since 1987" stamp on a tasca, bakery or bar.</p>
+      <ul class="fx__meta"><li>0 KB JavaScript</li><li>Scroll-linked</li><li>Idea: Magic UI, React Bits</li></ul>
+    </div>
+  </div>
+  <div class="stage st-picon" lang="es">
+    <div class="wrap bd">
+      <div>
+        <p class="st-kicker">Tasca Picón · Puerto de la Cruz</p>
+        <h3>Desde 1987<br> en el Puerto.</h3>
+        <p class="bd__sub">Tapas, vino del país y guindillas fritas los domingos. Fecha y datos de ejemplo.</p>
+      </div>
+      <div class="bd__fig">
+        <img src="assets/img/guindillas-360.webp" srcset="assets/img/guindillas-360.webp 360w, assets/img/guindillas-720.webp 720w" sizes="(min-width: 48rem) 14rem, 58vw" width="720" height="1260" alt="Dos guindillas rojas sobre fondo negro" loading="lazy" decoding="async">
+        <div class="badge">
+          <svg class="badge__ring" viewBox="0 0 200 200" role="img" aria-labelledby="T7-badge"><title id="T7-badge">Tasca Picón, desde 1987, Puerto de la Cruz (ejemplo)</title><defs><path id="T7-c" d="M100 100 m-77 0 a77 77 0 1 1 154 0 a77 77 0 1 1 -154 0"/></defs><circle cx="100" cy="100" r="99" fill="#f5f0e6"/><text><textPath href="#T7-c">TASCA PICÓN · DESDE 1987 · PUERTO DE LA CRUZ ·</textPath></text></svg>
+          <svg viewBox="0 0 200 200" aria-hidden="true" focusable="false"><circle cx="100" cy="100" r="54" fill="#d8321c"/><text x="100" y="128" text-anchor="middle" style="font:900 80px 'Archivo',sans-serif;font-stretch:118%" fill="#f5f0e6">P</text></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- T8 -->
+<section class="fx" id="T8" aria-labelledby="T8-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">T8</p>
+    <div>
+      <h2 id="T8-t">Letters that assemble as you scroll</h2>
+      <p class="fx__for">A word starts with its letters scattered and tilted, and they gather into place as it scrolls to the middle of the screen. Even scattered, it still reads. For the one word that sums up the business.</p>
+      <ul class="fx__meta"><li>0 KB JavaScript</li><li>Scroll-linked</li><li>Idea: Skiper UI</li></ul>
+    </div>
+  </div>
+  <div class="stage st-stars" lang="es">
+    <svg class="stars" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><circle cx="948" cy="553" r="0.9" opacity="0.92"/><circle cx="661" cy="557" r="0.9" opacity="0.71"/><circle cx="978" cy="556" r="1" opacity="0.71"/><circle cx="442" cy="580" r="1" opacity="0.38"/><circle cx="399" cy="467" r="1.1" opacity="0.98"/><circle cx="871" cy="236" r="1.3" opacity="0.45"/><circle cx="984" cy="183" r="1.3" opacity="0.44"/><circle cx="400" cy="104" r="0.7" opacity="0.51"/><circle cx="339" cy="130" r="1.1" opacity="0.45"/><circle cx="720" cy="44" r="0.6" opacity="0.85"/><circle cx="622" cy="593" r="1" opacity="0.63"/><circle cx="983" cy="293" r="1" opacity="0.47"/><circle cx="571" cy="490" r="2" opacity="0.80"/><circle cx="136" cy="46" r="0.7" opacity="0.60"/><circle cx="491" cy="306" r="0.6" opacity="0.93"/><circle cx="335" cy="481" r="1.1" opacity="0.53"/><circle cx="5" cy="254" r="0.6" opacity="0.58"/><circle cx="974" cy="98" r="1.3" opacity="0.97"/><circle cx="462" cy="174" r="1.3" opacity="0.95"/><circle cx="55" cy="484" r="0.6" opacity="0.52"/><circle cx="543" cy="323" r="0.9" opacity="0.80"/><circle cx="961" cy="247" r="1.3" opacity="0.85"/><circle cx="843" cy="116" r="0.9" opacity="0.45"/><circle cx="829" cy="588" r="1.6" opacity="0.45"/><circle cx="546" cy="300" r="2" opacity="0.41"/><circle cx="819" cy="432" r="1.1" opacity="0.82"/><circle cx="597" cy="286" r="2" opacity="0.49"/><circle cx="468" cy="553" r="0.9" opacity="0.99"/><circle cx="735" cy="270" r="2" opacity="0.57"/><circle cx="296" cy="589" r="1" opacity="0.89"/><circle cx="924" cy="446" r="0.9" opacity="0.95"/><circle cx="671" cy="36" r="0.6" opacity="0.60"/><circle cx="760" cy="591" r="1" opacity="0.83"/><circle cx="580" cy="17" r="1.3" opacity="0.91"/><circle cx="393" cy="263" r="1" opacity="0.38"/><circle cx="717" cy="48" r="0.6" opacity="0.37"/><circle cx="610" cy="271" r="1.6" opacity="0.59"/><circle cx="959" cy="451" r="0.8" opacity="0.80"/><circle cx="371" cy="190" r="1.1" opacity="0.96"/><circle cx="252" cy="156" r="1.6" opacity="0.70"/><circle cx="520" cy="321" r="1" opacity="0.95"/><circle cx="238" cy="564" r="2" opacity="0.77"/><circle cx="141" cy="106" r="1.6" opacity="0.43"/><circle cx="812" cy="469" r="1.1" opacity="0.64"/><circle cx="368" cy="452" r="1.1" opacity="0.84"/><circle cx="963" cy="463" r="0.7" opacity="0.64"/><circle cx="221" cy="45" r="0.9" opacity="0.59"/><circle cx="960" cy="530" r="2" opacity="0.72"/><circle cx="367" cy="155" r="0.6" opacity="0.72"/><circle cx="196" cy="548" r="1.3" opacity="0.73"/><circle cx="11" cy="455" r="1.6" opacity="0.73"/><circle cx="147" cy="592" r="1.1" opacity="0.94"/><circle cx="340" cy="294" r="0.6" opacity="0.99"/><circle cx="858" cy="386" r="0.8" opacity="0.91"/><circle cx="391" cy="570" r="1" opacity="0.72"/><circle cx="477" cy="32" r="0.9" opacity="0.76"/><circle cx="389" cy="168" r="1" opacity="0.95"/><circle cx="847" cy="292" r="0.7" opacity="0.61"/><circle cx="407" cy="486" r="0.8" opacity="0.79"/><circle cx="95" cy="68" r="0.8" opacity="0.60"/><circle cx="218" cy="122" r="1" opacity="0.56"/><circle cx="274" cy="428" r="1" opacity="0.95"/><circle cx="914" cy="240" r="2" opacity="0.92"/><circle cx="401" cy="505" r="0.6" opacity="0.41"/><circle cx="660" cy="35" r="2" opacity="0.92"/><circle cx="466" cy="181" r="0.8" opacity="0.46"/><circle cx="834" cy="357" r="2" opacity="0.49"/><circle cx="772" cy="229" r="1.6" opacity="0.89"/><circle cx="699" cy="178" r="1.3" opacity="0.88"/><circle cx="821" cy="182" r="0.9" opacity="0.60"/><circle cx="244" cy="587" r="1.1" opacity="0.80"/><circle cx="735" cy="572" r="0.7" opacity="0.82"/><circle cx="699" cy="86" r="0.6" opacity="0.81"/><circle cx="740" cy="323" r="1.3" opacity="0.95"/><circle cx="406" cy="322" r="1.6" opacity="0.62"/><circle cx="988" cy="383" r="1" opacity="0.61"/><circle cx="394" cy="65" r="0.8" opacity="0.89"/><circle cx="700" cy="332" r="1.6" opacity="0.68"/><circle cx="95" cy="119" r="1" opacity="0.76"/><circle cx="326" cy="410" r="0.8" opacity="0.36"/><circle cx="838" cy="18" r="1.1" opacity="0.69"/><circle cx="929" cy="325" r="1.3" opacity="0.42"/><circle cx="913" cy="38" r="1" opacity="0.38"/><circle cx="267" cy="542" r="1.1" opacity="0.41"/><circle cx="112" cy="301" r="1.3" opacity="0.73"/><circle cx="136" cy="80" r="1.6" opacity="0.45"/><circle cx="281" cy="100" r="1.6" opacity="0.61"/><circle cx="88" cy="88" r="1.3" opacity="0.64"/><circle cx="236" cy="492" r="0.8" opacity="0.56"/><circle cx="308" cy="102" r="2" opacity="0.92"/></svg>
+    <div class="wrap">
+      <p class="st-kicker">Cielo Ucanca · Llano de Ucanca</p>
+      <h3 class="asm" aria-label="Estrellas"><span aria-hidden="true" style="--d:-4;--y:-0.14;--r:24">E</span><span aria-hidden="true" style="--d:-3;--y:-0.94;--r:-13">S</span><span aria-hidden="true" style="--d:-2;--y:-0.22;--r:-27">T</span><span aria-hidden="true" style="--d:-1;--y:0.87;--r:-15">R</span><span aria-hidden="true" style="--d:0;--y:0.17;--r:-29">E</span><span aria-hidden="true" style="--d:1;--y:-0.73;--r:-14">L</span><span aria-hidden="true" style="--d:2;--y:-0.75;--r:13">L</span><span aria-hidden="true" style="--d:3;--y:-0.05;--r:17">A</span><span aria-hidden="true" style="--d:4;--y:0.86;--r:-29">S</span></h3>
+      <p class="asm-sub">Noches de estrellas en el Llano de Ucanca, con telescopio y chocolate caliente.<small>Martes y viernes · grupos pequeños · ejemplo</small></p>
+    </div>
+  </div>
+</section>
+
+<!-- T9 -->
+<section class="fx" id="T9" aria-labelledby="T9-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">T9</p>
+    <div>
+      <h2 id="T9-t">Link hovers: letter roll and underline</h2>
+      <p class="fx__for">Two menu styles for a mouse or keyboard: the letters roll up one after another, or an underline draws in from the left and leaves to the right. On a phone they're ordinary links and look complete.</p>
+      <ul class="fx__meta"><li>0 KB JavaScript</li><li>Desktop extra</li><li>Idea: Skiper UI, CssLink</li></ul>
+    </div>
+  </div>
+  <div class="stage st-nav" lang="es">
+    <div class="wrap">
+      <p class="st-kicker">Casa Tea · La Orotava</p>
+      <div class="mock">
+        <p class="mock__tag" lang="en">Style 1 · letter roll</p>
+        <span class="mock__logo">Casa Tea</span>
+        <ul class="nv nv--roll" aria-label="Menú de ejemplo, estilo 1">
+          <li><a href="#T9" aria-label="La casa"><span class="roll" aria-hidden="true"><span class="roll__row"><span style="--i:0">L</span><span style="--i:1">a</span> <span style="--i:3">c</span><span style="--i:4">a</span><span style="--i:5">s</span><span style="--i:6">a</span></span><span class="roll__row"><span style="--i:0">L</span><span style="--i:1">a</span> <span style="--i:3">c</span><span style="--i:4">a</span><span style="--i:5">s</span><span style="--i:6">a</span></span></span></a></li>
+          <li><a href="#T9" aria-label="Habitaciones"><span class="roll" aria-hidden="true"><span class="roll__row"><span style="--i:0">H</span><span style="--i:1">a</span><span style="--i:2">b</span><span style="--i:3">i</span><span style="--i:4">t</span><span style="--i:5">a</span><span style="--i:6">c</span><span style="--i:7">i</span><span style="--i:8">o</span><span style="--i:9">n</span><span style="--i:10">e</span><span style="--i:11">s</span></span><span class="roll__row"><span style="--i:0">H</span><span style="--i:1">a</span><span style="--i:2">b</span><span style="--i:3">i</span><span style="--i:4">t</span><span style="--i:5">a</span><span style="--i:6">c</span><span style="--i:7">i</span><span style="--i:8">o</span><span style="--i:9">n</span><span style="--i:10">e</span><span style="--i:11">s</span></span></span></a></li>
+          <li><a href="#T9" aria-label="Desayuno"><span class="roll" aria-hidden="true"><span class="roll__row"><span style="--i:0">D</span><span style="--i:1">e</span><span style="--i:2">s</span><span style="--i:3">a</span><span style="--i:4">y</span><span style="--i:5">u</span><span style="--i:6">n</span><span style="--i:7">o</span></span><span class="roll__row"><span style="--i:0">D</span><span style="--i:1">e</span><span style="--i:2">s</span><span style="--i:3">a</span><span style="--i:4">y</span><span style="--i:5">u</span><span style="--i:6">n</span><span style="--i:7">o</span></span></span></a></li>
+          <li><a href="#T9" aria-label="Reservar"><span class="roll" aria-hidden="true"><span class="roll__row"><span style="--i:0">R</span><span style="--i:1">e</span><span style="--i:2">s</span><span style="--i:3">e</span><span style="--i:4">r</span><span style="--i:5">v</span><span style="--i:6">a</span><span style="--i:7">r</span></span><span class="roll__row"><span style="--i:0">R</span><span style="--i:1">e</span><span style="--i:2">s</span><span style="--i:3">e</span><span style="--i:4">r</span><span style="--i:5">v</span><span style="--i:6">a</span><span style="--i:7">r</span></span></span></a></li>
+        </ul>
+      </div>
+      <div class="mock">
+        <p class="mock__tag" lang="en">Style 2 · underline draws in and out</p>
+        <span class="mock__logo">Casa Tea</span>
+        <ul class="nv nv--line" aria-label="Menú de ejemplo, estilo 2">
+          <li><a href="#T9">La casa</a></li>
+          <li><a href="#T9">Habitaciones</a></li>
+          <li><a href="#T9">Desayuno</a></li>
+          <li><a href="#T9">Reservar</a></li>
+        </ul>
+      </div>
+      <p class="nav-note" lang="en">With a mouse, point at a link; with a keyboard, press Tab. On a phone nothing moves, on purpose.</p>
+    </div>
+  </div>
+</section>
+
+<!-- T10 -->
+<section class="fx" id="T10" aria-labelledby="T10-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">T10</p>
+    <div>
+      <h2 id="T10-t">Photo-filled headline</h2>
+      <p class="fx__for">A huge word cut out of a photo, here the La Caleta sunset. The second word is filled with a sunset gradient that drifts slowly for about half a minute, then stops. For a hero or a footer.</p>
+      <ul class="fx__meta"><li>Photo version: 0 KB JavaScript, static</li><li>Gradient: small shared script, plays once</li><li>Idea: Cult UI</li></ul>
+    </div>
+  </div>
+  <div class="stage st-ocaso" lang="es">
+    <div class="wrap" id="t10" data-reveal>
+      <p class="st-kicker">Ocaso · La Caleta</p>
+      <h3 class="fill fill--photo">Mar</h3>
+      <p class="fill-line">Mesa en la terraza, con el sol bajando detrás de La Gomera. De 18:00 a 23:00 (ejemplo).</p>
+      <p class="fill-tag" lang="en">Variant · slow gradient</p>
+      <p class="fill fill--grad">Caleta</p>
+      <button class="btn replay" type="button" data-replay="t10">Play again</button>
+    </div>
+  </div>
+</section>
+
+<!-- T11 -->
+<section class="fx" id="T11" aria-labelledby="T11-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">T11</p>
+    <div>
+      <h2 id="T11-t">Breathing variable-font word</h2>
+      <p class="fx__for">Each letter swells from thin to heavy and back in a wave, three breaths, then rests. Every letter keeps the space of its heaviest weight, so the word never jiggles. For a spa, a yoga studio, or a bakery's "pan".</p>
+      <ul class="fx__meta"><li>Small shared script</li><li>Plays once, 3 breaths</li><li>Idea: Fancy Components, Eldora UI</li></ul>
+    </div>
+  </div>
+  <div class="stage st-breath" lang="es">
+    <div class="wrap" id="t11" data-reveal>
+      <p class="st-kicker">Lúnula Studio · ritual de manos</p>
+      <h3 class="br" aria-label="Respira"><span aria-hidden="true"><span class="gh">r</span><span class="lt" style="--i:0">r</span></span><span aria-hidden="true"><span class="gh">e</span><span class="lt" style="--i:1">e</span></span><span aria-hidden="true"><span class="gh">s</span><span class="lt" style="--i:2">s</span></span><span aria-hidden="true"><span class="gh">p</span><span class="lt" style="--i:3">p</span></span><span aria-hidden="true"><span class="gh">i</span><span class="lt" style="--i:4">i</span></span><span aria-hidden="true"><span class="gh">r</span><span class="lt" style="--i:5">r</span></span><span aria-hidden="true"><span class="gh">a</span><span class="lt" style="--i:6">a</span></span></h3>
+      <p class="br-sub">Aceite tibio, masaje lento y esmalte. Cuarenta minutos solo para tus manos (ejemplo).</p>
+      <button class="btn replay" type="button" data-replay="t11">Play again</button>
+    </div>
+  </div>
+</section>
+
+<!-- T12 -->
+<section class="fx" id="T12" aria-labelledby="T12-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">T12</p>
+    <div>
+      <h2 id="T12-t">Text riding a wave</h2>
+      <p class="fx__for">Words follow a wave line under the photo and drift slowly along it, with a pause button. The curved text is complete without the drift. For surf and kite schools, boat trips and beach bars.</p>
+      <ul class="fx__meta"><li>~1 KB script</li><li>Drifts, with Pause</li><li>Idea: React Bits, Fancy Components</li></ul>
+    </div>
+  </div>
+  <div class="stage st-wave" lang="es">
+    <div class="wave-photo">
+      <img src="assets/img/medano-kites-800.webp" srcset="assets/img/medano-kites-800.webp 800w, assets/img/medano-kites-1600.webp 1600w" sizes="100vw" width="1600" height="731" alt="Cometas de kitesurf sobre la playa de El Médano, con la Montaña Roja al fondo" loading="lazy" decoding="async">
+    </div>
+    <svg class="wave" id="wave" viewBox="0 0 1200 240" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="T12-wave"><title id="T12-wave">surf, sol, mar, brisa</title><defs><path id="T12-p" d="M-440 124 C-359.9 90 -300.1 90 -220 124 C-139.9 158 -80.1 158 0 124 C80.1 90 139.9 90 220 124 C300.1 158 359.9 158 440 124 C520.1 90 579.9 90 660 124 C740.1 158 799.9 158 880 124 C960.1 90 1019.9 90 1100 124 C1180.1 158 1239.9 158 1320 124 C1400.1 90 1459.9 90 1540 124 C1620.1 158 1679.9 158 1760 124"/></defs><path class="wave__fill" d="M-440 50 C-359.9 16 -300.1 16 -220 50 C-139.9 84 -80.1 84 0 50 C80.1 16 139.9 16 220 50 C300.1 84 359.9 84 440 50 C520.1 16 579.9 16 660 50 C740.1 84 799.9 84 880 50 C960.1 16 1019.9 16 1100 50 C1180.1 84 1239.9 84 1320 50 C1400.1 16 1459.9 16 1540 50 C1620.1 84 1679.9 84 1760 50 V400 H-440 Z"/><path class="wave__band" d="M-440 200 C-359.9 166 -300.1 166 -220 200 C-139.9 234 -80.1 234 0 200 C80.1 166 139.9 166 220 200 C300.1 234 359.9 234 440 200 C520.1 166 579.9 166 660 200 C740.1 234 799.9 234 880 200 C960.1 166 1019.9 166 1100 200 C1180.1 234 1239.9 234 1320 200 C1400.1 166 1459.9 166 1540 200 C1620.1 234 1679.9 234 1760 200 V400 H-440 Z"/><text><textPath href="#T12-p" startOffset="0">surf · sol · mar · brisa · surf · sol · mar · brisa · surf · sol · mar · brisa · surf · sol · mar · brisa · surf · sol · mar · brisa · </textPath></text></svg>
+    <div class="wrap wave-copy">
+      <p><b>Alisio · El Médano.</b> Clases de kite y surf para todos los niveles, y café en la arena (ejemplo).</p>
+      <button class="btn wave-btn" type="button" id="wave-btn">Pause</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<p class="labfoot wrap">Motion lab · Teide Digital · internal, not indexed. Photos: Unsplash licence, from the showroom samples.</p>
+
+<script>
+(() => {
+  const root = document.documentElement;
+  const motion = root.classList.contains('motion');
+
+  /* T6 split-flap: the HTML already shows the final text; this only scrambles
+     each tile through random characters, with the two halves flipping. */
+  const POOL = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789';
+  const flip = (t, n) => {
+    const o = t.dataset.c;
+    t.dataset.c = n;
+    t.innerHTML = `<i class="a">${n}</i><i class="b">${o}</i><i class="c">${o}</i><i class="d">${n}</i>`;
+  };
+  const flap = (el) => el.querySelectorAll('.t').forEach((t, j) => {
+    const fin = t.dataset.f || (t.dataset.f = t.textContent);
+    let k = 7 + (j % 5) + ((Math.random() * 4) | 0);
+    t.dataset.c = fin;
+    clearTimeout(t._t);
+    const step = () => {
+      if (k-- > 0) { flip(t, POOL[(Math.random() * POOL.length) | 0]); t._t = setTimeout(step, 95); }
+      else { flip(t, fin); t._t = setTimeout(() => { t.textContent = fin; }, 160); }
+    };
+    t._t = setTimeout(step, j * 38);
+  });
+
+  /* reveals: play once when seen; a sweep reveals anything already scrolled to,
+     so nothing can stay hidden if the observer never fires */
+  const reveals = [...document.querySelectorAll('[data-reveal]')];
+  const show = (el) => {
+    if (el.classList.contains('is-in')) return;
+    el.classList.add('is-in');
+    if (motion && el.hasAttribute('data-flap')) flap(el);
+  };
+  if (motion) {
+    const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+      if (e.isIntersecting) { show(e.target); io.unobserve(e.target); }
+    }), { rootMargin: '0px 0px -18% 0px' });
+    reveals.forEach((el) => io.observe(el));
+    /* skip anything inside a section the browser is not rendering yet
+       (content-visibility can report a zero box there) */
+    const near = (el) => {
+      if (el.checkVisibility && !el.checkVisibility({ contentVisibilityAuto: true })) return false;
+      const r = el.getBoundingClientRect();
+      return r.height > 0 && r.top < innerHeight;
+    };
+    const sweep = () => reveals.forEach((el) => { if (near(el)) show(el); });
+    let t;
+    addEventListener('scroll', () => { clearTimeout(t); t = setTimeout(sweep, 1200); }, { passive: true });
+    setTimeout(sweep, 3000);
+  } else {
+    reveals.forEach(show);
+  }
+  document.querySelectorAll('[data-replay]').forEach((b) => b.addEventListener('click', () => {
+    const el = document.getElementById(b.dataset.replay);
+    el.classList.remove('is-in');
+    void el.offsetWidth;
+    requestAnimationFrame(() => show(el));
+  }));
+
+  /* T12 wave: step the text along its path; only while on screen, never under
+     reduced motion, paused on hover/focus and by the button */
+  const wave = document.getElementById('wave');
+  const btn = document.getElementById('wave-btn');
+  if (motion && wave) {
+    const tp = wave.querySelector('textPath');
+    const txt = wave.querySelector('text');
+    let x = 0, last = 0, raf = 0, unit = 0, seen = false, paused = false, held = false;
+    /* one repeat of the phrase, measured inside the frame loop: the section may
+       not be laid out yet when the observer fires, and its font loads late */
+    const tick = (now) => {
+      if (!unit) unit = txt.getComputedTextLength() / 5;
+      if (unit) {
+        if (last) x -= (now - last) * 0.035;
+        last = now;
+        if (x <= -unit) x += unit;
+        tp.setAttribute('startOffset', x.toFixed(1));
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    const sync = () => {
+      cancelAnimationFrame(raf); last = 0;
+      if (seen && !paused && !held) raf = requestAnimationFrame(tick);
+    };
+    document.fonts.addEventListener('loadingdone', () => { unit = 0; });
+    new IntersectionObserver(([e]) => { seen = e.isIntersecting; sync(); }).observe(wave);
+    wave.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') { held = true; sync(); } });
+    wave.addEventListener('pointerleave', () => { held = false; sync(); });
+    btn.addEventListener('click', () => { paused = !paused; btn.textContent = paused ? 'Play' : 'Pause'; sync(); });
+  }
+})();
+</script>
+</body>
+</html>
