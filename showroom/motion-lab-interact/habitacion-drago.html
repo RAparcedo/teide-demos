@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Habitación Drago · Casa Tea (ejemplo) · Motion lab</title>
+<meta name="description" content="Página de ejemplo del laboratorio de movimiento: Habitación Drago de Casa Tea, destino de la transición entre páginas I3.">
+<meta name="theme-color" content="#efe6d8">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7' fill='%23bf3912'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/ibarra-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+/* Same motion gate as the lab page: the I9 switch (stored per device) or the
+   phone's "reduce motion" setting skips the page-to-page morph. */
+(function () {
+  var d = document.documentElement, p = 'auto';
+  try { p = localStorage.getItem('td-motion') || 'auto'; } catch (e) {}
+  if (p === 'on' || (p !== 'off' && matchMedia('(prefers-reduced-motion: no-preference)').matches)) d.classList.add('motion');
+  var skip = function (e) { if (e.viewTransition && !d.classList.contains('motion')) e.viewTransition.skipTransition(); };
+  addEventListener('pageswap', skip);
+  addEventListener('pagereveal', skip);
+})();
+</script>
+<style>
+@font-face{font-family:"Geist";src:url("assets/fonts/geist.woff2") format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"Ibarra Real Nova";src:url("assets/fonts/ibarra-latin.woff2") format("woff2");font-weight:400 700;font-display:swap}
+@media (prefers-reduced-motion:no-preference){@view-transition{navigation:auto}}
+::view-transition-group(*.room){animation-duration:.5s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+::view-transition-old(*.room),::view-transition-new(*.room){height:100%;object-fit:cover}
+::view-transition-group(*.room-t){animation-duration:.5s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+:root{--g:clamp(16px,4vw,32px)}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:#efe6d8;color:#2b2118;font:400 1rem/1.6 "Geist",system-ui,sans-serif}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+a:focus-visible{outline:3px solid #bf3912;outline-offset:3px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:1rem;max-width:72rem;margin:0 auto;padding:.75rem var(--g)}
+.back{display:inline-flex;align-items:center;gap:.45rem;min-height:44px;font-weight:600;text-decoration:none}
+.back span{font-size:1.2rem;line-height:1}
+.brand{margin:0;font:600 1.15rem/1 "Ibarra Real Nova",Georgia,serif}
+.room{max-width:72rem;margin:0 auto;padding:0 var(--g) 3rem;display:grid;gap:1.75rem}
+.room__img{width:100%;aspect-ratio:4/5;max-height:78svh;object-fit:cover;border-radius:.5rem;view-transition-name:room-drago;view-transition-class:room}
+.room__k{margin:0;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:#7e2a1d}
+h1{margin:.5rem 0 0;font:500 clamp(2.7rem,10vw,4.8rem)/.98 "Ibarra Real Nova",Georgia,serif;letter-spacing:-.01em;width:fit-content;view-transition-name:room-drago-t;view-transition-class:room-t}
+.room__lead{margin:1rem 0 0;font:500 1.3rem/1.35 "Ibarra Real Nova",Georgia,serif;max-width:28ch}
+.room__body{margin:1rem 0 0;max-width:36rem;color:#4a3b2c}
+dl{margin:1.5rem 0 0;display:grid;grid-template-columns:auto minmax(0,1fr);border-top:1px solid #d6c8b2}
+dt,dd{margin:0;padding:.65rem 0;border-bottom:1px solid #d6c8b2}
+dt{font-weight:600;padding-right:1.5rem}
+.price{margin:1.5rem 0 0;font:500 1.6rem/1 "Ibarra Real Nova",Georgia,serif;color:#7e2a1d}
+.price small{display:block;margin-top:.4rem;font:500 .8rem/1.3 "Geist",system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#6b5a48}
+.btn{display:inline-flex;align-items:center;min-height:48px;margin-top:1.75rem;padding:0 1.25rem;border-radius:999px;background:#7e2a1d;color:#fbf3e6;font-weight:600;text-decoration:none}
+.foot{max-width:72rem;margin:0 auto;padding:1.5rem var(--g) 2.5rem;font-size:.82rem;color:#6a5c4c}
+@media (min-width:48rem){
+  .room{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:3.5rem;padding-top:1rem}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <a class="back" href="index.html#I3"><span aria-hidden="true">←</span> Volver al laboratorio</a>
+  <p class="brand">Casa Tea</p>
+</header>
+<main class="room">
+  <img class="room__img" src="assets/img/drago-1080.webp" srcset="assets/img/drago-560.webp 560w, assets/img/drago-1080.webp 1080w" sizes="(min-width: 48rem) 34rem, 100vw" width="1080" height="1350" alt="Dormitorio con cortinas blancas y luz de ventana" fetchpriority="high" decoding="async">
+  <div>
+    <p class="room__k">Casa Tea · La Orotava · ejemplo</p>
+    <h1>Habitación Drago</h1>
+    <p class="room__lead">Cama doble, cortinas de lino y la luz de la mañana entrando por la ventana del patio.</p>
+    <p class="room__body">La habitación más tranquila de la casa. Da al patio interior, así que por la mañana entra el sol y por la noche solo se oye el agua de la fuente.</p>
+    <dl>
+      <dt>Cama</dt><dd>doble</dd>
+      <dt>Para</dt><dd>2 personas</dd>
+      <dt>Vistas</dt><dd>patio interior</dd>
+      <dt>Desayuno</dt><dd>incluido</dd>
+    </dl>
+    <p class="price">desde 85 € / noche<small>Precio de ejemplo</small></p>
+    <a class="btn" href="index.html#I3">Volver a las habitaciones</a>
+  </div>
+</main>
+<p class="foot">Motion lab · Teide Digital · página de ejemplo, no indexada. Fotos: licencia Unsplash, de las muestras del showroom.</p>
+</body>
+</html>

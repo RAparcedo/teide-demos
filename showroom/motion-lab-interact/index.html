@@ -1,0 +1,1040 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Interaction and navigation · Motion lab · Teide Digital</title>
+<meta name="description" content="Internal test page: ten interaction and navigation effects for small-business sites, rebuilt in plain CSS and a few small scripts.">
+<meta name="theme-color" content="#f2eee6">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7' fill='%23bf3912'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/geist.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+/* Motion is opt-in: every hidden "before" state lives under html.motion, set here
+   before first paint. I9 adds a per-visitor choice (auto = follow the phone, on, off);
+   no JS, an old browser or "less motion" = everything shown, nothing moves.
+   With motion off, page-to-page morphs (I3) are skipped as well. */
+(function () {
+  var d = document.documentElement, p = 'auto';
+  try { p = localStorage.getItem('td-motion') || 'auto'; } catch (e) {}
+  if ('IntersectionObserver' in window && (p === 'on' || (p !== 'off' && matchMedia('(prefers-reduced-motion: no-preference)').matches))) d.classList.add('motion');
+  /* Arriving at #I3 (back from a room page) or via back/forward: lay every section out
+     at its real size first, so content-visibility placeholders can't throw the landing off. */
+  var nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+  if (location.hash || (nav && nav.type === 'back_forward')) d.classList.add('cv-off');
+  /* ...and for the I3 morph back: hold the first frame until the target exists, then
+     land on it before that frame is captured (browsers scroll to #hash a frame late) */
+  if (location.hash) {
+    var l = document.createElement('link');
+    l.rel = 'expect'; l.href = location.hash; l.setAttribute('blocking', 'render');
+    document.head.appendChild(l);
+    addEventListener('pagereveal', function () {
+      var t = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      if (t) t.scrollIntoView({ behavior: 'instant' });
+    }, { once: true });
+  }
+  var skip = function (e) { if (e.viewTransition && !d.classList.contains('motion')) e.viewTransition.skipTransition(); };
+  addEventListener('pageswap', skip);
+  addEventListener('pagereveal', skip);
+})();
+</script>
+<script type="speculationrules">{"prerender":[{"urls":["habitacion-drago.html","habitacion-retama.html","habitacion-balcon.html"],"eagerness":"moderate"}]}</script>
+<style>
+@font-face{font-family:"Geist";src:url("assets/fonts/geist.woff2") format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"Archivo";src:url("assets/fonts/archivo.woff2") format("woff2");font-weight:400 900;font-stretch:100% 125%;font-display:swap}
+@font-face{font-family:"Ibarra Real Nova";src:url("assets/fonts/ibarra-latin.woff2") format("woff2");font-weight:400 700;font-display:swap}
+@font-face{font-family:"Imbue";src:url("assets/fonts/imbue-var.woff2") format("woff2");font-weight:150 500;font-display:swap}
+@font-face{font-family:"Sofia Sans Extra Condensed";src:url("assets/fonts/sofia-sans-extra-condensed-latin-wght.woff2") format("woff2");font-weight:1 1000;font-display:swap}
+@property --p{syntax:"<number>";inherits:true;initial-value:1}
+@property --pi{syntax:"<integer>";inherits:true;initial-value:100}
+
+:root{--paper:#f2eee6;--ink:#171512;--mute:#6a645b;--rule:#d6cfc1;--hot:#bf3912;--g:clamp(16px,4vw,32px)}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+html.motion{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1rem/1.55 "Geist",system-ui,sans-serif;overflow-x:clip}
+img{display:block;max-width:100%;height:auto}
+h1,h2,h3{margin:0}
+a{color:inherit}
+[hidden]{display:none!important}
+.wrap{width:100%;max-width:72rem;margin:0 auto;padding:0 var(--g)}
+.btn{font:600 .875rem/1 "Geist",system-ui,sans-serif;letter-spacing:.02em;padding:.75rem 1.1rem;min-height:44px;border-radius:999px;border:1.5px solid currentColor;background:transparent;color:inherit;cursor:pointer}
+.btn:focus-visible,a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--hot);outline-offset:3px}
+
+/* ---------- lab chrome (same as lab 1) ---------- */
+.lab{padding:3.5rem 0 3rem}
+.lab h1{font-size:clamp(2.6rem,9vw,6.2rem);line-height:.95;letter-spacing:-.035em;font-weight:700;max-width:12ch}
+.lab__lede{margin:1.5rem 0 0;font-size:clamp(1.05rem,2.6vw,1.3rem);max-width:38rem}
+.lab__ask{margin:1rem 0 0;font-weight:600;max-width:38rem}
+.lab__index{list-style:none;margin:2.25rem 0 0;padding:0;display:grid;gap:0;border-top:1px solid var(--rule)}
+.lab__index a{display:flex;gap:1rem;align-items:baseline;padding:.8rem 0;border-bottom:1px solid var(--rule);text-decoration:none;font-weight:500}
+.lab__index a span{font-variant-numeric:tabular-nums;color:var(--hot);font-weight:700;min-width:2.6rem}
+@media (min-width:48rem){.lab__index{grid-template-columns:1fr 1fr;column-gap:2.5rem}}
+.lab__note{margin:1.5rem 0 0;font-size:.9rem;color:var(--mute);max-width:40rem}
+.lab__more{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:1.5rem 0 0;font-size:.9rem}
+.lab__more span{color:var(--mute);margin-right:.25rem}
+.lab__more a{display:inline-flex;align-items:center;min-height:36px;padding:.35rem .8rem;border:1px solid var(--rule);border-radius:999px;background:#fbf9f4;text-decoration:none;font-weight:500}
+
+.fx{border-top:1px solid var(--rule);content-visibility:auto;contain-intrinsic-size:auto 1200px}
+.cv-off .fx{content-visibility:visible}
+.fx__head{display:grid;grid-template-columns:auto minmax(0,1fr);gap:1rem;padding-top:2.5rem;padding-bottom:1.75rem}
+.fx__num{margin:0;font-size:clamp(2.2rem,7vw,3.6rem);line-height:.9;font-weight:700;color:var(--hot);font-variant-numeric:tabular-nums;letter-spacing:-.03em;min-width:2.2ch}
+.fx__head h2{font-size:clamp(1.45rem,4.4vw,2.2rem);line-height:1.08;letter-spacing:-.02em;font-weight:650}
+.fx__for{margin:.55rem 0 0;max-width:40rem;color:#3a362f}
+.fx__meta{list-style:none;margin:.85rem 0 0;padding:0;display:flex;flex-wrap:wrap;gap:.4rem}
+.fx__meta li{font-size:.75rem;letter-spacing:.03em;padding:.3rem .6rem;border:1px solid var(--rule);border-radius:999px;color:var(--mute);background:#fbf9f4}
+.stage{position:relative}
+.st-kicker{margin:0;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase}
+.st-note{margin:1.25rem 0 0;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase}
+.replay{margin-top:1.5rem}
+
+/* ---------- I1 logo docks into the header (Tasca Picón) ----------
+   Fallback = a plain bar with the name set big underneath. With scroll timelines,
+   the bar sticks and the same big name scales down into it. */
+.st-dock{background:#f8ecd8;color:#2a1512}
+.dock{--bar:3.5rem;--fs:1.15rem;--k:2;position:relative}
+.dock__bar{position:relative;z-index:2;height:var(--bar);background:#f8ecd8}
+.dock__bar::before{content:"";position:absolute;inset:0;box-shadow:0 14px 26px -16px rgba(42,21,18,.55);opacity:0;pointer-events:none}
+.dock__bar::after{content:"";position:absolute;left:0;right:0;top:100%;height:1px;background:rgba(42,21,18,.18)}
+.dock__in{position:relative;height:100%;display:flex;align-items:center;justify-content:flex-end}
+.dock__mark{position:absolute;left:var(--g);top:calc(var(--bar) + .75rem);margin:0;font:900 calc(var(--fs) * var(--k))/1 "Archivo",sans-serif;font-stretch:125%;letter-spacing:-.015em;text-transform:uppercase;color:#b4231a;white-space:nowrap;transform-origin:0 0}
+.dock__nav{display:flex;align-items:center;gap:1rem;font:700 .92rem/1 "Archivo",sans-serif}
+.dock__nav a{text-decoration:none;padding:.7rem 0}
+.dock__nav a:last-child{background:#b4231a;color:#fff7ea;padding:.7rem 1rem;border-radius:999px}
+.dock__body{padding-top:calc(var(--fs) * var(--k) + 2.5rem);padding-bottom:3.5rem;display:grid;gap:1.75rem;align-content:start}
+.dock__fig{margin:0}
+.dock__fig img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:.5rem}
+.dock__fig figcaption{margin-top:.6rem;font-size:.85rem;color:#6b4a3e}
+.dock__k{margin:0;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:#8a2b1c}
+.dock__lead{margin:.6rem 0 0;font:800 clamp(1.6rem,5.6vw,2.6rem)/1.05 "Archivo",sans-serif;font-stretch:108%;letter-spacing:-.01em;max-width:18ch}
+.dock__h{margin-top:1.75rem;font:900 1rem/1 "Archivo",sans-serif;font-stretch:120%;text-transform:uppercase;letter-spacing:.04em;color:#b4231a}
+.dock__list{list-style:none;margin:.75rem 0 0;padding:0}
+.dock__list li{display:flex;justify-content:space-between;gap:1rem;padding:.65rem 0;border-bottom:1px dashed #d9bfa4;font-weight:500}
+.dock__list li span:last-child{font-weight:700;white-space:nowrap}
+/* --k = big/small: the big name must fit the column at every width (measured: one
+   --fs of "TASCA PICÓN" is ~8.75 em wide at 125% stretch) */
+@media (min-width:24rem){.dock{--k:2.1}}
+@media (min-width:30rem){.dock{--k:2.6}}
+@media (min-width:48rem){
+  .dock{--bar:4rem;--fs:1.35rem;--k:3.6}
+  .dock__body{grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:3rem;align-items:start}
+  .dock__nav{gap:1.5rem;font-size:1rem}
+}
+@media (min-width:64rem){.dock{--k:4.9}}
+@media (min-width:80rem){.dock{--k:5.5}}
+
+/* ---------- I2 header that changes once it sticks (Ocaso) ---------- */
+.st-stuck{background:#24161f;color:#f6e6d3}
+.stuck{position:relative;padding-bottom:3.5rem}
+.stuck__sent{height:1px;margin-bottom:-1px}
+.stuck__bar{position:sticky;top:0;z-index:2;height:4rem}
+.stuck__bar::before{content:"";position:absolute;inset:0;background:rgba(36,22,31,.84);-webkit-backdrop-filter:blur(10px) saturate(1.3);backdrop-filter:blur(10px) saturate(1.3);box-shadow:0 1px 0 rgba(246,230,211,.2),0 14px 28px -14px rgba(0,0,0,.65);opacity:0}
+.stuck__bar.is-stuck::before{opacity:1}
+.stuck__in{position:relative;height:100%;display:flex;align-items:center;gap:1.5rem}
+.stuck__logo{margin:0 auto 0 0;font:800 1.55rem/1 "Archivo",sans-serif;font-stretch:115%;letter-spacing:-.01em}
+.stuck__logo span{color:#ff9d62}
+.stuck__nav{display:none;gap:1.5rem;font-weight:600;font-size:.95rem}
+.stuck__nav a{text-decoration:none;padding:.6rem 0}
+@media (min-width:40rem){.stuck__nav{display:flex}}
+.stuck__cta{display:inline-grid;align-items:center;min-height:44px;padding:0 1.15rem;border-radius:999px;border:1.5px solid #f6e6d3;text-decoration:none;font:700 .92rem/1 "Archivo",sans-serif;overflow:hidden}
+.stuck__cta>span{grid-area:1/1;text-align:center;white-space:nowrap}
+.cta-b{opacity:0}
+.is-stuck .stuck__cta{background:#ff9d62;border-color:#ff9d62;color:#24161f}
+.is-stuck .cta-a{opacity:0}
+.is-stuck .cta-b{opacity:1}
+.motion .stuck__bar::before{transition:opacity .35s ease}
+.motion .stuck__cta{transition:background-color .35s ease,border-color .35s ease,color .35s ease}
+.motion .stuck__cta>span{transition:opacity .3s ease,transform .35s cubic-bezier(.2,.8,.2,1)}
+.motion .cta-b{transform:translateY(.9em)}
+.motion .is-stuck .cta-a{transform:translateY(-.9em)}
+.motion .is-stuck .cta-b{transform:none}
+.stuck__hero{height:min(68svh,40rem)}
+.stuck__hero img{width:100%;height:100%;object-fit:cover}
+.stuck__body{padding-top:2rem;display:grid;gap:1.5rem}
+.stuck__k{margin:0;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:#ff9d62}
+.stuck__line{margin:.5rem 0 0;font:700 clamp(1.7rem,6vw,3.1rem)/1.04 "Archivo",sans-serif;letter-spacing:-.015em;max-width:20ch}
+.stuck__p{margin:0;max-width:34rem;color:#e6d2c2}
+.stuck__fig{margin:0}
+.stuck__fig img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:.5rem}
+@media (min-width:48rem){.stuck__body{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2rem 3rem;align-items:end}}
+
+/* ---------- I3 page-to-page morph (Casa Tea) ---------- */
+.st-rooms{background:#efe6d8;color:#2b2118;padding:3rem 0 3.5rem}
+.rooms{list-style:none;margin:1.5rem 0 0;padding:0;display:grid;gap:.9rem}
+.room{display:grid;grid-template-columns:7.25rem minmax(0,1fr);gap:1rem;align-items:center;text-decoration:none;color:inherit;background:#f8f2e8;border-radius:.6rem;padding:.6rem;box-shadow:0 1px 0 rgba(43,33,24,.08)}
+.room__img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:.35rem;view-transition-class:room}
+.room__name{display:block;font:500 1.6rem/1.02 "Ibarra Real Nova",Georgia,serif;view-transition-class:room-t;width:fit-content}
+.room__sub{display:block;margin-top:.35rem;font-size:.88rem;color:#5e4d3c}
+.room__price{display:block;margin-top:.55rem;font-size:.82rem;font-weight:600;color:#7e2a1d}
+.room__go{display:inline-block;margin-top:.55rem;font-size:.82rem;font-weight:600;text-decoration:underline;text-underline-offset:.2em}
+@media (min-width:48rem){
+  .rooms{grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem}
+  .room{grid-template-columns:1fr;align-items:start;padding:.75rem .75rem 1.25rem}
+  .room__name{font-size:2rem;margin-top:.35rem}
+}
+@media (prefers-reduced-motion:no-preference){@view-transition{navigation:auto}}
+
+/* ---------- I4 menu filter (Tasca Picón) ---------- */
+.st-carta{background:#ede3d0;color:#2a1a12;padding:3rem 0 3.5rem}
+.filt{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.25rem}
+.filt button{font:700 .9rem/1 "Archivo",sans-serif;padding:.7rem 1rem;min-height:44px;border-radius:999px;border:1.5px solid #2a1a12;background:transparent;color:#2a1a12;cursor:pointer}
+.filt button[aria-pressed="true"]{background:#2a1a12;color:#f8f2e6}
+.filt__count{margin:.85rem 0 0;font-size:.85rem;font-weight:600;color:#5e4a3a}
+.carta{list-style:none;margin:1rem 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem}
+.plato{background:#f8f2e6;border-radius:.9rem;overflow:hidden;view-transition-class:plato;box-shadow:0 1px 0 rgba(42,26,18,.08)}
+.plato__img{position:relative;aspect-ratio:1;overflow:hidden;background:#d9c7a8}
+.plato__img img{width:100%;height:100%;object-fit:cover}
+.plato__img--cut{background:#f1dfbd}
+.plato__img--cut img{position:absolute;left:12%;top:12%;width:76%;height:76%;object-fit:contain}
+.plato__img--red{background:#b4231a}
+.plato__b{padding:.7rem .75rem .9rem}
+.plato h3{font:800 1.02rem/1.12 "Archivo",sans-serif;font-stretch:106%}
+.plato__p{margin:.3rem 0 0;font-weight:700;font-size:.92rem;color:#8a3b1c}
+.tags{list-style:none;margin:.5rem 0 0;padding:0;display:flex;flex-wrap:wrap;gap:.3rem}
+.tags li{font-size:.72rem;font-weight:600;line-height:1.2;padding:.22rem .5rem;border-radius:999px;background:#ecdfc6;color:#46301f}
+.carta__note{margin:1.25rem 0 0;font-size:.88rem;font-weight:500;color:#5e4a3a;max-width:40rem}
+@media (min-width:48rem){.carta{grid-template-columns:repeat(3,minmax(0,1fr));gap:1.25rem}.plato h3{font-size:1.25rem}}
+::view-transition-group(*.plato){animation-duration:.5s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+::view-transition-old(*.plato):only-child{animation:plato-out .3s ease both}
+::view-transition-new(*.plato):only-child{animation:plato-in .4s ease .1s both}
+@keyframes plato-out{to{opacity:0;transform:scale(.86)}}
+@keyframes plato-in{from{opacity:0;transform:scale(.86)}}
+
+/* ---------- I5 contact button that fans out (Lúnula) ---------- */
+.st-fab{background:#1c3ec8;color:#fff;padding:3rem 0 3.5rem}
+.fabs{display:grid;gap:1.75rem;margin-top:1.5rem}
+.fabs figure{margin:0}
+.fabs figcaption{margin-top:.7rem;font-size:.9rem;color:#dfe5ff}
+.fabs figcaption b{color:#fff}
+.fpanel{position:relative;min-height:26rem;border-radius:1.25rem;background:#f7f2ea;color:#14267a;padding:1rem 1rem 6rem}
+.fpanel::after{content:"";position:absolute;inset:0;border-radius:inherit;background:rgba(10,20,70,.5);opacity:0;pointer-events:none}
+.fpanel.is-open::after{opacity:1}
+.fpanel__img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:.75rem}
+.fpanel h3{margin-top:1rem;font:750 2rem/.92 "Sofia Sans Extra Condensed",sans-serif;text-transform:uppercase;letter-spacing:.005em}
+.fpanel p{margin:.5rem 0 0;font-size:.95rem;max-width:24ch}
+.fab{position:absolute;right:1rem;bottom:1rem;z-index:2;width:3.5rem;height:3.5rem}
+.fab__btn{position:relative;z-index:1;width:100%;height:100%;border-radius:50%;border:0;padding:0;background:#1c3ec8;color:#fff;display:grid;place-items:center;cursor:pointer;box-shadow:0 12px 24px -10px rgba(0,0,0,.5)}
+.fab__btn svg{width:1.6rem;height:1.6rem}
+.is-open .fab__btn svg{transform:rotate(45deg)}
+.fan{list-style:none;margin:0;padding:0;position:absolute;right:0;bottom:0}
+.fan li{position:absolute;right:0;bottom:0;transform:translate(var(--x),var(--y))}
+.fan a{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:#14267a;font:700 .95rem/1 "Geist",system-ui,sans-serif;white-space:nowrap}
+.fan svg{width:1.5rem;height:1.5rem;flex:none}
+.fan--col li{--x:0px}
+.fan--col a{min-height:46px;padding:.35rem 1rem .35rem .45rem;border-radius:999px;background:#fff;box-shadow:0 10px 22px -12px rgba(0,0,0,.45)}
+.fan--col a i{display:grid;place-items:center;width:2.25rem;height:2.25rem;border-radius:50%;background:#eef0fa}
+.fan--col a small{font-size:.75rem;font-weight:500;color:#4a5584}
+.fan--arc li{right:.25rem;bottom:.25rem}
+.fan--arc a{justify-content:center;width:3rem;height:3rem;border-radius:50%;background:#fff;box-shadow:0 10px 22px -12px rgba(0,0,0,.45)}
+.fab__msg{margin:1.25rem 0 0;min-height:1.5em;font-weight:600}
+/* JS: collapsed until opened. No JS: the actions stay open and the round button is hidden. */
+.fab:not(.js) .fab__btn{display:none}
+.fab.js .fan{visibility:hidden}
+.fab.js .fan li{transform:translate(0,0) scale(.35);opacity:0}
+.fab.js.is-open .fan{visibility:visible}
+.fab.js.is-open .fan li{transform:translate(var(--x),var(--y));opacity:1}
+.motion .fab.js .fan{transition:visibility 0s linear .4s}
+.motion .fab.js.is-open .fan{transition-delay:0s}
+.motion .fab.js .fan li{transition:transform .36s cubic-bezier(.3,1.35,.5,1) calc(var(--i) * 45ms),opacity .2s ease calc(var(--i) * 45ms)}
+.motion .fab__btn svg{transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.motion .fpanel::after{transition:opacity .3s ease}
+@media (min-width:48rem){.fabs{grid-template-columns:1fr 1fr;gap:2rem}}
+
+/* ---------- I6 layered 3D tilt card (Lúnula gift voucher) ---------- */
+.st-gift{background:#e9ecf8;color:#14267a;padding:3rem 0 3.5rem}
+.gift{display:grid;gap:2rem}
+.gift__h{margin-top:.75rem;font:750 clamp(2.2rem,8vw,3.4rem)/.9 "Sofia Sans Extra Condensed",sans-serif;text-transform:uppercase}
+.gift__p{margin:.75rem 0 0;max-width:30rem}
+.gift__hint{margin:1rem 0 0;font-weight:600}
+@media (min-width:48rem){.gift{grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);align-items:center;gap:3rem}}
+.tilt{max-width:27rem;margin:0 auto;perspective:900px;touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
+.tilt__card{--rx:0deg;--ry:0deg;--sx:50%;position:relative;aspect-ratio:1.586;border-radius:1.1rem;background:#1c3ec8;color:#fff;box-shadow:0 34px 50px -30px rgba(0,0,0,.55);transform-style:preserve-3d;transform:rotateX(var(--rx)) rotateY(var(--ry))}
+.tl{position:absolute;inset:0;margin:0}
+.tl--base{width:100%;height:100%;border-radius:1.1rem;box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+.tl--photo{left:auto;right:5.5%;top:9%;bottom:9%;width:38%;height:82%;object-fit:cover;border-radius:999px 999px .6rem .6rem;transform:translateZ(30px) scale(.967);box-shadow:0 16px 26px -16px rgba(0,0,0,.6)}
+.tl--text{right:auto;width:58%;padding:1.05rem 0 1rem 1.2rem;display:flex;flex-direction:column;color:#fff;transform:translateZ(60px) scale(.933)}
+.gv__k{margin:0;font:600 .72rem/1.2 "Geist",system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#dfe5ff}
+.gv__t{margin:.45rem 0 0;font:700 clamp(1.7rem,7.4vw,2.35rem)/.9 "Sofia Sans Extra Condensed",sans-serif;text-transform:uppercase}
+.gv__v{margin:auto 0 0;font:800 clamp(3rem,13vw,4.4rem)/.85 "Sofia Sans Extra Condensed",sans-serif}
+.gv__n{margin:.4rem 0 0;font:500 .72rem/1.25 "Geist",system-ui,sans-serif;color:#dfe5ff}
+.tl--shine{border-radius:1.1rem;overflow:hidden;transform:translateZ(72px) scale(.92);pointer-events:none;opacity:0}
+.tl--shine::before{content:"";position:absolute;inset:-60% -80%;background:linear-gradient(110deg,transparent 42%,rgba(255,255,255,.34) 50%,transparent 58%);transform:translateX(calc((var(--sx) - 50%) * .7))}
+.tilt__btns{display:flex;justify-content:center;margin-top:1.75rem}
+.motion .tilt__card{transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.motion .tilt__card.is-tilt{transition:transform .12s linear}
+.motion .tilt__card.is-tilt .tl--shine{opacity:1}
+.motion .tl--shine{transition:opacity .3s ease}
+.motion .tilt__card.is-wob{animation:wobble 1.2s cubic-bezier(.4,0,.2,1)}
+.motion .tilt__card.is-wob .tl--shine{animation:sheen 1.2s ease}
+@keyframes wobble{30%{transform:rotateX(7deg) rotateY(-14deg)}65%{transform:rotateX(-4deg) rotateY(10deg)}}
+@keyframes sheen{0%{opacity:0;--sx:0%}35%{opacity:1}100%{opacity:0;--sx:100%}}
+
+/* ---------- I7 scroll-progress ring (Cielo Ucanca) ---------- */
+.st-tour{background:#0b1326;color:#e8edfb}
+.tour{position:relative;padding:3rem 0 1rem}
+.part{padding:2.75rem 0;display:flex;align-items:center;scroll-margin-top:.5rem}
+@media (min-width:48rem){.part{min-height:68svh}}
+.part__in{display:grid;gap:1.25rem;width:100%}
+.part__n{margin:0;font:500 .8rem/1 "Geist",system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#f2c46d}
+.part h3{margin-top:.6rem;font:300 clamp(2.5rem,10vw,4.6rem)/.95 "Imbue",Georgia,serif;letter-spacing:-.01em}
+.part p.part__p{margin:.85rem 0 0;max-width:30rem;color:#c5cfe6}
+.part img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:.5rem}
+.part__big{margin:0;font:200 clamp(5.5rem,28vw,12rem)/.8 "Imbue",Georgia,serif;color:#f2c46d;letter-spacing:-.02em}
+@media (min-width:48rem){.part__in{grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);align-items:center;gap:3.5rem}}
+.ring-dock{position:sticky;bottom:1rem;z-index:3;height:3.75rem;margin-top:1rem;display:flex;justify-content:flex-end;padding:0 var(--g);pointer-events:none;max-width:72rem;margin-left:auto;margin-right:auto}
+.ring{--p:1;--pi:100;pointer-events:auto;position:relative;width:3.75rem;height:3.75rem;border-radius:50%;border:0;padding:0;background:#16234d;color:#f2c46d;cursor:pointer;display:grid;place-items:center;box-shadow:0 12px 26px -10px rgba(0,0,0,.85)}
+.ring::before{content:"";position:absolute;inset:3px;border-radius:50%;background:conic-gradient(#f2c46d calc(var(--p) * 1turn),rgba(232,237,251,.22) 0);-webkit-mask:radial-gradient(farthest-side,#0000 calc(100% - 4.5px),#000 calc(100% - 4px));mask:radial-gradient(farthest-side,#0000 calc(100% - 4.5px),#000 calc(100% - 4px))}
+.ring__ico{width:1.35rem;height:1.35rem}
+.ring__pct{display:none;font:600 .8rem/1 "Geist",system-ui,sans-serif;font-variant-numeric:tabular-nums}
+.idx{margin:1rem var(--g) 0;padding:1rem 1.15rem .5rem;border:1px solid #2c3d6e;border-radius:1rem;background:#13204a;color:#e8edfb;width:min(19rem,calc(100vw - 2 * var(--g)));box-shadow:0 24px 50px -20px rgba(0,0,0,.85)}
+.idx:popover-open{position:fixed;inset:auto var(--g) 5.5rem auto;margin:0}
+.idx::backdrop{background:transparent}
+.idx p{margin:0;font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:#f2c46d}
+.idx ol{list-style:none;margin:.4rem 0 0;padding:0}
+.idx a{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:.7rem 0;border-top:1px solid #2c3d6e;text-decoration:none;font:400 1.35rem/1.1 "Imbue",Georgia,serif}
+.idx li:first-child a{border-top:0}
+.idx a span{font:500 .8rem/1 "Geist",system-ui,sans-serif;color:#aab6d6}
+.motion .idx:popover-open{animation:pop .22s cubic-bezier(.2,.8,.2,1)}
+@keyframes pop{from{opacity:0;transform:translateY(10px) scale(.96)}}
+
+/* ---------- I8 device mockups ---------- */
+.st-dev{background:#e4ddcf;color:#2a2620;padding:3rem 0 3.5rem}
+.devs{display:grid;gap:2.5rem;justify-items:center}
+.devs figure{margin:0;width:100%}
+.devs figcaption{margin-top:.85rem;font-size:.9rem;color:#4f483d;text-align:center}
+.phone{position:relative;width:min(18.5rem,82vw);margin:0 auto;aspect-ratio:9/18.6;padding:.55rem;border-radius:2.7rem;background:#151413;box-shadow:inset 0 0 0 1.5px #3b3936,0 0 0 1px #0d0c0b,0 34px 60px -34px rgba(20,15,5,.7)}
+.phone::before{content:"";position:absolute;z-index:2;top:1.05rem;left:50%;width:5.6rem;height:1.45rem;margin-left:-2.8rem;border-radius:999px;background:#0b0a0a}
+.phone::after{content:"";position:absolute;right:-3px;top:7.5rem;width:3px;height:3.5rem;border-radius:0 3px 3px 0;background:#2a2826}
+.phone__screen{height:100%;overflow-y:auto;overscroll-behavior:contain;border-radius:2.2rem;background:#f8ecd8;color:#2a1512;scrollbar-width:none;font-family:"Archivo",sans-serif}
+.phone__screen::-webkit-scrollbar{display:none}
+.qr__top{display:flex;justify-content:space-between;align-items:center;padding:3rem 1rem .75rem;background:#b4231a;color:#fff7ea}
+.qr__logo{margin:0;font:900 1.15rem/1 "Archivo",sans-serif;font-stretch:125%;text-transform:uppercase}
+.qr__lang{margin:0;display:flex;border:1.5px solid #fff7ea;border-radius:999px;font:700 .7rem/1 "Geist",system-ui,sans-serif}
+.qr__lang span{padding:.3rem .5rem}
+.qr__lang span:first-child{background:#fff7ea;color:#b4231a;border-radius:999px}
+.qr__head{position:sticky;top:0;z-index:1}
+.qr__tabs{margin:0;display:flex;gap:1rem;padding:.7rem 1rem;background:#f8ecd8;border-bottom:1px solid #e3cdb0;font:700 .8rem/1 "Archivo",sans-serif}
+.qr__tabs span:first-child{color:#b4231a;box-shadow:0 2px 0 #b4231a}
+.qr__h{padding:1rem 1rem .25rem;font:900 .78rem/1 "Archivo",sans-serif;font-stretch:120%;letter-spacing:.08em;text-transform:uppercase;color:#8a2b1c}
+.qr__list{list-style:none;margin:0;padding:0 1rem}
+.qr__list li{display:grid;grid-template-columns:3.1rem minmax(0,1fr) auto;gap:.7rem;align-items:center;padding:.65rem 0;border-bottom:1px solid #ead7bb}
+.qr__list li.qr--nt{grid-template-columns:minmax(0,1fr) auto}
+.qr__th{width:3.1rem;height:3.1rem;object-fit:cover;border-radius:.45rem}
+.qr__n{margin:0;font:800 .86rem/1.15 "Archivo",sans-serif}
+.qr__d{margin:.15rem 0 0;font:400 .72rem/1.3 "Geist",system-ui,sans-serif;color:#6b4a3e}
+.qr__a{margin:.25rem 0 0;font:600 .7rem/1.1 "Geist",system-ui,sans-serif;letter-spacing:.02em;color:#7a3a1e}
+.qr__p{margin:0;font:800 .82rem/1 "Archivo",sans-serif;white-space:nowrap}
+.qr__note{margin:0;padding:1rem 1rem 1.5rem;font:500 .72rem/1.3 "Geist",system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#6b4a3e}
+.browser{width:100%;max-width:46rem;margin:0 auto;border-radius:.9rem;background:#fff;overflow:hidden;box-shadow:0 0 0 1px rgba(40,30,20,.12),0 34px 60px -34px rgba(20,15,5,.6)}
+.browser__bar{display:flex;align-items:center;gap:.4rem;height:2.4rem;padding:0 .85rem;background:#ece8e1;border-bottom:1px solid #dcd5ca}
+.browser__bar i{width:.65rem;height:.65rem;border-radius:50%;background:#d0c7b9}
+.browser__bar i:first-child{background:#e2675a}
+.browser__bar i:nth-child(2){background:#e9b44c}
+.browser__bar i:nth-child(3){background:#6bbf63}
+.browser__bar span{flex:1;margin-left:.6rem;max-width:18rem;padding:.3rem .75rem;border-radius:999px;background:#fff;font-size:.72rem;color:#5f574b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.browser__page{container-type:inline-size;background:#efe6d8;color:#2b2118}
+.mh__nav{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;font-size:.75rem}
+.mh__logo{margin:0;font:600 1.1rem/1 "Ibarra Real Nova",Georgia,serif}
+.mh__links{display:none;gap:1rem;color:#5e4d3c}
+.mh{display:grid}
+.mh img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.mh__txt{padding:1.1rem 1rem 1.4rem}
+.mh__h{font:500 1.75rem/1.02 "Ibarra Real Nova",Georgia,serif;max-width:14ch}
+.mh__p{margin:.55rem 0 0;font-size:.82rem;color:#5e4d3c;max-width:30ch}
+.mh__btn{display:inline-flex;align-items:center;min-height:40px;margin-top:.9rem;padding:0 1rem;border-radius:999px;background:#7e2a1d;color:#fbf3e6;font-size:.8rem;font-weight:600;text-decoration:none}
+@container (min-width:34rem){
+  .mh__links{display:flex}
+  .mh{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);align-items:center}
+  .mh img{aspect-ratio:4/3.4;order:2}
+  .mh__txt{padding:1.5rem 1.25rem 1.5rem 1.5rem}
+  .mh__h{font-size:2.5rem}
+}
+@media (min-width:56rem){.devs{grid-template-columns:auto minmax(0,1fr);align-items:center;gap:3rem}}
+
+/* ---------- I9 motion on/off switch (Fase Neutro) ---------- */
+.st-switch{background:#ffd21f;color:#141414;padding:3rem 0 3.5rem}
+.msw{margin-top:1.5rem;max-width:34rem;padding:1.4rem 1.25rem 1.5rem;border-radius:1rem;background:#141414;color:#fff3c4}
+.msw__l{margin:0;font:900 1.6rem/1 "Archivo",sans-serif;font-stretch:115%;text-transform:uppercase;color:#ffd21f}
+.msw__opts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.3rem;margin-top:1rem;padding:.3rem;border-radius:999px;background:#2a2a28}
+.msw__opts button{min-height:48px;border:0;border-radius:999px;background:transparent;color:#fff3c4;font:700 1rem/1 "Archivo",sans-serif;cursor:pointer}
+.msw__opts button[aria-pressed="true"]{background:#ffd21f;color:#141414}
+.msw__now{margin:1rem 0 0;font-size:.95rem;min-height:3em}
+.msw__try{display:flex;align-items:center;gap:1rem;margin-top:1rem}
+.msw__track{position:relative;flex:1;height:2.75rem;border-radius:999px;background:#2a2a28}
+.msw__dot{position:absolute;top:.3rem;left:.3rem;width:2.15rem;height:2.15rem;border-radius:50%;background:#ffd21f}
+.msw__track.is-right .msw__dot{left:calc(100% - 2.45rem)}
+.motion .msw__dot{transition:left .7s cubic-bezier(.6,0,.2,1)}
+.msw__try .btn{color:#fff3c4;flex:none}
+.msw__nojs{margin:1.5rem 0 0;font-weight:600}
+.msw-grid{display:grid;gap:2rem;margin-top:1.5rem}
+.msw-grid .msw{margin-top:0}
+.msw__h{font:900 1.35rem/1.05 "Archivo",sans-serif;font-stretch:110%}
+.msw__side p{margin:.6rem 0 0;max-width:30rem}
+@media (min-width:56rem){.msw-grid{grid-template-columns:minmax(0,34rem) minmax(0,1fr);gap:3.5rem;align-items:center}}
+.msw__list{margin:1.25rem 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:.4rem;max-width:40rem}
+.msw__list li{font:700 .8rem/1 "Archivo",sans-serif;padding:.45rem .7rem;border-radius:999px;border:1.5px solid #141414}
+
+/* ---------- I10 tap a photo to zoom (Casa Tea) ---------- */
+.st-zoom{background:#efe6d8;color:#2b2118;padding:3rem 0 3.5rem}
+.zg{list-style:none;margin:1.5rem 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.6rem}
+.zg__b{display:block;width:100%;padding:0;border:0;border-radius:.4rem;overflow:hidden;background:#d8cbb6;cursor:zoom-in}
+.zg__b img{width:100%;aspect-ratio:1;object-fit:cover}
+.zg__cap{margin:1rem 0 0;font:500 1.3rem/1.2 "Ibarra Real Nova",Georgia,serif}
+@media (min-width:48rem){.zg{grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}}
+.zd{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;background:#16100b;color:#f3ece0;overflow:hidden;cursor:zoom-out}
+.zd[open]{display:grid;place-items:center}
+.zd::backdrop{background:transparent}
+.zd figure{margin:0;display:grid;justify-items:center;gap:.8rem;padding:4rem 1rem 1.5rem;max-width:100%}
+.zd__img{width:auto;height:auto;max-width:100%;max-height:calc(100dvh - 9rem);border-radius:.25rem}
+.zd__cap{font:500 1.15rem/1.25 "Ibarra Real Nova",Georgia,serif;text-align:center;max-width:32ch}
+.zd__close{position:absolute;top:.75rem;right:.75rem;width:48px;height:48px;border-radius:50%;border:0;background:rgba(243,236,224,.14);color:#f3ece0;font-size:1.6rem;line-height:1;cursor:pointer}
+
+/* shared view-transition timing (I3 rooms, I10 zoom) */
+::view-transition-group(zoom){animation-duration:.45s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+::view-transition-old(zoom),::view-transition-new(zoom){height:100%;object-fit:cover}
+::view-transition-group(*.room){animation-duration:.5s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+::view-transition-old(*.room),::view-transition-new(*.room){height:100%;object-fit:cover}
+::view-transition-group(*.room-t){animation-duration:.5s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+
+.labfoot{padding:1.5rem 0 2.5rem;font-size:.82rem;color:var(--mute)}
+
+/* ---------- scroll-linked: I1 and I7 ----------
+   Gated on html.motion (which already folds in "reduce motion" and the I9 switch)
+   and on scroll-timeline support. The start states never hide anything. */
+@supports (animation-timeline:view()){
+  /* exit-crossing 0% = the stage's top edge reaches the top of the screen, whatever its height */
+  .motion .dock{view-timeline:--dock block}
+  .motion .dock__bar{position:sticky;top:0}
+  .motion .dock__mark{animation:dock-mark linear both;animation-timeline:--dock;animation-range:exit-crossing 0% exit-crossing calc(var(--fs) * var(--k) + 1.25rem)}
+  .motion .dock__bar::before,.motion .dock__bar::after{animation:dock-line linear both;animation-timeline:--dock;animation-range:exit-crossing 0% exit-crossing calc(var(--fs) * var(--k) + 1.25rem)}
+  .motion .tour{view-timeline:--tour block}
+  .motion .ring{animation:tour-p linear both;animation-timeline:--tour;animation-range:contain 0% contain 100%}
+  .motion .ring__ico{display:none}
+  .motion .ring__pct{display:block}
+  .motion .ring__pct::after{counter-reset:pi var(--pi);content:counter(pi) "%"}
+}
+@keyframes dock-mark{to{transform:translateY(calc((var(--bar) - var(--fs)) / 2 - var(--bar) - .75rem)) scale(calc(1 / var(--k)))}}
+@keyframes dock-line{from{opacity:0}to{opacity:1}}
+@keyframes tour-p{from{--p:0;--pi:0}to{--p:1;--pi:100}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M12 2.4a9.6 9.6 0 0 0-8.3 14.4L2.4 21.6l4.9-1.3A9.6 9.6 0 1 0 12 2.4z" fill="#1fa463"/><path d="M9.3 7.4c.3 0 .6.1.8.5l.9 2.1c.1.3.1.6-.2.9l-.6.7a6.4 6.4 0 0 0 2.9 2.9l.7-.6c.3-.2.6-.3.9-.2l2.1.9c.4.2.5.5.5.8 0 1.3-1.1 2.3-2.4 2.3A7.4 7.4 0 0 1 7 9.8c0-1.3 1-2.4 2.3-2.4z" fill="#fff"/></symbol>
+  <symbol id="i-tel" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#dfe5ff"/><path d="M8.6 5.6c.4-.1.8 0 1 .4l1.4 2.4c.2.4.2.8-.1 1.1l-.9 1a8.7 8.7 0 0 0 3.6 3.6l1-.9c.3-.3.7-.3 1.1-.1l2.4 1.4c.4.2.5.6.4 1l-.5 1.5c-.2.6-.8 1-1.5.9A10.3 10.3 0 0 1 6.2 8c0-.7.3-1.3.9-1.5z" fill="#1c3ec8"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><ellipse cx="12" cy="21" rx="5" ry="1.6" fill="#c9cfe8"/><path d="M12 2a7 7 0 0 0-7 7c0 5 7 12.4 7 12.4S19 14 19 9a7 7 0 0 0-7-7z" fill="#e0473a"/><circle cx="12" cy="9" r="2.7" fill="#fff"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24"><rect x="2.8" y="2.8" width="18.4" height="18.4" rx="5.6" fill="#c2306f"/><path d="M2.8 14.5V8.4a5.6 5.6 0 0 1 5.6-5.6h7.2a5.6 5.6 0 0 1 4.9 2.9z" fill="#e0647d"/><circle cx="12" cy="12" r="4.1" fill="none" stroke="#fff" stroke-width="2"/><circle cx="17.1" cy="6.9" r="1.3" fill="#fff"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 4.5v15M4.5 12h15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+</svg>
+
+<header class="lab">
+  <div class="wrap">
+    <h1>Interaction and navigation.</h1>
+    <p class="lab__lede">Ten ways a small-business site can answer when you scroll, tap or move between pages: headers that react, pages that morph into each other, a menu that sorts itself, a contact button, a progress ring and a switch that turns all of it off.</p>
+    <p class="lab__ask">Scroll through on your phone, then send me the codes worth keeping.</p>
+    <ol class="lab__index">
+      <li><a href="#I1"><span>I1</span>Logo that docks into the header</a></li>
+      <li><a href="#I2"><span>I2</span>Header that changes once it sticks</a></li>
+      <li><a href="#I3"><span>I3</span>Page-to-page morph</a></li>
+      <li><a href="#I4"><span>I4</span>Menu filter where cards slide into place</a></li>
+      <li><a href="#I5"><span>I5</span>Contact button that fans out</a></li>
+      <li><a href="#I6"><span>I6</span>Layered 3D tilt card</a></li>
+      <li><a href="#I7"><span>I7</span>Scroll-progress ring with a section index</a></li>
+      <li><a href="#I8"><span>I8</span>Device mockups</a></li>
+      <li><a href="#I9"><span>I9</span>Motion on/off switch</a></li>
+      <li><a href="#I10"><span>I10</span>Tap a photo to zoom it full screen</a></li>
+    </ol>
+    <p class="lab__note">I1 and I7 follow your finger as you scroll (Chrome, Edge, Samsung Internet, Safari 26 or newer; elsewhere you see the finished state). I3, I4 and I10 morph with View Transitions (Chrome, Edge, Safari 18.2 or newer; Firefox shows the result without the morph). I9 switches every effect on this page off. The businesses are the fictional showroom ones; every price and claim is an example.</p>
+    <nav class="lab__more" aria-label="More labs"><span>More labs</span><a href="../motion-lab/">Lab 1</a><a href="../motion-lab-photos/">Photos</a><a href="../motion-lab-type/">Type</a><a href="../motion-lab-atmos/">Atmosphere</a></nav>
+  </div>
+</header>
+
+<main>
+
+<!-- I1 -->
+<section class="fx" id="I1" aria-labelledby="I1-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">I1</p>
+    <div>
+      <h2 id="I1-t">Logo that docks into the header</h2>
+      <p class="fx__for">The name starts big at the top of the page. As you scroll it shrinks and slides into a slim header bar, which then picks up a hairline and a soft shadow. For any business whose name is its strongest asset: a tasca, a barber, a casa rural.</p>
+      <ul class="fx__meta"><li>0 KB JavaScript</li><li>Scroll-linked</li><li>Idea: Bramus, "shrinking header"</li></ul>
+    </div>
+  </div>
+  <div class="stage st-dock" lang="es">
+    <div class="dock">
+      <div class="dock__bar">
+        <div class="wrap dock__in">
+          <p class="dock__mark">Tasca Picón</p>
+          <nav class="dock__nav" aria-label="Tasca Picón, menú de ejemplo"><a href="#I1">Carta</a><a href="#I1">Reservar</a></nav>
+        </div>
+      </div>
+      <div class="wrap dock__body">
+        <figure class="dock__fig">
+          <img src="assets/img/pulpo-480.webp" srcset="assets/img/pulpo-480.webp 480w, assets/img/pulpo-960.webp 960w" sizes="(min-width: 48rem) 30rem, 100vw" width="960" height="1200" alt="Pulpo a la brasa con brotes verdes en un plato oscuro" loading="lazy" decoding="async">
+          <figcaption>Pulpo a la brasa · 16,50 € · ejemplo</figcaption>
+        </figure>
+        <div>
+          <p class="dock__k">Puerto de la Cruz · cocina canaria</p>
+          <p class="dock__lead">Tapas de siempre, mojo de la casa y pescado del muelle.</p>
+          <h3 class="dock__h">Hoy en la pizarra</h3>
+          <ul class="dock__list">
+            <li><span>Papas arrugadas con mojo</span><span>5,50 €</span></li>
+            <li><span>Queso asado con mojo verde</span><span>8 €</span></li>
+            <li><span>Pulpo a la brasa</span><span>16,50 €</span></li>
+            <li><span>Pescado del día</span><span>18 €</span></li>
+            <li><span>Bienmesabe de la abuela</span><span>5 €</span></li>
+          </ul>
+          <p class="st-note">Precios de ejemplo</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- I2 -->
+<section class="fx" id="I2" aria-labelledby="I2-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">I2</p>
+    <div>
+      <h2 id="I2-t">Header that changes once it sticks</h2>
+      <p class="fx__for">A normal header until it reaches the top of the screen. Once it sticks, it fades in a frosted background, a hairline and a shadow, and its button turns from "Contacto" into "Reservar mesa". For restaurants, terraces and anyone with one main action.</p>
+      <ul class="fx__meta"><li>~0.3 KB script</li><li>Scroll-triggered</li><li>Idea: Bejamas StickySurface</li></ul>
+    </div>
+  </div>
+  <div class="stage st-stuck" lang="es">
+    <div class="stuck">
+      <div class="stuck__sent" aria-hidden="true"></div>
+      <div class="stuck__bar">
+        <div class="wrap stuck__in">
+          <p class="stuck__logo">Ocaso<span>.</span></p>
+          <nav class="stuck__nav" aria-label="Ocaso, menú de ejemplo"><a href="#I2">Carta</a><a href="#I2">Terraza</a><a href="#I2">Dónde estamos</a></nav>
+          <a class="stuck__cta" href="#I2"><span class="cta-a">Contacto</span><span class="cta-b" aria-hidden="true">Reservar mesa</span></a>
+        </div>
+      </div>
+      <div class="stuck__hero">
+        <img src="assets/img/costa-adeje-800.webp" srcset="assets/img/costa-adeje-800.webp 800w, assets/img/costa-adeje-1400.webp 1400w" sizes="100vw" width="1400" height="1050" alt="Puesta de sol sobre el mar en la costa de Adeje, con un velero en el horizonte" loading="lazy" decoding="async">
+      </div>
+      <div class="wrap stuck__body">
+        <div>
+          <p class="stuck__k">Ocaso · La Caleta · ejemplo</p>
+          <p class="stuck__line">Pescado del día, vino frío y el sol cayendo detrás de La Gomera.</p>
+        </div>
+        <p class="stuck__p">Sigue bajando: la barra de arriba se queda fija, se vuelve translúcida y el botón pasa a "Reservar mesa", que es lo que la gente quiere hacer cuando ya ha visto la terraza.</p>
+        <figure class="stuck__fig"><img src="assets/img/pescado-800.webp" width="800" height="534" alt="Tres pescados a la plancha con limón en una fuente oscura" loading="lazy" decoding="async"></figure>
+        <p class="stuck__p">Mesas en primera fila desde las 18:00. Cocina abierta hasta las 23:00. Horario de ejemplo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- I3 -->
+<section class="fx" id="I3" aria-labelledby="I3-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">I3</p>
+    <div>
+      <h2 id="I3-t">Page-to-page morph</h2>
+      <p class="fx__for">Tap a room: the photo and the name fly from the card into the hero of the room's own page, and fly back when you return. Real separate pages, so each room can rank in Google. For rooms, tours, treatments or dishes.</p>
+      <ul class="fx__meta"><li>0 KB JavaScript for the morph</li><li>~0.3 KB landing fix for the way back</li><li>Tap, between pages</li><li>Chrome and Safari 18.2+; Firefox just loads the page</li><li>Idea: Chrome cross-document View Transitions</li></ul>
+    </div>
+  </div>
+  <div class="stage st-rooms" lang="es">
+    <div class="wrap">
+      <p class="st-kicker">Casa Tea · La Orotava · toca una habitación</p>
+      <ul class="rooms">
+        <li><a class="room" href="habitacion-drago.html">
+          <img class="room__img" style="view-transition-name:room-drago" src="assets/img/drago-560.webp" width="560" height="700" alt="Dormitorio con cortinas blancas y luz de ventana" loading="lazy" decoding="async">
+          <span><span class="room__name" style="view-transition-name:room-drago-t">Habitación Drago</span><span class="room__sub">Cama doble · luz de mañana</span><span class="room__price">desde 85 € / noche · ejemplo</span><span class="room__go">Ver habitación</span></span>
+        </a></li>
+        <li><a class="room" href="habitacion-retama.html">
+          <img class="room__img" style="view-transition-name:room-retama" src="assets/img/retama-560.webp" width="560" height="700" alt="Dormitorio abuhardillado con muro de piedra y claraboya" loading="lazy" decoding="async">
+          <span><span class="room__name" style="view-transition-name:room-retama-t">Habitación Retama</span><span class="room__sub">Bajo cubierta · muro de piedra</span><span class="room__price">desde 75 € / noche · ejemplo</span><span class="room__go">Ver habitación</span></span>
+        </a></li>
+        <li><a class="room" href="habitacion-balcon.html">
+          <img class="room__img" style="view-transition-name:room-balcon" src="assets/img/balcon-560.webp" width="560" height="560" alt="Ventana abierta al jardín desde una habitación en penumbra" loading="lazy" decoding="async">
+          <span><span class="room__name" style="view-transition-name:room-balcon-t">Habitación Balcón</span><span class="room__sub">Abre al jardín</span><span class="room__price">desde 95 € / noche · ejemplo</span><span class="room__go">Ver habitación</span></span>
+        </a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- I4 -->
+<section class="fx" id="I4" aria-labelledby="I4-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">I4</p>
+    <div>
+      <h2 id="I4-t">Menu filter where cards slide into place</h2>
+      <p class="fx__for">Tap a filter: the dishes that don't fit fade away and the rest glide into their new places instead of jumping. For a carta, a treatment list or a tour catalogue.</p>
+      <ul class="fx__meta"><li>~0.5 KB script</li><li>Tap</li><li>Idea: Chrome docs, AutoAnimate</li></ul>
+    </div>
+  </div>
+  <div class="stage st-carta" lang="es">
+    <div class="wrap">
+      <p class="st-kicker">Tasca Picón · carta de ejemplo</p>
+      <div class="filt" role="group" aria-label="Filtrar la carta" hidden>
+        <button type="button" data-f="all" aria-pressed="true">Todo</button>
+        <button type="button" data-f="sg" aria-pressed="false">Sin gluten</button>
+        <button type="button" data-f="veg" aria-pressed="false">Vegetariano</button>
+        <button type="button" data-f="pes" aria-pressed="false">Pescado</button>
+      </div>
+      <p class="filt__count" role="status">6 platos</p>
+      <ul class="carta">
+        <li class="plato" data-t="sg pes">
+          <div class="plato__img"><img src="assets/img/pulpo-480.webp" width="480" height="600" alt="Pulpo a la brasa con brotes verdes" loading="lazy" decoding="async"></div>
+          <div class="plato__b"><h3>Pulpo a la brasa</h3><p class="plato__p">16,50 €</p><ul class="tags"><li>Sin gluten</li><li>Pescado</li></ul></div>
+        </li>
+        <li class="plato" data-t="sg pes">
+          <div class="plato__img"><img src="assets/img/pescado-800.webp" width="800" height="534" alt="Tres pescados a la plancha con limón" loading="lazy" decoding="async"></div>
+          <div class="plato__b"><h3>Pescado del día</h3><p class="plato__p">18 €</p><ul class="tags"><li>Sin gluten</li><li>Pescado</li></ul></div>
+        </li>
+        <li class="plato" data-t="veg">
+          <div class="plato__img"><img src="assets/img/tostada-aguacate-400.webp" width="400" height="400" alt="Tostada de aguacate con sésamo en un plato blanco" loading="lazy" decoding="async"></div>
+          <div class="plato__b"><h3>Tostada de aguacate</h3><p class="plato__p">8,50 €</p><ul class="tags"><li>Vegetariano</li></ul></div>
+        </li>
+        <li class="plato" data-t="sg pes">
+          <div class="plato__img plato__img--cut plato__img--red"><img src="assets/img/ajo-320.webp" srcset="assets/img/ajo-320.webp 320w, assets/img/ajo-640.webp 640w" sizes="(min-width: 48rem) 16rem, 40vw" width="640" height="603" alt="Una cabeza de ajo" loading="lazy" decoding="async"></div>
+          <div class="plato__b"><h3>Gambas al ajillo</h3><p class="plato__p">12 €</p><ul class="tags"><li>Sin gluten</li><li>Pescado</li></ul></div>
+        </li>
+        <li class="plato" data-t="sg veg">
+          <div class="plato__img plato__img--cut"><img src="assets/img/cilantro-560.webp" width="560" height="398" alt="Ramas de cilantro fresco" loading="lazy" decoding="async"></div>
+          <div class="plato__b"><h3>Papas con mojo verde</h3><p class="plato__p">6 €</p><ul class="tags"><li>Sin gluten</li><li>Vegetariano</li></ul></div>
+        </li>
+        <li class="plato" data-t="sg veg">
+          <div class="plato__img plato__img--cut"><img src="assets/img/guindillas-360.webp" srcset="assets/img/guindillas-360.webp 360w, assets/img/guindillas-720.webp 720w" sizes="(min-width: 48rem) 12rem, 30vw" width="720" height="1260" alt="Dos guindillas rojas" loading="lazy" decoding="async"></div>
+          <div class="plato__b"><h3>Queso asado con mojo picón</h3><p class="plato__p">9 €</p><ul class="tags"><li>Sin gluten</li><li>Vegetariano</li></ul></div>
+        </li>
+      </ul>
+      <p class="carta__note">Precios y etiquetas de ejemplo. En una carta real, el restaurante confirma los 14 alérgenos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- I5 -->
+<section class="fx" id="I5" aria-labelledby="I5-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">I5</p>
+    <div>
+      <h2 id="I5-t">Contact button that fans out</h2>
+      <p class="fx__for">One round button in the corner. Tap it and WhatsApp, call, directions and Instagram spring out, in a column or in a quarter circle. Escape, a tap outside or picking one closes it. For salons, barbers, trades: anyone whose clients mostly message.</p>
+      <ul class="fx__meta"><li>~0.8 KB script</li><li>Tap</li><li>Idea: daisyUI fab / fab-flower</li></ul>
+    </div>
+  </div>
+  <div class="stage st-fab" lang="es">
+    <div class="wrap">
+      <p class="st-kicker">Lúnula Studio · Los Cristianos · botones de ejemplo</p>
+      <div class="fabs">
+        <figure>
+          <div class="fpanel">
+            <img class="fpanel__img" src="assets/img/unas-gel-600.webp" width="600" height="750" alt="Manos con manicura de gel en tono lila" loading="lazy" decoding="async">
+            <h3>Uñas de gel</h3>
+            <p>Pide cita como prefieras: el botón de la esquina.</p>
+            <div class="fab">
+              <button class="fab__btn" type="button" aria-expanded="false" aria-controls="fan-col" aria-label="Contactar con Lúnula"><svg aria-hidden="true"><use href="#i-plus"/></svg></button>
+              <ul class="fan fan--col" id="fan-col">
+                <li style="--i:0;--y:-4rem"><a href="#I5" data-what="WhatsApp"><i><svg aria-hidden="true"><use href="#i-wa"/></svg></i>WhatsApp <small>ejemplo</small></a></li>
+                <li style="--i:1;--y:-7.35rem"><a href="#I5" data-what="el teléfono"><i><svg aria-hidden="true"><use href="#i-tel"/></svg></i>Llamar <small>ejemplo</small></a></li>
+                <li style="--i:2;--y:-10.7rem"><a href="#I5" data-what="el mapa"><i><svg aria-hidden="true"><use href="#i-pin"/></svg></i>Cómo llegar <small>ejemplo</small></a></li>
+                <li style="--i:3;--y:-14.05rem"><a href="#I5" data-what="Instagram"><i><svg aria-hidden="true"><use href="#i-ig"/></svg></i>Instagram <small>ejemplo</small></a></li>
+              </ul>
+            </div>
+          </div>
+          <figcaption lang="en"><b>Column.</b> Labelled actions; easiest to read.</figcaption>
+        </figure>
+        <figure>
+          <div class="fpanel">
+            <img class="fpanel__img" src="assets/img/pestanas-pelo-a-pelo-600.webp" width="600" height="750" alt="Aplicación de extensiones de pestañas pelo a pelo con pinzas" loading="lazy" decoding="async">
+            <h3>Pestañas pelo a pelo</h3>
+            <p>Las mismas cuatro acciones, en abanico.</p>
+            <div class="fab">
+              <button class="fab__btn" type="button" aria-expanded="false" aria-controls="fan-arc" aria-label="Contactar con Lúnula"><svg aria-hidden="true"><use href="#i-plus"/></svg></button>
+              <ul class="fan fan--arc" id="fan-arc">
+                <li style="--i:0;--x:-7.5rem;--y:0rem"><a href="#I5" data-what="WhatsApp" aria-label="WhatsApp (ejemplo)"><svg aria-hidden="true"><use href="#i-wa"/></svg></a></li>
+                <li style="--i:1;--x:-6.5rem;--y:-3.75rem"><a href="#I5" data-what="el teléfono" aria-label="Llamar (ejemplo)"><svg aria-hidden="true"><use href="#i-tel"/></svg></a></li>
+                <li style="--i:2;--x:-3.75rem;--y:-6.5rem"><a href="#I5" data-what="el mapa" aria-label="Cómo llegar (ejemplo)"><svg aria-hidden="true"><use href="#i-pin"/></svg></a></li>
+                <li style="--i:3;--x:0rem;--y:-7.5rem"><a href="#I5" data-what="Instagram" aria-label="Instagram (ejemplo)"><svg aria-hidden="true"><use href="#i-ig"/></svg></a></li>
+              </ul>
+            </div>
+          </div>
+          <figcaption lang="en"><b>Quarter circle.</b> Icons only; more playful, takes less room.</figcaption>
+        </figure>
+      </div>
+      <p class="fab__msg" role="status"></p>
+      <p class="st-note">Acciones de ejemplo: no llaman ni escriben a nadie.</p>
+    </div>
+  </div>
+</section>
+
+<!-- I6 -->
+<section class="fx" id="I6" aria-labelledby="I6-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">I6</p>
+    <div>
+      <h2 id="I6-t">Layered 3D tilt card</h2>
+      <p class="fx__for">A gift voucher built from three layers at different depths, with a sheen that slides across. It tilts towards the mouse on a computer, follows a sideways drag on a phone (an up-or-down swipe still scrolls the page), and gives a little wobble when tapped. For gift cards, tour tickets, a membership card.</p>
+      <ul class="fx__meta"><li>~1.3 KB script</li><li>Drag, tap or mouse</li><li>Idea: Atropos, daisyUI hover-3d</li></ul>
+    </div>
+  </div>
+  <div class="stage st-gift" lang="es">
+    <div class="wrap gift">
+      <div>
+        <p class="st-kicker">Lúnula Studio · tarjeta regalo de ejemplo</p>
+        <h3 class="gift__h">Regala una tarde para ti</h3>
+        <p class="gift__p">Tarjetas de 25, 50 u 80 € para uñas, pestañas o cejas. Te la mandamos por WhatsApp o la recoges en el estudio. Importes de ejemplo.</p>
+        <p class="gift__hint">Arrástrala de lado o tócala.</p>
+      </div>
+      <div>
+      <div class="tilt">
+        <div class="tilt__card">
+          <svg class="tl tl--base" viewBox="0 0 317 200" preserveAspectRatio="none" aria-hidden="true"><circle cx="51" cy="256" r="150" fill="#2846d6"/><circle cx="51" cy="256" r="96" fill="#3653e0"/><circle cx="283" cy="-40" r="70" fill="none" stroke="#3653e0" stroke-width="1.5"/></svg>
+          <img class="tl tl--photo" src="assets/img/unas-francesa-600.webp" width="600" height="750" alt="Manicura francesa sosteniendo una flor pequeña" loading="lazy" decoding="async">
+          <div class="tl tl--text">
+            <p class="gv__k">Lúnula Studio</p>
+            <p class="gv__t">Tarjeta regalo</p>
+            <p class="gv__v">50 €</p>
+            <p class="gv__n">Uñas o pestañas · válida 12 meses · ejemplo</p>
+          </div>
+          <div class="tl tl--shine" aria-hidden="true"></div>
+        </div>
+      </div>
+      <div class="tilt__btns" lang="en"><button class="btn" type="button" data-wobble>Wobble it</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- I7 -->
+<section class="fx" id="I7" aria-labelledby="I7-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">I7</p>
+    <div>
+      <h2 id="I7-t">Scroll-progress ring with a section index</h2>
+      <p class="fx__for">A small ring in the corner fills as you read through a long page. Tap it for a list of the parts, and jump to any of them. For a tour day, a long service page, a wedding venue's "your day" page.</p>
+      <ul class="fx__meta"><li>0 KB JavaScript for the ring (0.1 KB closes the list)</li><li>Scroll-linked, plus tap</li><li>Idea: Watermelon UI scroll-island</li></ul>
+    </div>
+  </div>
+  <div class="stage st-tour" lang="es">
+    <div class="tour">
+      <div class="wrap"><p class="st-kicker">Cielo Ucanca · un día de excursión · horario de ejemplo</p></div>
+      <article class="part" id="t-recogida"><div class="wrap part__in">
+        <p class="part__big" aria-hidden="true">16:30</p>
+        <div><p class="part__n">1 de 4 · 16:30</p><h3>Recogida</h3><p class="part__p">Te recogemos en tu hotel del Puerto de la Cruz o de La Orotava. Furgoneta pequeña, ocho personas como mucho, y una manta por cabeza para la noche.</p></div>
+      </div></article>
+      <article class="part" id="t-subida"><div class="wrap part__in">
+        <img src="assets/img/subida-canadas-800.webp" srcset="assets/img/subida-canadas-800.webp 800w, assets/img/subida-canadas-1600.webp 1600w" sizes="(min-width: 48rem) 34rem, 100vw" width="1600" height="1067" alt="Ladera de Las Cañadas al caer la tarde, con el sol bajo entre las montañas" loading="lazy" decoding="async">
+        <div><p class="part__n">2 de 4 · 17:15</p><h3>Subida</h3><p class="part__p">Por el pinar de Aguamansa hasta Las Cañadas, con dos paradas en los miradores. La temperatura baja diez grados en una hora.</p></div>
+      </div></article>
+      <article class="part" id="t-atardecer"><div class="wrap part__in">
+        <img src="assets/img/atardecer-mar-de-nubes-800.webp" srcset="assets/img/atardecer-mar-de-nubes-800.webp 800w, assets/img/atardecer-mar-de-nubes-1600.webp 1600w" sizes="(min-width: 48rem) 34rem, 100vw" width="1600" height="1067" alt="El sol poniéndose sobre un mar de nubes visto desde lo alto" loading="lazy" decoding="async">
+        <div><p class="part__n">3 de 4 · 19:40</p><h3>Atardecer</h3><p class="part__p">El sol se esconde por debajo del mar de nubes. Cava o chocolate caliente, a elegir.</p></div>
+      </div></article>
+      <article class="part" id="t-estrellas"><div class="wrap part__in">
+        <img src="assets/img/cielo-norte-800.webp" srcset="assets/img/cielo-norte-800.webp 800w, assets/img/cielo-norte-1440.webp 1440w" sizes="(min-width: 48rem) 34rem, 100vw" width="1440" height="860" alt="Estelas de estrellas girando sobre la silueta de una montaña" loading="lazy" decoding="async">
+        <div><p class="part__n">4 de 4 · 21:00</p><h3>Estrellas</h3><p class="part__p">Telescopio en el Llano de Ucanca y un guía que te enseña a encontrar la Polar. Vuelta al hotel hacia las 23:00.</p></div>
+      </div></article>
+      <div class="ring-dock">
+        <button class="ring" type="button" popovertarget="tour-idx" aria-label="Índice de la excursión">
+          <svg class="ring__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14M5 12h14M5 17h9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          <span class="ring__pct" aria-hidden="true"></span>
+        </button>
+      </div>
+      <nav class="idx" id="tour-idx" popover aria-label="Partes de la excursión">
+        <p>Ir a</p>
+        <ol>
+          <li><a href="#t-recogida">Recogida <span>16:30</span></a></li>
+          <li><a href="#t-subida">Subida <span>17:15</span></a></li>
+          <li><a href="#t-atardecer">Atardecer <span>19:40</span></a></li>
+          <li><a href="#t-estrellas">Estrellas <span>21:00</span></a></li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</section>
+
+<!-- I8 -->
+<section class="fx" id="I8" aria-labelledby="I8-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">I8</p>
+    <div>
+      <h2 id="I8-t">Device mockups</h2>
+      <p class="fx__for">A phone and a browser window drawn in CSS, with real, live HTML inside rather than screenshots. Scroll the menu inside the phone. For the QR-menu lane, and for showing a client their new site in a pitch.</p>
+      <ul class="fx__meta"><li>0 KB JavaScript</li><li>Static</li><li>Idea: Flowbite mockups, daisyUI mockup-phone</li></ul>
+    </div>
+  </div>
+  <div class="stage st-dev" lang="es">
+    <div class="wrap devs">
+      <figure>
+        <div class="phone">
+          <div class="phone__screen" tabindex="0" role="region" aria-label="Carta QR de ejemplo de Tasca Picón">
+            <div class="qr__head">
+              <div class="qr__top"><p class="qr__logo">Tasca Picón</p><p class="qr__lang"><span>ES</span><span>EN</span></p></div>
+              <p class="qr__tabs"><span>Tapas</span><span>Pescado</span><span>Postres</span></p>
+            </div>
+            <h3 class="qr__h">Tapas</h3>
+            <ul class="qr__list">
+              <li><img class="qr__th" src="assets/img/pulpo-480.webp" width="480" height="600" alt="" loading="lazy" decoding="async"><div><p class="qr__n">Pulpo a la brasa</p><p class="qr__d">Con papas y mojo rojo</p><p class="qr__a">Moluscos</p></div><p class="qr__p">16,50 €</p></li>
+              <li class="qr--nt"><div><p class="qr__n">Papas arrugadas</p><p class="qr__d">Mojo rojo y verde</p></div><p class="qr__p">5,50 €</p></li>
+              <li class="qr--nt"><div><p class="qr__n">Queso asado</p><p class="qr__d">Con mojo verde</p><p class="qr__a">Leche</p></div><p class="qr__p">8 €</p></li>
+              <li><img class="qr__th" src="assets/img/tostada-aguacate-400.webp" width="400" height="400" alt="" loading="lazy" decoding="async"><div><p class="qr__n">Tostada de aguacate</p><p class="qr__d">Masa madre y sésamo</p><p class="qr__a">Gluten · sésamo</p></div><p class="qr__p">8,50 €</p></li>
+            </ul>
+            <h3 class="qr__h">Pescado</h3>
+            <ul class="qr__list">
+              <li><img class="qr__th" src="assets/img/pescado-800.webp" width="800" height="534" alt="" loading="lazy" decoding="async"><div><p class="qr__n">Pescado del día</p><p class="qr__d">A la plancha, ajo y limón</p><p class="qr__a">Pescado</p></div><p class="qr__p">18 €</p></li>
+              <li class="qr--nt"><div><p class="qr__n">Gambas al ajillo</p><p class="qr__d">Guindilla y pan</p><p class="qr__a">Crustáceos · gluten</p></div><p class="qr__p">12 €</p></li>
+            </ul>
+            <h3 class="qr__h">Postres</h3>
+            <ul class="qr__list">
+              <li class="qr--nt"><div><p class="qr__n">Bienmesabe</p><p class="qr__d">Almendra y miel de palma</p><p class="qr__a">Frutos secos · huevo</p></div><p class="qr__p">5 €</p></li>
+              <li class="qr--nt"><div><p class="qr__n">Quesillo</p><p class="qr__d">El de la casa</p><p class="qr__a">Leche · huevo</p></div><p class="qr__p">4,50 €</p></li>
+            </ul>
+            <p class="qr__note">Precios y alérgenos de ejemplo</p>
+          </div>
+        </div>
+        <figcaption lang="en">Phone frame with a live QR menu inside.</figcaption>
+      </figure>
+      <figure>
+        <div class="browser">
+          <div class="browser__bar" aria-hidden="true"><i></i><i></i><i></i><span>casa-tea · vista previa</span></div>
+          <div class="browser__page">
+            <div class="mh__nav"><p class="mh__logo">Casa Tea</p><p class="mh__links" aria-hidden="true"><span>La casa</span><span>Habitaciones</span><span>Cómo llegar</span></p></div>
+            <div class="mh">
+              <img src="assets/img/hero-720.webp" srcset="assets/img/hero-720.webp 720w, assets/img/hero-1080.webp 1080w" sizes="(min-width: 56rem) 24rem, 92vw" width="1080" height="720" alt="Fachada de una casa canaria de tea con balcón de madera" loading="lazy" decoding="async">
+              <div class="mh__txt"><h3 class="mh__h">Una casa de tea en La Orotava</h3><p class="mh__p">Tres habitaciones, desayuno de la finca y el Teide en la ventana.</p><a class="mh__btn" href="#I8">Ver habitaciones</a></div>
+            </div>
+          </div>
+        </div>
+        <figcaption lang="en">Browser frame with a live mini homepage inside.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- I9 -->
+<section class="fx" id="I9" aria-labelledby="I9-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">I9</p>
+    <div>
+      <h2 id="I9-t">Motion on/off switch</h2>
+      <p class="fx__for">A visitor can turn animation off for the whole site, or leave it on "Auto" to follow their phone's setting. The choice is remembered on that device. Try "No", then scroll back up to I1, I5 or I7: they stand still. Good practice on any site with scroll effects.</p>
+      <ul class="fx__meta"><li>~1 KB script</li><li>Tap</li><li>Idea: accessible-astro-components ReducedMotion toggle</li></ul>
+    </div>
+  </div>
+  <div class="stage st-switch" lang="es">
+    <div class="wrap">
+      <p class="st-kicker">Fase Neutro · Adeje · ajuste de ejemplo</p>
+      <div class="msw-grid">
+      <div>
+      <div class="msw" hidden>
+        <div role="group" aria-labelledby="msw-l">
+          <p class="msw__l" id="msw-l">Animaciones</p>
+          <div class="msw__opts">
+            <button type="button" data-m="auto" aria-pressed="true">Auto</button>
+            <button type="button" data-m="on" aria-pressed="false">Sí</button>
+            <button type="button" data-m="off" aria-pressed="false">No</button>
+          </div>
+        </div>
+        <p class="msw__now" role="status">Ahora: animaciones según tu teléfono.</p>
+        <div class="msw__try"><div class="msw__track" aria-hidden="true"><span class="msw__dot"></span></div><button class="btn" type="button" data-try>Probar</button></div>
+      </div>
+      <p class="msw__nojs">Este ajuste necesita JavaScript. Sin él, la página ya se muestra sin animaciones.</p>
+      </div>
+      <div class="msw__side" lang="en">
+        <h3 class="msw__h">What "No" stops on this page</h3>
+        <p>Everything that moves. Content stays exactly where it is; it just arrives without the motion. The choice survives a reload.</p>
+        <ul class="msw__list">
+          <li>I1 docking</li><li>I2 fades</li><li>I3 page morph</li><li>I4 glide</li><li>I5 fan</li><li>I6 tilt</li><li>I7 ring</li><li>I10 zoom</li>
+        </ul>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- I10 -->
+<section class="fx" id="I10" aria-labelledby="I10-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">I10</p>
+    <div>
+      <h2 id="I10-t">Tap a photo to zoom it full screen</h2>
+      <p class="fx__for">Tap a photo and it grows out of its spot to fill the screen. Tap anywhere, press Escape or scroll, and it shrinks back. For room galleries, finished jobs, a portfolio, dishes.</p>
+      <ul class="fx__meta"><li>~0.9 KB script</li><li>Tap</li><li>Idea: medium-zoom</li></ul>
+    </div>
+  </div>
+  <div class="stage st-zoom" lang="es">
+    <div class="wrap">
+      <p class="st-kicker">Casa Tea · la casa · toca una foto</p>
+      <ul class="zg">
+        <li><button class="zg__b" type="button" aria-haspopup="dialog" data-full="assets/img/casa-1080.webp" data-w="1080" data-h="1350"><img src="assets/img/casa-560.webp" width="560" height="700" alt="Patio canario con balcones de madera y helechos" loading="lazy" decoding="async"></button></li>
+        <li><button class="zg__b" type="button" aria-haspopup="dialog" data-full="assets/img/hero-1080.webp" data-w="1080" data-h="720"><img src="assets/img/hero-720.webp" width="720" height="480" alt="Fachada de una casa canaria de tea con balcón de madera" loading="lazy" decoding="async"></button></li>
+        <li><button class="zg__b" type="button" aria-haspopup="dialog" data-full="assets/img/lagar-1200.webp" data-w="1200" data-h="800"><img src="assets/img/lagar-640.webp" width="640" height="427" alt="Habitación larga con techo de madera y cama al fondo" loading="lazy" decoding="async"></button></li>
+        <li><button class="zg__b" type="button" aria-haspopup="dialog" data-full="assets/img/desayuno-1080.webp" data-w="1080" data-h="1350"><img src="assets/img/desayuno-560.webp" width="560" height="700" alt="Desayuno en una mesa con mantel de cuadros rojos" loading="lazy" decoding="async"></button></li>
+        <li><button class="zg__b" type="button" aria-haspopup="dialog" data-full="assets/img/teide-1080.webp" data-w="1080" data-h="1350"><img src="assets/img/teide-560.webp" width="560" height="700" alt="El Teide sobre un mar de nubes" loading="lazy" decoding="async"></button></li>
+        <li><button class="zg__b" type="button" aria-haspopup="dialog" data-full="assets/img/alisio-900.webp" data-w="900" data-h="900"><img src="assets/img/alisio-480.webp" width="480" height="480" alt="Cama con cabecero de madera junto a una pared blanca" loading="lazy" decoding="async"></button></li>
+      </ul>
+      <p class="zg__cap">Seis rincones de la casa. Toca cualquiera.</p>
+    </div>
+    <dialog class="zd" id="zd" aria-label="Foto ampliada">
+      <figure><img class="zd__img" src="assets/img/casa-1080.webp" width="1080" height="1350" alt="" loading="lazy" decoding="async"><figcaption class="zd__cap"></figcaption></figure>
+      <button class="zd__close" type="button" aria-label="Cerrar">×</button>
+    </dialog>
+  </div>
+</section>
+
+</main>
+
+<p class="labfoot wrap">Motion lab · Teide Digital · internal, not indexed. Photos: Unsplash licence, from the showroom samples.</p>
+
+<script>
+(() => {
+  const root = document.documentElement;
+  const on = () => root.classList.contains('motion');
+  const $ = (s, c = document) => c.querySelector(s);
+  const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+  const vt = (fn) => (on() && document.startViewTransition ? document.startViewTransition(fn) : (fn(), null));
+  const after = (t, f) => (t ? t.finished.then(f, f) : f());
+  const nm = (el, n = '') => { el.style.viewTransitionName = n; };
+
+  /* In-page jumps: lay every section out at full size first (sections that were
+     skipped by content-visibility would otherwise grow mid-jump and push the target) */
+  let jump = null;
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a || e.defaultPrevented) return;
+    root.classList.add('cv-off');
+    jump = { el: document.getElementById(a.hash.slice(1)), t: Date.now() };
+  });
+  /* fonts arriving mid-jump can still nudge the target: settle it once the scroll ends */
+  addEventListener('scrollend', () => {
+    const j = jump; jump = null;
+    if (!j || !j.el || Date.now() - j.t > 3000) return;
+    if (Math.abs(j.el.getBoundingClientRect().top - (parseFloat(getComputedStyle(j.el).scrollMarginTop) || 0)) > 4) j.el.scrollIntoView({ behavior: 'instant' });
+  });
+
+  /* I2: a 1px sentinel above the sticky bar; once it has scrolled off the top, the bar is stuck */
+  const bar = $('.stuck__bar'), [ca, cb] = $$('.stuck__cta>span');
+  new IntersectionObserver(([e]) => {
+    const s = !e.isIntersecting && e.boundingClientRect.top < 0;
+    bar.classList.toggle('is-stuck', s);
+    ca.setAttribute('aria-hidden', s); cb.setAttribute('aria-hidden', !s);
+  }).observe($('.stuck__sent'));
+
+  /* I4: filter inside a View Transition; each card gets a name only for the transition */
+  const platos = $$('.plato'), fb = $$('.filt button'), count = $('.filt__count');
+  $('.filt').hidden = false;
+  fb.forEach((b) => b.addEventListener('click', () => {
+    if (b.getAttribute('aria-pressed') === 'true') return;
+    const f = b.dataset.f;
+    platos.forEach((p, i) => nm(p, 'plato-' + i));
+    after(vt(() => {
+      let n = 0;
+      platos.forEach((p) => { const show = f === 'all' || p.dataset.t.split(' ').includes(f); p.hidden = !show; n += show; });
+      fb.forEach((x) => x.setAttribute('aria-pressed', x === b));
+      count.textContent = n + ' platos';
+    }), () => platos.forEach((p) => nm(p)));
+  }));
+
+  /* I5: fan-out contact button */
+  const msg = $('.fab__msg');
+  $$('.fab').forEach((fab) => {
+    const btn = $('.fab__btn', fab), fan = $('.fan', fab), panel = fab.closest('.fpanel');
+    const isOpen = () => fab.classList.contains('is-open');
+    const set = (o, back) => {
+      fab.classList.toggle('is-open', o); panel.classList.toggle('is-open', o);
+      btn.setAttribute('aria-expanded', o); fan.inert = !o;
+      if (o) $('a', fan).focus({ preventScroll: true }); else if (back) btn.focus({ preventScroll: true });
+    };
+    fab.classList.add('js'); fan.inert = true;
+    btn.addEventListener('click', () => set(!isOpen()));
+    fab.addEventListener('keydown', (e) => { if (e.key === 'Escape' && isOpen()) { e.stopPropagation(); set(false, true); } });
+    fab.addEventListener('focusout', (e) => { if (isOpen() && e.relatedTarget && !fab.contains(e.relatedTarget)) set(false); });
+    document.addEventListener('pointerdown', (e) => { if (isOpen() && !fab.contains(e.target)) set(false); });
+    fan.addEventListener('click', (e) => {
+      const a = e.target.closest('a'); if (!a) return;
+      e.preventDefault(); set(false, true);
+      msg.textContent = 'Ejemplo: aquí se abriría ' + a.dataset.what + '.';
+    });
+  });
+
+  /* I6: layered tilt. Mouse: follows the pointer. Touch: only a sideways drag tilts
+     (touch-action: pan-y hands vertical swipes to the page); a tap wobbles. */
+  const tilt = $('.tilt'), card = $('.tilt__card');
+  let st = null, raf = 0;
+  const put = (x, y) => { card.style.setProperty('--rx', (-y * 9).toFixed(2) + 'deg'); card.style.setProperty('--ry', (x * 13).toFixed(2) + 'deg'); card.style.setProperty('--sx', (50 + x * 50).toFixed(1) + '%'); };
+  const rest = () => { cancelAnimationFrame(raf); card.classList.remove('is-tilt'); put(0, 0); st = null; };
+  const wob = () => { if (!on()) return; card.classList.remove('is-wob'); void card.offsetWidth; card.classList.add('is-wob'); };
+  tilt.addEventListener('pointerdown', (e) => { if (on()) st = { x: e.clientX, y: e.clientY, go: e.pointerType === 'mouse', moved: false }; });
+  tilt.addEventListener('pointermove', (e) => {
+    if (!on()) return;
+    if (e.pointerType === 'mouse' && !st) st = { go: true };
+    if (!st) return;
+    if (!st.go) {
+      const dx = e.clientX - st.x, dy = e.clientY - st.y;
+      if (Math.abs(dx) + Math.abs(dy) < 8) return;
+      if (Math.abs(dy) > Math.abs(dx)) { st = null; return; }
+      st.go = true;
+    }
+    st.moved = true;
+    const r = tilt.getBoundingClientRect(), c = (v) => Math.max(-1, Math.min(1, v));
+    const x = c(((e.clientX - r.left) / r.width) * 2 - 1), y = c(((e.clientY - r.top) / r.height) * 2 - 1);
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(() => { card.classList.add('is-tilt'); put(x, y); });
+  });
+  tilt.addEventListener('pointerup', (e) => { if (e.pointerType !== 'mouse') { const tap = st && !st.moved; rest(); if (tap) wob(); } });
+  tilt.addEventListener('pointerleave', rest);
+  tilt.addEventListener('pointercancel', rest);
+  card.addEventListener('animationend', (e) => { if (e.target === card) card.classList.remove('is-wob'); });
+  $('[data-wobble]').addEventListener('click', wob);
+
+  /* I7: jumping to a part closes the index */
+  const idx = $('#tour-idx');
+  idx.addEventListener('click', (e) => { if (e.target.closest('a') && idx.hidePopover) try { idx.hidePopover(); } catch (_) {} });
+
+  /* I9: motion switch. auto = follow the phone; stored per device. */
+  const mq = matchMedia('(prefers-reduced-motion: no-preference)'), sw = $$('[data-m]'), now = $('.msw__now');
+  let pref = 'auto';
+  try { pref = localStorage.getItem('td-motion') || 'auto'; } catch (_) {}
+  const apply = (say) => {
+    const m = 'IntersectionObserver' in window && (pref === 'on' || (pref === 'auto' && mq.matches));
+    root.classList.toggle('motion', m);
+    sw.forEach((b) => b.setAttribute('aria-pressed', b.dataset.m === pref));
+    if (!m) rest();
+    if (say) now.textContent = 'Ahora: animaciones ' + (m ? 'activadas' : 'desactivadas') + (pref === 'auto' ? ', según el ajuste de tu teléfono.' : '.');
+  };
+  sw.forEach((b) => b.addEventListener('click', () => { pref = b.dataset.m; try { localStorage.setItem('td-motion', pref); } catch (_) {} apply(true); }));
+  if (mq.addEventListener) mq.addEventListener('change', () => { if (pref === 'auto') apply(true); });
+  $('.msw').hidden = false; $('.msw__nojs').hidden = true;
+  apply(false);
+  if (pref !== 'auto') now.textContent = 'Ahora: animaciones ' + (on() ? 'activadas.' : 'desactivadas.');
+  $('[data-try]').addEventListener('click', () => $('.msw__track').classList.toggle('is-right'));
+
+  /* I10: photo zoom in a <dialog>, morphed from the thumbnail where View Transitions exist */
+  const zd = $('#zd'), zi = $('.zd__img', zd), zc = $('.zd__cap', zd);
+  let from = null, busy = false;
+  $$('.zg__b').forEach((b) => b.addEventListener('click', async () => {
+    if (busy) return;
+    busy = true;
+    const t = $('img', b);
+    from = b;
+    zi.loading = 'eager'; zi.width = +b.dataset.w; zi.height = +b.dataset.h;
+    zi.src = b.dataset.full; zi.alt = t.alt; zc.textContent = t.alt;
+    if (on()) await Promise.race([zi.decode().catch(() => {}), new Promise((r) => setTimeout(r, 500))]);
+    nm(t, 'zoom');
+    after(vt(() => { nm(t); nm(zi, 'zoom'); zd.showModal(); }), () => { nm(zi); busy = false; });
+  }));
+  const zclose = () => {
+    if (!zd.open || busy) return;
+    busy = true;
+    const t = from && $('img', from);
+    nm(zi, 'zoom');
+    after(vt(() => { nm(zi); zd.close(); if (t) { nm(t, 'zoom'); from.focus({ preventScroll: true }); } }), () => { if (t) nm(t); busy = false; });
+  };
+  zd.addEventListener('click', zclose);
+  zd.addEventListener('cancel', (e) => { e.preventDefault(); zclose(); });
+  zd.addEventListener('wheel', zclose, { passive: true });
+  zd.addEventListener('touchmove', zclose, { passive: true });
+  addEventListener('scroll', () => { if (zd.open) zclose(); }, { passive: true });
+})();
+</script>
+</body>
+</html>
