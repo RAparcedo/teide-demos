@@ -1,0 +1,689 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Motion lab · Teide Digital</title>
+<meta name="description" content="Internal test page: eleven effects from Cult UI, Watermelon UI and Skiper UI, rebuilt without React for small-business sites.">
+<meta name="theme-color" content="#f2eee6">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7' fill='%23bf3912'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/geist.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+/* Motion is opt-in: the hidden "before" states below exist only under .motion,
+   which is set here, before first paint, and only when the visitor has not asked
+   for reduced motion. No JS, an old browser or reduced motion = everything shown. */
+if (matchMedia('(prefers-reduced-motion: no-preference)').matches && 'IntersectionObserver' in window) document.documentElement.classList.add('motion');
+</script>
+<style>
+@font-face{font-family:"Geist";src:url("assets/fonts/geist.woff2") format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"Archivo";src:url("assets/fonts/archivo.woff2") format("woff2");font-weight:400 900;font-stretch:100% 125%;font-display:swap}
+@font-face{font-family:"Sofia Sans Extra Condensed";src:url("assets/fonts/sofia-sans-extra-condensed-latin-wght.woff2") format("woff2");font-weight:1 1000;font-display:swap}
+@font-face{font-family:"Geologica";src:url("assets/fonts/geologica-var.woff2") format("woff2");font-weight:300 900;font-display:swap}
+@font-face{font-family:"Imbue";src:url("assets/fonts/imbue-var.woff2") format("woff2");font-weight:150 500;font-display:swap}
+@font-face{font-family:"Ibarra Real Nova";src:url("assets/fonts/ibarra-latin.woff2") format("woff2");font-weight:400 700;font-display:swap}
+
+:root{--paper:#f2eee6;--ink:#171512;--mute:#6a645b;--rule:#d6cfc1;--hot:#bf3912;--g:clamp(16px,4vw,32px)}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1rem/1.55 "Geist",system-ui,sans-serif;overflow-x:clip}
+img{display:block;max-width:100%;height:auto}
+h1,h2,h3{margin:0}
+a{color:inherit}
+.wrap{width:100%;max-width:72rem;margin:0 auto;padding:0 var(--g)}
+.btn{font:600 .875rem/1 "Geist",system-ui,sans-serif;letter-spacing:.02em;padding:.75rem 1.1rem;min-height:44px;border-radius:999px;border:1.5px solid currentColor;background:transparent;color:inherit;cursor:pointer}
+.btn:focus-visible,a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--hot);outline-offset:3px}
+
+/* ---------- lab chrome ---------- */
+.lab{padding:3.5rem 0 3rem}
+.lab__kicker{margin:0 0 1.25rem;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+.lab h1{font-size:clamp(2.6rem,9vw,6.2rem);line-height:.95;letter-spacing:-.035em;font-weight:700;max-width:12ch}
+.lab__lede{margin:1.5rem 0 0;font-size:clamp(1.05rem,2.6vw,1.3rem);max-width:38rem}
+.lab__ask{margin:1rem 0 0;font-weight:600;max-width:38rem}
+.lab__index{list-style:none;margin:2.25rem 0 0;padding:0;display:grid;gap:0;border-top:1px solid var(--rule)}
+.lab__index a{display:flex;gap:1rem;align-items:baseline;padding:.8rem 0;border-bottom:1px solid var(--rule);text-decoration:none;font-weight:500}
+.lab__index a span{font-variant-numeric:tabular-nums;color:var(--hot);font-weight:700;min-width:2.6rem}
+@media (min-width:48rem){.lab__index{grid-template-columns:1fr 1fr;column-gap:2.5rem}}
+.lab__note{margin:1.5rem 0 0;font-size:.9rem;color:var(--mute);max-width:40rem}
+
+/* Off-screen sections skip layout until they come near the viewport, so each
+   section's font is only fetched when you scroll to it, not all six on load. */
+.fx{border-top:1px solid var(--rule);content-visibility:auto;contain-intrinsic-size:auto 1200px}
+.fx__head{display:grid;grid-template-columns:auto minmax(0,1fr);gap:1rem;padding-top:2.5rem;padding-bottom:1.75rem}
+.fx__num{margin:0;font-size:clamp(2.2rem,7vw,3.6rem);line-height:.9;font-weight:700;color:var(--hot);font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.fx__head h2{font-size:clamp(1.45rem,4.4vw,2.2rem);line-height:1.08;letter-spacing:-.02em;font-weight:650}
+.fx__for{margin:.55rem 0 0;max-width:40rem;color:#3a362f}
+.fx__meta{list-style:none;margin:.85rem 0 0;padding:0;display:flex;flex-wrap:wrap;gap:.4rem}
+.fx__meta li{font-size:.75rem;letter-spacing:.03em;padding:.3rem .6rem;border:1px solid var(--rule);border-radius:999px;color:var(--mute);background:#fbf9f4}
+.stage{position:relative}
+.st-note{margin:1.25rem 0 0;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase}
+.replay{margin-top:1.5rem}
+
+/* reveal mechanics shared by 06, 09 and the bonus: hidden ONLY under .motion and
+   only until the section has been seen (or the safety sweep runs) */
+@keyframes rise{from{transform:translateY(112%)}to{transform:none}}
+@keyframes settle{from{transform:scale(1.14)}to{transform:none}}
+@keyframes caret-blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+
+/* ---------- 01 photo opens (Ocaso) ---------- */
+.st-ocaso{background:#24161f;color:#f6e6d3;padding-bottom:3.5rem}
+.open__frame{overflow:hidden;height:min(80svh,46rem)}
+.open__frame img{width:100%;height:100%;object-fit:cover}
+.st-ocaso__copy{padding-top:1.75rem;font-family:"Geologica",system-ui,sans-serif}
+.st-ocaso__kicker{margin:0;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:#ff9d62}
+.st-ocaso__line{margin:.5rem 0 0;font-size:clamp(1.7rem,6.4vw,3.4rem);line-height:1.04;font-weight:600;letter-spacing:-.02em;max-width:18ch}
+
+/* ---------- 02 stacking cards (Lúnula) ---------- */
+.st-lunula{background:#1c3ec8;color:#fff;padding:3rem 0 4.5rem}
+.st-kicker{margin:0;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase}
+.stack{list-style:none;margin:1.5rem 0 0;padding:0;display:grid;gap:1.25rem;view-timeline:--stack block}
+.stack__card{position:sticky;top:calc(1.25rem + var(--i) * .85rem)}
+.stack__inner{display:grid;grid-template-columns:minmax(0,9rem) minmax(0,1fr);background:#f7f2ea;color:#14267a;border-radius:1.25rem;overflow:hidden;min-height:15.5rem;transform-origin:50% 0;box-shadow:0 22px 44px -28px rgba(3,10,50,.85)}
+.stack__inner img{width:100%;height:100%;object-fit:cover}
+.stack__txt{padding:1.15rem 1.15rem 1.25rem;display:flex;flex-direction:column;min-width:0}
+.stack__txt h3{font:750 2.15rem/.92 "Sofia Sans Extra Condensed",sans-serif;text-transform:uppercase;letter-spacing:.005em}
+.stack__txt p{margin:.55rem 0 0;font-size:.93rem;line-height:1.4}
+.stack__txt .stack__price{margin-top:auto;padding-top:.75rem;font:800 3.1rem/1 "Sofia Sans Extra Condensed",sans-serif}
+@media (min-width:48rem){
+  .stack__inner{grid-template-columns:20rem minmax(0,1fr);min-height:24rem}
+  .stack__txt{padding:2rem 2.25rem}
+  .stack__txt h3{font-size:4rem}
+  .stack__txt p{font-size:1.05rem;max-width:26rem}
+  .stack__txt .stack__price{font-size:5.5rem}
+}
+
+/* ---------- 03 route draws itself (Cielo) ---------- */
+.st-cielo{background:#0b1326;color:#e8edfb;padding:3rem 0 3.5rem}
+.route{max-width:25rem;margin:1.75rem auto 0;view-timeline:--route block}
+.route svg{display:block;width:100%;height:auto;overflow:visible}
+.route .ghost{fill:none;stroke:#3a4a6d;stroke-width:2;stroke-dasharray:1.5 7;stroke-linecap:round}
+.route .draw{fill:none;stroke:#f2c46d;stroke-width:3.5;stroke-linecap:round}
+.route .stop{fill:#f2c46d;stroke:#f2c46d;stroke-width:2.5}
+.route .lbl{font:400 21px "Imbue",Georgia,serif;fill:#f4f1e8}
+.route .sub{font:500 12.5px "Geist",system-ui,sans-serif;fill:#93a3c8;letter-spacing:.04em}
+
+/* ---------- 04 card grows into detail (dishes) ---------- */
+.st-dishes{background:#ede3d0;color:#2a1a12;padding:3rem 0 3.5rem}
+.dishes{list-style:none;margin:1.5rem 0 0;padding:0;display:grid;gap:.75rem}
+.dish{display:grid;grid-template-columns:6.5rem minmax(0,1fr);align-items:center;gap:1rem;width:100%;padding:.6rem;border:0;border-radius:1rem;background:#f8f2e6;color:inherit;text-align:left;font:inherit;cursor:pointer;box-shadow:0 1px 0 rgba(42,26,18,.08)}
+.dish img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:.7rem}
+.dish__name{display:block;font:800 1.35rem/1.05 "Archivo",sans-serif;font-stretch:110%}
+.dish__price{display:block;margin-top:.3rem;font-weight:600;color:#8a3b1c}
+.dish__hint{display:block;margin-top:.35rem;font-size:.8rem;color:#6d5a4a}
+.dish__more{display:none}
+@media (min-width:48rem){
+  .dishes{grid-template-columns:repeat(3,minmax(0,1fr));gap:1.25rem}
+  .dish{grid-template-columns:1fr;padding:.75rem .75rem 1.1rem}
+  .dish img{aspect-ratio:4/5}
+  .dish__name{font-size:1.6rem}
+}
+.dd{padding:0;border:0;margin:auto auto 0;width:100%;max-width:100%;max-height:92svh;border-radius:1.25rem 1.25rem 0 0;background:#f8f2e6;color:#2a1a12;overflow:auto}
+.dd::backdrop{background:rgba(20,12,8,.55)}
+.dd__img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.dd__body{padding:1.25rem var(--g) 1.75rem}
+.dd__body h3{font:800 2rem/1 "Archivo",sans-serif;font-stretch:115%}
+.dd__body p{margin:.75rem 0 0;font-size:1.05rem}
+.dd__price{font-weight:700;color:#8a3b1c}
+.dd__close{position:absolute;top:.75rem;right:.75rem;width:44px;height:44px;border-radius:50%;border:0;background:rgba(248,242,230,.92);color:#2a1a12;font-size:1.5rem;line-height:1;cursor:pointer}
+@media (min-width:48rem){.dd{margin:auto;max-width:34rem;border-radius:1.25rem}}
+::view-transition-group(dish-img),::view-transition-group(dish-name){animation-duration:.48s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+
+/* ---------- 05 tilt carousel (Casa Tea) ---------- */
+.st-casa{background:#efe6d8;color:#2b2118;padding:3rem 0 3.5rem}
+.rail{--w:min(70vw,20rem);display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;padding:1.5rem calc(50% - var(--w) / 2) 2rem;margin-top:.5rem;scrollbar-width:none;overscroll-behavior-x:contain}
+.rail::-webkit-scrollbar{display:none}
+.rail__item{flex:0 0 var(--w);scroll-snap-align:center;list-style:none}
+.rail__item figure{margin:0}
+.rail__item img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:.4rem}
+.rail__item figcaption{margin-top:.75rem;font:500 1.35rem/1.1 "Ibarra Real Nova",Georgia,serif}
+.rail__item figcaption small{display:block;margin-top:.2rem;font:400 .82rem/1.3 "Geist",system-ui,sans-serif;color:#6b5a48}
+.rail__btns{display:flex;gap:.6rem;justify-content:center}
+.rail__btns .btn{width:48px;padding:0;font-size:1.1rem}
+.rail__track{display:contents}
+
+/* ---------- 06 words rise (Picón) ---------- */
+.st-rise{background:#b4231a;color:#f8ecd8;padding:3.5rem 0 3rem}
+.rise{font:900 clamp(2.7rem,11.5vw,7.4rem)/.92 "Archivo",sans-serif;font-stretch:125%;letter-spacing:-.01em;text-transform:uppercase;max-width:11ch}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em;margin-bottom:-.06em}
+.w>span{display:inline-block}
+.motion [data-reveal]:not(.is-in) .w>span{transform:translateY(112%)}
+.motion [data-reveal].is-in .w>span{animation:rise .8s cubic-bezier(.2,.75,.15,1) both;animation-delay:calc(var(--i) * 75ms)}
+.st-rise .btn{color:#f8ecd8}
+
+/* ---------- 07 shaped edges ---------- */
+.st-edges{background:var(--paper);padding:.5rem 0 3.5rem}
+.edges{display:grid;gap:1.75rem}
+.edge figcaption{margin-top:.75rem;font-size:.92rem;color:#3a362f}
+.edge figcaption b{font-weight:650;color:var(--ink)}
+.edge figure{margin:0}
+.e-band{display:flex;align-items:center;min-height:7.5rem;padding:1.25rem 1.5rem}
+.e-awning{--r:16px;min-height:6.5rem;padding-bottom:calc(var(--r) + 1rem);background:repeating-linear-gradient(90deg,#c0261b 0 32px,#f6ead6 32px 64px);background-position:50% 0;
+  -webkit-mask:linear-gradient(#000 0 0) 0 0/100% calc(100% - var(--r)) no-repeat,radial-gradient(var(--r) at 50% 0,#000 calc(100% - .5px),#0000) 50% 100%/calc(2 * var(--r)) var(--r) repeat-x;
+          mask:linear-gradient(#000 0 0) 0 0/100% calc(100% - var(--r)) no-repeat,radial-gradient(var(--r) at 50% 0,#000 calc(100% - .5px),#0000) 50% 100%/calc(2 * var(--r)) var(--r) repeat-x}
+.e-awning span{background:#f6ead6;color:#c0261b;font:900 1.3rem/1 "Archivo",sans-serif;font-stretch:120%;padding:.45rem .75rem;border-radius:.3rem;text-transform:uppercase}
+.e-zig{--s:24px;background:#141414;color:#ffd21f;padding-bottom:calc(var(--s) / 2 + 1.25rem);
+  -webkit-mask:conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) 50%/var(--s) 100%;
+          mask:conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) 50%/var(--s) 100%}
+.e-zig span{font:900 1.5rem/1 "Archivo",sans-serif;font-stretch:112%;text-transform:uppercase}
+.e-arch{--r:34px;background:#c66a3f;color:#fbf2e4;padding-top:calc(var(--r) + 1rem);
+  -webkit-mask:radial-gradient(var(--r) at 50% var(--r),#000 calc(100% - .5px),#0000) 50% 0/calc(2 * var(--r) + 10px) calc(var(--r) * 2) repeat-x,linear-gradient(#000 0 0) 0 var(--r)/100% 100% no-repeat;
+          mask:radial-gradient(var(--r) at 50% var(--r),#000 calc(100% - .5px),#0000) 50% 0/calc(2 * var(--r) + 10px) calc(var(--r) * 2) repeat-x,linear-gradient(#000 0 0) 0 var(--r)/100% 100% no-repeat}
+.e-arch span{font:500 1.7rem/1 "Ibarra Real Nova",Georgia,serif}
+.e-ticket{--r:9px;background:#13254f;color:#f2c46d;
+  -webkit-mask:radial-gradient(circle var(--r) at 50% 0,#0000 calc(100% - .5px),#000) 50% 0/calc(var(--r) * 3) 51% repeat-x,radial-gradient(circle var(--r) at 50% 100%,#0000 calc(100% - .5px),#000) 50% 100%/calc(var(--r) * 3) 51% repeat-x;
+          mask:radial-gradient(circle var(--r) at 50% 0,#0000 calc(100% - .5px),#000) 50% 0/calc(var(--r) * 3) 51% repeat-x,radial-gradient(circle var(--r) at 50% 100%,#0000 calc(100% - .5px),#000) 50% 100%/calc(var(--r) * 3) 51% repeat-x}
+.e-ticket span{font:400 1.6rem/1 "Imbue",Georgia,serif}
+.e-ticket small{display:block;margin-top:.35rem;font:500 .78rem/1 "Geist",system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#93a3c8}
+@media (min-width:48rem){.edges{grid-template-columns:1fr 1fr;gap:2.5rem 2rem}}
+
+/* ---------- 08 cut-out label + folded corner ---------- */
+.st-cards{background:#f4ead7;color:#2a1a12;padding:3rem 0 3.5rem}
+.cards8{display:grid;gap:1.75rem;margin-top:1.5rem}
+.cut{--bg:#f4ead7;--c:18px;position:relative;margin:0;border-radius:1.25rem;overflow:hidden}
+.cut img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.cut__label{position:absolute;top:0;left:0;background:var(--bg);padding:.55rem 1rem .7rem .8rem;border-bottom-right-radius:var(--c);font:900 .95rem/1 "Archivo",sans-serif;font-stretch:118%;text-transform:uppercase;letter-spacing:.04em;color:#b4231a}
+.cut__label::before,.cut__label::after{content:"";position:absolute;width:var(--c);height:var(--c);background:radial-gradient(circle at 100% 100%,#0000 calc(var(--c) - .5px),var(--bg) var(--c))}
+.cut__label::before{top:0;left:100%}
+.cut__label::after{top:100%;left:0}
+.cut__price{position:absolute;right:0;bottom:0;background:var(--bg);padding:.7rem .9rem .6rem 1.1rem;border-top-left-radius:var(--c);font:800 1.15rem/1.1 "Archivo",sans-serif}
+.cut__price::before,.cut__price::after{content:"";position:absolute;width:var(--c);height:var(--c);background:radial-gradient(circle at 0 0,#0000 calc(var(--c) - .5px),var(--bg) var(--c))}
+.cut__price::before{bottom:0;right:100%}
+.cut__price::after{bottom:100%;right:0}
+.cut__price small{display:block;font:500 .78rem/1.2 "Geist",system-ui,sans-serif;color:#6d5a4a}
+.fold{--f:3.2rem;position:relative;background:#fffaf0;color:#2a1a12;padding:1.75rem 1.5rem 1.6rem;border-radius:.25rem;
+  clip-path:polygon(0 0,calc(100% - var(--f)) 0,100% var(--f),100% 100%,0 100%)}
+.fold::after{content:"";position:absolute;top:0;right:0;width:var(--f);height:var(--f);background:linear-gradient(to bottom left,#0000 50%,#c9b48f 50%,#e8d9bc 62%);border-bottom-left-radius:.35rem}
+.fold__k{margin:0;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:#8a3b1c}
+.fold h3{margin-top:.5rem;font:900 2.1rem/.95 "Archivo",sans-serif;font-stretch:120%;text-transform:uppercase}
+.fold ul{list-style:none;margin:1rem 0 0;padding:0;display:grid;gap:.4rem}
+.fold li{display:flex;justify-content:space-between;gap:1rem;border-bottom:1px dashed #d8c7a6;padding-bottom:.4rem}
+.fold__p{margin:1.1rem 0 0;font:900 3.4rem/1 "Archivo",sans-serif}
+@media (min-width:48rem){.cards8{grid-template-columns:1fr 1fr;align-items:start;gap:2rem}}
+
+/* ---------- 09 grain + slow settle (Cielo) ---------- */
+.kb{position:relative;overflow:hidden;height:min(82svh,46rem);background:#2b2230;color:#fff6ea}
+.kb img{width:100%;height:100%;object-fit:cover;transform-origin:50% 60%}
+.kb::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.22;mix-blend-mode:overlay;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") 0 0/160px 160px}
+.kb__copy{position:absolute;left:0;right:0;bottom:0;z-index:1;padding:2rem 0 2.25rem;background:linear-gradient(to top,rgba(20,14,24,.72),rgba(20,14,24,0))}
+.kb__copy p{margin:0;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:#f2c46d}
+.kb__copy h3{margin-top:.4rem;font:300 clamp(2.4rem,9vw,5.5rem)/.95 "Imbue",Georgia,serif;letter-spacing:-.01em;max-width:14ch}
+.motion .kb[data-reveal]:not(.is-in) img{transform:scale(1.14)}
+.motion .kb[data-reveal].is-in img{animation:settle 2.8s cubic-bezier(.2,.6,.2,1) both}
+.st-kb{background:#2b2230;color:#fff6ea;padding-bottom:2.5rem}
+.st-kb .btn{color:#fff6ea}
+
+/* ---------- bonus: typing headline ---------- */
+.st-type{background:#ffd21f;color:#141414;padding:3.5rem 0 3rem}
+.type{font:900 clamp(2.3rem,9.5vw,6rem)/.98 "Archivo",sans-serif;font-stretch:108%;letter-spacing:-.015em;max-width:13ch}
+.motion [data-reveal]:not(.is-in) .type .ch,.type.typing .ch:not(.on){opacity:0}
+.caret{display:inline-block;width:.07em;height:.82em;margin-left:.04em;vertical-align:-.04em;background:currentColor}
+.motion .caret{animation:caret-blink 1.05s steps(1) infinite}
+.type.typing .caret{animation:none}
+.st-type .btn{color:#141414}
+
+/* ---------- 10 giant wordmark ---------- */
+.st-mark{background:#1d5b37;color:#f8ecd8;padding:3rem 0 1.25rem;overflow:hidden}
+.mark__top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem 2rem;font-size:.92rem}
+.mark__top p{margin:0}
+.mark{container-type:inline-size;margin-top:2.5rem}
+.mark span{display:block;font:900 24.1cqi/.8 "Archivo",sans-serif;font-stretch:125%;letter-spacing:-.02em;text-transform:uppercase;white-space:nowrap}
+.labfoot{padding:1.5rem 0 2.5rem;font-size:.82rem;color:var(--mute)}
+
+/* ---------- scroll-linked effects: 01, 02, 03, 05 ----------
+   Only where the browser supports scroll timelines AND motion is welcome.
+   Every "from" state still shows the content (cropped, tilted, undrawn line) —
+   none of them can leave anything invisible. */
+@media (prefers-reduced-motion:no-preference){
+  @supports (animation-timeline:view()){
+    .open__frame{animation:open-up linear both;animation-timeline:view();animation-range:entry 0% cover 50%}
+    .open__frame img{animation:open-img linear both;animation-timeline:view();animation-range:entry 0% cover 50%}
+    .stack__inner{animation:stack-shrink linear both;animation-timeline:--stack;animation-range:exit-crossing calc(var(--i) / var(--n) * 100%) exit-crossing calc((var(--i) + 1) / var(--n) * 100%)}
+    .route .draw{stroke-dasharray:1;animation:draw linear both;animation-timeline:--route;animation-range:cover 18% cover 72%}
+    .route .stop{animation:stop-on linear both;animation-timeline:--route;animation-range:cover calc(18% + var(--k) * 13.2%) cover calc(20% + var(--k) * 13.2%)}
+    .rail__item figure{animation:tilt linear both;animation-timeline:view(inline)}
+  }
+}
+@keyframes open-up{from{clip-path:inset(15% 9% round 2rem)}to{clip-path:inset(0 0 round 0)}}
+@keyframes open-img{from{transform:scale(1.2)}to{transform:none}}
+@keyframes stack-shrink{to{transform:scale(calc(1 - (var(--n) - 1 - var(--i)) * .055))}}
+@keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes stop-on{from{fill:#0b1326}to{fill:#f2c46d}}
+@keyframes tilt{0%{transform:translateY(1.5rem) rotate(-8deg) scale(.84);opacity:.5}50%{transform:none;opacity:1}100%{transform:translateY(1.5rem) rotate(8deg) scale(.84);opacity:.5}}
+</style>
+</head>
+<body>
+
+<header class="lab">
+  <div class="wrap">
+    <p class="lab__kicker">Teide Digital · motion lab · internal test page</p>
+    <h1>Eleven effects, rebuilt our way.</h1>
+    <p class="lab__lede">Ideas taken from Cult UI, Watermelon UI and Skiper UI, rebuilt without React. Nothing stays hidden if a script fails, and everything switches off for people who ask their phone for less motion.</p>
+    <p class="lab__ask">Scroll through on your phone, then send me the numbers worth keeping.</p>
+    <ol class="lab__index">
+      <li><a href="#fx-1"><span>01</span>Photo opens as you scroll</a></li>
+      <li><a href="#fx-2"><span>02</span>Cards that stack as you scroll</a></li>
+      <li><a href="#fx-3"><span>03</span>A route that draws itself</a></li>
+      <li><a href="#fx-4"><span>04</span>Card grows into its detail</a></li>
+      <li><a href="#fx-5"><span>05</span>Swipe gallery with tilt</a></li>
+      <li><a href="#fx-6"><span>06</span>Headline words rise into place</a></li>
+      <li><a href="#fx-7"><span>07</span>Shaped section edges</a></li>
+      <li><a href="#fx-8"><span>08</span>Cut-out labels and a folded corner</a></li>
+      <li><a href="#fx-9"><span>09</span>Film grain and a slow zoom</a></li>
+      <li><a href="#fx-b"><span>+</span>Bonus: typing headline</a></li>
+      <li><a href="#fx-10"><span>10</span>Giant name across the footer</a></li>
+    </ol>
+    <p class="lab__note">01, 02, 03 and 05 follow your finger as you scroll. They run in Chrome, Edge, Samsung Internet and Safari 26 or newer; in older browsers you see the finished state, with nothing missing. The businesses below are the fictional showroom ones, and every price is an example.</p>
+  </div>
+</header>
+
+<main>
+
+<!-- 01 -->
+<section class="fx" id="fx-1" aria-labelledby="fx-1-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">01</p>
+    <div>
+      <h2 id="fx-1-t">Photo opens as you scroll</h2>
+      <p class="fx__for">A big photo starts cropped with rounded corners and opens out to the full screen as it scrolls in. For the one signature moment on a restaurant, terrace or tour site.</p>
+      <ul class="fx__meta"><li>0 KB JavaScript</li><li>Scroll-linked</li><li>Idea: Skiper UI</li></ul>
+    </div>
+  </div>
+  <div class="stage st-ocaso" lang="es">
+    <div class="open__frame">
+      <img src="assets/img/costa-adeje-800.webp" srcset="assets/img/costa-adeje-800.webp 800w, assets/img/costa-adeje-1400.webp 1400w" sizes="100vw" width="1400" height="1050" alt="Puesta de sol sobre el mar en la costa de Adeje, con un velero en el horizonte" loading="lazy" decoding="async">
+    </div>
+    <div class="wrap st-ocaso__copy">
+      <p class="st-ocaso__kicker">Ocaso · La Caleta</p>
+      <p class="st-ocaso__line">Mesa en primera fila para la puesta de sol.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 02 -->
+<section class="fx" id="fx-2" aria-labelledby="fx-2-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">02</p>
+    <div>
+      <h2 id="fx-2-t">Cards that stack as you scroll</h2>
+      <p class="fx__for">Each card sticks and the next one slides over it, while the ones underneath shrink back. For services, prices, steps of a job, or menu sections.</p>
+      <ul class="fx__meta"><li>0 KB JavaScript</li><li>Scroll-linked</li><li>Idea: Skiper UI</li></ul>
+    </div>
+  </div>
+  <div class="stage st-lunula" lang="es">
+    <div class="wrap">
+      <p class="st-kicker">Lúnula Studio · Los Cristianos</p>
+      <ol class="stack" style="--n:4">
+        <li class="stack__card" style="--i:0"><article class="stack__inner">
+          <img src="assets/img/unas-gel-600.webp" srcset="assets/img/unas-gel-600.webp 600w, assets/img/unas-gel-1100.webp 1100w" sizes="(min-width: 48rem) 20rem, 9rem" width="1100" height="1375" alt="Manos con manicura de gel en tono lila" loading="lazy" decoding="async">
+          <div class="stack__txt"><h3>Uñas de gel</h3><p>Manicura completa con gel de larga duración.</p><p class="stack__price">35 €</p></div>
+        </article></li>
+        <li class="stack__card" style="--i:1"><article class="stack__inner">
+          <img src="assets/img/unas-francesa-600.webp" srcset="assets/img/unas-francesa-600.webp 600w, assets/img/unas-francesa-1100.webp 1100w" sizes="(min-width: 48rem) 20rem, 9rem" width="1100" height="1375" alt="Manicura francesa sosteniendo una flor pequeña" loading="lazy" decoding="async">
+          <div class="stack__txt"><h3>Francesa</h3><p>Punta blanca clásica, natural y limpia.</p><p class="stack__price">30 €</p></div>
+        </article></li>
+        <li class="stack__card" style="--i:2"><article class="stack__inner">
+          <img src="assets/img/pestanas-pelo-a-pelo-600.webp" srcset="assets/img/pestanas-pelo-a-pelo-600.webp 600w, assets/img/pestanas-pelo-a-pelo-1100.webp 1100w" sizes="(min-width: 48rem) 20rem, 9rem" width="1100" height="1375" alt="Aplicación de extensiones de pestañas pelo a pelo con pinzas" loading="lazy" decoding="async">
+          <div class="stack__txt"><h3>Pestañas pelo a pelo</h3><p>Extensiones una a una, mirada natural.</p><p class="stack__price">55 €</p></div>
+        </article></li>
+        <li class="stack__card" style="--i:3"><article class="stack__inner">
+          <img src="assets/img/cejas-laminado-600.webp" srcset="assets/img/cejas-laminado-600.webp 600w, assets/img/cejas-laminado-1100.webp 1100w" sizes="(min-width: 48rem) 20rem, 9rem" width="1100" height="1100" alt="Laminado de cejas con cepillo" loading="lazy" decoding="async">
+          <div class="stack__txt"><h3>Laminado de cejas</h3><p>Cejas peinadas y fijadas hasta seis semanas.</p><p class="stack__price">28 €</p></div>
+        </article></li>
+      </ol>
+      <p class="st-note">Precios de ejemplo</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 -->
+<section class="fx" id="fx-3" aria-labelledby="fx-3-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">03</p>
+    <div>
+      <h2 id="fx-3-t">A route that draws itself</h2>
+      <p class="fx__for">The line draws as you scroll and each stop lights up when the line reaches it. For a tour itinerary, a delivery area, or a hand-drawn underline.</p>
+      <ul class="fx__meta"><li>0 KB JavaScript</li><li>Scroll-linked</li><li>Idea: Skiper UI, Cult UI</li></ul>
+    </div>
+  </div>
+  <div class="stage st-cielo" lang="es">
+    <div class="wrap">
+      <p class="st-kicker">Cielo Ucanca · ruta de ejemplo</p>
+      <div class="route">
+        <svg viewBox="0 0 360 770" role="img" aria-label="Ruta: Puerto de la Cruz, La Orotava, Aguamansa, Las Cañadas y Llano de Ucanca">
+          <path class="ghost" d="M60 40 C55 150 300 140 180 250 S40 380 150 440 S330 540 230 620 S100 700 130 735"/>
+          <path class="draw" pathLength="1" d="M60 40 C55 150 300 140 180 250 S40 380 150 440 S330 540 230 620 S100 700 130 735"/>
+          <circle class="stop" style="--k:0" cx="60" cy="40" r="8"/>
+          <circle class="stop" style="--k:1" cx="180" cy="250" r="8"/>
+          <circle class="stop" style="--k:2" cx="150" cy="440" r="8"/>
+          <circle class="stop" style="--k:3" cx="230" cy="620" r="8"/>
+          <circle class="stop" style="--k:4" cx="130" cy="735" r="8"/>
+          <text class="lbl" x="80" y="36">Puerto de la Cruz</text><text class="sub" x="80" y="56">RECOGIDA · 16:30</text>
+          <text class="lbl" x="200" y="246">La Orotava</text><text class="sub" x="200" y="266">CASCO HISTÓRICO</text>
+          <text class="lbl" x="170" y="436">Aguamansa</text><text class="sub" x="170" y="456">PINAR Y MIRADOR</text>
+          <text class="lbl" x="212" y="616" text-anchor="end">Las Cañadas</text><text class="sub" x="212" y="636" text-anchor="end">PUESTA DE SOL</text>
+          <text class="lbl" x="150" y="731">Llano de Ucanca</text><text class="sub" x="150" y="751">ESTRELLAS</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 -->
+<section class="fx" id="fx-4" aria-labelledby="fx-4-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">04</p>
+    <div>
+      <h2 id="fx-4-t">Card grows into its detail</h2>
+      <p class="fx__for">Tap a dish: its photo and name fly into place as the detail opens, and they fly back when you close it. For dishes, tours, treatments or rooms.</p>
+      <ul class="fx__meta"><li>Small shared script</li><li>Tap-driven</li><li>Idea: Watermelon UI</li></ul>
+    </div>
+  </div>
+  <div class="stage st-dishes" lang="es">
+    <div class="wrap">
+      <p class="st-kicker">Carta de ejemplo · toca un plato</p>
+      <ul class="dishes">
+        <li>
+          <button class="dish" type="button" aria-haspopup="dialog">
+            <img src="assets/img/pulpo-480.webp" srcset="assets/img/pulpo-480.webp 480w, assets/img/pulpo-960.webp 960w" sizes="(min-width: 48rem) 22rem, 6.5rem" width="960" height="1200" alt="Pulpo a la brasa con brotes verdes" loading="lazy" decoding="async">
+            <span><span class="dish__name">Pulpo a la brasa</span><span class="dish__price">16,50 €</span><span class="dish__hint">Ver detalle</span></span>
+          </button>
+          <div class="dish__more"><p>Pulpo de roca a la brasa sobre papas arrugadas, con mojo rojo de la casa.</p><p class="dd__price">16,50 € · precio de ejemplo</p></div>
+        </li>
+        <li>
+          <button class="dish" type="button" aria-haspopup="dialog">
+            <img src="assets/img/pescado-800.webp" srcset="assets/img/pescado-800.webp 800w, assets/img/pescado-1400.webp 1400w" sizes="(min-width: 48rem) 22rem, 6.5rem" width="1400" height="934" alt="Tres pescados a la plancha con limón en una fuente oscura" loading="lazy" decoding="async">
+            <span><span class="dish__name">Pescado del día</span><span class="dish__price">18 €</span><span class="dish__hint">Ver detalle</span></span>
+          </button>
+          <div class="dish__more"><p>Lo que entró esta mañana en el muelle, a la plancha con ajo, perejil y limón.</p><p class="dd__price">18 € · precio de ejemplo</p></div>
+        </li>
+        <li>
+          <button class="dish" type="button" aria-haspopup="dialog">
+            <img src="assets/img/tostada-aguacate-400.webp" srcset="assets/img/tostada-aguacate-400.webp 400w, assets/img/tostada-aguacate-800.webp 800w" sizes="(min-width: 48rem) 22rem, 6.5rem" width="800" height="800" alt="Tostada de aguacate con sésamo en un plato blanco" loading="lazy" decoding="async">
+            <span><span class="dish__name">Tostada de aguacate</span><span class="dish__price">8,50 €</span><span class="dish__hint">Ver detalle</span></span>
+          </button>
+          <div class="dish__more"><p>Pan de masa madre, aguacate machacado, lima y sésamo tostado.</p><p class="dd__price">8,50 € · precio de ejemplo</p></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <dialog class="dd" id="dd" aria-labelledby="dd-title" lang="es">
+    <img class="dd__img" src="assets/img/pulpo-960.webp" width="960" height="1200" alt="" loading="lazy" decoding="async">
+    <div class="dd__body"><h3 id="dd-title">Plato</h3><div class="dd__text"></div></div>
+    <button class="dd__close" type="button" aria-label="Cerrar">×</button>
+  </dialog>
+</section>
+
+<!-- 05 -->
+<section class="fx" id="fx-5" aria-labelledby="fx-5-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">05</p>
+    <div>
+      <h2 id="fx-5-t">Swipe gallery with tilt</h2>
+      <p class="fx__for">A normal swipe gallery, but the photos either side of the centre one tilt and fall back as you swipe. For rooms, haircuts, finished jobs or dishes.</p>
+      <ul class="fx__meta"><li>0 KB JavaScript to swipe</li><li>Arrow buttons use the shared script</li><li>Idea: Watermelon UI</li></ul>
+    </div>
+  </div>
+  <div class="stage st-casa" lang="es">
+    <div class="wrap"><p class="st-kicker">Casa Tea · La Orotava · desliza</p></div>
+    <div class="rail" id="rail" tabindex="0" role="region" aria-label="Fotos de la casa">
+      <ul class="rail__track">
+        <li class="rail__item"><figure><img src="assets/img/casa-560.webp" width="560" height="700" alt="Patio canario con balcones de madera y helechos" loading="lazy" decoding="async"><figcaption>La casa<small>Patio y balcones de tea</small></figcaption></figure></li>
+        <li class="rail__item"><figure><img src="assets/img/balcon-560.webp" width="560" height="560" alt="Ventana abierta al jardín desde una habitación en penumbra" loading="lazy" decoding="async"><figcaption>El balcón<small>Abre al jardín</small></figcaption></figure></li>
+        <li class="rail__item"><figure><img src="assets/img/desayuno-560.webp" width="560" height="700" alt="Desayuno en una mesa con mantel de cuadros rojos" loading="lazy" decoding="async"><figcaption>Desayuno<small>Mermeladas de la finca</small></figcaption></figure></li>
+        <li class="rail__item"><figure><img src="assets/img/drago-560.webp" width="560" height="700" alt="Dormitorio con cortinas blancas y luz de ventana" loading="lazy" decoding="async"><figcaption>Habitación Drago<small>Cama doble, luz de mañana</small></figcaption></figure></li>
+        <li class="rail__item"><figure><img src="assets/img/retama-560.webp" width="560" height="700" alt="Dormitorio abuhardillado con muro de piedra y claraboya" loading="lazy" decoding="async"><figcaption>Habitación Retama<small>Bajo cubierta</small></figcaption></figure></li>
+        <li class="rail__item"><figure><img src="assets/img/teide-560.webp" width="560" height="700" alt="El Teide sobre un mar de nubes" loading="lazy" decoding="async"><figcaption>Las vistas<small>El Teide sobre las nubes</small></figcaption></figure></li>
+      </ul>
+    </div>
+    <div class="rail__btns"><button class="btn" type="button" data-rail="rail" data-dir="-1" aria-label="Foto anterior">←</button><button class="btn" type="button" data-rail="rail" data-dir="1" aria-label="Foto siguiente">→</button></div>
+  </div>
+</section>
+
+<!-- 06 -->
+<section class="fx" id="fx-6" aria-labelledby="fx-6-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">06</p>
+    <div>
+      <h2 id="fx-6-t">Headline words rise into place</h2>
+      <p class="fx__for">Each word slides up out of an invisible slot, one after another, once, when the headline comes into view. For an opening line with attitude.</p>
+      <ul class="fx__meta"><li>Small shared script</li><li>Plays once</li><li>Idea: Watermelon UI</li></ul>
+    </div>
+  </div>
+  <div class="stage st-rise" lang="es">
+    <div class="wrap" id="rise" data-reveal>
+      <p class="st-kicker">Tasca Picón · Puerto de la Cruz</p>
+      <h3 class="rise" style="margin-top:1rem"><span class="w"><span style="--i:0">El</span></span> <span class="w"><span style="--i:1">mojo</span></span> <span class="w"><span style="--i:2">se</span></span> <span class="w"><span style="--i:3">hace</span></span> <span class="w"><span style="--i:4">aquí,</span></span> <span class="w"><span style="--i:5">cada</span></span> <span class="w"><span style="--i:6">mañana.</span></span></h3>
+      <button class="btn replay" type="button" data-replay="rise">Play again</button>
+    </div>
+  </div>
+</section>
+
+<!-- 07 -->
+<section class="fx" id="fx-7" aria-labelledby="fx-7-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">07</p>
+    <div>
+      <h2 id="fx-7-t">Shaped section edges</h2>
+      <p class="fx__for">Sections that end in a shape from the business's own world instead of a straight line. No motion: this is a world-building tool.</p>
+      <ul class="fx__meta"><li>0 KB JavaScript</li><li>Static</li><li>Idea: Cult UI</li></ul>
+    </div>
+  </div>
+  <div class="stage st-edges" lang="es">
+    <div class="wrap edges">
+      <figure class="edge"><div class="e-band e-awning"><span>Tasca Picón</span></div><figcaption><b>Toldo.</b> For a tasca, an ice-cream shop or a market stall.</figcaption></figure>
+      <figure class="edge"><div class="e-band e-zig"><span>Fase Neutro · 24 h</span></div><figcaption><b>Teeth.</b> For a workshop, an electrician or a hardware shop.</figcaption></figure>
+      <figure class="edge"><div class="e-band e-arch"><span>Casa Tea</span></div><figcaption><b>Arches.</b> For a casa rural, a church-square café or a patio.</figcaption></figure>
+      <figure class="edge"><div class="e-band e-ticket"><span>Excursión al Teide<small>Entrada · ejemplo</small></span></div><figcaption><b>Ticket.</b> For tours, boat trips and event tickets.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 08 -->
+<section class="fx" id="fx-8" aria-labelledby="fx-8-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">08</p>
+    <div>
+      <h2 id="fx-8-t">Cut-out labels and a folded corner</h2>
+      <p class="fx__for">Labels that look carved out of the photo's corner, and a price card with a dog-eared corner. For "Nuevo" tags, prices and a menú del día.</p>
+      <ul class="fx__meta"><li>0 KB JavaScript</li><li>Static</li><li>Idea: Cult UI</li></ul>
+    </div>
+  </div>
+  <div class="stage st-cards" lang="es">
+    <div class="wrap">
+      <p class="st-kicker">Tasca Picón · ejemplo</p>
+      <div class="cards8">
+        <figure class="cut">
+          <img src="assets/img/pulpo-480.webp" srcset="assets/img/pulpo-480.webp 480w, assets/img/pulpo-960.webp 960w" sizes="(min-width: 48rem) 34rem, 100vw" width="960" height="1200" alt="Pulpo a la brasa con brotes verdes" loading="lazy" decoding="async">
+          <span class="cut__label">Nuevo</span>
+          <figcaption class="cut__price">Pulpo a la brasa<small>16,50 € · ejemplo</small></figcaption>
+        </figure>
+        <article class="fold">
+          <p class="fold__k">Lunes a viernes</p>
+          <h3>Menú del día</h3>
+          <ul><li><span>Primero</span><span>a elegir</span></li><li><span>Segundo</span><span>a elegir</span></li><li><span>Postre o café</span><span>incluido</span></li><li><span>Bebida</span><span>incluida</span></li></ul>
+          <p class="fold__p">14 €</p>
+          <p class="st-note" style="margin-top:.5rem">Precio de ejemplo</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 -->
+<section class="fx" id="fx-9" aria-labelledby="fx-9-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">09</p>
+    <div>
+      <h2 id="fx-9-t">Film grain and a slow zoom</h2>
+      <p class="fx__for">A fine film grain over the photo, and the photo settles from slightly zoomed in to still, once. Makes a stock-looking photo feel shot on film. For a hero.</p>
+      <ul class="fx__meta"><li>Small shared script</li><li>Plays once</li><li>Idea: Watermelon UI</li></ul>
+    </div>
+  </div>
+  <div class="stage st-kb" lang="es">
+    <div class="kb" id="kb" data-reveal>
+      <img src="assets/img/atardecer-mar-de-nubes-800.webp" srcset="assets/img/atardecer-mar-de-nubes-800.webp 800w, assets/img/atardecer-mar-de-nubes-1600.webp 1600w" sizes="100vw" width="1600" height="1067" alt="El sol poniéndose sobre un mar de nubes visto desde lo alto" loading="lazy" decoding="async">
+      <div class="kb__copy"><div class="wrap"><p>Cielo Ucanca</p><h3>Subimos cuando el sol baja.</h3></div></div>
+    </div>
+    <div class="wrap"><button class="btn replay" type="button" data-replay="kb">Play again</button></div>
+  </div>
+</section>
+
+<!-- bonus -->
+<section class="fx" id="fx-b" aria-labelledby="fx-b-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">+</p>
+    <div>
+      <h2 id="fx-b-t">Bonus: typing headline</h2>
+      <p class="fx__for">You've said before you like this one. The headline types itself out with a moving cursor. Screen readers get the whole line straight away. Best for trades and agencies; too techy for restaurants or hotels.</p>
+      <ul class="fx__meta"><li>Small shared script</li><li>Plays once</li><li>Idea: Cult UI</li></ul>
+    </div>
+  </div>
+  <div class="stage st-type" lang="es">
+    <div class="wrap" id="typed" data-reveal>
+      <p class="st-kicker">Fase Neutro · Adeje · ejemplo</p>
+      <h3 class="type" style="margin-top:1rem" data-type>¿Sin luz? Te contestamos ahora.</h3>
+      <button class="btn replay" type="button" data-replay="typed">Play again</button>
+    </div>
+  </div>
+</section>
+
+<!-- 10 -->
+<section class="fx" id="fx-10" aria-labelledby="fx-10-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">10</p>
+    <div>
+      <h2 id="fx-10-t">Giant name across the footer</h2>
+      <p class="fx__for">The business name set huge enough to fill the full width of the footer, on any screen. A confident sign-off that costs nothing.</p>
+      <ul class="fx__meta"><li>0 KB JavaScript</li><li>Static</li><li>Idea: Watermelon UI</li></ul>
+    </div>
+  </div>
+  <footer class="stage st-mark" lang="es">
+    <div class="wrap">
+      <div class="mark__top"><p>Calle de ejemplo, 12 · Puerto de la Cruz</p><p>Martes a domingo · 12:00–23:00</p><p>Tasca de ejemplo</p></div>
+      <div class="mark" aria-hidden="true"><span>Picón</span></div>
+    </div>
+  </footer>
+</section>
+
+</main>
+
+<p class="labfoot wrap">Motion lab · Teide Digital · internal, not indexed. Photos: Unsplash licence, from the showroom samples.</p>
+
+<script>
+(() => {
+  const root = document.documentElement;
+  const motion = root.classList.contains('motion');
+
+  /* typing headline: split into characters (the heading keeps its full text as
+     its accessible name, so screen readers never hear it letter by letter).
+     One caret, moved along behind the last typed character. */
+  document.querySelectorAll('[data-type]').forEach((el) => {
+    const text = el.textContent;
+    el.setAttribute('aria-label', text);
+    el.textContent = '';
+    [...text].forEach((ch) => {
+      const s = document.createElement('span');
+      s.className = 'ch';
+      s.setAttribute('aria-hidden', 'true');
+      s.textContent = ch;
+      el.append(s);
+    });
+    const caret = document.createElement('span');
+    caret.className = 'caret';
+    caret.setAttribute('aria-hidden', 'true');
+    el.append(caret);
+  });
+  const type = (el) => {
+    const chars = [...el.querySelectorAll('.ch')];
+    const caret = el.querySelector('.caret');
+    clearInterval(el._t);
+    chars.forEach((c) => c.classList.remove('on'));
+    el.classList.add('typing');
+    el.prepend(caret);
+    let i = 0;
+    el._t = setInterval(() => {
+      chars[i].classList.add('on');
+      chars[i].after(caret);
+      if (++i === chars.length) { clearInterval(el._t); el.classList.remove('typing'); }
+    }, 55);
+  };
+
+  /* reveals: play once when seen; a sweep reveals anything already scrolled to,
+     so nothing can stay hidden if the observer never fires */
+  const reveals = [...document.querySelectorAll('[data-reveal]')];
+  const show = (el) => {
+    if (el.classList.contains('is-in')) return;
+    el.classList.add('is-in');
+    if (motion) el.querySelectorAll('[data-type]').forEach(type);
+  };
+  if (motion) {
+    const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+      if (e.isIntersecting) { show(e.target); io.unobserve(e.target); }
+    }), { rootMargin: '0px 0px -18% 0px' });
+    reveals.forEach((el) => io.observe(el));
+    const sweep = () => reveals.forEach((el) => { if (el.getBoundingClientRect().top < innerHeight) show(el); });
+    let t;
+    addEventListener('scroll', () => { clearTimeout(t); t = setTimeout(sweep, 1200); }, { passive: true });
+    setTimeout(sweep, 3000);
+  } else {
+    reveals.forEach(show);
+  }
+  document.querySelectorAll('[data-replay]').forEach((b) => b.addEventListener('click', () => {
+    const el = document.getElementById(b.dataset.replay);
+    el.classList.remove('is-in');
+    void el.offsetWidth;
+    requestAnimationFrame(() => show(el));
+  }));
+
+  /* gallery arrows */
+  document.querySelectorAll('[data-rail]').forEach((b) => b.addEventListener('click', () => {
+    const rail = document.getElementById(b.dataset.rail);
+    const item = rail.querySelector('.rail__item');
+    rail.scrollBy({ left: Number(b.dataset.dir) * (item.offsetWidth + 16), behavior: motion ? 'smooth' : 'auto' });
+  }));
+
+  /* card -> detail: native <dialog>, morphed with a View Transition where the
+     browser has one; otherwise it simply opens */
+  const dd = document.getElementById('dd');
+  const ddImg = dd.querySelector('.dd__img');
+  const ddTitle = dd.querySelector('#dd-title');
+  const ddText = dd.querySelector('.dd__text');
+  const vt = (fn) => (motion && document.startViewTransition ? document.startViewTransition(fn) : (fn(), null));
+  const name = (el, n) => { el.style.viewTransitionName = n || ''; };
+  let from = null;
+  document.querySelectorAll('.dish').forEach((btn) => btn.addEventListener('click', () => {
+    from = btn;
+    const img = btn.querySelector('img');
+    const title = btn.querySelector('.dish__name');
+    name(img, 'dish-img'); name(title, 'dish-name');
+    vt(() => {
+      name(img); name(title);
+      ddImg.src = img.currentSrc || img.src;
+      ddImg.alt = img.alt;
+      ddTitle.textContent = title.textContent;
+      ddText.replaceChildren(...btn.parentElement.querySelector('.dish__more').cloneNode(true).childNodes);
+      name(ddImg, 'dish-img'); name(ddTitle, 'dish-name');
+      dd.showModal();
+    });
+  }));
+  const close = () => {
+    if (!dd.open) return;
+    const img = from && from.querySelector('img');
+    const title = from && from.querySelector('.dish__name');
+    const t = vt(() => {
+      name(ddImg); name(ddTitle);
+      dd.close();
+      if (img) { name(img, 'dish-img'); name(title, 'dish-name'); }
+    });
+    const clear = () => { if (img) { name(img); name(title); } };
+    t ? t.finished.then(clear, clear) : clear();
+  };
+  dd.querySelector('.dd__close').addEventListener('click', close);
+  dd.addEventListener('cancel', (e) => { e.preventDefault(); close(); });
+  dd.addEventListener('click', (e) => { if (e.target === dd) close(); });
+})();
+</script>
+</body>
+</html>
