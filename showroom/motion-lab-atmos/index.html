@@ -1,0 +1,926 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Atmosphere lab · Teide Digital</title>
+<meta name="description" content="Internal test page: twelve background, number and strip effects from Magic UI, Aceternity, Cult UI, daisyUI and others, rebuilt in plain CSS for small-business sites.">
+<meta name="theme-color" content="#f2eee6">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7' fill='%23bf3912'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/geist.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+/* Motion is opt-in: the hidden "before" states below exist only under .motion,
+   which is set here, before first paint, and only when the visitor has not asked
+   for reduced motion. No JS, an old browser or reduced motion = everything shown. */
+if (matchMedia('(prefers-reduced-motion: no-preference)').matches && 'IntersectionObserver' in window) document.documentElement.classList.add('motion');
+</script>
+<style>
+@font-face{font-family:"Geist";src:url("assets/fonts/geist.woff2") format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"Archivo";src:url("assets/fonts/archivo.woff2") format("woff2");font-weight:400 900;font-stretch:100% 125%;font-display:swap}
+@font-face{font-family:"Sofia Sans Extra Condensed";src:url("assets/fonts/sofia-sans-extra-condensed-latin-wght.woff2") format("woff2");font-weight:1 1000;font-display:swap}
+@font-face{font-family:"Imbue";src:url("assets/fonts/imbue-var.woff2") format("woff2");font-weight:150 500;font-display:swap}
+@font-face{font-family:"Ibarra Real Nova";src:url("assets/fonts/ibarra-latin.woff2") format("woff2");font-weight:400 700;font-display:swap}
+@property --a{syntax:"<angle>";inherits:false;initial-value:0deg}
+
+:root{--paper:#f2eee6;--ink:#171512;--mute:#6a645b;--rule:#d6cfc1;--hot:#bf3912;--g:clamp(16px,4vw,32px)}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1rem/1.55 "Geist",system-ui,sans-serif;overflow-x:clip}
+img{display:block;max-width:100%;height:auto}
+h1,h2,h3{margin:0}
+a{color:inherit}
+.wrap{width:100%;max-width:72rem;margin:0 auto;padding:0 var(--g)}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.btn{font:600 .875rem/1 "Geist",system-ui,sans-serif;letter-spacing:.02em;padding:.75rem 1.1rem;min-height:44px;border-radius:999px;border:1.5px solid currentColor;background:transparent;color:inherit;cursor:pointer}
+.btn:focus-visible,a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--hot);outline-offset:3px}
+.dark :focus-visible{outline-color:#ffc861!important}
+
+/* ---------- lab chrome (same as lab 1) ---------- */
+.lab{padding:3.5rem 0 3rem}
+.lab h1{font-size:clamp(2.6rem,9vw,6.2rem);line-height:.95;letter-spacing:-.035em;font-weight:700;max-width:13ch}
+.lab__lede{margin:1.5rem 0 0;font-size:clamp(1.05rem,2.6vw,1.3rem);max-width:38rem}
+.lab__ask{margin:1rem 0 0;font-weight:600;max-width:38rem}
+.lab__index{list-style:none;margin:2.25rem 0 0;padding:0;display:grid;gap:0;border-top:1px solid var(--rule)}
+.lab__index a{display:flex;gap:1rem;align-items:baseline;padding:.8rem 0;border-bottom:1px solid var(--rule);text-decoration:none;font-weight:500}
+.lab__index a span{font-variant-numeric:tabular-nums;color:var(--hot);font-weight:700;min-width:2.6rem}
+@media (min-width:48rem){.lab__index{grid-template-columns:1fr 1fr;column-gap:2.5rem}}
+.lab__note{margin:1.5rem 0 0;font-size:.9rem;color:var(--mute);max-width:40rem}
+.lab__more{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .5rem;margin:1.5rem 0 0;font-size:.88rem}
+.lab__more b{font-weight:600;margin-right:.25rem}
+.lab__more a{display:inline-flex;align-items:center;min-height:36px;padding:.3rem .8rem;border:1px solid var(--rule);border-radius:999px;background:#fbf9f4;text-decoration:none}
+.lab__more [aria-current]{border-color:var(--ink);font-weight:600}
+
+/* Off-screen sections skip layout until they come near the viewport, so each
+   section's font is only fetched when you scroll to it. */
+.fx{border-top:1px solid var(--rule);content-visibility:auto;contain-intrinsic-size:auto 1200px}
+.fx__head{display:grid;grid-template-columns:auto minmax(0,1fr);gap:1rem;padding-top:2.5rem;padding-bottom:1.75rem}
+.fx__num{margin:0;font-size:clamp(2.2rem,7vw,3.6rem);line-height:.9;font-weight:700;color:var(--hot);font-variant-numeric:tabular-nums;letter-spacing:-.03em;min-width:2.1ch}
+.fx__head h2{font-size:clamp(1.45rem,4.4vw,2.2rem);line-height:1.08;letter-spacing:-.02em;font-weight:650}
+.fx__for{margin:.55rem 0 0;max-width:40rem;color:#3a362f}
+.fx__meta{list-style:none;margin:.85rem 0 0;padding:0;display:flex;flex-wrap:wrap;gap:.4rem}
+.fx__meta li{font-size:.75rem;letter-spacing:.03em;padding:.3rem .6rem;border:1px solid var(--rule);border-radius:999px;color:var(--mute);background:#fbf9f4}
+.stage{position:relative}
+.st-kicker{margin:0;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase}
+.st-note{margin:1.25rem 0 0;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase}
+.replay{margin-top:1.5rem}
+.pause{display:none}
+.motion .pause{display:inline-flex;align-items:center}
+
+/* ---------- A1 night sky (Cielo Ucanca) ---------- */
+.st-sky{overflow:hidden;background:linear-gradient(#050a1c,#0d1a3a 58%,#1b2c5c);color:#eef2fb;min-height:min(92svh,46rem);display:flex;flex-direction:column}
+.sky__field{position:absolute;inset:0 0 2rem;container-type:size;pointer-events:none}
+.star{position:absolute;left:0;top:0;width:1.1px;height:1.1px;border-radius:50%;color:rgba(238,242,251,.85)}
+.s2a,.s2b{width:1.7px;height:1.7px;color:#eef2fb}
+.s3a,.s3b{width:2.6px;height:2.6px;color:#fff3dc}
+.s1a{box-shadow:30.3cqw 82.2cqh,81.3cqw 30.4cqh,40.1cqw 50.8cqh,53.6cqw 79.5cqh,-.4cqw 76.8cqh,35cqw 30.2cqh,92.7cqw 21.7cqh,57.3cqw 82.6cqh,-.2cqw 12.6cqh,43.4cqw 49.9cqh,68.6cqw 30.2cqh,70.9cqw 48.9cqh,48.7cqw 80.1cqh,9cqw 73.3cqh,26.7cqw 74.3cqh,103.6cqw 46.8cqh,47.4cqw 76.5cqh,65.1cqw 67.2cqh,22cqw 49.1cqh,6.3cqw 57.4cqh,5.8cqw 5.5cqh,25.4cqw 3cqh,78.3cqw 21.2cqh,4.5cqw 60cqh,55.4cqw 27.3cqh,22.5cqw 36.5cqh,66.4cqw 68cqh,101.4cqw 57cqh,16.7cqw 1.4cqh,93.1cqw 6.8cqh,56.7cqw 60.1cqh,56.2cqw 57.1cqh,2.3cqw 87.6cqh,48.8cqw 56.9cqh,79.3cqw 19.5cqh,50.2cqw 33.4cqh,21.3cqw 83.1cqh,59.9cqw 11.6cqh,25.5cqw 53.7cqh,100.2cqw 87.8cqh,81.9cqw 66.8cqh,68.9cqw 42.2cqh,68.6cqw .3cqh,81.5cqw 74.2cqh,2.4cqw .3cqh,49.7cqw 14.8cqh,30.7cqw 86.5cqh,55.3cqw 82.2cqh,36.1cqw 64.1cqh,64cqw 20.1cqh,103.9cqw 40.7cqh,8.6cqw 12cqh,92.4cqw 25.7cqh,15.1cqw 41.7cqh,28.8cqw 32.6cqh,64.1cqw 20.9cqh,21.7cqw 86.2cqh,81.5cqw 32.2cqh,79.9cqw 67.3cqh,13.4cqw 26.2cqh,99.8cqw 22.5cqh,80.7cqw 64.4cqh,-2.6cqw 11.6cqh,45.7cqw 63cqh,45cqw 44cqh,41.3cqw 36.2cqh,55.2cqw 13.3cqh,73.3cqw 67.8cqh,33cqw 1cqh,22.9cqw 86.1cqh,92.5cqw 10.1cqh,98.7cqw 30.7cqh,91.4cqw 73.9cqh,82.2cqw 35.7cqh,9.6cqw 88cqh,60.9cqw 40.8cqh,2cqw 85.5cqh,29.5cqw 70.8cqh,79.1cqw 34.4cqh,84.5cqw 82.7cqh,57.9cqw 73.6cqh,29.8cqw 11.7cqh,97.4cqw 59.6cqh,81.9cqw 47.5cqh,30.5cqw 28.5cqh,24.3cqw 26.8cqh,97.7cqw 73.7cqh,74.8cqw 80.5cqh,49.4cqw 23.1cqh,55.9cqw 31.6cqh,45.1cqw 47.6cqh,91.5cqw 19.4cqh,49.3cqw 52.4cqh,27.2cqw 71.7cqh,37.4cqw 21cqh,56.8cqw 41.9cqh,56.5cqw 9.6cqh,58.8cqw 56.3cqh,75.2cqw 50.4cqh,1.5cqw 55.1cqh}
+.s1b{box-shadow:-.9cqw 65.5cqh,82.9cqw 4.6cqh,78.6cqw 66.4cqh,60.9cqw 67.7cqh,60.6cqw 0cqh,23.5cqw 70.4cqh,51.1cqw .6cqh,18cqw 22cqh,75.5cqw 51.3cqh,49.5cqw 45.2cqh,16.2cqw 12.2cqh,88.7cqw 24.4cqh,10.4cqw 14.2cqh,76.2cqw 2.8cqh,70.6cqw 72.9cqh,62.6cqw 21.4cqh,68.4cqw 75.5cqh,58.8cqw 45.7cqh,32cqw 41.1cqh,33.7cqw 13cqh,18.9cqw 63.7cqh,8.8cqw 40.8cqh,24.5cqw 84.9cqh,58.4cqw .9cqh,8.9cqw 36.8cqh,103.3cqw 35.3cqh,89.5cqw 4.1cqh,9.2cqw .8cqh,51.8cqw 21cqh,61.4cqw 65cqh,4.5cqw 76.1cqh,.8cqw 4.4cqh,4.3cqw 77.7cqh,49.9cqw 68.2cqh,7.1cqw 4cqh,60.9cqw 20.6cqh,45.3cqw 37.8cqh,67.2cqw 58.4cqh,4.4cqw 82cqh,86.9cqw 67.7cqh,98cqw 26.9cqh,95.7cqw 30.8cqh,5.6cqw 31.7cqh,3.4cqw 27.8cqh,62.5cqw 45.2cqh,44.7cqw 79.4cqh,45.2cqw 83.1cqh,37.4cqw 9.2cqh,45.5cqw 50.1cqh,27.3cqw 80.3cqh,9.3cqw 59.1cqh,82.4cqw 65.6cqh,18.2cqw 40.9cqh,.7cqw 10.3cqh,29.3cqw 10.9cqh,89.6cqw 35.5cqh,96.4cqw 7.3cqh,63.9cqw 40.1cqh,63.7cqw 70.5cqh,61.2cqw 8.7cqh,-.9cqw 38.4cqh,55.2cqw 5.8cqh,78.1cqw 27.3cqh,31.2cqw 26.7cqh,97.6cqw 48.1cqh,39.1cqw 64.1cqh,68.4cqw 82.7cqh,58.7cqw 50.6cqh,99.7cqw 50.8cqh,82.6cqw 63.3cqh,40.8cqw 70.2cqh,13.6cqw 20.5cqh,36.4cqw 19.7cqh,57.7cqw 66cqh,86.2cqw 81.4cqh,1.3cqw 13.6cqh,69.4cqw 39.1cqh,45.9cqw 14.6cqh,7.2cqw 20.4cqh,86.7cqw 10.7cqh,75.5cqw 79.8cqh,10cqw 10.2cqh,14.1cqw 4.3cqh,64.4cqw 83.7cqh,96.6cqw 82.1cqh,45.4cqw 29.2cqh,53.4cqw 80.9cqh,80.5cqw 1.2cqh,66.2cqw 27.7cqh,95.9cqw 50.2cqh,99cqw 51.2cqh,28cqw 49.5cqh,87.5cqw 21.4cqh,30.9cqw 6.1cqh,29.2cqw 53.6cqh,46.2cqw 17.3cqh,3.8cqw 70.5cqh,5.8cqw 12.4cqh,5.3cqw 61.7cqh,93.4cqw 17.1cqh}
+.s2a{box-shadow:9.8cqw 35.8cqh,41.3cqw 34.7cqh,69.7cqw 9.3cqh,59.2cqw 23.8cqh,-.5cqw 29.1cqh,5.3cqw 27.5cqh,50.9cqw 63.4cqh,82.9cqw 36.4cqh,17.4cqw 67cqh,6.8cqw 48.3cqh,65cqw 8.6cqh,96.4cqw 11.6cqh,78.1cqw 3.2cqh,45.1cqw 4.7cqh,103cqw 56.8cqh,41cqw 2.8cqh,96.8cqw 65.2cqh,58.2cqw 82cqh,90.5cqw 14.1cqh,27.2cqw 6.5cqh,25cqw 11.5cqh,51.6cqw 27.1cqh,-3.1cqw 70cqh,29.3cqw 17.8cqh,56.8cqw 25.9cqh,11.3cqw 24.2cqh,98.5cqw .5cqh,54.9cqw 25.8cqh,4.5cqw 19.5cqh,78.2cqw 25.5cqh,81cqw 18.9cqh,51.8cqw 52.2cqh,68.9cqw 76.3cqh,79.4cqw 31.2cqh,35.6cqw 69.8cqh,22.3cqw 8.6cqh,56.1cqw 12.1cqh,40.9cqw 74.6cqh,60.5cqw 30.3cqh,23.7cqw 55.9cqh,14.8cqw 41.8cqh,43.7cqw 21.5cqh,79.9cqw 31.5cqh,45.9cqw 75.8cqh,36.5cqw 14.2cqh}
+.s2b{box-shadow:65.6cqw 77.3cqh,50.7cqw 8.7cqh,-1.4cqw 7.2cqh,79.7cqw 12.7cqh,72cqw 30.6cqh,100.8cqw 23.6cqh,65.9cqw 77cqh,48.5cqw 68.9cqh,36.6cqw 17.8cqh,60.7cqw 6.7cqh,97.3cqw 30.2cqh,103.1cqw 7.3cqh,84cqw 65.3cqh,100.2cqw 37.5cqh,54.2cqw 40.7cqh,-3.2cqw 1.1cqh,-1.2cqw 37.9cqh,31.1cqw 13.7cqh,61.2cqw 40.9cqh,16.8cqw 17.6cqh,22.5cqw 57.1cqh,8.2cqw 12.3cqh,25.9cqw 75.6cqh,40.4cqw 67.9cqh,73.8cqw 25.1cqh,100.1cqw 6.8cqh,11cqw 23.9cqh,53.2cqw 22.2cqh,97.7cqw 64.8cqh,62.2cqw 31.1cqh,40cqw 74.4cqh,69.7cqw 9.4cqh,75.5cqw 40.8cqh,33.2cqw 62.1cqh,52cqw 45.2cqh,38.2cqw 86cqh,56.3cqw 62.6cqh,28.9cqw 2.1cqh,92cqw 45.7cqh,5cqw 35.6cqh,73.4cqw 73.5cqh,5.3cqw 29.6cqh,102.4cqw 29.1cqh,98.4cqw 15.9cqh,35cqw 13.9cqh}
+.s3a{box-shadow:62.1cqw 23.2cqh,10.4cqw 18.7cqh,60.2cqw .2cqh,84.4cqw 9.2cqh,58.4cqw 5.7cqh,4.9cqw 44.1cqh,54.7cqw 26.8cqh,91.2cqw 83.5cqh,44.9cqw 5.6cqh,1.1cqw 49.3cqh,-3.9cqw 12.9cqh,97.1cqw 57.6cqh,-3cqw 11.5cqh,80.8cqw 64.7cqh}
+.s3b{box-shadow:35.4cqw 43.4cqh,-3.1cqw 59cqh,35.4cqw 86.7cqh,62.4cqw 51.3cqh,55.1cqw 69.8cqh,53.2cqw 7.6cqh,72.5cqw 34.1cqh,45.4cqw 50.5cqh,-.3cqw 27.9cqh,4cqw 34.2cqh,14.2cqw 58.3cqh,47.8cqw 17.7cqh,30.9cqw 10.5cqh,64.9cqw 65.4cqh}
+.s1a{--tw:3.4s;--dr:110s}.s1b{--tw:4.7s;--dr:110s;--tw-d:-2.1s}
+.s2a{--tw:5.6s;--dr:80s}.s2b{--tw:3.9s;--dr:80s;--tw-d:-1.4s}
+.s3a{--tw:6.8s;--dr:55s}.s3b{--tw:4.4s;--dr:55s;--tw-d:-3s}
+.motion .star{animation:twinkle var(--tw) ease-in-out var(--tw-d,0s) infinite alternate,drift var(--dr) linear infinite alternate}
+@keyframes twinkle{to{opacity:.3}}
+@keyframes drift{to{transform:translateX(-3cqw)}}
+.meteor{display:none}
+.motion .meteor{display:block;position:absolute;left:var(--x);top:var(--y);width:var(--l);height:1.5px;border-radius:2px;background:linear-gradient(90deg,#fff,rgba(238,242,251,.5) 30%,rgba(238,242,251,0));transform-origin:0 50%;opacity:0;animation:meteor var(--t) linear var(--d) infinite}
+.meteor::before{content:"";position:absolute;left:-1px;top:-1px;width:3.5px;height:3.5px;border-radius:50%;background:#fff;box-shadow:0 0 6px 2px rgba(200,220,255,.75)}
+@keyframes meteor{0%{opacity:0;transform:rotate(var(--a)) translateX(0)}1.5%{opacity:1}7%{opacity:1}10%{opacity:0;transform:rotate(var(--a)) translateX(-36cqw)}100%{opacity:0;transform:rotate(var(--a)) translateX(-36cqw)}}
+/* paused by the button, or while a mouse rests on the sky (not on the button itself, so Reanudar works at once) */
+.sky.is-paused .star,.sky.is-paused .meteor{animation-play-state:paused}
+@media (hover:hover){.sky:hover:not(:has(.pause:hover)) .star,.sky:hover:not(:has(.pause:hover)) .meteor{animation-play-state:paused}}
+.sky__land{position:absolute;left:0;right:0;bottom:0;width:100%;height:clamp(9.5rem,28vw,16rem);display:block}
+.sky__copy{position:relative;padding-top:3rem;padding-bottom:2rem}
+.sky__copy .st-kicker{color:#f3cf86}
+.sky__h{margin-top:.9rem;font:300 clamp(3rem,12vw,7rem)/.9 "Imbue",Georgia,serif;letter-spacing:-.01em;max-width:9ch}
+.sky__p{margin:1.1rem 0 0;max-width:26rem;color:#c9d2ea;font-size:1.02rem}
+.sky__foot{position:relative;margin-top:auto;padding-bottom:1rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;color:#b7c2dc;font-size:.82rem;letter-spacing:.04em}
+.sky__foot p{margin:0}
+
+/* ---------- A2 page colour by section (Ocaso) ---------- */
+.st-field{--bg:#f3e6cc;--fg:#132c7c;--ac:#a8360a;background:var(--bg);color:var(--fg)}
+.st-field[data-field="1"]{--bg:#ffc85c;--fg:#0e1a3a;--ac:#6b2a0c}
+.st-field[data-field="2"]{--bg:#ff8a6e;--fg:#2b0b14;--ac:#4a0f2a}
+.st-field[data-field="3"]{--bg:#0b1236;--fg:#eef1fb;--ac:#ffc861}
+.fp{min-height:80svh;display:flex;align-items:center;padding:4.5rem 0;background:var(--pbg);color:var(--pfg)}
+.fp[data-k="0"]{--pbg:#f3e6cc;--pfg:#132c7c;--pac:#a8360a}
+.fp[data-k="1"]{--pbg:#ffc85c;--pfg:#0e1a3a;--pac:#6b2a0c}
+.fp[data-k="2"]{--pbg:#ff8a6e;--pfg:#2b0b14;--pac:#4a0f2a}
+.fp[data-k="3"]{--pbg:#0b1236;--pfg:#eef1fb;--pac:#ffc861}
+.st-field.is-live{transition:background-color .9s ease,color .9s ease}
+.st-field.is-live .fp{background:transparent;color:inherit;--pac:var(--ac)}
+.st-field.is-live .fp__k,.st-field.is-live .fp__t{transition:color .9s ease}
+.fp__in{display:grid;gap:.75rem;font-family:"Archivo",sans-serif}
+.fp__k{margin:0;font-weight:700;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--pac)}
+.fp__t{margin:0;font-weight:800;font-stretch:112%;font-size:clamp(4.6rem,22vw,11rem);line-height:.86;letter-spacing:-.03em;font-variant-numeric:tabular-nums;color:var(--pac)}
+.fp__h{font-weight:700;font-stretch:104%;font-size:clamp(1.6rem,5.4vw,2.8rem);line-height:1.04;letter-spacing:-.015em;max-width:20ch}
+.fp__p{margin:.25rem 0 0;font:400 1.05rem/1.5 "Geist",system-ui,sans-serif;max-width:30rem}
+.field__bar{position:sticky;top:0;z-index:1;display:none;background:var(--bg);transition:background-color .9s ease;justify-content:space-between;align-items:center;padding-top:.9rem;padding-bottom:.9rem;font:600 .78rem/1 "Geist",system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.st-field.is-live .field__bar{display:flex}
+.field__dots{display:flex;gap:.45rem}
+.field__dots i{width:.62rem;height:.62rem;border-radius:50%;border:1.5px solid currentColor;transition:background-color .4s}
+.st-field[data-field="0"] .field__dots i:nth-child(1),.st-field:not([data-field]) .field__dots i:nth-child(1),.st-field[data-field="1"] .field__dots i:nth-child(2),.st-field[data-field="2"] .field__dots i:nth-child(3),.st-field[data-field="3"] .field__dots i:nth-child(4){background:currentColor}
+@media (min-width:48rem){.fp__in{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:end;column-gap:3rem}.fp__k{grid-column:1/-1}}
+
+/* ---------- A3 sunbeams (Casa Tea) ---------- */
+.st-casa{background:#f0f2f0;color:#1f2321;padding:2.5rem 0 3.5rem}
+.casa{display:grid;gap:1.75rem}
+.sun{position:relative;overflow:hidden;aspect-ratio:4/5;border-radius:.35rem;background:#2d302f}
+.sun img{width:100%;height:100%;object-fit:cover}
+.sun__rays{position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen}
+.ray{position:absolute;top:-14%;left:var(--x);width:var(--w);height:135%;transform-origin:50% 0;transform:rotate(var(--r));background:linear-gradient(90deg,rgba(255,232,190,0),rgba(255,232,190,var(--o)) 50%,rgba(255,232,190,0));-webkit-mask:linear-gradient(#000 12%,rgba(0,0,0,.55) 50%,#0000 88%);mask:linear-gradient(#000 12%,rgba(0,0,0,.55) 50%,#0000 88%)}
+.motion [data-reveal].is-in .ray{animation:sway var(--t) ease-in-out var(--d) 6 alternate}
+@keyframes sway{from{opacity:1;transform:rotate(var(--r))}to{opacity:.4;transform:rotate(calc(var(--r) + 3deg))}}
+.casa__copy .st-kicker{color:#7e2a1d}
+.casa__h{margin-top:.8rem;font:400 clamp(2.4rem,8.5vw,4.6rem)/1 "Ibarra Real Nova",Georgia,serif;letter-spacing:-.01em;max-width:12ch}
+.casa__p{margin:1rem 0 0;font-size:1.05rem;max-width:28rem}
+.casa__price{margin:1.1rem 0 0;font:500 1.35rem/1.2 "Ibarra Real Nova",Georgia,serif;color:#7e2a1d}
+.casa__price small{font:500 .8rem/1 "Geist",system-ui,sans-serif;color:#5a615f;letter-spacing:.04em}
+@media (min-width:48rem){.casa{grid-template-columns:minmax(0,30rem) minmax(0,1fr);gap:3.5rem;align-items:end}}
+
+/* ---------- A4 aurora (Lúnula) ---------- */
+.st-aurora{overflow:hidden;isolation:isolate;background:#2945f0;color:#fff;padding:5rem 0 4.5rem;min-height:min(80svh,40rem);display:flex;align-items:center}
+.aurora{position:absolute;inset:0;z-index:-1;pointer-events:none;-webkit-mask:radial-gradient(130% 75% at 50% 18%,#000 35%,#0000 80%);mask:radial-gradient(130% 75% at 50% 18%,#000 35%,#0000 80%)}
+.aurora i{position:absolute;left:-60%;top:-45%;width:220%;height:190%;background:repeating-linear-gradient(100deg,#2945f0 0%,#5b2bd0 6%,#2945f0 12%,#a0177a 18%,#1d2fb0 24%,#0b6f9e 30%,#2945f0 36%);opacity:.9}
+.aurora i+i{background:repeating-linear-gradient(80deg,rgba(41,69,240,0) 0%,rgba(91,43,208,.85) 8%,rgba(41,69,240,0) 16%,rgba(11,111,158,.8) 24%,rgba(41,69,240,0) 32%);opacity:.75}
+.motion .aurora i{animation:aurora-a 46s ease-in-out infinite alternate}
+.motion .aurora i+i{animation:aurora-b 34s ease-in-out infinite alternate}
+@keyframes aurora-a{from{transform:translate3d(-6%,-3%,0) rotate(-4deg)}to{transform:translate3d(9%,4%,0) rotate(5deg)}}
+@keyframes aurora-b{from{transform:translate3d(7%,2%,0) rotate(3deg)}to{transform:translate3d(-8%,-4%,0) rotate(-6deg)}}
+.au.is-paused i,.au:has(.au__cta:focus-visible) i{animation-play-state:paused}
+@media (hover:hover){.au:hover:not(:has(.pause:hover)) i{animation-play-state:paused}}
+.au__in{position:relative}
+.au__h{margin-top:1rem;font:700 clamp(3.6rem,17vw,9.5rem)/.84 "Sofia Sans Extra Condensed",sans-serif;text-transform:uppercase;letter-spacing:-.005em;max-width:8ch}
+.au__p{margin:1.25rem 0 0;font-size:1.08rem;max-width:27rem}
+.au__row{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;margin-top:1.75rem}
+.au__cta{display:inline-flex;align-items:center;min-height:48px;padding:0 1.4rem;border-radius:999px;background:#fff;color:#2945f0;font-weight:650;text-decoration:none}
+.st-aurora .btn{color:#fff}
+
+/* ---------- A5 stage lamp (Tasca Picón) ---------- */
+.st-lamp{overflow:hidden;background:#110b0a;color:#f8ecd8}
+.lamp{--bw:min(64vw,26rem);position:relative;padding:8.75rem 0 4rem;text-align:center}
+.lamp__fx{position:absolute;inset:0;pointer-events:none}
+.lamp__glow{position:absolute;top:1.25rem;left:50%;width:min(96vw,38rem);height:8rem;translate:-50% 0;background:radial-gradient(closest-side,rgba(255,176,86,.42),rgba(255,176,86,0))}
+.lamp__beam{position:absolute;top:5.1rem;left:50%;width:84rem;height:36rem;translate:-50% 0;transform-origin:50% 0;
+  background:conic-gradient(from 148deg at 50% calc(var(--bw) * -.8),rgba(255,186,104,0),rgba(255,186,104,.34) 2.5deg,rgba(255,186,104,.15) 12deg,rgba(255,186,104,.1) 32deg,rgba(255,186,104,.15) 52deg,rgba(255,186,104,.34) 61.5deg,rgba(255,186,104,0) 64deg),conic-gradient(from 166deg at 50% calc(var(--bw) * -2),rgba(255,228,176,0),rgba(255,228,176,.2) 14deg,rgba(255,228,176,0) 28deg);
+  -webkit-mask:linear-gradient(#000 10%,rgba(0,0,0,.45) 45%,#0000 85%);mask:linear-gradient(#000 10%,rgba(0,0,0,.45) 45%,#0000 85%)}
+.lamp__bar{position:absolute;top:5rem;left:50%;width:var(--bw);height:3px;border-radius:3px;translate:-50% 0;background:#ffe4b4;box-shadow:0 0 8px 1px rgba(255,206,132,.85),0 0 24px 4px rgba(255,166,72,.42)}
+.motion [data-reveal]:not(.is-in) .lamp__beam{scale:.3 1;opacity:.4}
+.motion [data-reveal]:not(.is-in) .lamp__bar{scale:.3 1}
+.motion [data-reveal].is-in .lamp__beam{animation:lamp-beam 1.4s cubic-bezier(.2,.7,.2,1) .15s both}
+.motion [data-reveal].is-in .lamp__bar{animation:lamp-bar 1.4s cubic-bezier(.2,.7,.2,1) both}
+@keyframes lamp-beam{from{scale:.3 1;opacity:.4}to{scale:1 1;opacity:1}}
+@keyframes lamp-bar{from{scale:.3 1}to{scale:1 1}}
+.lamp__copy{position:relative}
+.lamp__copy .st-kicker{color:#7be33b}
+.lamp__h{margin:1rem auto 0;font:900 clamp(3rem,13vw,7.6rem)/.88 "Archivo",sans-serif;font-stretch:125%;text-transform:uppercase;letter-spacing:-.01em;max-width:9ch}
+.lamp__p{margin:1.2rem auto 0;max-width:28rem;color:#eadcc5}
+.st-lamp .btn{color:#f8ecd8}
+
+/* ---------- A6 textures ---------- */
+.st-tex{background:var(--paper);padding:.25rem 0 3.5rem}
+.tex{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.25rem .9rem}
+.tex li{margin:0}
+.sw{position:relative;overflow:hidden;aspect-ratio:1;border-radius:.6rem;display:flex;align-items:flex-end;padding:.85rem;background:var(--c);color:var(--t)}
+.sw::before{content:"";position:absolute;inset:0;background:var(--tx)}
+.sw>span{position:relative;font:900 clamp(1.35rem,5.6vw,2.4rem)/.95 "Archivo",sans-serif;font-stretch:118%;letter-spacing:-.01em}
+.sw .ht{position:absolute;inset:0;width:100%;height:100%;color:#1435c8;transform:scaleY(-1)}
+.tex p{margin:.6rem 0 0;font-size:.88rem;line-height:1.35;color:#3a362f}
+.tex b{display:block;font-weight:650;color:var(--ink)}
+.sw--dots{--c:#ff3d24;--t:#110b0a;--tx:radial-gradient(rgba(17,11,10,.3) 1.4px,#0000 1.9px) 0 0/12px 12px}
+.sw--grid{--c:#2141e6;--t:#fff;--tx:linear-gradient(rgba(255,255,255,.28) 1px,#0000 1px) -1px -1px/64px 64px,linear-gradient(90deg,rgba(255,255,255,.28) 1px,#0000 1px) -1px -1px/64px 64px,linear-gradient(rgba(255,255,255,.12) 1px,#0000 1px) -1px -1px/16px 16px,linear-gradient(90deg,rgba(255,255,255,.12) 1px,#0000 1px) -1px -1px/16px 16px}
+.sw--half{--c:#ffd23a;--t:#0a2240;--tx:none}
+.sw--hatch{--c:#7e2a1d;--t:#f0f2f0;--tx:repeating-linear-gradient(45deg,rgba(240,242,240,.15) 0 1px,#0000 1px 9px),repeating-linear-gradient(-45deg,rgba(240,242,240,.15) 0 1px,#0000 1px 9px)}
+.sw--hatch>span{font:400 clamp(1.6rem,6.4vw,2.7rem)/1 "Ibarra Real Nova",Georgia,serif}
+.sw--grain{--c:#f3e6cc;--t:#132c7c;--tx:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .3 0 0 0 0 .22 0 0 0 0 .1 -2.4 0 0 0 1.35'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E") 0 0/180px 180px}
+.sw--grain::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 30% 20%,rgba(255,255,255,.28),#0000 60%),radial-gradient(90% 80% at 100% 100%,rgba(120,80,30,.14),#0000 70%)}
+.sw--linen{--c:#2945f0;--t:#fff;--tx:repeating-linear-gradient(0deg,rgba(255,255,255,.08) 0 1px,#0000 1px 2px),repeating-linear-gradient(90deg,rgba(255,255,255,.06) 0 1px,#0000 1px 3px),repeating-linear-gradient(0deg,rgba(5,15,90,.12) 0 1px,#0000 1px 7px,rgba(255,255,255,.06) 7px 9px,#0000 9px 13px),repeating-linear-gradient(90deg,rgba(5,15,90,.1) 0 1px,#0000 1px 11px,rgba(255,255,255,.07) 11px 12px,#0000 12px 17px)}
+.sw--linen>span{font:700 clamp(1.8rem,7.4vw,3.2rem)/.9 "Sofia Sans Extra Condensed",sans-serif;text-transform:uppercase}
+@media (min-width:48rem){.tex{grid-template-columns:repeat(3,minmax(0,1fr));gap:2rem 1.5rem}.sw{padding:1.25rem}}
+
+/* ---------- A7 fluted glass (Café Alisio) ---------- */
+.st-glass{background:#1435c8;color:#fff;padding:0 0 3rem}
+.glass{--pl:42;--pw:58;position:relative;overflow:hidden;height:min(78svh,40rem)}
+.glass>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:28% 50%}
+.glass__pane{position:absolute;top:0;bottom:0;left:calc(var(--pl) * 1%);width:calc(var(--pw) * 1%);overflow:hidden;box-shadow:inset 1px 0 0 rgba(255,255,255,.7),inset 2px 0 0 rgba(10,34,64,.15)}
+.glass__pane img{position:absolute;top:0;height:100%;max-width:none;left:calc(var(--pl) / var(--pw) * -100%);width:calc(10000% / var(--pw));object-fit:cover;object-position:28% 50%}
+.glass__pane::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(rgba(243,247,250,.62),rgba(243,247,250,.3) 55%,rgba(243,247,250,.18))}
+.glass__pane::after{content:"";position:absolute;inset:0;z-index:1;background:repeating-linear-gradient(90deg,rgba(255,255,255,.34) 0,rgba(255,255,255,.06) 3px,rgba(10,34,64,.03) 8px,rgba(10,34,64,.16) 13px,rgba(255,255,255,.34) 14px)}
+.glass[data-mode="svg"] .glass__pane img{filter:url(#flute)}
+.glass:not([data-mode="svg"]) .glass__pane img{transform:scale(1.07);transform-origin:30% 40%}
+.glass__copy{position:absolute;z-index:2;top:0;left:calc(var(--pl) * 1%);right:0;padding:1.5rem 1.1rem;color:#0a2240}
+.glass__copy .st-kicker{font-weight:600}
+.glass__h{margin-top:.6rem;font:900 clamp(1.45rem,6.2vw,3.6rem)/.95 "Archivo",sans-serif;font-stretch:118%;text-transform:uppercase;letter-spacing:-.01em}
+.glass__p{margin:.75rem 0 0;font-size:.95rem;font-weight:500;max-width:22rem}
+.glass__switch{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-top:1.25rem}
+.glass__switch span{font-size:.85rem;margin-right:.25rem}
+.glass__switch .btn{color:#fff}
+.glass__switch .btn[aria-pressed="true"]{background:#fff;color:#1435c8;border-color:#fff}
+.defs{position:absolute;width:0;height:0;overflow:hidden}
+@media (min-width:48rem){.glass{--pl:8;--pw:38}.glass__copy{right:auto;width:38%;padding:2.5rem 2rem}}
+
+/* ---------- A8 progressive blur (Cielo Ucanca) ---------- */
+.st-teide{background:#0d1a3a;color:#eef2fb;padding:2.75rem 0 3.5rem}
+.teide{display:grid;gap:2rem}
+.pb{position:relative;overflow:hidden;border-radius:1rem;aspect-ratio:4/5;background:#16202a}
+.pb img{width:100%;height:100%;object-fit:cover}
+.pb__blur{position:absolute;left:0;right:0;bottom:0;height:44%;pointer-events:none}
+.pb__blur i{position:absolute;inset:0;-webkit-backdrop-filter:blur(var(--b));backdrop-filter:blur(var(--b));-webkit-mask:linear-gradient(#0000 var(--m0),#000 var(--m1));mask:linear-gradient(#0000 var(--m0),#000 var(--m1))}
+.pb__cap{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;padding:2.5rem 1.15rem 1.15rem;background:linear-gradient(rgba(6,10,20,0),rgba(6,10,20,.62) 55%)}
+.pb__cap h3{font:400 clamp(1.7rem,6.6vw,2.4rem)/.95 "Imbue",Georgia,serif}
+.pb__cap p{margin:.35rem 0 0;font-size:.85rem;color:#cdd5ea}
+.pb__cap a{flex:none;display:inline-flex;align-items:center;min-height:44px;padding:0 1.1rem;border-radius:999px;background:#ff5b45;color:#1a0603;font-weight:650;text-decoration:none}
+.teide__copy .st-kicker{color:#f3cf86}
+.teide__h{margin-top:.8rem;font:300 clamp(2.6rem,9vw,5.4rem)/.92 "Imbue",Georgia,serif;max-width:10ch}
+.teide__p{margin:1rem 0 0;max-width:26rem;color:#c9d2ea}
+@media (min-width:48rem){.teide{grid-template-columns:minmax(0,28rem) minmax(0,1fr);gap:3.5rem;align-items:center}}
+
+/* ---------- A9 rolling digits (Fase Neutro) ---------- */
+.st-odo{background:#2141e6;color:#fff;padding:3rem 0 3.5rem}
+.odos{list-style:none;margin:1.5rem 0 0;padding:0;display:grid;gap:1.5rem}
+.odos li{border-top:1.5px solid rgba(255,255,255,.4);padding-top:1rem}
+.odo{display:flex;align-items:flex-start;font:800 clamp(4.2rem,19vw,8.2rem)/1 "Archivo",sans-serif;font-stretch:112%;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.d{display:inline-block;height:1em;overflow:hidden}
+.d>span{display:block;white-space:pre;line-height:1;transform:translateY(calc((10 + var(--d)) * -1em))}
+.motion [data-reveal]:not(.is-in) .d>span{transform:none;transition:none}
+.motion [data-reveal].is-in .d>span{transition:transform 1.9s cubic-bezier(.16,.82,.25,1) calc(var(--i) * 90ms)}
+.odo__star{width:.62em;height:.62em;margin:.16em 0 0 .08em;fill:#ffd21f}
+.odo__lbl{display:block;margin-top:.4rem;font-size:1rem;color:#dfe5ff}
+.st-odo .btn{color:#fff}
+@media (min-width:48rem){.odos{grid-template-columns:repeat(3,minmax(0,1fr));gap:2rem}.odo{font-size:clamp(4rem,6.6vw,6rem)}}
+
+/* ---------- A10 review ribbon + word band (Tasca Picón) ---------- */
+.st-rev{background:#ff3d24;color:#110b0a;padding:2.75rem 0 0}
+.rev__top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.75rem 1rem}
+.st-rev .btn{color:#110b0a}
+.mq__row{display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--g);padding:1.5rem var(--g) 2.25rem;scrollbar-width:none;overscroll-behavior-x:contain}
+.mq__row::-webkit-scrollbar{display:none}
+.mq__list{display:flex;gap:1rem;list-style:none;margin:0;padding:0;flex:none}
+.mq__list[aria-hidden]{display:none}
+.card{flex:0 0 min(76vw,19rem);scroll-snap-align:start;display:flex;flex-direction:column;gap:.7rem;padding:1.15rem 1.2rem 1.1rem;border-radius:1rem;background:#f5f7f6;color:#110b0a;box-shadow:0 10px 24px -18px rgba(17,11,10,.9)}
+.card svg{width:5.6rem;height:1rem;fill:#ff3d24}
+.card__q{margin:0;font:700 1.12rem/1.3 "Archivo",sans-serif;font-stretch:104%}
+.card__by{margin:auto 0 0;font-size:.85rem;color:#5c4a44}
+.motion .mq__row{overflow:hidden;padding-inline:0;-webkit-mask:linear-gradient(90deg,#0000,#000 9%,#000 91%,#0000);mask:linear-gradient(90deg,#0000,#000 9%,#000 91%,#0000)}
+.motion .mq__list[aria-hidden]{display:flex}
+.motion .mq__list{animation:mq-l 52s linear infinite}
+@keyframes mq-l{to{transform:translateX(calc(-100% - 1rem))}}
+.band{background:#110b0a;color:#f5f7f6;overflow:hidden;padding:1rem 0}
+.band__track{display:flex;flex-wrap:wrap;padding:0 var(--g)}
+.band__txt{margin:0;font:900 clamp(2.4rem,10vw,6rem)/1.02 "Archivo",sans-serif;font-stretch:125%;text-transform:uppercase;letter-spacing:-.01em}
+.band__txt b{color:#7be33b;font-weight:900}
+.band__txt[aria-hidden]{display:none}
+.motion .band__track{flex-wrap:nowrap;width:max-content;padding:0}
+.motion .band__txt{white-space:nowrap;padding-right:.35em;animation:mq-r 26s linear infinite}
+.motion .band__txt[aria-hidden]{display:block}
+@keyframes mq-r{from{transform:translateX(-100%)}to{transform:none}}
+.mq.is-paused .mq__list,.mq.is-paused .band__txt,.mq:has(.mq__row:focus-visible) .mq__list,.mq:has(.mq__row:focus-visible) .band__txt{animation-play-state:paused}
+@media (hover:hover){.mq__row:hover .mq__list,.band:hover .band__txt{animation-play-state:paused}}
+.mq__row:active .mq__list,.band:active .band__txt{animation-play-state:paused}
+
+/* ---------- A11 ticket printing (Café Alisio) ---------- */
+.st-print{background:#39b6f2;color:#0a2240;padding:3rem 0 3.5rem}
+.print{display:grid;gap:2.25rem}
+.print__h{margin-top:.8rem;font:900 clamp(2.3rem,9vw,4.6rem)/.92 "Archivo",sans-serif;font-stretch:125%;text-transform:uppercase;letter-spacing:-.01em;max-width:11ch}
+.print__p{margin:1rem 0 0;max-width:24rem;font-weight:500}
+.st-print .btn{color:#0a2240}
+.printer{position:relative;width:min(100%,21rem);margin:0 auto}
+.printer__slot{position:relative;z-index:1;height:1.35rem;border-radius:.7rem;background:#0a2240;box-shadow:inset 0 -5px 0 #04101f,0 6px 14px -8px rgba(4,16,31,.8)}
+.printer__slot::after{content:"";position:absolute;left:7%;right:7%;bottom:5px;height:2px;border-radius:2px;background:#000}
+.ticket{position:relative;width:86%;margin:-.55rem auto 0;padding:1.7rem 1.15rem 1.9rem;background:#fffdf6;color:#0a2240;font:500 .86rem/1.45 "Geist",system-ui,sans-serif;letter-spacing:.03em;text-transform:uppercase;font-variant-numeric:tabular-nums;
+  -webkit-mask:conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) 50%/14px 100%;mask:conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) 50%/14px 100%;filter:drop-shadow(0 0 0 #0000)}
+.ticket h3{font:900 1.45rem/1 "Archivo",sans-serif;font-stretch:125%;text-align:center;letter-spacing:.01em}
+.ticket__c{margin:.3rem 0 0;text-align:center;color:#4a5a70;font-size:.76rem}
+.ticket ul{list-style:none;margin:.9rem 0 0;padding:.75rem 0 0;border-top:1.5px dashed #9aa6b8;display:grid;gap:.35rem}
+.ticket li,.ticket__tot{display:flex;justify-content:space-between;gap:1rem}
+.ticket__tot{margin:.85rem 0 0;padding-top:.7rem;border-top:1.5px dashed #9aa6b8;font-weight:700;font-size:1.02rem}
+.ticket__end{margin:.9rem 0 0;text-align:center;font-size:.76rem;color:#4a5a70}
+.motion [data-reveal]:not(.is-in) .ticket{clip-path:inset(0 0 100% 0)}
+.motion [data-reveal].is-in .ticket{animation:print 2.6s steps(8) .2s both}
+@keyframes print{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0)}}
+@media (min-width:48rem){.print{grid-template-columns:minmax(0,1fr) minmax(0,22rem);gap:3rem;align-items:start}}
+
+/* ---------- A12 light round the button (Ocaso) ---------- */
+.st-aura{background:radial-gradient(120% 55% at 50% 118%,#5a2378,rgba(90,35,120,0) 70%),#0b1236;color:#eef1fb;padding:3.25rem 0 4.25rem}
+.aura-h{margin-top:.8rem;font:800 clamp(2.2rem,8vw,4.2rem)/.95 "Archivo",sans-serif;font-stretch:110%;letter-spacing:-.02em;max-width:14ch}
+.auras{display:flex;flex-wrap:wrap;gap:1.5rem 2.5rem;margin-top:2.25rem}
+.auras figure{margin:0;display:grid;gap:.75rem;justify-items:start}
+.auras figcaption{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:#aab4d6}
+.aura{position:relative;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;min-height:58px;padding:0 2rem;border-radius:999px;font:700 1.08rem/1 "Archivo",sans-serif;font-stretch:108%;letter-spacing:.01em;text-decoration:none}
+.aura::before{content:"";position:absolute;inset:-2px;border-radius:inherit;padding:2px;pointer-events:none;opacity:0;background:var(--ring);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
+.aura--gold{background:#18224f;color:#ffe1a6;box-shadow:inset 0 0 0 1px rgba(255,225,166,.3);--ring:conic-gradient(from var(--a),#0000 0 58%,rgba(255,200,97,.6) 74%,#ffc861 84%,#fff6dc 90%,#0000 97%)}
+.aura--holo{background:#070a18;color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.2);--ring:conic-gradient(from var(--a),#0000 0 46%,#4dd8ff 60%,#a77bff 70%,#ff5f8f 80%,#ffc371 89%,#7cffb2 94%,#0000 98%)}
+.motion [data-reveal].is-in .aura::before{animation:aura-turn 1.7s linear 3,aura-fade 5.1s linear}
+.motion [data-reveal] .aura:hover::before,.motion [data-reveal] .aura:focus-visible::before{animation:aura-turn2 1.7s linear 2,aura-fade2 3.4s linear}
+@keyframes aura-turn{to{--a:360deg}}
+@keyframes aura-turn2{to{--a:360deg}}
+@keyframes aura-fade{0%,100%{opacity:0}5%,95%{opacity:1}}
+@keyframes aura-fade2{0%,100%{opacity:0}7%,93%{opacity:1}}
+.st-aura .btn{color:#eef1fb}
+
+.labfoot{padding:1.5rem 0 2.5rem;font-size:.82rem;color:var(--mute)}
+</style>
+</head>
+<body>
+
+<header class="lab">
+  <div class="wrap">
+    <h1>Atmosphere, numbers and strips.</h1>
+    <p class="lab__lede">Night skies, light, colour fields, textures, rolling numbers, moving strips and a ticket that prints itself. Ideas from Magic UI, Aceternity, Animate UI, Cult UI, daisyUI, Kokonut and others, rebuilt in plain CSS with one small shared script. Nothing stays hidden if a script fails, and everything holds still for people who ask their phone for less motion.</p>
+    <p class="lab__ask">Scroll through on your phone, then send me the codes worth keeping.</p>
+    <ol class="lab__index">
+      <li><a href="#A1"><span>A1</span>Night sky with shooting stars</a></li>
+      <li><a href="#A2"><span>A2</span>Page colour that changes by section</a></li>
+      <li><a href="#A3"><span>A3</span>Sunbeams over a photo</a></li>
+      <li><a href="#A4"><span>A4</span>Aurora colour field</a></li>
+      <li><a href="#A5"><span>A5</span>Stage-lamp light</a></li>
+      <li><a href="#A6"><span>A6</span>Texture overlays</a></li>
+      <li><a href="#A7"><span>A7</span>Frosted ribbed glass</a></li>
+      <li><a href="#A8"><span>A8</span>Progressive blur edge</a></li>
+      <li><a href="#A9"><span>A9</span>Rolling-digit stats</a></li>
+      <li><a href="#A10"><span>A10</span>Review ribbon with a pause button</a></li>
+      <li><a href="#A11"><span>A11</span>Ticket printing in</a></li>
+      <li><a href="#A12"><span>A12</span>Light running round the main button</a></li>
+    </ol>
+    <p class="lab__note">Everything that loops (A1, A4, A10) has a Pause button, and also holds still while a mouse rests on it; the review strip also stops while you hold a finger on it. A12 needs a browser from 2024 or later (Chrome, Edge, Samsung Internet, Safari 16.4+, Firefox 128+); older ones show the button without the light. The businesses are the fictional showroom ones, and every price and number is an example.</p>
+    <nav class="lab__more" aria-label="More labs"><b>More labs</b><a href="../motion-lab/">Lab 1 · scroll and reveal</a><a href="../motion-lab-photos/">Photos</a><a href="../motion-lab-type/">Type</a><a href="../motion-lab-atmos/" aria-current="page">Atmosphere</a><a href="../motion-lab-interact/">Interaction</a></nav>
+  </div>
+</header>
+
+<main>
+
+<!-- A1 -->
+<section class="fx" id="A1" aria-labelledby="A1-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">A1</p>
+    <div>
+      <h2 id="A1-t">Night sky with shooting stars</h2>
+      <p class="fx__for">Three layers of stars that twinkle and drift very slowly, with a shooting star every few seconds over a Teide skyline. The stars are fixed at build time, not drawn by a script. For stargazing tours, rooftop bars and anything that happens at night.</p>
+      <ul class="fx__meta"><li>Small shared script (Pause)</li><li>Loops, with Pause</li><li>Idea: Animate UI, Magic UI</li></ul>
+    </div>
+  </div>
+  <div class="stage st-sky sky dark" id="sky" lang="es">
+    <div class="sky__field" aria-hidden="true">
+      <i class="star s1a"></i><i class="star s1b"></i><i class="star s2a"></i><i class="star s2b"></i><i class="star s3a"></i><i class="star s3b"></i>
+      <i class="meteor" style="--x:47.8%;--y:28.3%;--a:-39.2deg;--t:10.3s;--d:1.2s;--l:73px"></i>
+<i class="meteor" style="--x:62.6%;--y:29.1%;--a:-27.2deg;--t:12.4s;--d:3.4s;--l:142px"></i>
+<i class="meteor" style="--x:72%;--y:25.9%;--a:-39.8deg;--t:10.5s;--d:5s;--l:81px"></i>
+<i class="meteor" style="--x:43.7%;--y:24.1%;--a:-33.1deg;--t:8.1s;--d:7.4s;--l:129px"></i>
+<i class="meteor" style="--x:41.1%;--y:25.7%;--a:-27.1deg;--t:7.6s;--d:9.9s;--l:115px"></i>
+    </div>
+    <svg class="sky__land" viewBox="0 0 1440 300" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <path fill="#0a1228" d="M0 300V188l90-8 110 6 120-18 130 4 140-24 130 8 120-20 140 14 120-6 130 18 110-4 100 10V300Z"/>
+      <path fill="#04070f" stroke="#2a3d73" stroke-width="1.5" d="M0 300V214l70-6 60 8 70-12 80 7 70-16 80-5 60-18 50-22 45-12 35 4 40-20 50-28 52-30 18-6 13-25 16-4 13 6 15 27 48 26 80 40 80 32 80 24 80 14 70 10 70 6 100 6V300Z"/>
+    </svg>
+    <div class="wrap sky__copy">
+      <p class="st-kicker">Cielo Ucanca · Llano de Ucanca</p>
+      <h3 class="sky__h">Arriba no hay farolas.</h3>
+      <p class="sky__p">Estrellas con telescopio y chocolate caliente, a 2.000 metros. Salida a las 18:45 · 69 € por persona (ejemplo).</p>
+    </div>
+    <div class="wrap sky__foot">
+      <p>Cielo despejado · luna 12 % · ejemplo</p>
+      <button class="btn pause" type="button" data-pause="sky">Pausar</button>
+    </div>
+  </div>
+</section>
+
+<!-- A2 -->
+<section class="fx" id="A2" aria-labelledby="A2-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">A2</p>
+    <div>
+      <h2 id="A2-t">Page colour that changes by section</h2>
+      <p class="fx__for">As each part of the day reaches the middle of the screen, the whole background and text fade to its colours: midday sand, afternoon gold, sunset coral, night navy. Every pair passes the contrast check. For a restaurant's day, a tour's timeline or a hotel's seasons.</p>
+      <ul class="fx__meta"><li>~0.3 KB script</li><li>Scroll-triggered</li><li>Idea: our own</li></ul>
+    </div>
+  </div>
+  <div class="stage st-field" id="field" lang="es">
+    <div class="wrap field__bar" aria-hidden="true"><span>Ocaso · La Caleta</span><span class="field__dots"><i></i><i></i><i></i><i></i></span></div>
+    <div class="fp" data-k="0"><div class="wrap fp__in">
+      <p class="fp__k">Mediodía</p>
+      <p class="fp__t">13:30</p>
+      <div><h3 class="fp__h">Pescado del día, a la sombra del toldo.</h3><p class="fp__p">Lo que entró por la mañana en el muelle, a la plancha con ajo y limón.</p></div>
+    </div></div>
+    <div class="fp" data-k="1"><div class="wrap fp__in">
+      <p class="fp__k">Tarde</p>
+      <p class="fp__t">17:00</p>
+      <div><h3 class="fp__h">Una caña fría mientras el sol empieza a bajar.</h3><p class="fp__p">Papas arrugadas, mojo de la casa y la terraza todavía tranquila.</p></div>
+    </div></div>
+    <div class="fp" data-k="2"><div class="wrap fp__in">
+      <p class="fp__k">Atardecer</p>
+      <p class="fp__t">18:26</p>
+      <div><h3 class="fp__h">La mesa de primera fila.</h3><p class="fp__p">El sol cae al mar a la izquierda de La Gomera. Reserven la mesa de esa hora: se la guardamos media hora.</p></div>
+    </div></div>
+    <div class="fp" data-k="3"><div class="wrap fp__in">
+      <p class="fp__k">Noche</p>
+      <p class="fp__t">21:00</p>
+      <div><h3 class="fp__h">Velas en la mesa. El mar ya solo se oye.</h3><p class="fp__p">Cocina abierta hasta las 23:00. Horas de ejemplo.</p></div>
+    </div></div>
+  </div>
+</section>
+
+<!-- A3 -->
+<section class="fx" id="A3" aria-labelledby="A3-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">A3</p>
+    <div>
+      <h2 id="A3-t">Sunbeams over a photo</h2>
+      <p class="fx__for">Soft rays of morning light fall from the window across the room and sway very slightly, then settle and stay still. Made from plain gradients, no blur. For a casa rural, a breakfast café, a yoga or spa room, a beach morning.</p>
+      <ul class="fx__meta"><li>Small shared script</li><li>Plays once, then rests</li><li>Idea: Magic UI</li></ul>
+    </div>
+  </div>
+  <div class="stage st-casa" lang="es">
+    <div class="wrap casa">
+      <div class="sun" id="sun" data-reveal>
+        <img src="assets/img/drago-560.webp" srcset="assets/img/drago-560.webp 560w, assets/img/drago-1080.webp 1080w" sizes="(min-width: 48rem) 30rem, calc(100vw - 32px)" width="1080" height="1350" alt="Habitación con cortinas blancas, una silla junto a la ventana abierta y la cama en primer plano" loading="lazy" decoding="async">
+        <div class="sun__rays" aria-hidden="true">
+          <i class="ray" style="--x:40.7%;--w:10%;--r:30.7deg;--o:.61;--t:6.2s;--d:2.4s"></i>
+<i class="ray" style="--x:46%;--w:8.3%;--r:21.5deg;--o:.47;--t:6.8s;--d:1.6s"></i>
+<i class="ray" style="--x:56.9%;--w:10.1%;--r:30.9deg;--o:.47;--t:7.5s;--d:2.4s"></i>
+<i class="ray" style="--x:61.6%;--w:11%;--r:27.1deg;--o:.46;--t:8.9s;--d:1.9s"></i>
+<i class="ray" style="--x:71.7%;--w:6.3%;--r:23.6deg;--o:.49;--t:8.1s;--d:2.1s"></i>
+<i class="ray" style="--x:77.5%;--w:10.6%;--r:27.2deg;--o:.43;--t:7.5s;--d:2.1s"></i>
+        </div>
+      </div>
+      <div class="casa__copy">
+        <p class="st-kicker">Casa Tea · La Orotava</p>
+        <h3 class="casa__h">Despierten con la luz del valle.</h3>
+        <p class="casa__p">Habitación Drago: cama doble, ventana al jardín y desayuno con mermeladas de la finca.</p>
+        <p class="casa__price">Desde 95 € la noche <small>· ejemplo</small></p>
+        <button class="btn replay" type="button" data-replay="sun" lang="en">Play again</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- A4 -->
+<section class="fx" id="A4" aria-labelledby="A4-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">A4</p>
+    <div>
+      <h2 id="A4-t">Aurora colour field</h2>
+      <p class="fx__for">Bands of violet, plum and sea-blue drift very slowly behind a heading, like northern lights in the brand colour. Two oversized gradient layers move by transform only, so it stays smooth on phones. White text passes contrast on every band. For beauty, spa, wellness and nightlife.</p>
+      <ul class="fx__meta"><li>Small shared script (Pause)</li><li>Loops, with Pause</li><li>Idea: Aceternity</li></ul>
+    </div>
+  </div>
+  <div class="stage st-aurora au dark" id="au" lang="es">
+    <div class="aurora" aria-hidden="true"><i></i><i></i></div>
+    <div class="wrap au__in">
+      <p class="st-kicker">Lúnula Studio · Los Cristianos</p>
+      <h3 class="au__h">Una hora solo para ti.</h3>
+      <p class="au__p">Uñas, pestañas y cejas. Pide cita por WhatsApp y te guardamos la hora.</p>
+      <div class="au__row"><a class="au__cta" href="#A4">Pedir cita</a><button class="btn pause" type="button" data-pause="au">Pausar</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- A5 -->
+<section class="fx" id="A5" aria-labelledby="A5-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">A5</p>
+    <div>
+      <h2 id="A5-t">Stage-lamp light</h2>
+      <p class="fx__for">A glowing bar with a cone of warm light under it, which opens out once when the section comes into view. Two cone gradients and one soft glow, no blur. For a live-music night, a bar, a theatre or an event page.</p>
+      <ul class="fx__meta"><li>Small shared script</li><li>Plays once</li><li>Idea: Aceternity</li></ul>
+    </div>
+  </div>
+  <div class="stage st-lamp dark" lang="es">
+    <div class="lamp" id="lamp" data-reveal>
+      <div class="lamp__fx" aria-hidden="true"><i class="lamp__glow"></i><i class="lamp__beam"></i><i class="lamp__bar"></i></div>
+      <div class="wrap lamp__copy">
+        <p class="st-kicker">Tasca Picón · Puerto de la Cruz</p>
+        <h3 class="lamp__h">Noche de timple</h3>
+        <p class="lamp__p">Viernes a las 21:30. Música en directo, vino de la casa y cocina hasta tarde. Entrada libre (ejemplo).</p>
+        <button class="btn replay" type="button" data-replay="lamp" lang="en">Play again</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- A6 -->
+<section class="fx" id="A6" aria-labelledby="A6-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">A6</p>
+    <div>
+      <h2 id="A6-t">Texture overlays</h2>
+      <p class="fx__for">Six textures to lay over a brand colour so a flat section feels printed or woven. All are gradients or inline SVG: no image files, nothing to download. Each one is shown on a showroom brand colour.</p>
+      <ul class="fx__meta"><li>0 KB JavaScript</li><li>Static</li><li>Idea: Cult UI</li></ul>
+    </div>
+  </div>
+  <div class="stage st-tex" lang="es">
+    <div class="wrap"><ul class="tex">
+      <li><div class="sw sw--dots"><span>Picón</span></div><p lang="en"><b>Dots</b>Tasca Picón red</p></li>
+      <li><div class="sw sw--grid"><span>Fase Neutro</span></div><p lang="en"><b>Grid</b>Fase Neutro blue, like a wiring plan</p></li>
+      <li><div class="sw sw--half"><svg class="ht" viewBox="0 0 120 120" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-dasharray="0 14.142"><path d="M5 5L5.01 4.99" stroke-width="1"/><path d="M5 15L15.01 4.99" stroke-width="1.2"/><path d="M5 25L25.01 4.99" stroke-width="1.4"/><path d="M5 35L35.01 4.99" stroke-width="1.6"/><path d="M5 45L45.01 4.99" stroke-width="1.9"/><path d="M5 55L55.01 4.99" stroke-width="2.3"/><path d="M5 65L65.01 4.99" stroke-width="2.6"/><path d="M5 75L75.01 4.99" stroke-width="2.9"/><path d="M5 85L85.01 4.99" stroke-width="3.3"/><path d="M5 95L95.01 4.99" stroke-width="3.7"/><path d="M5 105L105.01 4.99" stroke-width="4.1"/><path d="M5 115L115.01 4.99" stroke-width="4.5"/><path d="M15 115L115.01 14.99" stroke-width="4.9"/><path d="M25 115L115.01 24.99" stroke-width="5.3"/><path d="M35 115L115.01 34.99" stroke-width="5.8"/><path d="M45 115L115.01 44.99" stroke-width="6.2"/><path d="M55 115L115.01 54.99" stroke-width="6.7"/><path d="M65 115L115.01 64.99" stroke-width="7.2"/><path d="M75 115L115.01 74.99" stroke-width="7.6"/><path d="M85 115L115.01 84.99" stroke-width="8.1"/><path d="M95 115L115.01 94.99" stroke-width="8.6"/><path d="M105 115L115.01 104.99" stroke-width="9.1"/><path d="M115 115L115.01 114.99" stroke-width="9.6"/></g></svg><span>Alisio</span></div><p lang="en"><b>Halftone</b>Café Alisio yellow, dots grow to one corner</p></li>
+      <li><div class="sw sw--hatch"><span>Casa Tea</span></div><p lang="en"><b>Crosshatch</b>Casa Tea brick</p></li>
+      <li><div class="sw sw--grain"><span>Ocaso</span></div><p lang="en"><b>Paper grain</b>Ocaso sand</p></li>
+      <li><div class="sw sw--linen"><span>Lúnula</span></div><p lang="en"><b>Linen</b>Lúnula blue</p></li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- A7 -->
+<section class="fx" id="A7" aria-labelledby="A7-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">A7</p>
+    <div>
+      <h2 id="A7-t">Frosted ribbed glass</h2>
+      <p class="fx__for">A panel of fluted glass over a photo, with the text on the glass. Two versions to compare: real refraction through an SVG filter, and a cheaper look made from gradients only. Use the switch under the photo. For cafés, spas, boutique hotels and interiors.</p>
+      <ul class="fx__meta"><li>0 KB JavaScript (the switch is lab-only)</li><li>Static</li><li>Idea: Cult UI</li></ul>
+    </div>
+  </div>
+  <div class="stage st-glass" lang="es">
+    <div class="glass" id="glass">
+      <img src="assets/img/medano-kites-800.webp" srcset="assets/img/medano-kites-800.webp 800w, assets/img/medano-kites-1600.webp 1600w" sizes="(min-width: 48rem) 100vw, 230vw" width="1600" height="731" alt="Cometas de kitesurf sobre la playa de El Médano, con la Montaña Roja al fondo" loading="lazy" decoding="async">
+      <div class="glass__pane" aria-hidden="true"><img src="assets/img/medano-kites-800.webp" srcset="assets/img/medano-kites-800.webp 800w, assets/img/medano-kites-1600.webp 1600w" sizes="(min-width: 48rem) 100vw, 230vw" width="1600" height="731" alt="" loading="lazy" decoding="async"></div>
+      <div class="glass__copy">
+        <p class="st-kicker">Café Alisio · El Médano</p>
+        <h3 class="glass__h">Desayunos con viento a favor.</h3>
+        <p class="glass__p">Hasta las 12:00, en el paseo. Sin reservas (ejemplo).</p>
+      </div>
+    </div>
+    <div class="wrap glass__switch" id="glass-switch" role="group" aria-label="Glass version" lang="en" hidden>
+      <span>Version:</span>
+      <button class="btn" type="button" data-glass="svg" aria-pressed="false">SVG refraction</button>
+      <button class="btn" type="button" data-glass="grad" aria-pressed="false">Gradients only</button>
+    </div>
+    <svg class="defs" aria-hidden="true" focusable="false">
+      <filter id="flute" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+        <feImage href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14'%3E%3ClinearGradient id='g'%3E%3Cstop offset='0' stop-color='rgb(0,128,0)'/%3E%3Cstop offset='1' stop-color='rgb(255,128,0)'/%3E%3C/linearGradient%3E%3Crect width='14' height='14' fill='url(%23g)'/%3E%3C/svg%3E" x="0" y="0" width="14" height="14" preserveAspectRatio="none" result="rib"/>
+        <feTile in="rib" result="ribs"/>
+        <feDisplacementMap in="SourceGraphic" in2="ribs" scale="26" xChannelSelector="R" yChannelSelector="G" result="bent"/>
+        <feGaussianBlur in="bent" stdDeviation="1.1"/>
+      </filter>
+    </svg>
+  </div>
+</section>
+
+<!-- A8 -->
+<section class="fx" id="A8" aria-labelledby="A8-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">A8</p>
+    <div>
+      <h2 id="A8-t">Progressive blur edge</h2>
+      <p class="fx__for">The bottom of a tall photo melts into a blur that gets stronger towards the edge, so a caption bar sits on it cleanly without a hard dark box. Three thin blur layers, each faded in with a mask. For tour cards, room cards and hero captions.</p>
+      <ul class="fx__meta"><li>0 KB JavaScript</li><li>Static</li><li>Idea: Skiper UI, Cult UI</li></ul>
+    </div>
+  </div>
+  <div class="stage st-teide dark" lang="es">
+    <div class="wrap teide">
+      <div class="pb">
+        <img src="assets/img/teide-560.webp" srcset="assets/img/teide-560.webp 560w, assets/img/teide-1080.webp 1080w" sizes="(min-width: 48rem) 28rem, calc(100vw - 32px)" width="1080" height="1350" alt="El Teide sobre un mar de nubes, con pinar en primer plano" loading="lazy" decoding="async">
+        <div class="pb__blur" aria-hidden="true"><i style="--b:2px;--m0:0%;--m1:30%"></i><i style="--b:6px;--m0:25%;--m1:62%"></i><i style="--b:14px;--m0:55%;--m1:92%"></i></div>
+        <div class="pb__cap"><div><h3>Teide y mar de nubes</h3><p>5 h · recogida en el hotel · 69 € (ejemplo)</p></div><a href="#A8">Reservar</a></div>
+      </div>
+      <div class="teide__copy">
+        <p class="st-kicker">Cielo Ucanca · excursiones</p>
+        <p class="teide__h">Por encima de las nubes.</p>
+        <p class="teide__p">Subimos por La Orotava, paramos en el mirador sobre el mar de nubes y esperamos la puesta de sol en Las Cañadas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- A9 -->
+<section class="fx" id="A9" aria-labelledby="A9-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">A9</p>
+    <div>
+      <h2 id="A9-t">Rolling-digit stats</h2>
+      <p class="fx__for">Each digit spins like a car's odometer and lands on its number when the row comes into view. The real figures are in the page text, so Google and screen readers read them straight away. For years in business, jobs done, reviews.</p>
+      <ul class="fx__meta"><li>Small shared script</li><li>Plays once</li><li>Idea: NumberFlow, Motion Primitives</li></ul>
+    </div>
+  </div>
+  <div class="stage st-odo dark" lang="es">
+    <div class="wrap" id="odo" data-reveal>
+      <p class="st-kicker">Fase Neutro · electricistas · Adeje y Arona</p>
+      <ul class="odos">
+        <li><span class="sr-only">Más de 30</span><span class="odo" aria-hidden="true">+<span class="d" style="--d:3;--i:0"><span>0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9</span></span><span class="d" style="--d:0;--i:1"><span>0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9</span></span></span><span class="odo__lbl">años en Adeje y Arona</span></li>
+        <li><span class="sr-only">2.500</span><span class="odo" aria-hidden="true"><span class="d" style="--d:2;--i:0"><span>0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9</span></span>.<span class="d" style="--d:5;--i:1"><span>0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9</span></span><span class="d" style="--d:0;--i:2"><span>0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9</span></span><span class="d" style="--d:0;--i:3"><span>0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9</span></span></span><span class="odo__lbl">clientes atendidos</span></li>
+        <li><span class="sr-only">4,9 de 5 estrellas</span><span class="odo" aria-hidden="true"><span class="d" style="--d:4;--i:0"><span>0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9</span></span>,<span class="d" style="--d:9;--i:1"><span>0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9</span></span><svg class="odo__star" viewBox="0 0 24 24"><path d="M12 1.8l3.1 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.6l-6.4 3.6 1.5-7.1L1.7 9.2l7.2-.8z"/></svg></span><span class="odo__lbl">de media en reseñas</span></li>
+      </ul>
+      <p class="st-note">Cifras de ejemplo</p>
+      <button class="btn replay" type="button" data-replay="odo" lang="en">Play again</button>
+    </div>
+  </div>
+</section>
+
+<!-- A10 -->
+<section class="fx" id="A10" aria-labelledby="A10-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">A10</p>
+    <div>
+      <h2 id="A10-t">Review ribbon with a pause button</h2>
+      <p class="fx__for">Short reviews glide past endlessly with soft faded edges, and a band of big words runs the other way. A visible Pause button stops both, and so does holding a finger or resting a mouse on them. With reduced motion it becomes a normal row you swipe. For reviews, partner logos, "open today" banners.</p>
+      <ul class="fx__meta"><li>Small shared script (Pause)</li><li>Loops, with Pause</li><li>Idea: fulldev, Bejamas</li></ul>
+    </div>
+  </div>
+  <div class="stage st-rev" lang="es">
+    <svg class="defs" aria-hidden="true" focusable="false"><symbol id="st5" viewBox="0 0 120 20"><path id="st1" d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6L10 14.6 4.6 17.5l1.2-6L1.3 7.3l6.1-.7z"/><use href="#st1" x="25"/><use href="#st1" x="50"/><use href="#st1" x="75"/><use href="#st1" x="100"/></symbol></svg>
+    <div class="mq" id="mq">
+      <div class="wrap rev__top"><p class="st-kicker">Tasca Picón · reseñas de ejemplo</p><button class="btn pause" type="button" data-pause="mq">Pausar</button></div>
+      <div class="mq__row" role="region" aria-label="Reseñas de ejemplo" tabindex="0">
+        <ul class="mq__list">
+          <li class="card"><svg viewBox="0 0 120 20" role="img" aria-label="5 de 5"><use href="#st5"/></svg><p class="card__q">«El mojo rojo, de otro nivel. Volvimos al día siguiente.»</p><p class="card__by">Marta · Santa Cruz</p></li>
+          <li class="card"><svg viewBox="0 0 120 20" role="img" aria-label="5 de 5"><use href="#st5"/></svg><p class="card__q">«Papas arrugadas como las de mi abuela.»</p><p class="card__by">Juan Carlos · La Laguna</p></li>
+          <li class="card"><svg viewBox="0 0 120 20" role="img" aria-label="5 de 5"><use href="#st5"/></svg><p class="card__q">«Pequeño, ruidoso y perfecto. Pidan el pulpo.»</p><p class="card__by">Lena · Hamburgo</p></li>
+          <li class="card"><svg viewBox="0 0 120 20" role="img" aria-label="5 de 5"><use href="#st5"/></svg><p class="card__q">«Mesa en la calle y vino de Tacoronte por copas.»</p><p class="card__by">Ana · Puerto de la Cruz</p></li>
+          <li class="card"><svg viewBox="0 0 120 20" role="img" aria-label="5 de 5"><use href="#st5"/></svg><p class="card__q">«Nos hicieron sitio a las once de la noche. Gracias.»</p><p class="card__by">Iván · Icod</p></li>
+          <li class="card"><svg viewBox="0 0 120 20" role="img" aria-label="5 de 5"><use href="#st5"/></svg><p class="card__q">«Croquetas de puchero que no se olvidan.»</p><p class="card__by">Claire · Lyon</p></li>
+        </ul>
+        <ul class="mq__list" aria-hidden="true" inert>
+          <li class="card"><svg viewBox="0 0 120 20"><use href="#st5"/></svg><p class="card__q">«El mojo rojo, de otro nivel. Volvimos al día siguiente.»</p><p class="card__by">Marta · Santa Cruz</p></li>
+          <li class="card"><svg viewBox="0 0 120 20"><use href="#st5"/></svg><p class="card__q">«Papas arrugadas como las de mi abuela.»</p><p class="card__by">Juan Carlos · La Laguna</p></li>
+          <li class="card"><svg viewBox="0 0 120 20"><use href="#st5"/></svg><p class="card__q">«Pequeño, ruidoso y perfecto. Pidan el pulpo.»</p><p class="card__by">Lena · Hamburgo</p></li>
+          <li class="card"><svg viewBox="0 0 120 20"><use href="#st5"/></svg><p class="card__q">«Mesa en la calle y vino de Tacoronte por copas.»</p><p class="card__by">Ana · Puerto de la Cruz</p></li>
+          <li class="card"><svg viewBox="0 0 120 20"><use href="#st5"/></svg><p class="card__q">«Nos hicieron sitio a las once de la noche. Gracias.»</p><p class="card__by">Iván · Icod</p></li>
+          <li class="card"><svg viewBox="0 0 120 20"><use href="#st5"/></svg><p class="card__q">«Croquetas de puchero que no se olvidan.»</p><p class="card__by">Claire · Lyon</p></li>
+        </ul>
+      </div>
+      <div class="band">
+        <div class="band__track">
+          <p class="band__txt">Abierto <b>·</b> <span lang="en">Open</span> <b>·</b> <span lang="de">Geöffnet</span> <b>·</b> <span lang="fr">Ouvert</span> <b>·</b> <span lang="it">Aperto</span> <b>·</b></p>
+          <p class="band__txt" aria-hidden="true">Abierto <b>·</b> Open <b>·</b> Geöffnet <b>·</b> Ouvert <b>·</b> Aperto <b>·</b></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- A11 -->
+<section class="fx" id="A11" aria-labelledby="A11-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">A11</p>
+    <div>
+      <h2 id="A11-t">Ticket printing in</h2>
+      <p class="fx__for">A paper ticket feeds out of a slot in little jerks, like a till receipt, with a torn zig-zag edge. The text is real page text, so it reads with or without the animation. For a menú del día, daily specials, an order summary or a price list.</p>
+      <ul class="fx__meta"><li>Small shared script</li><li>Plays once</li><li>Idea: Kokonut UI</li></ul>
+    </div>
+  </div>
+  <div class="stage st-print" lang="es">
+    <div class="wrap print" id="print" data-reveal>
+      <div>
+        <p class="st-kicker">Café Alisio · El Médano</p>
+        <h3 class="print__h">El menú del día, recién impreso.</h3>
+        <p class="print__p">Cambia cada mañana. Míralo aquí antes de bajar a la playa.</p>
+        <button class="btn replay" type="button" data-replay="print" lang="en">Play again</button>
+      </div>
+      <div class="printer">
+        <div class="printer__slot" aria-hidden="true"></div>
+        <div class="ticket">
+          <h3>Menú del día</h3>
+          <p class="ticket__c">Café Alisio · mié 12 nov · 10:42</p>
+          <ul>
+            <li><span>Tostada de aguacate</span><span>✓</span></li>
+            <li><span>Zumo de naranja</span><span>✓</span></li>
+            <li><span>Café con leche</span><span>✓</span></li>
+            <li><span>Yogur con miel de palma</span><span>✓</span></li>
+          </ul>
+          <p class="ticket__tot"><span>Total</span><span>9,50 €</span></p>
+          <p class="ticket__end">Precio de ejemplo · ¡viento a favor!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- A12 -->
+<section class="fx" id="A12" aria-labelledby="A12-t">
+  <div class="fx__head wrap">
+    <p class="fx__num" aria-hidden="true">A12</p>
+    <div>
+      <h2 id="A12-t">Light running round the main button</h2>
+      <p class="fx__for">A thin light runs round the one button that matters, three times when it comes into view, then stops. It runs again on hover or keyboard focus. Use it on one button per page only. Two colours to choose from: gold and holo.</p>
+      <ul class="fx__meta"><li>Small shared script</li><li>Plays once, again on hover/focus</li><li>Idea: daisyUI, Cult UI</li></ul>
+    </div>
+  </div>
+  <div class="stage st-aura dark" lang="es">
+    <div class="wrap" id="aura" data-reveal>
+      <p class="st-kicker">Ocaso · La Caleta</p>
+      <h3 class="aura-h">La mesa del atardecer se reserva antes.</h3>
+      <div class="auras">
+        <figure><a class="aura aura--gold" href="#A12">Reservar mesa</a><figcaption lang="en">Gold</figcaption></figure>
+        <figure><a class="aura aura--holo" href="#A12">Reservar mesa</a><figcaption lang="en">Holo</figcaption></figure>
+      </div>
+      <button class="btn replay" type="button" data-replay="aura" lang="en">Play again</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<p class="labfoot wrap">Motion lab · Teide Digital · internal, not indexed. Photos: Unsplash licence, from the showroom samples.</p>
+
+<script>
+(() => {
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const motion = document.documentElement.classList.contains('motion');
+
+  /* reveals: play once when seen; a sweep reveals anything already scrolled to,
+     so nothing can stay hidden if the observer never fires */
+  const reveals = $$('[data-reveal]');
+  const show = (el) => el.classList.add('is-in');
+  if (motion) {
+    const io = new IntersectionObserver((es) => es.forEach((e) => {
+      if (e.isIntersecting) { show(e.target); io.unobserve(e.target); }
+    }), { rootMargin: '0px 0px -18% 0px' });
+    reveals.forEach((el) => io.observe(el));
+    const sweep = () => reveals.forEach((el) => { if (el.getBoundingClientRect().top < innerHeight) show(el); });
+    let t;
+    addEventListener('scroll', () => { clearTimeout(t); t = setTimeout(sweep, 1200); }, { passive: true });
+    setTimeout(sweep, 3000);
+  } else reveals.forEach(show);
+  $$('[data-replay]').forEach((b) => b.addEventListener('click', () => {
+    const el = document.getElementById(b.dataset.replay);
+    el.classList.remove('is-in');
+    void el.offsetWidth;
+    requestAnimationFrame(() => show(el));
+  }));
+
+  /* Pause / Reanudar for the loops (A1, A4, A10); the empty touch listener lets
+     iOS apply :active, so holding a finger on the review strip pauses it too */
+  addEventListener('touchstart', () => {}, { passive: true });
+  $$('[data-pause]').forEach((b) => b.addEventListener('click', () => {
+    b.textContent = document.getElementById(b.dataset.pause).classList.toggle('is-paused') ? 'Reanudar' : 'Pausar';
+  }));
+
+  /* A2: the part of the day crossing the middle of the screen sets the colours */
+  const field = document.getElementById('field');
+  if (motion) {
+    const parts = $$('[data-k]', field);
+    const pick = () => { let k = 0; parts.forEach((p, i) => { if (p.getBoundingClientRect().top < innerHeight / 2) k = i; }); field.dataset.field = k; };
+    field.classList.add('is-live');
+    pick();
+    const fo = new IntersectionObserver(pick, { rootMargin: '-45% 0px -54% 0px' });
+    parts.forEach((p) => fo.observe(p));
+    new IntersectionObserver(pick).observe(field); /* re-sync when the stage re-enters from a jump */
+  }
+
+  /* A7: lab-only switch between the two glass versions */
+  const glass = document.getElementById('glass');
+  const gb = $$('[data-glass]');
+  const setGlass = (m) => { glass.dataset.mode = m; gb.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.glass === m))); };
+  gb.forEach((b) => b.addEventListener('click', () => setGlass(b.dataset.glass)));
+  setGlass('svg');
+  document.getElementById('glass-switch').hidden = false;
+})();
+</script>
+</body>
+</html>
