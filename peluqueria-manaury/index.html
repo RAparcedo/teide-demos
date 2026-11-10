@@ -5,15 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>Peluquería Manaury · barbería en San Eugenio, Costa Adeje</title>
-<meta name="description" content="Peluquería Manaury: barbería y peluquería en la Av. Austria, 47, San Eugenio (Costa Adeje). Degradados, diseños, barba y color. Pide tu turno por WhatsApp.">
+<meta name="description" content="Peluquería Manaury: barbería y peluquería en la Av. Austria, 47, San Eugenio (Costa Adeje). Abiertos los 7 días. Degradados, diseños, barba, color y platino. Reserva online o por WhatsApp.">
 <meta property="og:title" content="Peluquería Manaury · San Eugenio">
-<meta property="og:description" content="Fade natural, sin filtro. Pide tu turno por WhatsApp.">
+<meta property="og:description" content="Fade natural, sin filtro. Abiertos los 7 días. Reserva tu turno.">
 <meta property="og:image" content="https://raparcedo.github.io/teide-demos/peluqueria-manaury/assets/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:url" content="https://raparcedo.github.io/teide-demos/peluqueria-manaury/">
 <meta name="theme-color" content="#0c0a07">
-<link rel="preload" href="assets/fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/bricolage-800-solid.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/geist.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/img/gold-leaf.webp" as="image">
 <style>
@@ -32,9 +32,9 @@
 	--gold-line-strong: rgb(216 170 62 / 0.6);
 	--cream: #f1e7d2;
 	--cream-dim: #b3a78f;
-	--cream-past: #8f8571;
 	--leaf: url("assets/img/gold-leaf.webp");
 	--display: "Bricolage Grotesque", "Geist", sans-serif;
+	--solid: "Bricolage Solid", "Bricolage Grotesque", sans-serif;
 	--body: "Geist", system-ui, sans-serif;
 	--mono: "Geist Mono", ui-monospace, monospace;
 	--gutter: clamp(16px, 4vw, 48px);
@@ -60,6 +60,9 @@ h1, h2, h3 { font-family: var(--display); font-weight: 800; letter-spacing: -0.0
 p { margin: 0; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
 .icon { width: 1.25em; height: 1.25em; flex: none; }
+.wrap { max-width: var(--max); margin-inline: auto; padding-inline: var(--gutter); }
+.grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); }
+.bleed-r { margin-right: calc(-1 * (var(--gutter) + max(0px, (100vw - var(--max)) / 2))); }
 
 /* gilt: sign-painter gold leaf, a burnished edge and a drop shade */
 .gilt { color: var(--gold); }
@@ -76,190 +79,197 @@ p { margin: 0; }
 		animation: glint 1.6s var(--ease) 0.35s 1 both;
 	}
 }
+@keyframes glint { from { background-position: 100% 0, 0 0, 0 0; } to { background-position: 0 0, 0 0, 0 0; } }
 /* window lettering: outline and shade, no fill */
 .lettered { color: var(--cream); }
 @supports (-webkit-text-stroke: 1px) {
-	.sec h2.lettered { color: transparent; -webkit-text-stroke: 0.03em var(--cream); filter: drop-shadow(0.04em 0.05em 0 var(--gold-shade)); }
+	.lettered, .sec h2.lettered { color: transparent; -webkit-text-stroke: 0.03em var(--cream); filter: drop-shadow(0.04em 0.05em 0 var(--gold-shade)); }
 }
-@keyframes glint { from { background-position: 100% 0, 0 0, 0 0; } to { background-position: 0 0, 0 0, 0 0; } }
-.wrap { max-width: var(--max); margin-inline: auto; padding-inline: var(--gutter); }
-.grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); }
-.bleed-r { margin-right: calc(-1 * (var(--gutter) + max(0px, (100vw - var(--max)) / 2))); }
 
 /* buttons: square-cut, sign-painted */
 .btn {
 	display: inline-flex; align-items: center; justify-content: center; gap: 0.6em;
 	min-height: 3.5rem; padding: 0.9rem 1.4rem; border-radius: 2px;
 	font: 600 1.0625rem/1.15 var(--body); text-decoration: none; cursor: pointer;
-	transition: background-color 0.2s var(--ease), color 0.2s var(--ease), transform 0.2s var(--ease);
+	transition: background-color 0.2s var(--ease), color 0.2s var(--ease), border-color 0.2s var(--ease), transform 0.2s var(--ease);
 }
-.btn--gold { background: linear-gradient(180deg, #edc96a 0%, var(--gold) 48%, #c49530 100%); color: var(--black); border: 1px solid var(--gold); box-shadow: 0 2px 0 var(--gold-shade); }
+.btn--gold { background: linear-gradient(180deg, #edc96a 0%, var(--gold) 48%, #c49530 100%); background-color: var(--gold); color: var(--black); border: 1px solid var(--gold); box-shadow: inset 0 -2px 0 #a97c22; }
 .btn--gold:hover { background: var(--gold-hi); border-color: var(--gold-hi); color: var(--black); }
 .btn--gold:active { transform: translateY(1px); box-shadow: none; }
 .btn--line { border: 1px solid var(--gold-line-strong); color: var(--cream); background: transparent; }
 .btn--line:hover { border-color: var(--gold); color: var(--gold); }
+.corner { position: absolute; width: 1.5rem; height: 1.5rem; color: var(--gold); pointer-events: none; }
+.corner--tl { top: 7px; left: 7px; }
+.corner--tr { top: 7px; right: 7px; transform: scaleX(-1); }
+.corner--bl { bottom: 7px; left: 7px; transform: scaleY(-1); }
+.corner--br { bottom: 7px; right: 7px; transform: scale(-1); }
 
 /* masthead */
 .mast { position: sticky; top: 0; z-index: 10; background: var(--black); border-bottom: 3px double var(--gold-line-strong); }
-.mast__in { display: flex; align-items: center; gap: 1rem; min-height: 3.75rem; }
+.mast__in { display: flex; align-items: center; gap: 0.6rem; min-height: 3.75rem; }
 .mark { display: flex; flex-direction: column; text-decoration: none; line-height: 1; margin-right: auto; }
 .mark b { font: 800 1.6rem/0.95 var(--display); letter-spacing: -0.02em; }
 .mark span { font: 500 0.75rem/1.2 var(--body); color: var(--cream-dim); margin-top: 0.3rem; letter-spacing: 0.01em; }
 .mast nav { display: none; gap: 1.75rem; }
 .mast nav a { text-decoration: none; font-weight: 500; font-size: 0.95rem; }
 .lang { display: flex; border: 1px solid var(--gold-line-strong); border-radius: 2px; }
-.lang button {
-	font: 600 0.8125rem/1 var(--body); letter-spacing: 0.04em; color: var(--cream-dim);
-	background: none; border: 0; min-width: 2.75rem; min-height: 2.75rem; cursor: pointer;
-}
+.lang button { font: 600 0.8125rem/1 var(--body); letter-spacing: 0.04em; color: var(--cream-dim); background: none; border: 0; min-width: 2.75rem; min-height: 2.75rem; cursor: pointer; }
 .lang button[aria-pressed="true"] { color: var(--cream); box-shadow: inset 0 -2px 0 var(--cream); }
-.mast__in { gap: 0.6rem; }
-.mast__turn { min-height: 2.75rem; min-width: 2.75rem; padding: 0.5rem 0.9rem; font-size: 0.95rem; }
-@media (max-width: 29.99rem) { .mast__turn { padding: 0; } .mast__turn span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); } .lang button { min-width: 2.5rem; } }
-@media (max-width: 23.99rem) { .mark span { display: none; } }
+.mast__turn { min-height: 2.75rem; padding: 0.5rem 0.9rem; font-size: 0.95rem; }
+@media (max-width: 29.99rem) { .mark span { display: none; } }
+@media (max-width: 23.99rem) { .lang button { min-width: 2.5rem; } }
 @media (min-width: 60rem) { .mast nav { display: flex; } }
+.mark { transition: opacity 0.25s var(--ease), visibility 0.25s; }
+@media (max-width: 59.99rem) { .mast.is-hero .mark { opacity: 0; visibility: hidden; } }
 
-/* hero: the turn plate */
-.hero { padding-block: clamp(1.75rem, 5vw, 3.5rem) 0; }
+/* hero: the name, lettered like the shop sign */
+.hero { padding-top: clamp(1.75rem, 5vw, 3rem); }
 .hero__text { grid-column: 1 / -1; display: flex; flex-direction: column; }
-.hero h1 { font-size: clamp(2.75rem, 11.5vw, 5.75rem); color: var(--cream); }
-.hero h1 .gilt { display: inline-block; padding-right: 0.06em; }
-.cite { margin-top: 0.85rem; font-size: 0.875rem; color: var(--cream-dim); }
-.plate { margin-top: clamp(1.5rem, 5vw, 2.75rem); border-top: 3px double var(--gold-line-strong); padding-top: 1.1rem; }
-.plate__state { display: flex; align-items: center; gap: 0.55rem; font-size: 0.95rem; color: var(--cream); }
+.hero h1 { display: flex; flex-direction: column; gap: 0.4rem; }
+.hero__name { font-size: clamp(3.5rem, 18.5vw, 8rem); line-height: 0.85; letter-spacing: -0.035em; text-transform: uppercase; padding-right: 0.05em; align-self: flex-start; }
+.hero__kind { font-size: clamp(1.5rem, 7.4vw, 2.6rem); letter-spacing: -0.01em; line-height: 1; }
+.hero__place { margin-top: 0.9rem; color: var(--cream-dim); font-size: 0.95rem; }
+.hero__quote { margin: 1.4rem 0 0; padding-top: 1rem; border-top: 3px double var(--gold-line-strong); }
+.hero__quote p { font: 700 clamp(1.5rem, 6vw, 2.25rem)/1.1 var(--display); letter-spacing: -0.02em; }
+.hero__quote footer { margin-top: 0.45rem; font-size: 0.8125rem; color: var(--cream-dim); }
+.hero__acts { display: grid; grid-template-columns: 1fr auto; gap: 0.6rem; margin-top: 1.4rem; }
+@media (max-width: 29.99rem) { .hero__wa { width: 3.5rem; padding: 0; } .hero__wa span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); } }
+.hero__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem 1rem; margin-top: 1rem; font-size: 0.9rem; color: var(--cream); }
+.stars { display: inline-flex; gap: 0.12rem; color: var(--gold); vertical-align: -0.12em; }
+.stars svg { width: 1em; height: 1em; }
+.meta-open { display: inline-flex; align-items: center; gap: 0.45rem; }
 .dot { width: 0.55rem; height: 0.55rem; border-radius: 50%; background: var(--gold); flex: none; }
 .dot.is-closed { background: transparent; border: 1.5px solid var(--cream-dim); }
-.plate__row { display: flex; align-items: flex-end; gap: 1rem; margin-top: 0.4rem; }
-.plate__time { font: 800 clamp(4.75rem, 25vw, 6rem)/0.9 var(--display); letter-spacing: -0.04em; font-variant-numeric: tabular-nums; padding-right: 0.05em; }
-.plate__label { font-size: 0.95rem; color: var(--cream-dim); padding-bottom: 0.45rem; max-width: 14rem; }
-.plate__label b { color: var(--cream); font-weight: 600; display: block; }
-.plate__acts { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1.25rem; }
-.plate__acts .btn--gold { width: 100%; }
-.plate__more { display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.95rem; color: var(--cream-dim); min-height: 2.75rem; align-self: flex-start; }
-.demo-tag { font-size: 0.8125rem; color: var(--cream-dim); margin-top: 0.35rem; }
-.hero__photo { grid-column: 1 / -1; margin: 1.75rem calc(var(--gutter) * -1) 0; position: relative; }
-.hero__photo img { width: 100%; aspect-ratio: 4 / 3.4; object-fit: cover; object-position: 45% 38%; }
-figcaption { font-size: 0.8125rem; line-height: 1.35; color: var(--cream-dim); }
-.hero__photo figcaption { padding: 0.55rem var(--gutter) 0; }
+.hero__photo { display: none; }
+.hero__photo figcaption { font-size: 0.8125rem; color: var(--cream-dim); padding: 0.55rem 0 0.75rem; }
 @media (min-width: 60rem) {
 	.hero { padding-top: 0; }
-	.hero .grid { min-height: calc(100svh - 3.75rem); }
+	.hero .grid { min-height: 34rem; }
 	.hero__text { grid-column: 1 / 7; justify-content: center; padding-block: 3rem; }
-	.hero__photo { grid-column: 7 / -1; margin-top: 0; margin-left: 0; display: flex; flex-direction: column; }
-	.hero__photo img { flex: 1; aspect-ratio: auto; height: 100%; min-height: 0; }
-	.hero__photo figcaption { padding-inline: 0; padding-bottom: 0.75rem; }
-	.plate__time { font-size: clamp(6rem, 8.5vw, 8.25rem); }
-	.plate__label { font-size: 1.05rem; max-width: 18rem; }
-	.plate__acts { flex-direction: row; align-items: center; gap: 1.25rem; }
-	.plate__acts .btn--gold { width: auto; }
+	.hero__name { font-size: clamp(4.5rem, 7.2vw, 7.25rem); }
+	.hero__photo { display: flex; flex-direction: column; grid-column: 7 / -1; margin: 0; }
+	.hero__photo img { flex: 1; height: 100%; min-height: 0; object-fit: cover; object-position: 45% 38%; }
+	.hero__acts { display: flex; }
 }
+
+/* the strip of cuts */
+.strip { position: relative; overflow: hidden; border-block: 3px double var(--gold-line-strong); margin-top: 1.5rem; background: var(--black-2); }
+.strip__track { display: flex; gap: 6px; padding-block: 6px; width: max-content; animation: drift 70s linear infinite; }
+.strip:hover .strip__track, .strip:focus-within .strip__track { animation-play-state: paused; }
+.strip img { height: clamp(11rem, 44vw, 17rem); width: auto; aspect-ratio: 4 / 5; object-fit: cover; }
+@keyframes drift { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .strip { overflow-x: auto; } .strip__track { animation: none; } .strip__dup { display: none !important; } }
+
+/* the gold band: open seven days */
+.band { background: url("assets/img/gold-band.webp") 30% 50% / cover no-repeat, var(--gold); background-color: var(--gold); color: var(--black); padding-block: clamp(2.75rem, 7vw, 4.5rem); position: relative; }
+.band::before, .band::after { content: ""; position: absolute; inset-inline: 0; height: 6px; border-block: 1px solid rgb(12 10 7 / 0.55); }
+.band::before { top: 10px; } .band::after { bottom: 10px; }
+.band h2 { font-family: var(--solid); font-size: clamp(3.1rem, 14vw, 7.5rem); line-height: 0.88; letter-spacing: -0.04em; color: var(--black); text-shadow: 0.025em 0.03em 0 rgb(255 241 194 / 0.5); }
+.band__row { display: flex; flex-wrap: wrap; gap: 0.75rem 2rem; align-items: baseline; margin-top: 1.25rem; }
+.band__hours { font: 600 1.125rem/1.4 var(--body); }
+.nw { white-space: nowrap; }
+.band__hours b { font-family: var(--mono); font-weight: 600; }
+.band__now { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600; }
+.band__now .dot { background: var(--black); }
+.band__now .dot.is-closed { background: transparent; border-color: var(--black); }
+.band a { font-weight: 600; color: var(--black); text-decoration-thickness: 2px; }
+.band a:hover { color: var(--black); }
 
 /* section rhythm */
 section { scroll-margin-top: 4.5rem; }
-.sec { padding-block: clamp(3rem, 8vw, 6rem) 0; }
+.sec { padding-block: clamp(3.5rem, 9vw, 6.5rem) 0; }
 .sec h2 { font-size: clamp(3rem, 12.5vw, 6rem); color: var(--cream); }
+.cite-line { margin-top: 0.6rem; font-size: 0.8125rem; color: var(--cream-dim); }
 .sec__lede { margin-top: 1rem; color: var(--cream-dim); max-width: 34rem; font-size: 1.0625rem; }
+.sec__head { display: grid; gap: 1rem 2rem; align-items: end; }
+@media (min-width: 48rem) { .sec__head { grid-template-columns: 1fr 1fr; } }
 
-/* the board: the shop window */
-.board__head { display: grid; gap: 1rem 2rem; align-items: end; }
-.window {
-	margin-top: 2rem; border: 4px double var(--gold-line-strong); border-radius: 3px; position: relative;
-	background:
-		linear-gradient(115deg, transparent 0 58%, rgb(255 244 214 / 0.035) 58% 66%, transparent 66% 72%, rgb(255 244 214 / 0.02) 72% 75%, transparent 75%),
-		var(--black-2);
-	margin-inline: calc(var(--gutter) * -0.5);
-}
-.window { box-shadow: inset 0 0 0 5px var(--black-2), inset 0 0 0 6px var(--gold-line); }
-.corner { position: absolute; width: 1.5rem; height: 1.5rem; color: var(--gold); pointer-events: none; }
-.corner--tl { top: 7px; left: 7px; }
-.corner--tr { top: 7px; right: 7px; transform: scaleX(-1); }
-.corner--bl { bottom: 7px; left: 7px; transform: scaleY(-1); }
-.corner--br { bottom: 7px; right: 7px; transform: scale(-1); }
-.window__top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.5rem 1.5rem; padding: 1.75rem 1.5rem 0.9rem; border-bottom: 1px solid var(--gold-line-strong); }
-.window__day { font: 800 clamp(1.6rem, 6.5vw, 2.6rem)/1 var(--display); letter-spacing: -0.03em; }
-.window__open { display: flex; align-items: center; gap: 0.5rem; font-size: 0.95rem; color: var(--cream); }
-.days { display: flex; overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid var(--gold-line); padding-inline: 0.5rem; }
-.days::-webkit-scrollbar { display: none; }
-.days button {
-	flex: none; background: none; border: 0; border-bottom: 2px solid transparent; margin-bottom: -1px;
-	color: var(--cream-dim); font: 600 0.95rem/1.2 var(--body); padding: 0.8rem 0.6rem 0.7rem; min-height: 2.75rem; cursor: pointer; text-align: left;
-}
-.days button small { display: block; font: 500 0.75rem/1.2 var(--body); margin-top: 0.15rem; color: var(--cream-dim); }
-.days button[aria-pressed="true"] { color: var(--gold); border-bottom-color: var(--gold); }
-.days button:hover { color: var(--cream); }
-.svc { border: 0; margin: 0; padding: 0.85rem 1rem; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 0.55rem; border-bottom: 1px solid var(--gold-line); }
-.svc legend { float: left; font: 500 0.95rem/2.75rem var(--body); color: var(--cream-dim); padding: 0; margin-right: 0.5rem; }
-.svc label { position: relative; display: inline-flex; align-items: center; min-height: 2.75rem; padding: 0 0.2rem; font: 700 1.15rem/1 var(--display); letter-spacing: -0.01em; color: var(--cream); cursor: pointer; }
-.svc input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
-.svc label:has(input:checked) span { color: var(--gold); text-decoration: underline 2px; text-underline-offset: 0.3em; }
-.svc label:hover span { color: var(--gold); }
-.svc label:has(input:focus-visible) { outline: 2px solid var(--gold); outline-offset: 2px; }
-.halves { display: grid; }
-.half { padding: 0.25rem 1rem 0.5rem; }
-.half h3 { font: 600 0.95rem/1 var(--body); letter-spacing: 0; color: var(--cream-dim); padding: 1rem 0 0.6rem; border-bottom: 1px solid var(--gold-line); }
-.rows { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; }
-.row { flex: 1 0 100%; border-bottom: 1px solid var(--gold-line); }
-.row > a, .row > div { display: grid; grid-template-columns: minmax(7rem, auto) 1fr auto; align-items: center; gap: 0.25rem 1rem; min-height: 4.25rem; padding-block: 0.35rem; text-decoration: none; color: inherit; }
-.row .t { font: 800 2.5rem/1 var(--display); letter-spacing: -0.04em; font-variant-numeric: tabular-nums; padding-right: 0.05em; }
-.row .s { font-size: 0.95rem; color: var(--cream-dim); }
-.row .s b { display: block; font-weight: 600; color: var(--cream); font-size: 1rem; }
-.row .go { display: inline-flex; align-items: center; gap: 0.35rem; color: var(--gold); font-weight: 600; font-size: 0.95rem; }
-.is-free > a { transition: background-color 0.2s var(--ease); margin-inline: -0.5rem; padding-inline: 0.5rem; }
-.is-free > a:hover { background: rgb(216 170 62 / 0.08); color: inherit; }
-.is-free > a:hover .go { color: var(--gold-hi); }
-.is-taken .t { color: var(--cream-dim); }
-@supports (-webkit-text-stroke: 1px) { .is-taken .t { color: transparent; -webkit-text-stroke: 1.2px var(--cream-dim); } }
-.row.is-past { border-bottom: 0; padding: 0.8rem 0 0.2rem; font: 500 0.9rem/1.3 var(--mono); color: var(--cream-past); }
-.row.is-past s { text-decoration-thickness: 1px; }
-.is-soon .t { color: var(--cream-dim); }
-.row.now { flex: 1 0 100%; display: flex; align-items: center; gap: 0.75rem; border-bottom: 0; padding-block: 0.45rem; }
-.now span { font: 600 0.8125rem/1 var(--mono); color: var(--gold); white-space: nowrap; }
-.now::after { content: ""; flex: 1; height: 2px; background: var(--gold); box-shadow: 0 0 0 1px rgb(216 170 62 / 0.15); }
-.closed-note { flex: 1 0 100%; padding: 1rem 0; color: var(--cream-dim); }
-.window__foot { display: grid; gap: 0.35rem; padding: 1rem 1.5rem 1.75rem; border-top: 1px solid var(--gold-line-strong); font-size: 0.875rem; color: var(--cream-dim); }
-.board__fallback { margin-top: 2rem; border-top: 3px double var(--gold-line-strong); padding-top: 1.25rem; }
-.board__fallback p { color: var(--cream-dim); margin-bottom: 1rem; }
-.js .board__fallback { display: none; }
-.window { display: none; }
-.js .window { display: block; }
-@media (min-width: 48rem) {
-	.board__head { grid-template-columns: 1fr 1fr; }
-	.window { margin-inline: 0; }
-	.window__top { padding: 2rem 2.25rem 1.1rem; }
-	.days, .svc { padding-inline: 1.25rem; }
-	.halves { grid-template-columns: 1fr 1fr; }
-	.halves:has(> .half:only-child) { grid-template-columns: 1fr; }
-	.half { padding: 0.25rem 1.75rem 1rem; }
-	.half + .half { border-left: 1px solid var(--gold-line-strong); }
-	.row .t { font-size: 3rem; }
-	.row > a, .row > div { min-height: 4.75rem; grid-template-columns: 8.5rem 1fr auto; }
-	.rows--2 { display: grid; grid-auto-flow: column; grid-template-rows: repeat(var(--n), auto); grid-template-columns: 1fr 1fr; column-gap: 3rem; }
-	.window__foot { padding: 1rem 2.25rem 1.9rem; grid-template-columns: 1fr auto; }
-}
+/* services: a painted list */
+.menu { list-style: none; margin: 2rem 0 0; padding: 0; border-top: 3px double var(--gold-line-strong); }
+.menu li { border-bottom: 1px solid var(--gold-line); }
+.pick { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 1rem; width: 100%; min-height: 4.5rem; padding: 1.1rem 0; background: none; border: 0; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+.pick__n { display: block; font: 700 clamp(1.6rem, 6.2vw, 2.4rem)/1.05 var(--display); letter-spacing: -0.025em; transition: color 0.2s var(--ease); }
+.pick__p { display: block; color: var(--cream-dim); font-size: 0.95rem; margin-top: 0.25rem; }
+.pick__go { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--gold); font-weight: 600; font-size: 0.95rem; }
+.pick:hover .pick__n { color: var(--gold); }
+.pick:hover .pick__go { color: var(--gold-hi); }
+.menu__note { margin-top: 1rem; color: var(--cream-dim); font-size: 0.95rem; }
+@media (min-width: 60rem) { .menu { display: grid; grid-template-columns: 1fr 1fr; column-gap: 3rem; } }
 
-/* cuts */
-.cuts__head { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1rem 2rem; }
-.cuts__grid { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem var(--gap); margin-top: 2rem; }
-.cut { margin: 0; }
-.cut img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: var(--black-2); }
-.cut figcaption { padding-top: 0.5rem; color: var(--cream); }
-.cut--a { grid-column: 1 / -1; }
-.cut--a img { aspect-ratio: 1 / 1; }
+/* gallery */
+.gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; margin-top: 2rem; }
+.gallery figure { margin: 0; position: relative; background: var(--black-2); }
+.gallery img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.gallery figcaption { position: absolute; left: 0; bottom: 0; padding: 0.4rem 0.6rem; background: var(--black); color: var(--cream); font-size: 0.8125rem; line-height: 1.3; }
+.gallery .g--big { grid-column: 1 / -1; }
+.gallery .g--big img { aspect-ratio: 1 / 1; }
 .ig { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 500; min-height: 2.75rem; }
 @media (min-width: 48rem) {
-	.cuts__grid { grid-template-columns: repeat(12, minmax(0, 1fr)); row-gap: 2rem; }
-	.cut--a { grid-column: 1 / 7; grid-row: 1 / span 2; display: flex; flex-direction: column; }
-	.cut--a img { flex: 1; min-height: 0; aspect-ratio: auto; height: 100%; }
-	.cut--b { grid-column: 7 / 10; }
-	.cut--c { grid-column: 10 / -1; }
-	.cut--d { grid-column: 7 / 10; }
-	.cut--e { grid-column: 10 / -1; }
+	.gallery { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+	.gallery .g--big { grid-column: span 2; grid-row: span 2; }
+	.gallery .g--big img { aspect-ratio: auto; height: 100%; }
+}
+
+/* booking: the online booking sheet */
+.book__card { margin-top: 2rem; position: relative; border: 4px double var(--gold-line-strong); border-radius: 3px; background: var(--black-2); box-shadow: inset 0 0 0 5px var(--black-2), inset 0 0 0 6px var(--gold-line); padding: 1.75rem 1.25rem 1.6rem; }
+.book__flag { font-size: 0.8125rem; color: var(--cream-dim); padding: 0 0.5rem 1.25rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--gold-line); }
+.book__card form { display: grid; gap: 1.75rem; }
+.book__card form[hidden] { display: none; }
+.step { border: 0; margin: 0; padding: 0; min-width: 0; }
+.step legend { display: flex; align-items: baseline; gap: 0.6rem; padding: 0; margin-bottom: 0.85rem; font: 700 1.35rem/1.1 var(--display); letter-spacing: -0.015em; color: var(--cream); }
+.step legend b { font: 600 0.9rem/1 var(--mono); color: var(--gold); }
+.opts { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.opt { position: relative; display: inline-flex; flex-direction: column; justify-content: center; min-height: 3rem; padding: 0.55rem 0.9rem; border: 1px solid var(--gold-line-strong); border-radius: 2px; cursor: pointer; font-weight: 600; font-size: 1rem; line-height: 1.15; transition: border-color 0.15s var(--ease), background-color 0.15s var(--ease), color 0.15s var(--ease); }
+.opt small { font-weight: 500; font-size: 0.8125rem; color: var(--cream-dim); margin-top: 0.15rem; }
+.opt input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+.opt:hover { border-color: var(--gold); }
+.opt:has(input:checked) { background: var(--black); border-color: var(--gold); color: var(--gold); box-shadow: inset 0 0 0 1px var(--gold), inset 0 -3px 0 var(--gold); }
+.opt:has(input:checked) small { color: var(--cream); }
+.opt:has(input:focus-visible) { outline: 2px solid var(--gold); outline-offset: 3px; }
+.opts--time { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.opts--time .opt { min-width: 0; align-items: center; font: 600 1rem/1 var(--mono); padding-inline: 0.3rem; }
+@media (min-width: 60rem) { .opts--time { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+.times h4 { margin: 0.9rem 0 0.5rem; font: 600 0.875rem/1 var(--body); color: var(--cream-dim); }
+.times h4:first-child { margin-top: 0; }
+.hint { color: var(--cream-dim); font-size: 0.95rem; }
+.fields { display: grid; gap: 0.9rem; }
+.field label { display: block; font-weight: 600; font-size: 0.95rem; margin-bottom: 0.35rem; }
+.field input { width: 100%; min-height: 3.1rem; padding: 0.7rem 0.85rem; border: 1px solid var(--gold-line-strong); border-radius: 2px; background: var(--black); color: var(--cream); font: 500 1.0625rem/1.2 var(--body); }
+.field input::placeholder { color: #8f8571; }
+.field input:focus-visible { outline: 2px solid var(--gold); outline-offset: 1px; border-color: var(--gold); }
+.field input[aria-invalid="true"] { border-color: #e48a6b; }
+.err { display: block; color: #f0a184; font-size: 0.875rem; margin-top: 0.35rem; }
+.err:empty { margin: 0; }
+.book__sum { border-top: 1px solid var(--gold-line-strong); padding-top: 1.25rem; display: grid; gap: 1rem; }
+#sum { font: 700 1.25rem/1.25 var(--display); letter-spacing: -0.01em; }
+#sum span { color: var(--cream-dim); font: 500 0.95rem/1.4 var(--body); display: block; letter-spacing: 0; }
+.book__sum .btn { width: 100%; }
+.book__demo { font-size: 0.8125rem; color: var(--cream-dim); }
+.book__done { display: grid; gap: 1rem; }
+.book__done[hidden] { display: none; }
+.book__done h3 { font-size: clamp(2.4rem, 10vw, 4rem); line-height: 0.95; align-self: start; justify-self: start; padding-right: 0.05em; }
+.book__done .ticket { border-block: 3px double var(--gold-line-strong); padding-block: 1rem; font: 700 1.35rem/1.3 var(--display); }
+.book__done .ticket span { display: block; font: 500 0.95rem/1.4 var(--body); color: var(--cream-dim); }
+.book__done .acts { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.book__alt { margin-top: 1.25rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1rem; color: var(--cream-dim); }
+.book__fallback { margin-top: 2rem; }
+.book__fallback p { color: var(--cream-dim); }
+.book__card { display: none; }
+.js .book__card { display: block; }
+.js .book__fallback { display: none; }
+@media (min-width: 60rem) {
+	.book__card { padding: 2.25rem 2.5rem 2rem; }
+	.book__card form { grid-template-columns: 1fr 1fr; column-gap: 3rem; }
+	.step--svc, .step--day, .step--you { grid-column: 1; }
+	.step--time { grid-column: 2; grid-row: 1 / span 2; }
+	.book__sum { grid-column: 2; align-self: end; }
+	.fields { grid-template-columns: 1fr 1fr; }
 }
 
 /* the shop */
 .shop__photo { grid-column: 1 / -1; margin: 0 calc(var(--gutter) * -1); }
 .shop__photo img { width: 100%; aspect-ratio: 4 / 4.4; object-fit: cover; object-position: 50% 60%; }
-.shop__photo figcaption { padding: 0.55rem var(--gutter) 0; }
+.shop__photo figcaption { padding: 0.55rem var(--gutter) 0; font-size: 0.8125rem; color: var(--cream-dim); }
 .shop__info { grid-column: 1 / -1; margin-top: 2.75rem; }
 .addr { margin-top: 1.25rem; font-size: 1.125rem; }
 .addr small { display: block; color: var(--cream-dim); font-size: 0.95rem; }
@@ -275,19 +285,19 @@ section { scroll-margin-top: 4.5rem; }
 	.shop__photo img { aspect-ratio: 4 / 5; }
 	.shop__photo figcaption { padding-left: 0; }
 	.shop__info { grid-column: 8 / -1; margin-top: 0; align-self: center; }
+	.shop__info h2 { font-size: clamp(2.6rem, 3.8vw, 3.6rem); white-space: nowrap; }
 }
 
 /* reviews */
 .voices { grid-column: 1 / -1; margin-top: clamp(3rem, 7vw, 4.5rem); }
 .rating { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; border-top: 3px double var(--gold-line-strong); padding-top: 1.25rem; }
 .rating__n { font: 800 3.5rem/1 var(--display); letter-spacing: -0.03em; padding-right: 0.05em; }
-.stars { display: flex; gap: 0.15rem; color: var(--gold); }
-.stars svg { width: 1.15rem; height: 1.15rem; }
+.rating .stars svg { width: 1.15rem; height: 1.15rem; }
 .rating p { color: var(--cream-dim); font-size: 0.95rem; width: 100%; }
 .quotes { display: grid; margin-top: 1.5rem; }
 .quotes figure { margin: 0; padding-block: 1.5rem; border-bottom: 1px solid var(--gold-line); }
 .quotes blockquote { margin: 0; font: 700 clamp(1.4rem, 4.8vw, 2rem)/1.2 var(--display); letter-spacing: -0.02em; text-wrap: pretty; }
-.quotes figcaption { margin-top: 0.75rem; font-size: 0.875rem; }
+.quotes figcaption { margin-top: 0.75rem; font-size: 0.875rem; color: var(--cream-dim); }
 @media (min-width: 60rem) {
 	.voices { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); }
 	.rating { grid-column: 1 / -1; flex-wrap: nowrap; gap: 1rem; }
@@ -303,13 +313,12 @@ section { scroll-margin-top: 4.5rem; }
 .close__acts { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 2rem; }
 @media (min-width: 40rem) { .close__acts { flex-direction: row; } }
 
-footer { border-top: 1px solid var(--gold-line); padding-block: 2rem 2.5rem; color: var(--cream-dim); font-size: 0.8125rem; }
-footer .wrap { display: grid; gap: 0.5rem; }
-footer b { color: var(--cream); font-weight: 600; }
+footer.site { border-top: 1px solid var(--gold-line); padding-block: 2rem 2.5rem; color: var(--cream-dim); font-size: 0.8125rem; }
+footer.site .wrap { display: grid; gap: 0.5rem; }
+footer.site b { color: var(--cream); font-weight: 600; }
 
 /* every stroked letter uses the overlap-free 800 instance, so the stroke never draws contour seams; last and specific so no later font shorthand undoes it */
-html :is(.gilt, .lettered, .row.is-taken .t) { font-family: "Bricolage Solid", var(--display); font-weight: 800; }
-html .row.is-taken .t { letter-spacing: -0.015em; }
+html :is(.gilt, .lettered) { font-family: var(--solid); font-weight: 800; }
 
 @media (prefers-reduced-motion: reduce) {
 	*, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
@@ -320,8 +329,9 @@ html .row.is-taken .t { letter-spacing: -0.015em; }
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
 	<symbol id="i-wa" viewBox="0 0 24 24"><path d="M12 2.6a9.4 9.4 0 0 0-8.1 14.2L2.7 21.3l4.6-1.2A9.4 9.4 0 1 0 12 2.6Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.8 7.4c.2-.4.4-.4.7-.4h.5c.2 0 .4 0 .6.4l.8 1.8c.1.2.1.4 0 .6l-.5.7c-.1.2-.2.4 0 .6.6 1 1.4 1.8 2.4 2.3.2.1.4.1.6 0l.7-.6c.2-.2.4-.2.6-.1l1.8.9c.3.1.4.3.4.5 0 .8-.4 1.6-1.1 2-.8.4-1.7.4-2.6.1a9.4 9.4 0 0 1-4.6-4.7c-.4-1-.4-2.2.7-3.1Z" fill="currentColor"/></symbol>
 	<symbol id="i-tel" viewBox="0 0 24 24"><path d="M6.6 3.5h2.6l1.4 4-1.9 1.4a11 11 0 0 0 6.4 6.4l1.4-1.9 4 1.4v2.6a2 2 0 0 1-2.1 2A15.6 15.6 0 0 1 4.6 5.6a2 2 0 0 1 2-2.1Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+	<symbol id="i-cal" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 9.5h17M8 3v4m8-4v4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="m9 14.6 2 2 4-4.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 	<symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v15m-6-6 6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-	<symbol id="i-up" viewBox="0 0 24 24"><path d="M12 20V5m-6 6 6-6 6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+	<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 	<symbol id="i-out" viewBox="0 0 24 24"><path d="M8 16 16.5 7.5M9.5 7H17v7.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 	<symbol id="i-ig" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="3.9" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></symbol>
 	<symbol id="i-corner" viewBox="0 0 24 24"><path d="M1.5 22.5V8.5A7 7 0 0 1 8.5 1.5h14M5.5 22.5V10a4.5 4.5 0 0 1 4.5-4.5h12.5" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M10 14.5a3 3 0 1 1 3-3c0 2.6-2.4 4.4-5 3.6" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></symbol>
@@ -333,11 +343,11 @@ html .row.is-taken .t { letter-spacing: -0.015em; }
 	<div class="wrap mast__in">
 		<a class="mark" href="#top" aria-label="Peluquería Manaury, inicio"><b class="gilt">MANAURY</b><span data-i18n="mark.sub">Peluquería · barbería · San Eugenio</span></a>
 		<nav aria-label="Secciones">
-			<a href="#turnos" data-i18n="nav.turnos">Turnos</a>
+			<a href="#servicios" data-i18n="nav.servicios">Servicios</a>
 			<a href="#cortes" data-i18n="nav.cortes">Cortes</a>
 			<a href="#local" data-i18n="nav.local">El local</a>
 		</nav>
-		<a class="btn btn--gold mast__turn" href="#turnos"><svg class="icon" aria-hidden="true"><use href="#i-wa"/></svg><span data-i18n="mast.turn">Pide turno</span></a>
+		<a class="btn btn--gold mast__turn" href="#reservar" data-i18n="mast.turn">Reservar</a>
 		<div class="lang" role="group" aria-label="Idioma / Language">
 			<button type="button" data-lang="es" aria-pressed="true">ES</button>
 			<button type="button" data-lang="en" aria-pressed="false">EN</button>
@@ -349,88 +359,164 @@ html .row.is-taken .t { letter-spacing: -0.015em; }
 	<section class="hero" aria-labelledby="hero-h">
 		<div class="wrap grid">
 			<div class="hero__text">
-				<h1 id="hero-h" lang="es">Fade natural, <span class="gilt">sin filtro.</span></h1>
-				<p class="cite" data-i18n="hero.cite">Manaury, en Instagram · febrero de 2020</p>
-				<div class="plate" aria-live="polite">
-					<p class="plate__state"><span class="dot" id="open-dot"></span><span id="open-state" data-i18n="hero.hours">Lunes a sábado de 9:00 a 20:00 · domingo de 9:00 a 14:00</span></p>
-					<div class="plate__row">
-						<p class="plate__time gilt" id="next-time" data-i18n="hero.turn">Turno</p>
-						<p class="plate__label" id="next-label" data-i18n="hero.label">Elige tu hora y te la guardamos por WhatsApp.</p>
-					</div>
-					<div class="plate__acts">
-						<a class="btn btn--gold" id="next-btn" href="https://wa.me/34673937511?text=Hola%20Manaury%2C%20quiero%20pedir%20turno.%20%C2%BFQu%C3%A9%20horas%20tienes%20libres%3F" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-wa"/></svg><span id="next-btn-t" data-i18n="hero.btn">Pide tu turno por WhatsApp</span></a>
-						<a class="plate__more" href="#turnos"><span data-i18n="hero.more">Ver todos los turnos</span><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></a>
-					</div>
-					<p class="demo-tag" data-i18n="hero.demo">Vista previa: los huecos libres son de ejemplo.</p>
+				<h1 id="hero-h"><span class="hero__name gilt" id="hero-name">Manaury</span> <span class="hero__kind lettered" data-i18n="hero.kind">Peluquería · Barbería</span></h1>
+				<p class="hero__place">Av. Austria, 47 · San Eugenio, Costa Adeje</p>
+				<blockquote class="hero__quote"><p lang="es">«Fade natural, sin filtro.»</p><footer data-i18n="hero.cite">Manaury, en Instagram · febrero de 2020</footer></blockquote>
+				<div class="hero__acts">
+					<a class="btn btn--gold" href="#reservar"><svg class="icon" aria-hidden="true"><use href="#i-cal"/></svg><span data-i18n="hero.book">Reservar online</span></a>
+					<a class="btn btn--line hero__wa" href="https://wa.me/34673937511?text=Hola%20Manaury%2C%20quiero%20pedir%20turno.%20%C2%BFQu%C3%A9%20horas%20tienes%20libres%3F" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-wa"/></svg><span>WhatsApp</span></a>
 				</div>
+				<p class="hero__meta"><span><span class="stars" role="img" aria-label="4,5 de 5" data-i18n-aria="stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-half"/></svg></span> <span data-i18n="hero.rating">4,5 · 96 reseñas en Google</span></span><span class="meta-open"><span class="dot" id="hero-dot"></span><span id="hero-open" data-i18n="hero.open">Abiertos los 7 días</span></span></p>
 			</div>
 			<figure class="hero__photo bleed-r">
-				<img src="assets/img/01-degradado-800.webp" srcset="assets/img/01-degradado-480.webp 480w, assets/img/01-degradado-800.webp 800w, assets/img/01-degradado-1200.webp 1200w" sizes="(min-width: 60rem) 50vw, 100vw" width="1200" height="1200" alt="Perfil de un cliente con degradado bajo y el contorno marcado" data-i18n-alt="alt.01" fetchpriority="high">
+				<img src="assets/img/01-degradado-800.webp" srcset="assets/img/01-degradado-800.webp 800w, assets/img/01-degradado-1200.webp 1200w" sizes="50vw" width="1200" height="1200" alt="Perfil de un cliente con degradado bajo y el contorno marcado" data-i18n-alt="alt.01" loading="lazy">
 				<figcaption data-i18n="cap.01">Degradado bajo · @manaurypeluqueria_barbershop</figcaption>
 			</figure>
 		</div>
-	</section>
-
-	<section class="sec board" id="turnos" aria-labelledby="board-h">
-		<div class="wrap">
-			<div class="board__head">
-				<h2 id="board-h" data-i18n="board.h">Los turnos.</h2>
-				<p class="sec__lede" data-i18n="board.lede">Cortes de todo tipo, degradados, diseños, barba, color y platino, y cortes de niño. Toca un hueco libre y te lo guardamos por WhatsApp.</p>
-			</div>
-			<div class="window" aria-labelledby="board-h">
-				<svg class="corner corner--tl" aria-hidden="true"><use href="#i-corner"/></svg><svg class="corner corner--tr" aria-hidden="true"><use href="#i-corner"/></svg><svg class="corner corner--bl" aria-hidden="true"><use href="#i-corner"/></svg><svg class="corner corner--br" aria-hidden="true"><use href="#i-corner"/></svg>
-				<div class="window__top">
-					<p class="window__day" id="win-day">Hoy</p>
-					<p class="window__open"><span class="dot" id="win-dot"></span><span id="win-open"></span></p>
-				</div>
-				<div class="days" id="days" role="group" aria-label="Día"></div>
-				<fieldset class="svc">
-					<legend data-i18n="svc.legend">Para:</legend>
-					<label><input type="radio" name="svc" value="corte"><span data-i18n="svc.corte">corte</span></label>
-					<label><input type="radio" name="svc" value="degradado"><span data-i18n="svc.degradado">degradado</span></label>
-					<label><input type="radio" name="svc" value="diseno"><span data-i18n="svc.diseno">diseño</span></label>
-					<label><input type="radio" name="svc" value="barba"><span data-i18n="svc.barba">barba</span></label>
-					<label><input type="radio" name="svc" value="color"><span data-i18n="svc.color">color</span></label>
-					<label><input type="radio" name="svc" value="platino"><span data-i18n="svc.platino">platino</span></label>
-					<label><input type="radio" name="svc" value="nino"><span data-i18n="svc.nino">niño</span></label>
-				</fieldset>
-				<div class="halves" id="halves" aria-live="polite"></div>
-				<div class="window__foot">
-					<p data-i18n="board.note">Huecos de ejemplo en esta vista previa. En la web de verdad, aquí se ve la agenda real.</p>
-					<p data-i18n="board.price">¿Precio? Pregúntalo al pedir tu turno.</p>
-				</div>
-			</div>
-			<div class="board__fallback">
-				<p data-i18n="board.fallback">Lunes a sábado de 9:00 a 20:00, domingo de 9:00 a 14:00. Escríbenos y te damos hora.</p>
-				<a class="btn btn--gold" href="https://wa.me/34673937511?text=Hola%20Manaury%2C%20quiero%20pedir%20turno.%20%C2%BFQu%C3%A9%20horas%20tienes%20libres%3F" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-wa"/></svg><span data-i18n="hero.btn">Pide tu turno por WhatsApp</span></a>
+		<div class="strip" role="region" aria-label="Cortes de la casa" data-i18n-aria="strip">
+			<div class="strip__track">
+				<img src="assets/img/03-afro-480.webp" width="480" height="480" alt="Afro con degradado" data-i18n-alt="s.03" fetchpriority="high">
+				<img src="assets/img/04-color-480.webp" width="480" height="598" alt="Pelo rojo con degradado" data-i18n-alt="s.04">
+				<img src="assets/img/09-barba-480.webp" width="480" height="480" alt="Degradado con barba perfilada" data-i18n-alt="s.09">
+				<img src="assets/img/11-azul-480.webp" width="480" height="600" alt="Pelo azul con degradado" data-i18n-alt="s.11" loading="lazy">
+				<img src="assets/img/05-platino-480.webp" width="480" height="479" alt="Platino y barba" data-i18n-alt="s.05" loading="lazy">
+				<img src="assets/img/10-diseno-480.webp" width="480" height="600" alt="Rizos con un diseño en V" data-i18n-alt="s.10" loading="lazy">
+				<img src="assets/img/13-poste-480.webp" width="480" height="480" alt="Degradado medio junto al poste de barbero" data-i18n-alt="s.13" loading="lazy">
+				<img src="assets/img/08-raya-480.webp" width="480" height="479" alt="Degradado con raya" data-i18n-alt="s.08" loading="lazy">
+				<span class="strip__dup" style="display: contents" aria-hidden="true">
+					<img src="assets/img/03-afro-480.webp" width="480" height="480" alt="" loading="lazy">
+					<img src="assets/img/04-color-480.webp" width="480" height="598" alt="" loading="lazy">
+					<img src="assets/img/09-barba-480.webp" width="480" height="480" alt="" loading="lazy">
+					<img src="assets/img/11-azul-480.webp" width="480" height="600" alt="" loading="lazy">
+					<img src="assets/img/05-platino-480.webp" width="480" height="479" alt="" loading="lazy">
+					<img src="assets/img/10-diseno-480.webp" width="480" height="600" alt="" loading="lazy">
+					<img src="assets/img/13-poste-480.webp" width="480" height="480" alt="" loading="lazy">
+					<img src="assets/img/08-raya-480.webp" width="480" height="479" alt="" loading="lazy">
+				</span>
 			</div>
 		</div>
 	</section>
 
-	<section class="sec cuts" id="cortes" aria-labelledby="cuts-h">
-		<div class="wrap grid">
-			<div class="cuts__head">
-				<h2 id="cuts-h" data-i18n="cuts.h">Cortes de la casa.</h2>
-				<a class="ig" href="https://www.instagram.com/manaurypeluqueria_barbershop/" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-ig"/></svg>@manaurypeluqueria_barbershop</a>
+	<section class="band" aria-labelledby="band-h">
+		<div class="wrap">
+			<h2 id="band-h" data-i18n="band.h">Abiertos los 7 días.</h2>
+			<div class="band__row">
+				<p class="band__hours" data-i18n="band.hours"><span class="nw">Lunes a sábado <b>9:00–20:00</b></span> · <span class="nw">Domingo <b>9:00–14:00</b></span></p>
+				<p class="band__now"><span class="dot" id="band-dot"></span><span id="band-now"></span></p>
+				<a href="#reservar" data-i18n="band.link">Reserva tu turno</a>
 			</div>
-			<div class="cuts__grid">
-				<figure class="cut cut--a"><img src="assets/img/03-afro-800.webp" srcset="assets/img/03-afro-480.webp 480w, assets/img/03-afro-800.webp 800w, assets/img/03-afro-1200.webp 1200w" sizes="(min-width: 48rem) 45vw, 100vw" width="1200" height="1200" loading="lazy" alt="Cliente con el pelo afro arriba y degradado a los lados" data-i18n-alt="alt.03" style="object-position: 55% 45%"><figcaption data-i18n="cap.03">Afro con degradado.</figcaption></figure>
-				<figure class="cut cut--b"><img src="assets/img/04-color-800.webp" srcset="assets/img/04-color-480.webp 480w, assets/img/04-color-800.webp 800w" sizes="(min-width: 48rem) 25vw, 50vw" width="800" height="997" loading="lazy" alt="Cliente con el pelo teñido de rojo y degradado bajo" data-i18n-alt="alt.04" style="object-position: 50% 40%"><figcaption data-i18n="cap.04">Rojo, con degradado.</figcaption></figure>
-				<figure class="cut cut--c"><img src="assets/img/05-platino-800.webp" srcset="assets/img/05-platino-480.webp 480w, assets/img/05-platino-800.webp 800w" sizes="(min-width: 48rem) 25vw, 50vw" width="800" height="799" loading="lazy" alt="Cliente con gafas de sol, pelo decolorado y barba perfilada, junto al cartel de la barbería" data-i18n-alt="alt.05" style="object-position: 40% 40%"><figcaption data-i18n="cap.05">Platino y barba.</figcaption></figure>
-				<figure class="cut cut--d"><img src="assets/img/08-raya-800.webp" srcset="assets/img/08-raya-480.webp 480w, assets/img/08-raya-800.webp 800w, assets/img/08-raya-1200.webp 1200w" sizes="(min-width: 48rem) 25vw, 50vw" width="1200" height="1199" loading="lazy" alt="Cliente de perfil con degradado, una raya en el lateral y la barba perfilada" data-i18n-alt="alt.08" style="object-position: 60% 38%"><figcaption data-i18n="cap.08">Degradado con raya.</figcaption></figure>
-				<figure class="cut cut--e"><img src="assets/img/06-fade-800.webp" srcset="assets/img/06-fade-480.webp 480w, assets/img/06-fade-800.webp 800w" sizes="(min-width: 48rem) 25vw, 50vw" width="800" height="1000" loading="lazy" alt="Cliente con degradado alto y el contorno de la frente marcado" data-i18n-alt="alt.06" style="object-position: 50% 45%"><figcaption data-i18n="cap.06">Degradado alto.</figcaption></figure>
+		</div>
+	</section>
+
+	<section class="sec" id="servicios" aria-labelledby="menu-h">
+		<div class="wrap">
+			<div class="sec__head">
+				<div><h2 id="menu-h" data-i18n="menu.h">Todo tipo de cortes.</h2><p class="cite-line" data-i18n="menu.cite">Así se presenta la casa en Facebook</p></div>
+				<p class="sec__lede" data-i18n="menu.lede">Toca uno y reserva tu turno.</p>
 			</div>
+			<ul class="menu">
+				<li><button type="button" class="pick" data-svc="corte"><span><span class="pick__n" data-i18n="m.corte.h">Corte de pelo</span><span class="pick__p" data-i18n="m.corte.p">El que traigas en la cabeza.</span></span><span class="pick__go"><span data-i18n="pick">Reservar</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span></button></li>
+				<li><button type="button" class="pick" data-svc="degradado"><span><span class="pick__n" data-i18n="m.degradado.h">Degradado</span><span class="pick__p" data-i18n="m.degradado.p">Bajo, medio o alto.</span></span><span class="pick__go"><span data-i18n="pick">Reservar</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span></button></li>
+				<li><button type="button" class="pick" data-svc="diseno"><span><span class="pick__n" data-i18n="m.diseno.h">Diseños y rayas</span><span class="pick__p" data-i18n="m.diseno.p">Rayas y dibujos rapados, lo que pidas.</span></span><span class="pick__go"><span data-i18n="pick">Reservar</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span></button></li>
+				<li><button type="button" class="pick" data-svc="barba"><span><span class="pick__n" data-i18n="m.barba.h">Barba</span><span class="pick__p" data-i18n="m.barba.p">Arreglada y perfilada.</span></span><span class="pick__go"><span data-i18n="pick">Reservar</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span></button></li>
+				<li><button type="button" class="pick" data-svc="color"><span><span class="pick__n" data-i18n="m.color.h">Color</span><span class="pick__p" data-i18n="m.color.p">Rojo, azul o el tono que quieras.</span></span><span class="pick__go"><span data-i18n="pick">Reservar</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span></button></li>
+				<li><button type="button" class="pick" data-svc="platino"><span><span class="pick__n" data-i18n="m.platino.h">Platino</span><span class="pick__p" data-i18n="m.platino.p">Decoloración, con degradado.</span></span><span class="pick__go"><span data-i18n="pick">Reservar</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span></button></li>
+				<li><button type="button" class="pick" data-svc="nino"><span><span class="pick__n" data-i18n="m.nino.h">Corte de niño</span><span class="pick__p" data-i18n="m.nino.p">Para los más pequeños de la casa.</span></span><span class="pick__go"><span data-i18n="pick">Reservar</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span></button></li>
+			</ul>
+			<p class="menu__note" data-i18n="menu.note">¿Precio? Te lo decimos al reservar o por WhatsApp.</p>
+		</div>
+	</section>
+
+	<section class="sec" id="cortes" aria-labelledby="cuts-h">
+		<div class="wrap">
+			<div class="sec__head">
+				<div><h2 id="cuts-h" lang="es">Full siempre, nunca low.</h2><p class="cite-line" data-i18n="cuts.cite">Manaury, en Instagram · junio de 2020</p></div>
+				<p><a class="ig" href="https://www.instagram.com/manaurypeluqueria_barbershop/" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-ig"/></svg>@manaurypeluqueria_barbershop</a></p>
+			</div>
+			<div class="gallery">
+				<figure class="g--big"><img src="assets/img/12-flequillo-800.webp" srcset="assets/img/12-flequillo-480.webp 480w, assets/img/12-flequillo-800.webp 800w" sizes="(min-width: 48rem) 50vw, 100vw" width="800" height="1000" loading="lazy" alt="Cliente con flequillo texturizado y laterales cortos" data-i18n-alt="alt.12" style="object-position: 50% 30%"><figcaption data-i18n="cap.12">Flequillo texturizado.</figcaption></figure>
+				<figure><img src="assets/img/04-color-480.webp" srcset="assets/img/04-color-480.webp 480w, assets/img/04-color-800.webp 800w" sizes="(min-width: 48rem) 25vw, 50vw" width="480" height="598" loading="lazy" alt="Cliente con el pelo teñido de rojo y degradado bajo" data-i18n-alt="alt.04" style="object-position: 50% 40%"><figcaption data-i18n="cap.04">Rojo, con degradado.</figcaption></figure>
+				<figure><img src="assets/img/05-platino-480.webp" srcset="assets/img/05-platino-480.webp 480w, assets/img/05-platino-800.webp 800w" sizes="(min-width: 48rem) 25vw, 50vw" width="480" height="479" loading="lazy" alt="Cliente con gafas de sol, pelo decolorado y barba perfilada, junto al cartel de la barbería" data-i18n-alt="alt.05" style="object-position: 40% 40%"><figcaption data-i18n="cap.05">Platino y barba.</figcaption></figure>
+				<figure><img src="assets/img/09-barba-480.webp" srcset="assets/img/09-barba-480.webp 480w, assets/img/09-barba-800.webp 800w" sizes="(min-width: 48rem) 25vw, 50vw" width="480" height="480" loading="lazy" alt="Cliente de perfil con degradado, barba perfilada y tatuajes en el cuello" data-i18n-alt="alt.09" style="object-position: 55% 35%"><figcaption data-i18n="cap.09">Degradado y barba.</figcaption></figure>
+				<figure><img src="assets/img/10-diseno-480.webp" srcset="assets/img/10-diseno-480.webp 480w, assets/img/10-diseno-800.webp 800w" sizes="(min-width: 48rem) 25vw, 50vw" width="480" height="600" loading="lazy" alt="Nuca de un cliente con pelo rizado y un diseño en V rapado en el lateral" data-i18n-alt="alt.10"><figcaption data-i18n="cap.10">Rizos con diseño.</figcaption></figure>
+				<figure><img src="assets/img/11-azul-480.webp" srcset="assets/img/11-azul-480.webp 480w, assets/img/11-azul-800.webp 800w" sizes="(min-width: 48rem) 25vw, 50vw" width="480" height="600" loading="lazy" alt="Cliente con el pelo teñido de azul y degradado, en la calle junto al poste de barbero" data-i18n-alt="alt.11" style="object-position: 55% 30%"><figcaption data-i18n="cap.11">Azul, con degradado.</figcaption></figure>
+				<figure><img src="assets/img/08-raya-480.webp" srcset="assets/img/08-raya-480.webp 480w, assets/img/08-raya-800.webp 800w" sizes="(min-width: 48rem) 25vw, 50vw" width="480" height="479" loading="lazy" alt="Cliente de perfil con degradado, una raya en el lateral y la barba perfilada" data-i18n-alt="alt.08" style="object-position: 60% 38%"><figcaption data-i18n="cap.08">Degradado con raya.</figcaption></figure>
+				<figure><img src="assets/img/03-afro-480.webp" srcset="assets/img/03-afro-480.webp 480w, assets/img/03-afro-800.webp 800w" sizes="(min-width: 48rem) 25vw, 50vw" width="480" height="480" loading="lazy" alt="Cliente con el pelo afro arriba y degradado a los lados" data-i18n-alt="alt.03" style="object-position: 55% 45%"><figcaption data-i18n="cap.03">Afro con degradado.</figcaption></figure>
+				<figure><img src="assets/img/13-poste-480.webp" srcset="assets/img/13-poste-480.webp 480w, assets/img/13-poste-800.webp 800w" sizes="(min-width: 48rem) 25vw, 50vw" width="480" height="480" loading="lazy" alt="Cliente con degradado medio sentado junto a la puerta, con el poste de barbero fuera" data-i18n-alt="alt.13" style="object-position: 50% 45%"><figcaption data-i18n="cap.13">Degradado medio.</figcaption></figure>
+				<figure><img src="assets/img/06-fade-480.webp" srcset="assets/img/06-fade-480.webp 480w, assets/img/06-fade-800.webp 800w" sizes="(min-width: 48rem) 25vw, 50vw" width="480" height="600" loading="lazy" alt="Cliente con degradado alto y el contorno de la frente marcado" data-i18n-alt="alt.06" style="object-position: 50% 45%"><figcaption data-i18n="cap.06">Degradado alto.</figcaption></figure>
+				<figure><img src="assets/img/15-platino-nuca-480.webp" srcset="assets/img/15-platino-nuca-480.webp 480w, assets/img/15-platino-nuca-800.webp 800w" sizes="(min-width: 48rem) 25vw, 50vw" width="480" height="479" loading="lazy" alt="Cliente con el pelo decolorado y degradado, visto desde atrás dentro del local" data-i18n-alt="alt.15" style="object-position: 55% 35%"><figcaption data-i18n="cap.15">Platino, por detrás.</figcaption></figure>
+				<figure><img src="assets/img/07-nuca-480.webp" srcset="assets/img/07-nuca-480.webp 480w, assets/img/07-nuca-800.webp 800w" sizes="(min-width: 48rem) 25vw, 50vw" width="480" height="480" loading="lazy" alt="Nuca con degradado limpio, vista desde atrás" data-i18n-alt="alt.07" style="object-position: 45% 40%"><figcaption data-i18n="cap.07">Por detrás.</figcaption></figure>
+				<figure><img src="assets/img/14-sillon-480.webp" srcset="assets/img/14-sillon-480.webp 480w, assets/img/14-sillon-800.webp 800w" sizes="(min-width: 48rem) 25vw, 50vw" width="480" height="479" loading="lazy" alt="Un barbero trabaja en la nuca de un cliente ante el espejo, con las máquinas en la mesa" data-i18n-alt="alt.14" style="object-position: 40% 50%"><figcaption data-i18n="cap.14">En el sillón.</figcaption></figure>
+			</div>
+		</div>
+	</section>
+
+	<section class="sec" id="reservar" aria-labelledby="book-h">
+		<div class="wrap">
+			<div class="sec__head">
+				<h2 id="book-h" data-i18n="book.h">Reserva online.</h2>
+				<p class="sec__lede" data-i18n="book.lede">Elige servicio, día y hora, sin llamar. Así reservarían los clientes en la web de verdad.</p>
+			</div>
+			<div class="book__card">
+				<svg class="corner corner--tl" aria-hidden="true"><use href="#i-corner"/></svg><svg class="corner corner--tr" aria-hidden="true"><use href="#i-corner"/></svg><svg class="corner corner--bl" aria-hidden="true"><use href="#i-corner"/></svg><svg class="corner corner--br" aria-hidden="true"><use href="#i-corner"/></svg>
+				<p class="book__flag" data-i18n="b.flag">Vista previa de la reserva online: no se envía nada.</p>
+				<form id="book" novalidate>
+					<fieldset class="step step--svc">
+						<legend><b>1</b><span data-i18n="b.svc">Servicio</span></legend>
+						<div class="opts" id="svc-opts"></div>
+						<span class="err" id="err-svc"></span>
+					</fieldset>
+					<fieldset class="step step--day">
+						<legend><b>2</b><span data-i18n="b.day">Día</span></legend>
+						<div class="opts" id="day-opts"></div>
+						<span class="err" id="err-day"></span>
+					</fieldset>
+					<fieldset class="step step--time">
+						<legend><b>3</b><span data-i18n="b.time">Hora</span></legend>
+						<div class="times" id="time-opts"><p class="hint">Elige primero el día.</p></div>
+						<span class="err" id="err-time"></span>
+					</fieldset>
+					<fieldset class="step step--you">
+						<legend><b>4</b><span data-i18n="b.you">Tus datos</span></legend>
+						<div class="fields">
+							<div class="field"><label for="f-name" data-i18n="b.name">Nombre</label><input id="f-name" name="name" autocomplete="given-name" aria-describedby="err-name"><span class="err" id="err-name"></span></div>
+							<div class="field"><label for="f-tel" data-i18n="b.tel">Móvil</label><input id="f-tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="6__ ___ ___" aria-describedby="err-tel"><span class="err" id="err-tel"></span></div>
+						</div>
+					</fieldset>
+					<div class="book__sum">
+						<p id="sum" aria-live="polite"></p>
+						<button class="btn btn--gold" type="submit"><svg class="icon" aria-hidden="true"><use href="#i-cal"/></svg><span data-i18n="b.confirm">Confirmar reserva</span></button>
+						<p class="book__demo" data-i18n="b.demo">Vista previa: no se envía nada. En la web de verdad, la reserva entra en la agenda de la barbería y te llega la confirmación al móvil.</p>
+					</div>
+				</form>
+				<div class="book__done" id="done" role="status" hidden tabindex="-1">
+					<h3 class="gilt" id="done-h">¡Hecho!</h3>
+					<p class="ticket" id="done-ticket"></p>
+					<p class="hint" data-i18n="b.donehint">Así le llegaría a Manaury en su agenda, y a ti la confirmación. Esto es una vista previa: no se ha enviado nada.</p>
+					<div class="acts">
+						<a class="btn btn--line" id="done-wa" href="https://wa.me/34673937511" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-wa"/></svg><span data-i18n="b.donewa">Enviarlo por WhatsApp</span></a>
+						<button class="btn btn--line" type="button" id="done-again" data-i18n="b.again">Hacer otra reserva</button>
+					</div>
+				</div>
+			</div>
+			<div class="book__fallback">
+				<p data-i18n="book.fallback">Lunes a sábado de 9:00 a 20:00, domingo de 9:00 a 14:00. Escríbenos y te damos hora.</p>
+			</div>
+			<p class="book__alt"><span data-i18n="book.alt">¿Prefieres escribir o llamar?</span>
+				<a class="btn btn--line" href="https://wa.me/34673937511?text=Hola%20Manaury%2C%20quiero%20pedir%20turno.%20%C2%BFQu%C3%A9%20horas%20tienes%20libres%3F" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
+				<a class="btn btn--line" href="tel:+34673937511"><svg class="icon" aria-hidden="true"><use href="#i-tel"/></svg>673 937 511</a>
+			</p>
 		</div>
 	</section>
 
 	<section class="sec shop" id="local" aria-labelledby="shop-h">
 		<div class="wrap grid">
 			<figure class="shop__photo">
-				<img src="assets/img/02-local-800.webp" srcset="assets/img/02-local-480.webp 480w, assets/img/02-local-800.webp 800w, assets/img/02-local-1200.webp 1200w" sizes="(min-width: 60rem) 50vw, 100vw" width="1200" height="1500" loading="lazy" alt="Interior de la barbería: sillones, un sofá negro y el logo de Manaury en el suelo" data-i18n-alt="alt.02">
+				<img src="assets/img/02-local-800.webp" srcset="assets/img/02-local-480.webp 480w, assets/img/02-local-800.webp 800w, assets/img/02-local-1200.webp 1200w" sizes="(min-width: 60rem) 50vw, 100vw" width="800" height="1000" loading="lazy" alt="Interior de la barbería: sillones, un sofá negro y el logo de Manaury en el suelo" data-i18n-alt="alt.02">
 				<figcaption data-i18n="cap.02">El local, con el logo de la casa en el suelo · @manaurypeluqueria_barbershop</figcaption>
 			</figure>
 			<div class="shop__info">
-				<h2 id="shop-h" class="lettered">Av. Austria, 47</h2>
+				<h2 id="shop-h" class="lettered">Av.&nbsp;Austria,&nbsp;47</h2>
 				<p class="addr">San Eugenio, Costa Adeje<small>38660 · Santa Cruz de Tenerife</small></p>
 				<div class="shop__acts">
 					<a class="btn btn--line" href="https://maps.google.com/?cid=15109372918328343500" target="_blank" rel="noopener"><span data-i18n="shop.map">Cómo llegar</span><svg class="icon" aria-hidden="true"><use href="#i-out"/></svg></a>
@@ -466,7 +552,8 @@ html .row.is-taken .t { letter-spacing: -0.015em; }
 				<svg class="corner corner--tl" aria-hidden="true" style="left:0"><use href="#i-corner"/></svg><svg class="corner corner--tr" aria-hidden="true" style="right:0"><use href="#i-corner"/></svg>
 				<h2 id="close-h" data-i18n="close.h">¿Te sientas hoy?</h2>
 				<div class="close__acts">
-					<a class="btn btn--gold" href="#turnos"><span data-i18n="close.btn">Mira los turnos libres</span><svg class="icon" aria-hidden="true"><use href="#i-up"/></svg></a>
+					<a class="btn btn--gold" href="#reservar"><svg class="icon" aria-hidden="true"><use href="#i-cal"/></svg><span data-i18n="hero.book">Reservar online</span></a>
+					<a class="btn btn--line" href="https://wa.me/34673937511?text=Hola%20Manaury%2C%20quiero%20pedir%20turno.%20%C2%BFQu%C3%A9%20horas%20tienes%20libres%3F" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
 					<a class="btn btn--line" href="tel:+34673937511"><svg class="icon" aria-hidden="true"><use href="#i-tel"/></svg><span data-i18n="close.call">Llamar al 673 937 511</span></a>
 				</div>
 			</div>
@@ -474,10 +561,10 @@ html .row.is-taken .t { letter-spacing: -0.015em; }
 	</section>
 </main>
 
-<footer>
+<footer class="site">
 	<div class="wrap">
 		<p><b data-i18n="foot.b">Vista previa privada de Teide Digital para Peluquería Manaury.</b></p>
-		<p data-i18n="foot.p">Los huecos libres son de ejemplo. Fotos: Instagram de @manaurypeluqueria_barbershop (2019–2020). Valoración y reseñas: Google, 10 de noviembre de 2026.</p>
+		<p data-i18n="foot.p">La reserva online es una vista previa: no se envía nada. Fotos: Instagram de @manaurypeluqueria_barbershop (2019–2020). Valoración y reseñas: Google, 10 de noviembre de 2026.</p>
 	</div>
 </footer>
 
@@ -488,43 +575,51 @@ html .row.is-taken .t { letter-spacing: -0.015em; }
 	const WA = '34673937511';
 	const TZ = 'Atlantic/Canary';
 	const HOURS = { 0: [540, 840], 1: [540, 1200], 2: [540, 1200], 3: [540, 1200], 4: [540, 1200], 5: [540, 1200], 6: [540, 1200] };
-	const STEP = 30;
-	const NOON = 840;
+	const STEP = 30, LEAD = 30, NOON = 840;
 
 	const EN = {
 		'mark.sub': 'Hairdresser · barber · San Eugenio',
-		'nav.turnos': 'Turns', 'nav.cortes': 'Cuts', 'nav.local': 'The shop',
-		'mast.turn': 'Get a turn',
-		'hero.cite': 'Manaury, on Instagram · February 2020 (their words, in Spanish)',
-		'hero.hours': 'Monday to Saturday 9:00–20:00 · Sunday 9:00–14:00',
-		'hero.turn': 'Turn', 'hero.label': 'Pick your time and we hold it for you on WhatsApp.',
-		'hero.btn': 'Get your turn on WhatsApp', 'hero.more': 'See all the turns',
-		'hero.demo': 'Preview: the free slots are examples.',
-		'board.h': 'The turns.',
-		'board.lede': 'Every kind of cut, fades, designs, beard, colour and platinum, and kids’ cuts. Tap a free slot and we hold it for you on WhatsApp.',
-		'svc.legend': 'For:', 'svc.corte': 'haircut', 'svc.degradado': 'fade', 'svc.diseno': 'design', 'svc.barba': 'beard', 'svc.color': 'colour', 'svc.platino': 'platinum', 'svc.nino': 'kids',
-		'board.note': 'Example slots in this preview. On the real website, this shows the real diary.',
-		'board.price': 'Price? Ask when you book your turn.',
-		'board.fallback': 'Monday to Saturday 9:00–20:00, Sunday 9:00–14:00. Message us and we’ll give you a time.',
-		'cuts.h': 'Cuts from the shop.',
-		'cap.01': 'Low fade · @manaurypeluqueria_barbershop', 'cap.02': 'The shop, with the house logo on the floor · @manaurypeluqueria_barbershop', 'cap.03': 'Afro with a fade.', 'cap.04': 'Red, with a fade.', 'cap.05': 'Platinum and beard.', 'cap.06': 'High fade.', 'cap.08': 'Fade with a part.',
-		'alt.01': 'Profile of a client with a low fade and a sharp line-up', 'alt.02': 'Inside the barber shop: chairs, a black sofa and the Manaury logo on the floor', 'alt.03': 'A client with an afro top and faded sides', 'alt.04': 'A client with hair dyed red and a low fade', 'alt.05': 'A client in sunglasses with bleached hair and a shaped beard, beside the barber shop sign', 'alt.06': 'A client with a high fade and a crisp hairline', 'alt.08': 'A client in profile with a fade, a shaved part and a shaped beard',
+		'nav.servicios': 'Services', 'nav.cortes': 'Cuts', 'nav.local': 'The shop', 'mast.turn': 'Book',
+		'hero.kind': 'Hairdresser · Barber', 'hero.cite': 'Manaury, on Instagram · February 2020 (their words, in Spanish)',
+		'hero.book': 'Book online', 'hero.rating': '4.5 · 96 reviews on Google', 'hero.open': 'Open 7 days a week',
+		'strip': 'Cuts from the shop', 's.03': 'Afro with a fade', 's.04': 'Red hair with a fade', 's.09': 'Fade with a shaped beard', 's.11': 'Blue hair with a fade', 's.05': 'Platinum and beard', 's.10': 'Curls with a V design', 's.13': 'Mid fade by the barber pole', 's.08': 'Fade with a part',
+		'band.h': 'Open 7 days a week.', 'band.hours': '<span class="nw">Monday to Saturday <b>9:00–20:00</b></span> · <span class="nw">Sunday <b>9:00–14:00</b></span>', 'band.link': 'Book your turn',
+		'menu.h': 'Every kind of cut.', 'menu.cite': 'How the shop describes itself on Facebook', 'menu.lede': 'Tap one and book your turn.',
+		'm.corte.h': 'Haircut', 'm.corte.p': 'Whatever you have in mind.', 'm.degradado.h': 'Fade', 'm.degradado.p': 'Low, mid or high.', 'm.diseno.h': 'Designs and parts', 'm.diseno.p': 'Shaved lines and designs, whatever you ask for.', 'm.barba.h': 'Beard', 'm.barba.p': 'Trimmed and shaped.', 'm.color.h': 'Colour', 'm.color.p': 'Red, blue or the shade you want.', 'm.platino.h': 'Platinum', 'm.platino.p': 'Bleached, with a fade.', 'm.nino.h': 'Kids’ cut', 'm.nino.p': 'For the little ones.',
+		'pick': 'Book', 'menu.note': 'Price? We tell you when you book, or on WhatsApp.',
+		'cuts.cite': 'Manaury, on Instagram · June 2020 (their words, in Spanish)',
+		'cap.01': 'Low fade · @manaurypeluqueria_barbershop', 'cap.02': 'The shop, with the house logo on the floor · @manaurypeluqueria_barbershop', 'cap.03': 'Afro with a fade.', 'cap.04': 'Red, with a fade.', 'cap.05': 'Platinum and beard.', 'cap.06': 'High fade.', 'cap.07': 'From behind.', 'cap.08': 'Fade with a part.', 'cap.09': 'Fade and beard.', 'cap.10': 'Curls with a design.', 'cap.11': 'Blue, with a fade.', 'cap.12': 'Textured fringe.', 'cap.13': 'Mid fade.', 'cap.14': 'In the chair.', 'cap.15': 'Platinum, from behind.',
+		'alt.01': 'Profile of a client with a low fade and a sharp line-up', 'alt.02': 'Inside the barber shop: chairs, a black sofa and the Manaury logo on the floor', 'alt.03': 'A client with an afro top and faded sides', 'alt.04': 'A client with hair dyed red and a low fade', 'alt.05': 'A client in sunglasses with bleached hair and a shaped beard, beside the barber shop sign', 'alt.06': 'A client with a high fade and a crisp hairline', 'alt.07': 'The nape of a clean fade, seen from behind', 'alt.08': 'A client in profile with a fade, a shaved part and a shaped beard', 'alt.09': 'A client in profile with a fade, a shaped beard and neck tattoos', 'alt.10': 'The back of a client with curly hair and a V design shaved into the side', 'alt.11': 'A client with hair dyed blue and a fade, outside beside the barber pole', 'alt.12': 'A client with a textured fringe and short sides', 'alt.13': 'A client with a mid fade sitting by the door, the barber pole outside', 'alt.14': 'A barber works on a client’s nape at the mirror, clippers on the counter', 'alt.15': 'A client with bleached hair and a fade, seen from behind inside the shop',
+		'book.h': 'Book online.', 'book.lede': 'Pick service, day and time, no phone call. This is how clients would book on the real website.',
+		'b.svc': 'Service', 'b.day': 'Day', 'b.time': 'Time', 'b.you': 'Your details', 'b.name': 'Name', 'b.tel': 'Mobile',
+		'b.confirm': 'Confirm booking', 'b.flag': 'Online booking preview: nothing is sent.',
+		'b.demo': 'Preview: nothing is sent. On the real website the booking goes into the shop’s diary and you get the confirmation on your phone.',
+		'b.donehint': 'This is how it would reach Manaury’s diary, and your confirmation. It’s a preview: nothing has been sent.', 'b.donewa': 'Send it on WhatsApp', 'b.again': 'Make another booking',
+		'book.fallback': 'Monday to Saturday 9:00–20:00, Sunday 9:00–14:00. Message us and we’ll give you a time.', 'book.alt': 'Rather write or call?',
 		'shop.map': 'Directions',
 		'd.0': 'Sunday', 'd.1': 'Monday', 'd.2': 'Tuesday', 'd.3': 'Wednesday', 'd.4': 'Thursday', 'd.5': 'Friday', 'd.6': 'Saturday',
 		'stars': '4.5 out of 5', 'rating.p': '96 reviews on Google · checked 10 November 2026',
 		'q1.by': 'Romen P., on Google · February 2023 (in Spanish)', 'q2.by': 'Eftim, on Google · November 2020 (in Spanish)',
-		'close.h': 'In the chair today?', 'close.btn': 'See the free turns', 'close.call': 'Call 673 937 511',
+		'close.h': 'In the chair today?', 'close.call': 'Call 673 937 511',
 		'foot.b': 'A private preview by Teide Digital for Peluquería Manaury.',
-		'foot.p': 'The free slots are examples. Photos: @manaurypeluqueria_barbershop on Instagram (2019–2020). Rating and reviews: Google, 10 November 2026.'
+		'foot.p': 'Online booking is a preview: nothing is sent. Photos: @manaurypeluqueria_barbershop on Instagram (2019–2020). Rating and reviews: Google, 10 November 2026.'
 	};
-	const SVC = {
-		corte: ['un corte', 'a haircut'], degradado: ['un degradado', 'a fade'], diseno: ['un corte con diseño', 'a cut with a design'],
-		barba: ['la barba', 'a beard trim'], color: ['color', 'colour'], platino: ['un platino', 'platinum'], nino: ['un corte de niño', 'a kids’ cut']
-	};
+	// [key, ES name, EN name, ES "para …", EN "for …"]
+	const SVC = [
+		['corte', 'Corte de pelo', 'Haircut', 'un corte', 'a haircut'],
+		['degradado', 'Degradado', 'Fade', 'un degradado', 'a fade'],
+		['diseno', 'Diseño y rayas', 'Design', 'un corte con diseño', 'a cut with a design'],
+		['barba', 'Barba', 'Beard', 'la barba', 'a beard trim'],
+		['color', 'Color', 'Colour', 'color', 'colour'],
+		['platino', 'Platino', 'Platinum', 'un platino', 'platinum'],
+		['nino', 'Corte de niño', 'Kids’ cut', 'un corte de niño', 'a kids’ cut']
+	];
 	const DAY = { es: ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'], en: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] };
 	const DSH = { es: ['dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb'], en: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] };
-	const MON = { es: ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'], en: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] };
-	const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+	const ERR = {
+		es: { svc: 'Elige un servicio.', day: 'Elige un día.', time: 'Elige una hora.', name: 'Escribe tu nombre.', tel: 'Escribe un móvil de 9 cifras.' },
+		en: { svc: 'Pick a service.', day: 'Pick a day.', time: 'Pick a time.', name: 'Type your name.', tel: 'Type a 9-digit mobile number.' }
+	};
 
 	const ES = {};
 	d.querySelectorAll('[data-i18n]').forEach((el) => { ES[el.dataset.i18n] = el.innerHTML; });
@@ -533,157 +628,147 @@ html .row.is-taken .t { letter-spacing: -0.015em; }
 
 	let lang = 'es';
 	try { if (localStorage.getItem('manaury-lang') === 'en') lang = 'en'; } catch (e) {}
-	let svc = null;
-	let dayIx = null;
-
+	const sel = { svc: null, day: null, time: null };
+	const $ = (id) => d.getElementById(id);
 	const fmt = (m) => `${Math.floor(m / 60)}:${String(m % 60).padStart(2, '0')}`;
+
 	function now() {
 		const p = Object.fromEntries(new Intl.DateTimeFormat('en-GB', { timeZone: TZ, year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric', hourCycle: 'h23' }).formatToParts(new Date()).map((x) => [x.type, x.value]));
 		const base = Date.UTC(+p.year, +p.month - 1, +p.day);
 		return { base, wd: new Date(base).getUTCDay(), min: +p.hour * 60 + +p.minute };
 	}
-	function hash(s) { let h = 2166136261; for (const c of s) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619); } return h >>> 0; }
+	// the next 7 open days, each with every half-hour from opening to the last turn (today: from now + 30 min)
 	function days() {
 		const n = now();
-		return Array.from({ length: 7 }, (_, i) => {
+		return Array.from({ length: 8 }, (_, i) => {
 			const date = new Date(n.base + i * 864e5);
-			const wd = date.getUTCDay();
-			const [open, close] = HOURS[wd];
-			const key = date.toISOString().slice(0, 10);
+			const wd = date.getUTCDay(); const [open, close] = HOURS[wd];
 			const slots = [];
-			for (let m = open; m <= close - STEP; m += STEP) {
-				const past = i === 0 && m <= n.min;
-				const soon = i === 0 && !past && m <= n.min + 10;
-				slots.push({ m, past, soon, free: hash(key + m) % 100 < 38 });
-			}
-			// a demo day always has a few open turns ahead
-			const ahead = slots.filter((s) => !s.past && !s.soon);
-			if (ahead.length && ahead.filter((s) => s.free).length < 3) ahead.filter((_, j) => j % 3 === 1).forEach((s) => { s.free = true; });
-			return { i, date, wd, open, close, slots, nowMin: i === 0 ? n.min : null };
-		});
+			for (let m = open; m <= close - STEP; m += STEP) if (i > 0 || m >= n.min + LEAD) slots.push(m);
+			return { i, date, wd, open, close, slots };
+		}).filter((x) => x.slots.length).slice(0, 7);
+	}
+	function dayLabel(day, L) {
+		if (day.i === 0) return L === 'es' ? 'Hoy' : 'Today';
+		if (day.i === 1) return L === 'es' ? 'Mañana' : 'Tomorrow';
+		return `${DSH[L][day.wd]} ${day.date.getUTCDate()}`;
 	}
 	function dayPhrase(day, L) {
 		if (day.i === 0) return L === 'es' ? 'hoy' : 'today';
-		if (day.i === 1) return L === 'es' ? 'mañana' : 'tomorrow';
-		const dd = day.date.getUTCDate();
-		return L === 'es' ? `el ${DAY.es[day.wd]} ${dd}` : `on ${DAY.en[day.wd]} ${dd}`;
+		if (day.i === 1) return L === 'es' ? `mañana, ${DAY.es[day.wd]} ${day.date.getUTCDate()},` : `tomorrow, ${DAY.en[day.wd]} ${day.date.getUTCDate()},`;
+		return L === 'es' ? `el ${DAY.es[day.wd]} ${day.date.getUTCDate()}` : `on ${DAY.en[day.wd]} ${day.date.getUTCDate()}`;
 	}
-	function dayTitle(day, L) {
-		const dd = day.date.getUTCDate(); const mo = MON[L][day.date.getUTCMonth()];
-		const lead = day.i === 0 ? (L === 'es' ? 'Hoy' : 'Today') : day.i === 1 ? (L === 'es' ? 'Mañana' : 'Tomorrow') : null;
-		if (L === 'es') return lead ? `${lead}, ${DAY.es[day.wd]} ${dd}` : `${cap(DAY.es[day.wd])} ${dd} de ${mo}`;
-		return lead ? `${lead}, ${DAY.en[day.wd]} ${dd}` : `${DAY.en[day.wd]} ${dd} ${mo}`;
-	}
-	function waHref(day, m) {
-		const s = svc && SVC[svc];
+	function openState() {
+		const n = now(); const [open, close] = HOURS[n.wd]; const L = lang;
+		const isOpen = n.min >= open && n.min < close;
+		const next = fmt(HOURS[(n.wd + 1) % 7][0]);
 		let t;
-		if (lang === 'es') t = `Hola Manaury, quiero turno ${dayPhrase(day, 'es')} a las ${fmt(m)}${s ? ` para ${s[0]}` : ''}. ¿Me lo guardas?`;
-		else t = `Hi Manaury, I'd like a turn ${dayPhrase(day, 'en')} at ${fmt(m)}${s ? ` for ${s[1]}` : ''}. Can you hold it for me?`;
-		return `https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
+		if (isOpen) t = L === 'es' ? `Abierto ahora · hasta las ${fmt(close)}` : `Open now · until ${fmt(close)}`;
+		else if (n.min < open) t = L === 'es' ? `Abre hoy a las ${fmt(open)}` : `Opens today at ${fmt(open)}`;
+		else t = L === 'es' ? `Cerrado ahora · mañana abre a las ${next}` : `Closed now · opens tomorrow at ${next}`;
+		return { isOpen, t, wd: n.wd };
 	}
-	function nextFree(all) {
-		for (const day of all) { const s = day.slots.find((x) => x.free && !x.past && !x.soon); if (s) return { day, s }; }
-		return null;
-	}
-	function openState(all) {
-		const today = all[0]; const n = today.nowMin; const L = lang;
-		const open = n >= today.open && n < today.close;
-		let text;
-		if (open) text = L === 'es' ? `Abierto ahora · hasta las ${fmt(today.close)}` : `Open now · until ${fmt(today.close)}`;
-		else if (n < today.open) text = L === 'es' ? `Abre hoy a las ${fmt(today.open)}` : `Opens today at ${fmt(today.open)}`;
-		else text = L === 'es' ? `Cerrado ahora · mañana abre a las ${fmt(all[1].open)}` : `Closed now · opens tomorrow at ${fmt(all[1].open)}`;
-		return { open, text };
-	}
+	const svcRow = (k) => SVC.find((s) => s[0] === k);
+	const radio = (name, value, html, checked) => `<label class="opt"><input type="radio" name="${name}" value="${value}"${checked ? ' checked' : ''}>${html}</label>`;
 
-	const $ = (id) => d.getElementById(id);
-	function renderPlate(all) {
-		const st = openState(all);
-		$('open-state').textContent = st.text;
-		$('open-dot').classList.toggle('is-closed', !st.open);
-		const nf = nextFree(all);
-		if (!nf) return;
-		const { day, s } = nf; const L = lang;
-		$('next-time').textContent = fmt(s.m);
-		const when = day.i === 0 ? (L === 'es' ? `Hoy, ${DAY.es[day.wd]}` : `Today, ${DAY.en[day.wd]}`)
-			: day.i === 1 ? (L === 'es' ? `Mañana, ${DAY.es[day.wd]}` : `Tomorrow, ${DAY.en[day.wd]}`)
-			: (L === 'es' ? `El ${DAY.es[day.wd]} ${day.date.getUTCDate()}` : `${DAY.en[day.wd]} ${day.date.getUTCDate()}`);
-		$('next-label').innerHTML = `<b>${when}</b>${L === 'es' ? 'el próximo turno libre' : 'the next free turn'}`;
-		$('next-btn-t').textContent = L === 'es' ? `Pide el de las ${fmt(s.m)}` : `Book the ${fmt(s.m)}`;
-		$('next-btn').href = waHref(day, s.m);
+	let DAYS = [];
+	function renderSvc() { $('svc-opts').innerHTML = SVC.map((s) => radio('svc', s[0], lang === 'es' ? s[1] : s[2], sel.svc === s[0])).join(''); }
+	function renderDays() {
+		DAYS = days();
+		if (sel.day !== null && !DAYS.some((x) => x.i === sel.day)) { sel.day = null; sel.time = null; }
+		$('day-opts').innerHTML = DAYS.map((x) => {
+			const note = [];
+			if (x.i === 0) note.push(`${lang === 'es' ? 'desde' : 'from'} ${fmt(x.slots[0])}`);
+			if (x.i === 1) note.push(`${DSH[lang][x.wd]} ${x.date.getUTCDate()}`);
+			if (x.close !== 1200) note.push(`${lang === 'es' ? 'hasta' : 'until'} ${fmt(x.close)}`);
+			return radio('day', x.i, `${dayLabel(x, lang)}${note.length ? `<small>${note.join(' · ')}</small>` : ''}`, sel.day === x.i);
+		}).join('');
 	}
-	function renderDays(all) {
-		const box = $('days');
-		box.innerHTML = '';
-		all.forEach((day) => {
-			const b = d.createElement('button');
-			b.type = 'button';
-			const label = day.i === 0 ? (lang === 'es' ? 'Hoy' : 'Today') : day.i === 1 ? (lang === 'es' ? 'Mañana' : 'Tomorrow') : `${DSH[lang][day.wd]} ${day.date.getUTCDate()}`;
-			const free = day.slots.filter((s) => s.free && !s.past && !s.soon).length;
-			const note = free ? `${free} ${lang === 'es' ? 'libres' : 'free'}` : (lang === 'es' ? 'completo' : 'full');
-			b.innerHTML = `${label}<small>${note}</small>`;
-			b.setAttribute('aria-pressed', String(day.i === dayIx));
-			b.setAttribute('aria-label', `${dayTitle(day, lang)}: ${note}`);
-			b.addEventListener('click', () => { dayIx = day.i; render(); });
-			box.appendChild(b);
-		});
+	function renderTimes() {
+		const box = $('time-opts');
+		const day = DAYS.find((x) => x.i === sel.day);
+		if (!day) { box.innerHTML = `<p class="hint">${lang === 'es' ? 'Elige primero el día.' : 'Pick the day first.'}</p>`; return; }
+		if (!day.slots.includes(sel.time)) sel.time = null;
+		const am = day.slots.filter((m) => m < NOON), pm = day.slots.filter((m) => m >= NOON);
+		let h = '';
+		if (am.length) h += `<h4>${lang === 'es' ? 'Por la mañana' : 'Morning'}</h4><div class="opts opts--time">${am.map((m) => radio('time', m, fmt(m), sel.time === m)).join('')}</div>`;
+		if (pm.length) h += `<h4>${lang === 'es' ? 'Por la tarde' : 'Afternoon'}</h4><div class="opts opts--time">${pm.map((m) => radio('time', m, fmt(m), sel.time === m)).join('')}</div>`;
+		box.innerHTML = h;
 	}
-	function rowHtml(day, s) {
-		const t = fmt(s.m);
-		if (s.soon) return `<li class="row is-taken is-soon"><div><span class="t">${t}</span><span class="s">${lang === 'es' ? 'Ya empieza: no da tiempo' : 'Starting now: too soon'}</span><span></span></div></li>`;
-		if (s.free) return `<li class="row is-free"><a href="${waHref(day, s.m)}" target="_blank" rel="noopener"><span class="t gilt">${t}</span><span class="s"><b>${lang === 'es' ? 'Libre' : 'Free'}</b>${lang === 'es' ? 'pídelo por WhatsApp' : 'book it on WhatsApp'}</span><span class="go"><svg class="icon" aria-hidden="true"><use href="#i-wa"/></svg><span class="sr">${lang === 'es' ? `Pedir el turno de las ${t}` : `Book the ${t} turn`}</span></span></a></li>`;
-		return `<li class="row is-taken"><div><span class="t">${t}</span><span class="s">${lang === 'es' ? 'Ocupado' : 'Taken'}</span><span></span></div></li>`;
+	function ticketText(L) {
+		const s = svcRow(sel.svc); const day = DAYS.find((x) => x.i === sel.day);
+		const parts = [];
+		if (s) parts.push(L === 'es' ? s[1] : s[2]);
+		if (day) parts.push((day.i < 2 ? `${dayLabel(day, L).toLowerCase()}, ` : '') + `${DAY[L][day.wd]} ${day.date.getUTCDate()}`);
+		if (sel.time !== null) parts.push(L === 'es' ? `a las ${fmt(sel.time)}` : `at ${fmt(sel.time)}`);
+		const t = parts.join(' · ');
+		return t ? t.charAt(0).toUpperCase() + t.slice(1) : '';
 	}
-	function renderHalf(day, title, slots, from, to, two) {
-		const past = slots.filter((s) => s.past);
-		const ahead = slots.filter((s) => !s.past);
-		let html = `<div class="half"><h3>${title}</h3><ol class="rows">`;
-		if (past.length) html += `<li class="row is-past"><s>${fmt(past[0].m)}${past.length > 1 ? `–${fmt(past[past.length - 1].m)}` : ''}</s> · ${lang === 'es' ? (past.length > 1 ? 'ya pasaron' : 'ya pasó') : 'gone'}</li>`;
-		const showNow = day.i === 0 && day.nowMin >= Math.max(from, day.open) && day.nowMin < Math.min(to, day.close);
-		if (showNow) html += `<li class="row now" aria-hidden="true"><span>${lang === 'es' ? 'ahora' : 'now'} ${fmt(day.nowMin)}</span></li>`;
-		if (two && ahead.length > 3) html += `</ol><ol class="rows rows--2" style="--n:${Math.ceil(ahead.length / 2)}">`;
-		html += ahead.map((s) => rowHtml(day, s)).join('');
-		if (!ahead.length && day.i === 0) html += `<li class="closed-note">${lang === 'es' ? 'Hoy ya cerramos. Mira mañana.' : 'We’re closed for today. Try tomorrow.'}</li>`;
-		html += '</ol></div>';
-		return html;
+	function renderSum() {
+		const t = ticketText(lang);
+		$('sum').innerHTML = t ? `${t}<span>Peluquería Manaury · Av. Austria, 47</span>` : `<span>${lang === 'es' ? 'Tu turno aparecerá aquí.' : 'Your turn will show here.'}</span>`;
 	}
-	function renderBoard(all) {
-		const day = all[dayIx];
-		$('win-day').textContent = dayTitle(day, lang);
-		const st = openState(all);
-		if (day.i === 0) { $('win-open').textContent = st.text; $('win-dot').classList.toggle('is-closed', !st.open); }
-		else { $('win-open').textContent = `${fmt(day.open)}–${fmt(day.close)}`; $('win-dot').classList.remove('is-closed'); }
-		const morning = day.slots.filter((s) => s.m < NOON);
-		const afternoon = day.slots.filter((s) => s.m >= NOON);
-		if (afternoon.length && morning.length && morning.every((s) => s.past)) {
-			$('halves').innerHTML = renderHalf(day, lang === 'es' ? `Hoy · de ${fmt(day.open)} a ${fmt(day.close)}` : `Today · ${fmt(day.open)} to ${fmt(day.close)}`, day.slots, day.open, day.close, true);
-			return;
-		}
-		if (!afternoon.length) {
-			$('halves').innerHTML = renderHalf(day, lang === 'es' ? `Los domingos, de ${fmt(day.open)} a ${fmt(day.close)}: por la tarde cerramos` : `Sundays, ${fmt(day.open)} to ${fmt(day.close)}: closed in the afternoon`, day.slots, day.open, day.close, true);
-			return;
-		}
-		let html = renderHalf(day, lang === 'es' ? `Por la mañana · de ${fmt(day.open)} a 14:00` : `Morning · ${fmt(day.open)} to 14:00`, morning, day.open, NOON);
-		html += renderHalf(day, lang === 'es' ? `Por la tarde · de 14:00 a ${fmt(day.close)}` : `Afternoon · 14:00 to ${fmt(day.close)}`, afternoon, NOON, day.close);
-		$('halves').innerHTML = html;
+	function waText() {
+		const s = svcRow(sel.svc); const day = DAYS.find((x) => x.i === sel.day);
+		if (lang === 'es') return `Hola Manaury, quiero turno ${dayPhrase(day, 'es')} a las ${fmt(sel.time)}${s ? ` para ${s[3]}` : ''}. ¿Me lo guardas?`;
+		return `Hi Manaury, I'd like a turn ${dayPhrase(day, 'en')} at ${fmt(sel.time)}${s ? ` for ${s[4]}` : ''}. Can you hold it for me?`;
 	}
-	function renderHours() {
-		const today = now().wd;
+	function renderOpen() {
+		const st = openState();
+		$('hero-open').textContent = st.t;
+		$('hero-dot').classList.toggle('is-closed', !st.isOpen);
+		$('band-now').textContent = st.isOpen ? (lang === 'es' ? `Hoy, hasta las ${fmt(HOURS[st.wd][1])}` : `Today until ${fmt(HOURS[st.wd][1])}`) : st.t;
+		$('band-dot').classList.toggle('is-closed', !st.isOpen);
 		d.querySelectorAll('#hours > div').forEach((row) => {
-			const is = +row.dataset.d === today;
+			const is = +row.dataset.d === st.wd;
 			row.classList.toggle('is-today', is);
 			row.querySelector('dt').dataset.today = is ? (lang === 'es' ? 'hoy' : 'today') : '';
 		});
 	}
-	let lastKey = '';
-	function render() {
-		const all = days();
-		if (dayIx === null) dayIx = all[0].slots.some((s) => !s.past) ? 0 : 1;
-		renderPlate(all);
-		renderDays(all);
-		renderBoard(all);
-		renderHours();
-		lastKey = all[0].slots.filter((s) => s.past).length + '|' + all[0].nowMin;
+	function renderBook() { renderSvc(); renderDays(); renderTimes(); renderSum(); }
+	function setErr(k, on) {
+		$('err-' + k).textContent = on ? ERR[lang][k] : '';
+		const f = k === 'name' ? $('f-name') : k === 'tel' ? $('f-tel') : null;
+		if (f) f.setAttribute('aria-invalid', on ? 'true' : 'false');
 	}
+
+	$('book').addEventListener('change', (e) => {
+		const t = e.target;
+		if (t.name === 'svc') { sel.svc = t.value; setErr('svc', false); renderSum(); }
+		if (t.name === 'day') { sel.day = +t.value; setErr('day', false); renderTimes(); renderSum(); }
+		if (t.name === 'time') { sel.time = +t.value; setErr('time', false); renderSum(); }
+	});
+	$('f-name').addEventListener('input', () => setErr('name', false));
+	$('f-tel').addEventListener('input', () => setErr('tel', false));
+	$('book').addEventListener('submit', (e) => {
+		e.preventDefault();
+		const name = $('f-name').value.trim(); const tel = $('f-tel').value.replace(/\D/g, '');
+		const bad = { svc: !sel.svc, day: sel.day === null, time: sel.time === null, name: !name, tel: tel.length < 9 };
+		Object.entries(bad).forEach(([k, v]) => setErr(k, v));
+		const first = Object.keys(bad).find((k) => bad[k]);
+		if (first) {
+			const target = first === 'name' ? $('f-name') : first === 'tel' ? $('f-tel') : d.querySelector(`#${first}-opts input`);
+			if (target) target.focus();
+			return;
+		}
+		$('done-h').textContent = lang === 'es' ? `¡Hecho, ${name}!` : `Done, ${name}!`;
+		$('done-ticket').innerHTML = `${ticketText(lang)}<span>Peluquería Manaury · Av. Austria, 47 · San Eugenio</span>`;
+		$('done-wa').href = `https://wa.me/${WA}?text=${encodeURIComponent(waText())}`;
+		$('book').hidden = true; $('done').hidden = false; $('done').focus();
+		glint($('done-h'));
+	});
+	$('done-again').addEventListener('click', () => {
+		$('done').hidden = true; $('book').hidden = false;
+		sel.time = null; renderTimes(); renderSum();
+		const f = d.querySelector('#svc-opts input'); if (f) f.focus();
+	});
+	d.querySelectorAll('.pick').forEach((b) => b.addEventListener('click', () => {
+		sel.svc = b.dataset.svc; renderSvc(); renderSum(); setErr('svc', false);
+		$('done').hidden = true; $('book').hidden = false;
+		$('reservar').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+		setTimeout(() => { const f = d.querySelector('#day-opts input'); if (f) f.focus({ preventScroll: true }); }, 450);
+	}));
+
 	function setLang(L) {
 		lang = L;
 		d.documentElement.lang = L;
@@ -693,24 +778,24 @@ html .row.is-taken .t { letter-spacing: -0.015em; }
 		d.querySelectorAll('[data-i18n-aria]').forEach((el) => { const v = dict[el.dataset.i18nAria]; if (v != null) el.setAttribute('aria-label', v); });
 		d.querySelectorAll('.lang button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === L)));
 		try { localStorage.setItem('manaury-lang', L); } catch (e) {}
-		render();
+		renderOpen(); renderBook();
+		['svc', 'day', 'time', 'name', 'tel'].forEach((k) => { if ($('err-' + k).textContent) setErr(k, true); });
 	}
-
 	d.querySelectorAll('.lang button').forEach((b) => b.addEventListener('click', () => setLang(b.dataset.lang)));
-	d.querySelectorAll('input[name="svc"]').forEach((r) => r.addEventListener('change', () => { svc = r.value; render(); }));
-
 	setLang(lang);
 	setInterval(() => {
-		const all = days();
-		const key = all[0].slots.filter((s) => s.past).length + '|' + all[0].nowMin;
-		if (key !== lastKey) render();
-	}, 30000);
+		renderOpen();
+		const before = DAYS.map((x) => x.i + ':' + x.slots.length).join();
+		if (before !== days().map((x) => x.i + ':' + x.slots.length).join() && $('done').hidden) { renderDays(); renderTimes(); renderSum(); }
+	}, 60000);
 
-	if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-		const t = $('next-time');
-		t.classList.add('is-glint');
-		t.addEventListener('animationend', () => t.classList.remove('is-glint'), { once: true });
+	function glint(el) {
+		if (matchMedia('(prefers-reduced-motion: reduce)').matches || !el) return;
+		el.classList.remove('is-glint'); void el.offsetWidth; el.classList.add('is-glint');
+		el.addEventListener('animationend', () => el.classList.remove('is-glint'), { once: true });
 	}
+	glint($('hero-name'));
+	if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => d.querySelector('.mast').classList.toggle('is-hero', e.isIntersecting), { rootMargin: '-64px 0px 0px 0px' }).observe($('hero-name'));
 })();
 </script>
 </body>
