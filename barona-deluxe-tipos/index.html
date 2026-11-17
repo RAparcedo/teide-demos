@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Barona Luxury · cuatro tipografías</title>
+<meta name="description" content="Cuatro opciones de tipografía para la portada de Barona Luxury, para elegir una.">
+<style>
+@font-face { font-family: "Bodoni Moda"; src: url("assets/fonts/bodoni-moda-latin-wght-normal.woff2") format("woff2"); font-weight: 400 900; font-display: swap; }
+@font-face { font-family: "Archivo"; src: url("assets/fonts/archivo-latin-standard-normal.woff2") format("woff2"); font-weight: 100 900; font-stretch: 62% 125%; font-display: swap; }
+@font-face { font-family: "Big Shoulders Display"; src: url("assets/fonts/big-shoulders-display-latin-wght-normal.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: "Instrument Sans"; src: url("assets/fonts/instrument-sans-latin-standard-normal.woff2") format("woff2"); font-weight: 400 700; font-stretch: 75% 100%; font-display: swap; }
+@font-face { font-family: "Jost"; src: url("assets/fonts/jost.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+:root { --black: #0b0b0c; --white: #f5f3ee; --neon: #ffd98f; --muted: #b8b4aa; --line: rgb(245 243 238 / .14); }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--black); color: var(--white); font: 400 16px/1.6 "Jost", system-ui, sans-serif; overflow-x: hidden; }
+img { display: block; max-width: 100%; height: auto; }
+p, h1, h2 { margin: 0; }
+.top { padding: 28px 16px 8px; max-width: 1200px; margin: 0 auto; }
+.top h1 { font: 500 15px/1.4 "Jost", sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--neon); }
+.top p { margin-top: 8px; color: var(--muted); max-width: 52ch; }
+.opt { border-top: 1px solid var(--line); padding: 40px 16px 56px; }
+.opt__in { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 32px 64px; align-items: center; }
+.tag { display: inline-flex; gap: 10px; align-items: baseline; font: 500 13px/1 "Jost", sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--neon); margin-bottom: 22px; }
+.tag b { display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--neon); color: var(--black); letter-spacing: 0; font-weight: 600; }
+.sub { margin-top: 16px; text-transform: uppercase; }
+.lede { margin-top: 26px; font-size: 22px; line-height: 1.35; }
+.txt { margin-top: 12px; color: var(--muted); max-width: 42ch; }
+.btn { display: inline-flex; align-items: center; min-height: 50px; padding: 0 24px; margin-top: 24px; border-radius: 999px; background: var(--white); color: var(--black); text-decoration: none; font-weight: 600; }
+.ph img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 60% 35%; }
+@media (max-width: 52rem) {
+	.opt__in { grid-template-columns: 1fr; }
+	.ph { order: -1; }
+	.ph img { aspect-ratio: 5 / 4; object-position: 70% 42%; }
+}
+
+/* A · Moda: high-contrast fashion serif, upright caps */
+.a .name { font: 500 clamp(60px, 14.5vw, 136px)/.9 "Bodoni Moda", serif; letter-spacing: -.01em; text-transform: uppercase; }
+.a .sub { font: 400 14px/1 "Jost", sans-serif; letter-spacing: .5em; color: var(--neon); }
+.a .lede { font: 500 24px/1.35 "Bodoni Moda", serif; }
+.a .txt, .a .btn { font-family: "Jost", sans-serif; }
+
+/* B · Ancha: wide light caps, watch-brand */
+.b .name { font: 300 clamp(40px, 10.4vw, 98px)/1 "Archivo", sans-serif; font-stretch: 125%; letter-spacing: .06em; text-transform: uppercase; }
+.b .sub { font: 500 13px/1 "Archivo", sans-serif; font-stretch: 125%; letter-spacing: .42em; color: var(--neon); }
+.b .lede { font: 300 21px/1.4 "Archivo", sans-serif; font-stretch: 112%; }
+.b .txt, .b .btn { font-family: "Archivo", sans-serif; }
+
+/* C · Cartel: tall bold condensed */
+.c .name { font: 800 clamp(96px, 26vw, 220px)/.82 "Big Shoulders Display", sans-serif; letter-spacing: .005em; text-transform: uppercase; }
+.c .sub { font: 600 22px/1 "Big Shoulders Display", sans-serif; letter-spacing: .3em; color: var(--neon); }
+.c .lede { font: 700 30px/1.15 "Big Shoulders Display", sans-serif; text-transform: uppercase; letter-spacing: .02em; }
+.c .txt, .c .btn { font-family: "Archivo", sans-serif; }
+
+/* D · Limpia: clean modern grotesk */
+.d .name { font: 600 clamp(72px, 16vw, 200px)/.9 "Instrument Sans", sans-serif; letter-spacing: -.045em; }
+.d .sub { font: 500 13px/1 "Instrument Sans", sans-serif; letter-spacing: .32em; color: var(--neon); }
+.d .lede { font: 500 23px/1.35 "Instrument Sans", sans-serif; letter-spacing: -.01em; }
+.d .txt, .d .btn { font-family: "Instrument Sans", sans-serif; }
+</style>
+</head>
+<body>
+<header class="top">
+	<h1>Barona Luxury · ¿qué letra?</h1>
+	<p>La misma portada en cuatro tipografías. Solo cambia la letra: foto, colores y textos son iguales. Elige A, B, C o D.</p>
+</header>
+<main>
+	<section class="opt a" aria-labelledby="a-n">
+		<div class="opt__in">
+			<div>
+				<p class="tag"><b>A</b> Moda · serif de moda, recta</p>
+				<h2 id="a-n" class="name">Barona</h2>
+				<p class="sub">Luxury Barber</p>
+				<p class="lede">Tu estilo. Tu momento. Tu experiencia.</p>
+				<p class="txt">Barbería premium y servicio privado en Valle San Lorenzo, Tenerife.</p>
+				<a class="btn" href="#a-n">Reserva tu cita</a>
+			</div>
+			<figure class="ph" style="margin:0"><img src="assets/img/jonathan-900.webp" srcset="assets/img/jonathan-480.webp 480w, assets/img/jonathan-900.webp 900w" sizes="(max-width: 52rem) 92vw, 44vw" width="900" height="1198" alt="Jonathan Barona en su barbería" fetchpriority="high"></figure>
+		</div>
+	</section>
+	<section class="opt b" aria-labelledby="b-n">
+		<div class="opt__in">
+			<div>
+				<p class="tag"><b>B</b> Ancha · mayúsculas anchas</p>
+				<h2 id="b-n" class="name">Barona</h2>
+				<p class="sub">Luxury Barber</p>
+				<p class="lede">Tu estilo. Tu momento. Tu experiencia.</p>
+				<p class="txt">Barbería premium y servicio privado en Valle San Lorenzo, Tenerife.</p>
+				<a class="btn" href="#b-n">Reserva tu cita</a>
+			</div>
+			<figure class="ph" style="margin:0"><img src="assets/img/jonathan-900.webp" srcset="assets/img/jonathan-480.webp 480w, assets/img/jonathan-900.webp 900w" sizes="(max-width: 52rem) 92vw, 44vw" width="900" height="1198" alt="Jonathan Barona en su barbería" loading="lazy"></figure>
+		</div>
+	</section>
+	<section class="opt c" aria-labelledby="c-n">
+		<div class="opt__in">
+			<div>
+				<p class="tag"><b>C</b> Cartel · alta y con fuerza</p>
+				<h2 id="c-n" class="name">Barona</h2>
+				<p class="sub">Luxury Barber</p>
+				<p class="lede">Tu estilo. Tu momento. Tu experiencia.</p>
+				<p class="txt">Barbería premium y servicio privado en Valle San Lorenzo, Tenerife.</p>
+				<a class="btn" href="#c-n">Reserva tu cita</a>
+			</div>
+			<figure class="ph" style="margin:0"><img src="assets/img/jonathan-900.webp" srcset="assets/img/jonathan-480.webp 480w, assets/img/jonathan-900.webp 900w" sizes="(max-width: 52rem) 92vw, 44vw" width="900" height="1198" alt="Jonathan Barona en su barbería" loading="lazy"></figure>
+		</div>
+	</section>
+	<section class="opt d" aria-labelledby="d-n">
+		<div class="opt__in">
+			<div>
+				<p class="tag"><b>D</b> Limpia · moderna y sobria</p>
+				<h2 id="d-n" class="name">Barona</h2>
+				<p class="sub">Luxury Barber</p>
+				<p class="lede">Tu estilo. Tu momento. Tu experiencia.</p>
+				<p class="txt">Barbería premium y servicio privado en Valle San Lorenzo, Tenerife.</p>
+				<a class="btn" href="#d-n">Reserva tu cita</a>
+			</div>
+			<figure class="ph" style="margin:0"><img src="assets/img/jonathan-900.webp" srcset="assets/img/jonathan-480.webp 480w, assets/img/jonathan-900.webp 900w" sizes="(max-width: 52rem) 92vw, 44vw" width="900" height="1198" alt="Jonathan Barona en su barbería" loading="lazy"></figure>
+		</div>
+	</section>
+</main>
+</body>
+</html>
