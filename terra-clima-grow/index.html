@@ -178,7 +178,7 @@ p { margin: 0; }
 	position: relative; overflow: hidden; isolation: isolate; background: linear-gradient(180deg, var(--bg), var(--bg2)); color: var(--fg); padding-block: 64px 60px; }
 .a-fert { --bg: #173a26; --bg2: #0f2a1b; --fg: #f1f7ec; --dim: #b4cab8; --line: rgb(255 255 255 / 0.14); --acc: #8cc63f; --wm: rgb(140 198 63 / 0.08); --rowhover: rgb(255 255 255 / 0.04); }
 .a-clima { --bg: #10313b; --bg2: #0a2029; --fg: #eef8fb; --dim: #a8c8d0; --line: rgb(255 255 255 / 0.14); --acc: #a6e6f2; --wm: rgb(166 230 242 / 0.08); --rowhover: rgb(255 255 255 / 0.04); }
-.a-vent { --bg: #e1e6e3; --bg2: #ccd3cf; --fg: #14211a; --dim: #46534c; --line: rgb(20 33 26 / 0.17); --acc: #2f6b2c; --wm: rgb(20 33 26 / 0.06); }
+.a-vent { --bg: #e1e6e3; --bg2: #ccd3cf; --fg: #14211a; --dim: #46534c; --line: rgb(20 33 26 / 0.17); --acc: #24561f; --wm: rgb(20 33 26 / 0.06); }
 .a-vent::before { content: ""; position: absolute; inset: 0; z-index: -1; background: repeating-linear-gradient(90deg, rgb(255 255 255 / 0.22) 0 1px, transparent 1px 4px); pointer-events: none; }
 .a-clima::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(ellipse 60% 50% at 85% 0%, rgb(166 230 242 / 0.16), transparent 70%); pointer-events: none; }
 .a-fert::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(ellipse 60% 50% at 85% 0%, rgb(140 198 63 / 0.16), transparent 70%); pointer-events: none; }
@@ -625,7 +625,7 @@ footer.foot b { color: var(--on-dark); font-weight: 600; }
 	<button class="clear" type="button" id="clear">Vaciar la lista</button>
 </div>
 
-<dialog class="zoombox" id="zoombox" aria-label="Foto ampliada"><img id="zoomimg" alt=""><button type="button" class="zoom-x">Cerrar</button></dialog>
+<dialog class="zoombox" id="zoombox" aria-label="Foto ampliada"><button type="button" class="zoom-x">Cerrar</button></dialog>
 
 <div class="bar" id="bar">
 	<button class="btn btn-list" type="button" id="list-btn" aria-expanded="false" aria-controls="sheet">Su lista <span class="count" id="count">0</span></button>
@@ -852,9 +852,9 @@ footer.foot b { color: var(--on-dark); font-weight: 600; }
 	};
 	d.querySelectorAll('.item').forEach(b => b.addEventListener('click', () => { if (b.getAttribute('aria-pressed') === 'true') requestAnimationFrame(() => flyTo(b.querySelector('.add'))); }));
 	// tap a photo to zoom
-	const zb = d.getElementById('zoombox'), zi = d.getElementById('zoomimg');
+	const zb = d.getElementById('zoombox'), zi = d.createElement('img');
 	if (zb && zb.showModal) {
-		d.querySelectorAll('.zoom').forEach(a => a.addEventListener('click', e => { e.preventDefault(); zi.src = a.getAttribute('href'); zi.alt = a.querySelector('img').alt; zb.showModal(); }));
+		d.querySelectorAll('.zoom').forEach(a => a.addEventListener('click', e => { e.preventDefault(); zi.src = a.getAttribute('href'); zi.alt = a.querySelector('img').alt; if (!zi.isConnected) zb.prepend(zi); zb.showModal(); }));
 		zb.addEventListener('click', () => zb.close());
 	}
 })();
