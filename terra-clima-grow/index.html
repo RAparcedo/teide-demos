@@ -24,9 +24,9 @@
 	--forest: #0f1f17;
 	--forest-2: #17291f;
 	--forest-3: #1f3529;
-	--bone: #efebe2;
-	--bone-2: #e5e0d4;
-	--bone-3: #d9d3c4;
+	--bone: #eaede6;
+	--bone-2: #dfe4db;
+	--bone-3: #d1d8cd;
 	--ink: #13201a;
 	--muted: #59625b;
 	--sage: #a5b6a0;
@@ -123,7 +123,7 @@ p { margin: 0; }
 .statement { padding-block: 88px 80px; }
 .statement .wrap { display: grid; gap: 28px; }
 .statement .label { color: var(--leaf-deep); }
-.statement p.big { font-family: var(--display); font-weight: 300; font-size: clamp(1.7rem, 4.6vw, 3.25rem); line-height: 1.22; letter-spacing: -0.02em; max-width: 24ch; }
+.statement p.big { font-family: var(--display); font-weight: 300; font-size: clamp(1.7rem, 4.6vw, 3.25rem); line-height: 1.3; letter-spacing: -0.02em; max-width: 24ch; }
 .statement p.big em { font-style: normal; font-weight: 500; }
 .figures { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 24px; border-top: 1px solid rgb(19 32 26 / 0.16); }
 .figures div { padding: 22px 12px 0 0; }
@@ -133,7 +133,7 @@ p { margin: 0; }
 .brandline { margin-top: 40px; display: grid; gap: 14px; }
 .brandline .label { color: var(--muted); }
 .brandline ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 0; font-family: var(--display); font-weight: 400; font-size: clamp(1.1rem, 2.6vw, 1.45rem); letter-spacing: -0.005em; }
-.brandline li:not(:last-child)::after { content: "·"; margin: 0 0.6em; color: #b3ad9e; }
+.brandline li:not(:last-child)::after { content: "·"; margin: 0 0.6em; color: #a7b0a4; }
 @media (min-width: 900px) {
 	.statement { padding-block: 140px 120px; }
 	.statement .wrap { grid-template-columns: 1fr 3fr; gap: 64px; }
@@ -151,7 +151,7 @@ p { margin: 0; }
 .finder-box .ico { position: absolute; left: 0; top: 50%; transform: translateY(-50%); font-size: 1.3rem; color: var(--ink); }
 .finder input { width: 100%; min-height: 64px; padding: 0 0 0 38px; border: 0; border-bottom: 1px solid var(--ink); border-radius: 0; background: transparent; font: 300 clamp(1.25rem, 3vw, 1.6rem) var(--display); color: var(--ink); -webkit-appearance: none; appearance: none; }
 .finder input:focus { outline: none; border-bottom: 2px solid var(--leaf-deep); }
-.finder input::placeholder { color: #767b73; }
+.finder input::placeholder { color: #5c645d; }
 .finder-out { margin-top: 12px; min-height: 1.6em; font-size: 0.9375rem; color: var(--muted); }
 .how { display: none; margin-top: 18px; font-size: 0.9375rem; color: var(--muted); max-width: 52ch; }
 .how b { color: var(--ink); font-weight: 600; }
@@ -159,7 +159,7 @@ p { margin: 0; }
 @media (min-width: 900px) { .cat-head .wrap { grid-template-columns: 1fr 1fr; align-items: end; gap: 80px; padding-top: 120px; } .cat-head { padding-bottom: 80px; } }
 
 /* ── aisle tabs ───────────────────────────── */
-.tabs { position: sticky; top: var(--mast); z-index: 20; background: rgb(239 235 226 / 0.94); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-block: 1px solid rgb(19 32 26 / 0.12); }
+.tabs { position: sticky; top: var(--mast); z-index: 20; background: rgb(234 237 230 / 0.94); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-block: 1px solid rgb(19 32 26 / 0.12); }
 .tabs ol { list-style: none; margin: 0 auto; max-width: var(--max); padding: 0 var(--gutter); display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; }
 .tabs ol::-webkit-scrollbar { display: none; }
 .tabs a { display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 12px; white-space: nowrap; text-decoration: none; font-size: 0.9375rem; color: var(--muted); border-bottom: 1px solid transparent; transition: color .2s; }
@@ -266,7 +266,7 @@ p { margin: 0; }
 .score-note { margin-top: 18px; font-size: 0.9375rem; color: var(--sage); }
 .quotes { display: grid; gap: 48px; }
 blockquote { margin: 0; }
-blockquote p { font-family: var(--display); font-weight: 300; font-size: clamp(1.65rem, 4.4vw, 2.9rem); line-height: 1.24; letter-spacing: -0.025em; }
+blockquote p { font-family: var(--display); font-weight: 300; font-size: clamp(1.65rem, 4.4vw, 2.9rem); line-height: 1.3; letter-spacing: -0.025em; }
 blockquote footer { margin-top: 20px; font-size: 0.9375rem; color: var(--sage); }
 .quotes blockquote + blockquote { padding-top: 48px; border-top: 1px solid rgb(239 235 226 / 0.14); }
 .quotes blockquote + blockquote p { font-size: clamp(1.25rem, 3vw, 1.75rem); line-height: 1.32; }
