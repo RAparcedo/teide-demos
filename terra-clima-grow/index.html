@@ -1,0 +1,705 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Terra Clima Grow · grow shop en San Isidro, Tenerife</title>
+<meta name="description" content="Terra Clima Grow, grow shop en la Av. José González Rivas, 44, San Isidro. Fertilizante, climatización y ventilación para su cultivo: Canna, BioBizz, Lumatek, Blauberg y más. Lunes a viernes 10:00–20:00, sábado 10:00–18:00.">
+<meta property="og:title" content="Terra Clima Grow · San Isidro">
+<meta property="og:description" content="Fertilizante · Climatización · Ventilación. El catálogo de la tienda, por pasillos.">
+<meta property="og:image" content="https://raparcedo.github.io/teide-demos/terra-clima-grow/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://raparcedo.github.io/teide-demos/terra-clima-grow/">
+<meta name="theme-color" content="#0f1d16">
+<link rel="preload" href="assets/fonts/display.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/body.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face { font-family: "Sora"; src: url("assets/fonts/display.woff2") format("woff2"); font-weight: 100 800; font-display: swap; }
+@font-face { font-family: "Figtree"; src: url("assets/fonts/body.woff2") format("woff2"); font-weight: 300 900; font-display: swap; }
+@font-face { font-family: "DM Mono"; src: url("assets/fonts/mono.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+
+:root {
+	--ink: #0f1d16;
+	--ink-2: #16291f;
+	--sign: #1d3a2b;
+	--leaf: #8cc63f;
+	--leaf-deep: #2f6b2c;
+	--leaf-line: rgb(140 198 63 / 0.32);
+	--paper: #f2f3ec;
+	--paper-2: #e6e9de;
+	--steel: #8a948e;
+	--text: #14211a;
+	--muted: #4a5850;
+	--on-dark: #f4f7f0;
+	--on-dark-dim: #b9c6bd;
+	--white: #fff;
+	--display: "Sora", "Figtree", system-ui, sans-serif;
+	--body: "Figtree", system-ui, sans-serif;
+	--mono: "DM Mono", ui-monospace, monospace;
+	--gutter: clamp(16px, 4vw, 48px);
+	--max: 1240px;
+	--mast: 60px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: calc(var(--mast) + 56px); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: var(--paper); color: var(--text); font: 400 1.0625rem/1.55 var(--body); overflow-x: hidden; }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+h1, h2, h3 { margin: 0; font-family: var(--display); line-height: 1.02; }
+p { margin: 0; }
+.wrap { width: 100%; max-width: var(--max); margin-inline: auto; padding-inline: var(--gutter); }
+.vh { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.nw { white-space: nowrap; }
+:focus-visible { outline: 3px solid var(--leaf); outline-offset: 3px; }
+.ico { width: 1em; height: 1em; flex: none; }
+
+/* ── masthead ─────────────────────────────── */
+.mast { position: sticky; top: 0; z-index: 30; height: var(--mast); background: var(--ink); color: var(--on-dark); border-bottom: 1px solid rgb(255 255 255 / 0.08); }
+.mast .wrap { height: 100%; display: flex; align-items: center; gap: 24px; }
+.mark { display: flex; flex-direction: column; line-height: 1; text-decoration: none; font-family: var(--display); font-weight: 800; letter-spacing: 0.06em; }
+.mark b { font-size: 1.05rem; font-weight: 800; }
+.mark span { font-size: 0.62rem; letter-spacing: 0.42em; color: var(--leaf); margin-top: 3px; padding-left: 0.1em; }
+.mast nav { margin-left: auto; display: none; gap: 4px; }
+.mast nav a { text-decoration: none; font-size: 0.9375rem; font-weight: 600; padding: 10px 12px; border-radius: 4px; color: var(--on-dark-dim); }
+.mast nav a:hover { color: var(--on-dark); background: rgb(255 255 255 / 0.06); }
+.mast-wa { margin-left: auto; display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 14px; border-radius: 999px; background: var(--leaf); color: var(--ink); font-weight: 700; font-size: 0.9375rem; text-decoration: none; }
+.mast-wa .ico { font-size: 1.1rem; }
+@media (min-width: 1000px) { .mast nav { display: flex; } .mast-wa { margin-left: 8px; } }
+
+/* ── hero ─────────────────────────────────── */
+.hero { position: relative; overflow: hidden; color: var(--on-dark); background:
+	radial-gradient(120% 90% at 85% 10%, #2a5038 0%, transparent 55%),
+	linear-gradient(160deg, var(--sign) 0%, var(--ink) 62%); }
+.hero-leaves { position: absolute; right: -60px; top: -40px; width: min(560px, 90vw); opacity: 0.9; pointer-events: none; }
+.hero .wrap { position: relative; display: grid; gap: 28px; padding-block: 36px 44px; }
+.hero-kick { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; font-family: var(--mono); font-size: 0.8125rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--on-dark-dim); }
+.open { display: inline-flex; align-items: center; gap: 8px; padding: 5px 11px; border-radius: 999px; border: 1px solid rgb(255 255 255 / 0.18); color: var(--on-dark); letter-spacing: 0.04em; text-transform: none; font-family: var(--body); font-weight: 600; font-size: 0.875rem; }
+.open i { width: 8px; height: 8px; border-radius: 50%; background: var(--steel); }
+.open.is-open i { background: var(--leaf); box-shadow: 0 0 0 4px rgb(140 198 63 / 0.22); }
+.hero h1 { margin-top: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.035em; font-size: clamp(2.6rem, 11vw, 5.6rem); line-height: 0.95; }
+.hero h1 span { display: block; font-size: 0.46em; letter-spacing: 0.5em; color: var(--leaf); margin-top: 0.3em; padding-left: 0.08em; }
+.hero-photo { margin: 0; position: relative; }
+.hero-photo img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 12%; border-radius: 6px; box-shadow: 0 30px 60px -30px rgb(0 0 0 / 0.7); }
+.hero-photo figcaption { margin-top: 10px; font-size: 0.875rem; color: var(--on-dark-dim); }
+.pillars { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--leaf-line); }
+.pillars a { display: flex; align-items: center; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--leaf-line); text-decoration: none; font-family: var(--display); font-weight: 700; font-size: clamp(1.5rem, 6.4vw, 2.6rem); letter-spacing: 0.01em; line-height: 1.1; }
+.pillars a .ico { font-size: 1.15em; color: var(--leaf); }
+.pillars a em { margin-left: auto; font-style: normal; font-family: var(--mono); font-weight: 500; font-size: 0.8125rem; letter-spacing: 0.08em; color: var(--on-dark-dim); }
+.pillars a:hover em { color: var(--leaf); }
+.hero-act { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 50px; padding: 0 22px; border-radius: 999px; font-weight: 700; font-size: 1rem; text-decoration: none; border: 0; cursor: pointer; }
+.btn .ico { font-size: 1.2rem; }
+.btn-leaf { background: var(--leaf); color: var(--ink); }
+.btn-ghost { background: transparent; color: var(--on-dark); box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / 0.4); }
+.btn-ink { background: var(--ink); color: var(--on-dark); }
+.hero-meta { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 0.9375rem; color: var(--on-dark-dim); }
+.hero-meta b { color: var(--on-dark); font-weight: 700; }
+.stars { color: var(--leaf); letter-spacing: 0.08em; }
+@media (min-width: 760px) {
+	.hero .wrap { grid-template-columns: 1.15fr 0.85fr; grid-template-areas: "head photo" "pill photo" "act photo" "meta photo"; column-gap: clamp(32px, 5vw, 72px); row-gap: 26px; padding-block: 56px 64px; align-content: start; }
+	.hero-head { grid-area: head; } .hero-photo { grid-area: photo; align-self: start; } .pillars { grid-area: pill; } .hero-act { grid-area: act; } .hero-meta { grid-area: meta; }
+	.hero-photo img { aspect-ratio: 3 / 4; object-position: 50% 30%; }
+}
+@media (prefers-reduced-motion: no-preference) {
+	.spin { animation: spin 5.5s linear infinite; transform-origin: 50% 50%; transform-box: fill-box; }
+	@keyframes spin { to { transform: rotate(360deg); } }
+}
+
+/* ── catalogue intro ──────────────────────── */
+.cat-intro { padding-block: 56px 28px; }
+.kick { font-family: var(--mono); font-size: 0.8125rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--leaf-deep); }
+.cat-intro h2 { margin-top: 10px; font-weight: 800; font-size: clamp(2rem, 7vw, 3.6rem); letter-spacing: -0.01em; max-width: 15ch; }
+.cat-intro .lede { margin-top: 16px; max-width: 54ch; color: var(--muted); font-size: 1.0625rem; }
+.cat-grid { display: grid; gap: 28px; }
+.cat-photo img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 6px; }
+.cat-photo figcaption { margin-top: 8px; font-size: 0.875rem; color: var(--muted); }
+.cat-photo { margin: 0; }
+.finder { margin-top: 26px; }
+.finder label { display: block; font-weight: 700; font-size: 0.9375rem; margin-bottom: 8px; }
+.finder-box { position: relative; }
+.finder-box .ico { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-size: 1.15rem; color: var(--muted); }
+.finder input { width: 100%; min-height: 54px; padding: 0 16px 0 46px; border-radius: 8px; border: 2px solid var(--text); background: var(--white); font: 500 1.0625rem var(--body); color: var(--text); }
+.finder input::placeholder { color: #6b776f; }
+.finder-out { margin-top: 10px; min-height: 1.5em; font-size: 0.9375rem; color: var(--muted); }
+.finder-out a { color: var(--leaf-deep); font-weight: 700; }
+.how { margin-top: 18px; display: none; gap: 12px; align-items: flex-start; padding: 14px 16px; border-radius: 8px; background: var(--paper-2); font-size: 0.9375rem; color: var(--muted); }
+.how b { color: var(--text); }
+.how .dot { flex: none; margin-top: 2px; width: 22px; height: 22px; border-radius: 50%; background: var(--leaf-deep); color: var(--white); display: grid; place-items: center; font: 700 0.9rem/1 var(--body); }
+.js .how { display: flex; }
+@media (min-width: 900px) { .cat-grid { grid-template-columns: 1fr 1fr; align-items: end; gap: 56px; } .cat-intro { padding-block: 88px 36px; } }
+
+/* ── aisle tabs ───────────────────────────── */
+.tabs { position: sticky; top: var(--mast); z-index: 20; background: rgb(242 243 236 / 0.94); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-block: 1px solid #d2d7cb; }
+.tabs ol { list-style: none; margin: 0 auto; max-width: var(--max); padding: 0 var(--gutter); display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
+.tabs ol::-webkit-scrollbar { display: none; }
+.tabs a { display: flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 12px; white-space: nowrap; text-decoration: none; font-weight: 700; font-size: 0.9375rem; color: var(--muted); border-bottom: 3px solid transparent; }
+.tabs a span { font-family: var(--mono); font-weight: 500; font-size: 0.75rem; }
+.tabs a[aria-current="true"] { color: var(--text); border-bottom-color: var(--leaf-deep); }
+
+/* ── aisles ───────────────────────────────── */
+.aisle { padding-block: 48px 40px; border-bottom: 1px solid #d2d7cb; }
+.aisle[hidden] { display: none; }
+.aisle .wrap { display: grid; gap: 26px; }
+.aisle-head { display: grid; gap: 16px; align-content: start; }
+.aisle-no { font-family: var(--display); font-weight: 800; font-size: clamp(3.4rem, 13vw, 7rem); line-height: 0.8; color: transparent; -webkit-text-stroke: 1.5px var(--leaf-deep); letter-spacing: -0.02em; }
+.aisle h2 { display: flex; align-items: center; gap: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.03em; font-size: clamp(1.75rem, 6.4vw, 2.75rem); }
+.aisle h2 .ico { font-size: 0.95em; color: var(--leaf-deep); }
+.aisle-head p { color: var(--muted); max-width: 40ch; }
+.aisle-photo { margin: 0; }
+.aisle-photo img { width: 100%; aspect-ratio: 16 / 11; object-fit: cover; border-radius: 6px; }
+.aisle-photo figcaption { margin-top: 8px; font-size: 0.875rem; color: var(--muted); }
+.group + .group { margin-top: 30px; }
+.group h3 { font-family: var(--mono); font-weight: 500; font-size: 0.8125rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); padding-bottom: 10px; }
+.group[hidden] { display: none; }
+.shelf { list-style: none; margin: 0; padding: 0; border-top: 4px solid #b9c1bb; }
+.shelf li[hidden] { display: none; }
+.item { width: 100%; display: grid; grid-template-columns: 30px 1fr auto; align-items: center; gap: 12px; padding: 14px 0; background: none; border: 0; border-bottom: 1px solid #cfd5c9; text-align: left; cursor: default; }
+.js .item { cursor: pointer; }
+.item .add { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; box-shadow: inset 0 0 0 1.5px var(--steel); color: var(--muted); font-size: 1.1rem; visibility: hidden; transition: background-color .15s, box-shadow .15s; }
+.js .item .add { visibility: visible; }
+.item .add .ico-check { display: none; }
+.item[aria-pressed="true"] .add { background: var(--leaf-deep); box-shadow: none; color: var(--white); }
+.item[aria-pressed="true"] .add .ico-plus { display: none; }
+.item[aria-pressed="true"] .add .ico-check { display: block; }
+.item .nm { display: block; font-weight: 700; font-size: 1.0625rem; line-height: 1.25; }
+.item .ds { display: block; margin-top: 2px; font-size: 0.9375rem; color: var(--muted); line-height: 1.35; }
+.item .ds b { font-weight: 600; color: var(--text); }
+.tag { position: relative; display: grid; width: 96px; padding: 7px 8px 7px 16px; background: var(--white); border-radius: 3px 6px 6px 3px; box-shadow: 0 1px 0 #c3cabf, inset 3px 0 0 var(--leaf-deep); line-height: 1.15; }
+.tag::before { content: ""; position: absolute; left: 7px; top: 50%; width: 5px; height: 5px; margin-top: -2.5px; border-radius: 50%; background: var(--paper-2); box-shadow: inset 0 0 0 1px #b9c1bb; }
+.tag small { font-family: var(--mono); font-size: 0.625rem; letter-spacing: 0.12em; color: var(--muted); }
+.tag strong { font-size: 0.8125rem; font-weight: 700; color: var(--text); }
+.js .item:hover .nm { text-decoration: underline; text-decoration-color: var(--leaf); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+.aisle-note { margin-top: 18px; font-size: 0.875rem; color: var(--muted); }
+@media (min-width: 900px) {
+	.aisle { padding-block: 80px 72px; }
+	.aisle .wrap { grid-template-columns: 5fr 7fr; gap: 64px; align-items: start; }
+	.aisle-head { position: sticky; top: calc(var(--mast) + 72px); }
+	.tag { width: 112px; }
+}
+.empty { display: none; padding-block: 40px 56px; }
+.empty.show { display: block; }
+.empty p { max-width: 46ch; color: var(--muted); }
+.empty a { color: var(--leaf-deep); font-weight: 700; }
+
+/* ── la tienda ────────────────────────────── */
+.shop { padding-block: 64px; background: var(--paper-2); }
+.shop .wrap { display: grid; gap: 30px; }
+.shop h2 { font-weight: 800; font-size: clamp(2rem, 7vw, 3.6rem); }
+.shop-lede { margin-top: 14px; max-width: 46ch; font-size: 1.125rem; }
+.shop figure { margin: 0; }
+.shop figure img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: 30% 50%; border-radius: 6px; }
+.shop figcaption { margin-top: 8px; font-size: 0.875rem; color: var(--muted); }
+.facts { display: grid; gap: 22px; margin-top: 26px; }
+.fact h3 { font-family: var(--mono); font-weight: 500; font-size: 0.8125rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+.fact address { font-style: normal; font-size: 1.0625rem; }
+.fact a.lnk { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-weight: 700; color: var(--leaf-deep); }
+.hours { width: 100%; max-width: 360px; border-collapse: collapse; font-size: 1rem; }
+.hours th { text-align: left; font-weight: 500; padding: 7px 0; }
+.hours td { text-align: right; padding: 7px 0; font-variant-numeric: tabular-nums; }
+.hours tr { border-bottom: 1px solid #cdd3c7; }
+.hours tr.today th, .hours tr.today td { font-weight: 800; }
+.hours tr.today th::after { content: " · hoy"; font-weight: 600; color: var(--leaf-deep); }
+@media (min-width: 900px) { .shop { padding-block: 96px; } .shop .wrap { grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; } .facts { grid-template-columns: 1fr 1fr; } }
+
+/* ── reviews ──────────────────────────────── */
+.voices { padding-block: 64px; }
+.score { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+.score b { font-family: var(--display); font-weight: 800; font-size: clamp(3.4rem, 12vw, 5.5rem); line-height: 1; }
+.score .stars { color: var(--leaf-deep); font-size: 1.4rem; }
+.score p { flex-basis: 100%; color: var(--muted); font-size: 0.9375rem; }
+.quotes { display: grid; gap: 34px; margin-top: 38px; }
+blockquote { margin: 0; }
+blockquote p { font-family: var(--display); font-weight: 600; font-size: clamp(1.35rem, 4.6vw, 2rem); line-height: 1.25; letter-spacing: -0.01em; }
+blockquote p::before { content: "«"; color: var(--leaf-deep); }
+blockquote p::after { content: "»"; color: var(--leaf-deep); }
+blockquote footer { margin-top: 12px; font-size: 0.9375rem; color: var(--muted); }
+.quotes blockquote:nth-child(2) p { font-size: clamp(1.15rem, 3.6vw, 1.5rem); font-weight: 500; }
+@media (min-width: 900px) { .voices { padding-block: 104px; } .voices .wrap { display: grid; grid-template-columns: 4fr 8fr; gap: 64px; } .quotes { margin-top: 0; } }
+
+/* ── close ────────────────────────────────── */
+.close { position: relative; overflow: hidden; background: linear-gradient(160deg, var(--sign), var(--ink) 70%); color: var(--on-dark); padding-block: 64px 72px; }
+.close .hero-leaves { top: auto; bottom: -120px; right: -90px; width: min(420px, 80vw); opacity: 0.55; transform: rotate(18deg); }
+.close h2 { position: relative; font-weight: 800; font-size: clamp(2rem, 8vw, 4rem); max-width: 14ch; }
+.close p { position: relative; margin-top: 14px; color: var(--on-dark-dim); max-width: 44ch; font-size: 1.125rem; }
+.close .hero-act { position: relative; margin-top: 26px; }
+
+footer.foot { background: var(--ink); color: var(--on-dark-dim); padding-block: 28px calc(28px + 76px); font-size: 0.875rem; border-top: 1px solid rgb(255 255 255 / 0.08); }
+footer.foot p + p { margin-top: 8px; }
+footer.foot b { color: var(--on-dark); font-weight: 600; }
+@media (min-width: 760px) { footer.foot { padding-bottom: 32px; } }
+
+/* ── bottom bar + list ────────────────────── */
+.bar { position: fixed; z-index: 40; left: 0; right: 0; bottom: 0; padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); background: rgb(15 29 22 / 0.96); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: flex; gap: 8px; border-top: 1px solid rgb(255 255 255 / 0.1); }
+.bar .btn { flex: 1; min-height: 52px; padding: 0 14px; font-size: 0.9375rem; }
+.bar .btn-list { display: none; background: var(--white); color: var(--ink); }
+.bar.has .btn-list { display: inline-flex; }
+.bar.has .btn-call { display: none; }
+.bar .count { display: inline-grid; place-items: center; min-width: 24px; height: 24px; padding: 0 6px; border-radius: 999px; background: var(--leaf-deep); color: var(--white); font-size: 0.8125rem; }
+@media (min-width: 760px) {
+	.bar { left: auto; right: 24px; bottom: 24px; width: 460px; border-radius: 16px; border: 1px solid rgb(255 255 255 / 0.12); box-shadow: 0 20px 50px -20px rgb(0 0 0 / 0.6); transform: translateY(140%); transition: transform .25s ease; }
+	.bar.has { transform: none; }
+	.bar:not(.has) { visibility: hidden; }
+}
+.sheet { position: fixed; z-index: 39; left: 0; right: 0; bottom: 0; max-height: 72vh; overflow-y: auto; background: var(--white); color: var(--text); border-radius: 16px 16px 0 0; padding: 22px 18px calc(96px + env(safe-area-inset-bottom)); box-shadow: 0 -20px 50px -10px rgb(0 0 0 / 0.35); }
+.sheet[hidden] { display: none; }
+.sheet h2 { font-family: var(--display); font-weight: 800; font-size: 1.5rem; }
+.sheet > p { margin-top: 6px; color: var(--muted); font-size: 0.9375rem; }
+.sheet ul { list-style: none; margin: 16px 0 0; padding: 0; border-top: 1px solid #dde1d7; }
+.sheet li { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid #dde1d7; }
+.sheet li span { font-weight: 600; }
+.sheet li small { display: block; font-weight: 400; color: var(--muted); font-size: 0.875rem; }
+.sheet .rm { flex: none; min-width: 44px; min-height: 44px; border: 0; background: none; color: var(--muted); font-size: 0.875rem; font-weight: 700; text-decoration: underline; cursor: pointer; }
+.sheet .clear { margin-top: 14px; min-height: 44px; border: 0; background: none; padding: 0; color: var(--muted); font-weight: 700; text-decoration: underline; cursor: pointer; }
+.sheet .demo { margin-top: 12px; font-size: 0.8125rem; color: var(--muted); }
+@media (min-width: 760px) { .sheet { left: auto; right: 24px; bottom: 100px; width: 460px; border-radius: 16px; padding-bottom: 22px; max-height: 60vh; } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+	<defs>
+		<symbol id="i-sprout" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M16 25V15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M16 16c0-4.6-3.2-7.4-8-7.4 0 4.6 3.2 7.4 8 7.4zM16 19.5c0-4 2.8-6.6 7.4-6.6 0 4-2.8 6.6-7.4 6.6z" fill="currentColor"/></symbol>
+		<symbol id="i-snow" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14.5" fill="none" stroke="currentColor" stroke-width="1.6"/><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M16 7v18M8.2 11.5l15.6 9M8.2 20.5l15.6-9"/><path d="M13.6 8.6 16 10.8l2.4-2.2M13.6 23.4 16 21.2l2.4 2.2M8.9 14.4l3.1-1 -.7-3.1M23.1 17.6l-3.1 1 .7 3.1M8.9 17.6l3.1 1-.7 3.1M23.1 14.4l-3.1-1 .7-3.1"/></g></symbol>
+		<symbol id="i-fan" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14.5" fill="none" stroke="currentColor" stroke-width="1.6"/><g class="spin" fill="currentColor"><path d="M16 16c-1.2-3.4-.6-7.2 2.4-8.6 2.6-1.2 4.4 1.3 3 3.6-1.3 2.2-3.4 3.6-5.4 5z"/><path d="M16 16c3.6-.6 7.1.8 7.4 4.1.3 2.8-2.7 3.4-4 1.1-1.3-2.2-2.4-3.5-3.4-5.2z"/><path d="M16 16c-2.3 2.8-5.9 4.2-8.6 2.3-2.3-1.6-1-4.4 1.6-4.4 2.5 0 4.6.9 7 2.1z"/><circle cx="16" cy="16" r="1.8"/></g></symbol>
+		<symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></symbol>
+		<symbol id="i-phone" viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></symbol>
+		<symbol id="i-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></g></symbol>
+		<symbol id="i-pin" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></symbol>
+		<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+		<symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+		<linearGradient id="g-leaf" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5fa83a"/><stop offset="1" stop-color="#1f4d27"/></linearGradient>
+		<linearGradient id="g-leaf2" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3f8a35"/><stop offset="1" stop-color="#173b20"/></linearGradient>
+		<symbol id="leaves" viewBox="0 0 560 520">
+			<path d="M520 30C380 40 250 120 205 250c-25 75 10 140 70 150 120-60 220-200 245-370z" fill="url(#g-leaf)"/>
+			<path d="M515 36C430 130 340 250 270 396" fill="none" stroke="#a6d46a" stroke-opacity=".45" stroke-width="3"/>
+			<path d="M470 90l-60 2M430 140l-75 0M395 190l-85 10M360 245l-85 18M330 300l-70 28M440 120l20 60M400 175l25 70M362 232l22 75" fill="none" stroke="#a6d46a" stroke-opacity=".22" stroke-width="2"/>
+			<path d="M560 210c-120-10-230 50-260 160-15 55 15 105 60 110 95-40 170-150 200-270z" fill="url(#g-leaf2)"/>
+			<path d="M556 214C480 290 410 380 362 476" fill="none" stroke="#a6d46a" stroke-opacity=".35" stroke-width="2.5"/>
+		</symbol>
+	</defs>
+</svg>
+
+<header class="mast">
+	<div class="wrap">
+		<a class="mark" href="#top" aria-label="Terra Clima Grow, inicio"><b>TERRA CLIMA</b><span>GROW</span></a>
+		<nav aria-label="Secciones">
+			<a href="#fertilizante">Fertilizante</a>
+			<a href="#climatizacion">Climatización</a>
+			<a href="#ventilacion">Ventilación</a>
+			<a href="#tienda">La tienda</a>
+		</nav>
+		<a class="mast-wa" href="https://wa.me/34622148745" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
+	</div>
+</header>
+
+<main id="top">
+<section class="hero">
+	<svg class="hero-leaves" aria-hidden="true"><use href="#leaves"/></svg>
+	<div class="wrap">
+		<div class="hero-head">
+			<p class="hero-kick"><span>Grow shop · San Isidro</span><span class="open" id="open" hidden><i></i><span id="open-t"></span></span></p>
+			<h1>Terra Clima <span>Grow</span></h1>
+		</div>
+		<figure class="hero-photo">
+			<img src="assets/img/01-fachada-765.webp" srcset="assets/img/01-fachada-480.webp 480w, assets/img/01-fachada-765.webp 765w" sizes="(min-width: 760px) 40vw, 100vw" width="765" height="1020" alt="La entrada de Terra Clima Grow: el rótulo verde con Fertilizante, Climatización y Ventilación sobre la puerta abierta, con sacos de sustrato dentro" fetchpriority="high">
+			<figcaption>Av. José González Rivas, 44 · San Isidro</figcaption>
+		</figure>
+		<ul class="pillars" aria-label="Las tres secciones de la tienda">
+			<li><a href="#fertilizante"><svg class="ico" aria-hidden="true"><use href="#i-sprout"/></svg>Fertilizante<em>01</em></a></li>
+			<li><a href="#climatizacion"><svg class="ico" aria-hidden="true"><use href="#i-snow"/></svg>Climatización<em>02</em></a></li>
+			<li><a href="#ventilacion"><svg class="ico" aria-hidden="true"><use href="#i-fan"/></svg>Ventilación<em>03</em></a></li>
+		</ul>
+		<div class="hero-act">
+			<a class="btn btn-leaf" href="https://wa.me/34622148745" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Pregunte por WhatsApp</a>
+			<a class="btn btn-ghost" href="tel:+34622148745"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg>622 14 87 45</a>
+		</div>
+		<p class="hero-meta"><span><span class="stars" aria-hidden="true">★★★★★</span> <b>4,7</b> · 26 reseñas en Google</span><span>Lun–Vie <b>10–20 h</b> · Sáb <b>10–18 h</b></span></p>
+	</div>
+</section>
+
+<section class="cat-intro" aria-labelledby="cat-h">
+	<div class="wrap cat-grid">
+		<div>
+			<p class="kick">El catálogo</p>
+			<h2 id="cat-h">Lo que hay en las estanterías.</h2>
+			<p class="lede">Productos y marcas que tienen hoy en la tienda, por pasillos. Los precios, de momento, se consultan en el mostrador.</p>
+			<div class="finder">
+				<label for="q">¿Busca algo concreto?</label>
+				<div class="finder-box">
+					<svg class="ico" aria-hidden="true"><use href="#i-search"/></svg>
+					<input id="q" type="search" placeholder="PK, LED, extractor, Canna…" autocomplete="off" enterkeyhint="search">
+				</div>
+				<p class="finder-out" id="q-out" aria-live="polite"></p>
+			</div>
+			<p class="how"><span class="dot" aria-hidden="true">+</span><span><b>Haga su lista.</b> Toque los productos que necesita y mándela por WhatsApp: le dicen precio y si lo tienen. Sin compra online, sin pagar nada aquí.</span></p>
+		</div>
+		<figure class="cat-photo">
+			<img src="assets/img/04-nutrientes-800.webp" srcset="assets/img/04-nutrientes-480.webp 480w, assets/img/04-nutrientes-800.webp 800w, assets/img/04-nutrientes-1200.webp 1200w" sizes="(min-width: 900px) 46vw, 100vw" width="1200" height="900" loading="lazy" alt="Estanterías de la tienda con extractores Blauberg arriba y, debajo, botellas de nutrientes Canna, BioBizz y B.A.C.">
+			<figcaption>Extractores arriba, nutrientes abajo.</figcaption>
+		</figure>
+	</div>
+</section>
+
+<nav class="tabs" aria-label="Pasillos del catálogo">
+	<ol>
+		<li><a href="#fertilizante" data-tab="fertilizante"><span>01</span>Fertilizante</a></li>
+		<li><a href="#climatizacion" data-tab="climatizacion"><span>02</span>Climatización</a></li>
+		<li><a href="#ventilacion" data-tab="ventilacion"><span>03</span>Ventilación</a></li>
+		<li><a href="#ademas" data-tab="ademas"><span>04</span>Y además</a></li>
+	</ol>
+</nav>
+
+<div id="catalogo">
+<section class="aisle" id="fertilizante" aria-labelledby="h-fert">
+	<div class="wrap">
+		<div class="aisle-head">
+			<p class="aisle-no" aria-hidden="true">01</p>
+			<h2 id="h-fert"><svg class="ico" aria-hidden="true"><use href="#i-sprout"/></svg>Fertilizante</h2>
+			<p>Nutrientes para cada fase y la tierra donde empieza todo.</p>
+			<figure class="aisle-photo">
+				<img src="assets/img/03-canna-480.webp" srcset="assets/img/03-canna-480.webp 480w, assets/img/03-canna-765.webp 765w" sizes="(min-width: 900px) 38vw, 100vw" width="765" height="1020" loading="lazy" alt="Garrafas verdes de Canna en la estantería: Boost, Cannaflush, Calmag Agent, PK 13/14, Rhizotonic, Cannazym, Terra Vega y Terra Flores">
+				<figcaption>La pared de Canna.</figcaption>
+			</figure>
+		</div>
+		<div>
+			<div class="group">
+				<h3>Nutrientes</h3>
+				<ul class="shelf">
+					<li><button class="item" type="button" aria-pressed="false" data-k="Canna Terra Vega"><span class="add" aria-hidden="true"><svg class="ico ico-plus"><use href="#i-plus"/></svg><svg class="ico ico-check"><use href="#i-check"/></svg></span><span><span class="nm">Terra Vega</span><span class="ds"><b>Canna</b> · crecimiento, en tierra</span></span><span class="tag"><small>PVP</small><strong>Consulte en tienda</strong></span></button></li>
+					<li><button class="item" type="button" aria-pressed="false" data-k="Canna Terra Flores"><span class="add" aria-hidden="true"><svg class="ico ico-plus"><use href="#i-plus"/></svg><svg class="ico ico-check"><use href="#i-check"/></svg></span><span><span class="nm">Terra Flores</span><span class="ds"><b>Canna</b> · floración, en tierra</span></span><span class="tag"><small>PVP</small><strong>Consulte en tienda</strong></span></button></li>
+					<li><button class="item" type="button" aria-pressed="false" data-k="Canna Rhizotonic"><span class="add" aria-hidden="true"><svg class="ico ico-plus"><use href="#i-plus"/></svg><svg class="ico ico-check"><use href="#i-check"/></svg></span><span><span class="nm">Rhizotonic</span><span class="ds"><b>Canna</b> · estimulador de raíces</span></span><span class="tag"><small>PVP</small><strong>Consulte en tienda</strong></span></button></li>
+					<li><button class="item" type="button" aria-pressed="false" data-k="Cannazym"><span class="add" aria-hidden="true"><svg class="ico ico-plus"><use href="#i-plus"/></svg><svg class="ico ico-check"><use href="#i-check"/></svg></span><span><span class="nm">Cannazym</span><span class="ds"><b>Canna</b> · enzimas</span></span><span class="tag"><small>PVP</small><strong>Consulte en tienda</strong></span></button></li>
+					<li><button class="item" type="button" aria-pressed="false" data-k="Canna Boost Accelerator"><span class="add" aria-hidden="true"><svg class="ico ico-plus"><use href="#i-plus"/></svg><svg class="ico ico-check"><use href="#i-check"/></svg></span><span><span class="nm">Boost Accelerator</span><span class="ds"><b>Canna</b> · potenciador de floración</span></span><span class="tag"><small>PVP</small><strong>Consulte en tienda</strong></span></button></li>
+					<li><button class="item" type="button" aria-pressed="false" data-k="Canna PK 13/14"><span class="add" aria-hidden="true"><svg class="ico ico-plus"><use href="#i-plus"/></svg><svg class="ico ico-check"><use href="#i-check"/></svg></span><span><span class="nm">PK 13/14</span><span class="ds"><b>Canna</b> · fósforo y potasio</span></span><span class="tag"><small>PVP</small><strong>Consulte en tienda</strong></span></button></li>
+					<li><button class="item" type="button" aria-pressed="false" data-k="Canna Calmag Agent"><span class="add" aria-hidden="true"><svg class="ico ico-plus"><use href="#i-plus"/></svg><svg class="ico ico-check"><use href="#i-check"/></svg></span><span><span class="nm">Calmag Agent</span><span class="ds"><b>Canna</b> · calcio y magnesio</span></span><span class="tag"><small>PVP</small><strong>Consulte en tienda</strong></span></button></li>
+					<li><button class="item" type="button" aria-pressed="false" data-k="Cannaflush"><span class="add" aria-hidden="true"><svg class="ico ico-plus"><use href="#i-plus"/></svg><svg class="ico ico-check"><use href="#i-check"/></svg></span><span><span class="nm">Cannaflush</span><span class="ds"><b>Canna</b> · lavado del sustrato</span></span><span class="tag"><small>PVP</small><strong>Consulte en tienda</strong></span></button></li>
+					<li><button class="item" type="button" aria-pressed="false" data-k="Gama BioBizz"><span class="add" aria-hidden="true"><svg class="ico ico-plus"><use href="#i-plus"/></svg><svg class="ico ico-check"><use href="#i-check"/></svg></span><span><span class="nm">Gama BioBizz</span><span class="ds"><b>BioBizz</b> · abonos orgánicos</span></span><span class="tag"><small>PVP</small><strong>Consulte en tienda</strong></span></button></li>
+					<li><button class="item" type="button" aria-pressed="false" data-k="Gama B.A.C."><span class="add" aria-hidden="true"><svg class="ico ico-plus"><use href="#i-plus"/></svg><svg class="ico ico-check"><use href="#i-check"/></svg></span><span><span class="nm">Gama B.A.C.</span><span class="ds"><b>B.A.C.</b> · nutrientes y aditivos</span></span><span class="tag"><small>PVP</small><strong>Consulte en tienda</strong></span></button></li>
+					<li><button class="item" type="button" aria-pressed="false" data-k="Terra Aquatica"><span class="add" aria-hidden="true"><svg class="ico ico-plus"><use href="#i-plus"/></svg><svg class="ico ico-check"><use href="#i-check"/></svg></span><span><span class="nm">Terra Aquatica</span><span class="ds"><b>Terra Aquatica</b> · nutrientes</span></span><span class="tag"><small>PVP</small><strong>Consulte en tienda</strong></span></button></li>
+				</ul>
+			</div>
+			<div class="group">
+				<h3>Sustratos</h3>
+				<ul class="shelf">
+					<li><button class="item" type="button" aria-pressed="false" data-k="Canna Terra Professional Plus"><span class="add" aria-hidden="true"><svg class="ico ico-plus"><use href="#i-plus"/></svg><svg class="ico ico-check"><use href="#i-check"/></svg></span><span><span class="nm">Terra Professional Plus</span><span class="ds"><b>Canna</b> · tierra, en saco</span></span><span class="tag"><small>PVP</small><strong>Consulte en tienda</strong></span></button></li>
+					<li><button class="item" type="button" aria-pressed="false" data-k="Vermiculita tipo nº 2"><span class="add" aria-hidden="true"><svg class="ico ico-plus"><use href="#i-plus"/></svg><svg class="ico ico-check"><use href="#i-check"/></svg></span><span><span class="nm">Vermiculita tipo nº 2</span><span class="ds">para airear la mezcla</span></span><span class="tag"><small>PVP</small><strong>Consulte en tienda</strong></span></button></li>
+					<li><button class="item" type="button" aria-pressed="false" data-k="Pastillas Jiffy"><span class="add" aria-hidden="true"><svg class="ico ico-plus"><use href="#i-plus"/></svg><svg class="ico ico-check"><use href="#i-check"/></svg></span><span><span class="nm">Pastillas de turba</span><span class="ds"><b>Jiffy</b> · para semilleros</span></span><span class="tag"><small>PVP</small><strong>Consulte en tienda</strong></span></button></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="aisle" id="climatizacion" aria-labelledby="h-clima">
+	<div class="wrap">
+		<div class="aisle-head">
+			<p class="aisle-no" aria-hidden="true">02</p>
+			<h2 id="h-clima"><svg class="ico" aria-hidden="true"><use href="#i-snow"/></svg>Climatización</h2>
+			<p>El cultivo de interior: el armario, la luz y el aire que se mueve dentro.</p>
+			<figure class="aisle-photo">
+				<img src="assets/img/05-led-800.webp" srcset="assets/img/05-led-480.webp 480w, assets/img/05-led-800.webp 800w, assets/img/05-led-1200.webp 1200w" sizes="(min-width: 900px) 38vw, 100vw" width="1200" height="635" loading="lazy" alt="Cajas de paneles LED Lumatek ATS 200W y 300W Pro y luminarias Solux Pro en lo alto de la estantería">
+				<figcaption>Paneles LED Lumatek, en lo alto de la estantería.</figcaption>
+			</figure>
+		</div>
+		<div>
+			<div class="group">
+				<h3>Armarios</h3>
+				<ul class="shelf">
+					<li><button class="item" type="button" aria-pressed="false" data-k="Armario de cultivo"><span class="add" aria-hidden="true"><svg class="ico ico-plus"><use href="#i-plus"/></svg><svg class="ico ico-check"><use href="#i-check"/></svg></span><span><span class="nm">Armarios de cultivo</span><span class="ds">hay uno montado en la tienda para verlo por dentro</span></span><span class="tag"><small>PVP</small><strong>Consulte en tienda</strong></span></button></li>
+				</ul>
+			</div>
+			<div class="group">
+				<h3>Iluminación</h3>
+				<ul class="shelf">
+					<li><button class="item" type="button" aria-pressed="false" data-k="Lumatek ATS 200W Pro LED"><span class="add" aria-hidden="true"><svg class="ico ico-plus"><use href="#i-plus"/></svg><svg class="ico ico-check"><use href="#i-check"/></svg></span><span><span class="nm">ATS 200W Pro LED</span><span class="ds"><b>Lumatek</b> · panel LED</span></span><span class="tag"><small>PVP</small><strong>Consulte en tienda</strong></span></button></li>
+					<li><button class="item" type="button" aria-pressed="false" data-k="Lumatek ATS 300W Pro LED"><span class="add" aria-hidden="true"><svg class="ico ico-plus"><use href="#i-plus"/></svg><svg class="ico ico-check"><use href="#i-check"/></svg></span><span><span class="nm">ATS 300W Pro LED</span><span class="ds"><b>Lumatek</b> · panel LED</span></span><span class="tag"><small>PVP</small><strong>Consulte en tienda</strong></span></button></li>
+					<li><button class="item" type="button" aria-pressed="false" data-k="Solux Pro Selectai 315 W"><span class="add" aria-hidden="true"><svg class="ico ico-plus"><use href="#i-plus"/></svg><svg class="ico ico-check"><use href="#i-check"/></svg></span><span><span class="nm">Selectai 315 W</span><span class="ds"><b>Solux Pro</b> · luminaria</span></span><span class="tag"><small>PVP</small><strong>Consulte en tienda</strong></span></button></li>
+					<li><button class="item" type="button" aria-pressed="false" data-k="Balasto electrónico Solux"><span class="add" aria-hidden="true"><svg class="ico ico-plus"><use href="#i-plus"/></svg><svg class="ico ico-check"><use href="#i-check"/></svg></span><span><span class="nm">Balastos electrónicos</span><span class="ds"><b>Solux</b> y otras marcas</span></span><span class="tag"><small>PVP</small><strong>Consulte en tienda</strong></span></button></li>
+					<li><button class="item" type="button" aria-pressed="false" data-k="Lámparas de cultivo"><span class="add" aria-hidden="true"><svg class="ico ico-plus"><use href="#i-plus"/></svg><svg class="ico ico-check"><use href="#i-check"/></svg></span><span><span class="nm">Lámparas de cultivo</span><span class="ds">de crecimiento y de floración</span></span><span class="tag"><small>PVP</small><strong>Consulte en tienda</strong></span></button></li>
+				</ul>
+			</div>
+			<div class="group">
+				<h3>Aire dentro del armario</h3>
+				<ul class="shelf">
+					<li><button class="item" type="button" aria-pressed="false" data-k="Ventilador oscilante de pinza"><span class="add" aria-hidden="true"><svg class="ico ico-plus"><use href="#i-plus"/></svg><svg class="ico ico-check"><use href="#i-check"/></svg></span><span><span class="nm">Ventiladores oscilantes de pinza</span><span class="ds">se sujetan a la barra del armario</span></span><span class="tag"><small>PVP</small><strong>Consulte en tienda</strong></span></button></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="aisle" id="ventilacion" aria-labelledby="h-vent">
+	<div class="wrap">
+		<div class="aisle-head">
+			<p class="aisle-no" aria-hidden="true">03</p>
+			<h2 id="h-vent"><svg class="ico" aria-hidden="true"><use href="#i-fan"/></svg>Ventilación</h2>
+			<p>Extractores, y todas las piezas de tubo para montarlos.</p>
+			<figure class="aisle-photo">
+				<img src="assets/img/07-ventilacion-800.webp" srcset="assets/img/07-ventilacion-480.webp 480w, assets/img/07-ventilacion-800.webp 800w, assets/img/07-ventilacion-1200.webp 1200w" sizes="(min-width: 900px) 38vw, 100vw" width="1200" height="971" loading="lazy" alt="Estantería metálica con codos y reducciones de tubo galvanizado, bridas, macetas y bandejas negras, y sacos de vermiculita delante">
+				<figcaption>Codos y reducciones, en todas las medidas que se ven.</figcaption>
+			</figure>
+		</div>
+		<div>
+			<div class="group">
+				<h3>Extractores</h3>
+				<ul class="shelf">
+					<li><button class="item" type="button" aria-pressed="false" data-k="Blauberg Turbo-E 125"><span class="add" aria-hidden="true"><svg class="ico ico-plus"><use href="#i-plus"/></svg><svg class="ico ico-check"><use href="#i-check"/></svg></span><span><span class="nm">Turbo-E 125</span><span class="ds"><b>Blauberg</b> · extractor en línea, 125 mm</span></span><span class="tag"><small>PVP</small><strong>Consulte en tienda</strong></span></button></li>
+					<li><button class="item" type="button" aria-pressed="false" data-k="Blauberg Centro 200"><span class="add" aria-hidden="true"><svg class="ico ico-plus"><use href="#i-plus"/></svg><svg class="ico ico-check"><use href="#i-check"/></svg></span><span><span class="nm">Centro 200</span><span class="ds"><b>Blauberg</b> · extractor centrífugo, 200 mm</span></span><span class="tag"><small>PVP</small><strong>Consulte en tienda</strong></span></button></li>
+					<li><button class="item" type="button" aria-pressed="false" data-k="Blauberg Centro 200 Max"><span class="add" aria-hidden="true"><svg class="ico ico-plus"><use href="#i-plus"/></svg><svg class="ico ico-check"><use href="#i-check"/></svg></span><span><span class="nm">Centro 200 Max</span><span class="ds"><b>Blauberg</b> · extractor centrífugo, 200 mm</span></span><span class="tag"><small>PVP</small><strong>Consulte en tienda</strong></span></button></li>
+					<li><button class="item" type="button" aria-pressed="false" data-k="Extractor en línea TT 150"><span class="add" aria-hidden="true"><svg class="ico ico-plus"><use href="#i-plus"/></svg><svg class="ico ico-check"><use href="#i-check"/></svg></span><span><span class="nm">Extractor TT 150</span><span class="ds">centrífugo en línea, 150 mm</span></span><span class="tag"><small>PVP</small><strong>Consulte en tienda</strong></span></button></li>
+				</ul>
+			</div>
+			<div class="group">
+				<h3>Tubo y piezas</h3>
+				<ul class="shelf">
+					<li><button class="item" type="button" aria-pressed="false" data-k="Codos de tubo galvanizado"><span class="add" aria-hidden="true"><svg class="ico ico-plus"><use href="#i-plus"/></svg><svg class="ico ico-check"><use href="#i-check"/></svg></span><span><span class="nm">Codos galvanizados</span><span class="ds">en varios diámetros</span></span><span class="tag"><small>PVP</small><strong>Consulte en tienda</strong></span></button></li>
+					<li><button class="item" type="button" aria-pressed="false" data-k="Reducciones de tubo galvanizado"><span class="add" aria-hidden="true"><svg class="ico ico-plus"><use href="#i-plus"/></svg><svg class="ico ico-check"><use href="#i-check"/></svg></span><span><span class="nm">Reducciones</span><span class="ds">para pasar de un diámetro a otro</span></span><span class="tag"><small>PVP</small><strong>Consulte en tienda</strong></span></button></li>
+					<li><button class="item" type="button" aria-pressed="false" data-k="Bridas para tubo"><span class="add" aria-hidden="true"><svg class="ico ico-plus"><use href="#i-plus"/></svg><svg class="ico ico-check"><use href="#i-check"/></svg></span><span><span class="nm">Bridas</span><span class="ds">para unir el tubo al extractor</span></span><span class="tag"><small>PVP</small><strong>Consulte en tienda</strong></span></button></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="aisle" id="ademas" aria-labelledby="h-mas">
+	<div class="wrap">
+		<div class="aisle-head">
+			<p class="aisle-no" aria-hidden="true">04</p>
+			<h2 id="h-mas">Y además</h2>
+			<p>Lo pequeño que también hace falta.</p>
+		</div>
+		<div>
+			<div class="group">
+				<h3>Riego y cultivo</h3>
+				<ul class="shelf">
+					<li><button class="item" type="button" aria-pressed="false" data-k="Pulverizador a presión Aquaking"><span class="add" aria-hidden="true"><svg class="ico ico-plus"><use href="#i-plus"/></svg><svg class="ico ico-check"><use href="#i-check"/></svg></span><span><span class="nm">Pulverizadores a presión</span><span class="ds"><b>Aquaking</b> · de 3, 5 y 8 litros</span></span><span class="tag"><small>PVP</small><strong>Consulte en tienda</strong></span></button></li>
+					<li><button class="item" type="button" aria-pressed="false" data-k="Bomba de agua 7000 l/h"><span class="add" aria-hidden="true"><svg class="ico ico-plus"><use href="#i-plus"/></svg><svg class="ico ico-check"><use href="#i-check"/></svg></span><span><span class="nm">Bomba de agua</span><span class="ds">7000 litros por hora</span></span><span class="tag"><small>PVP</small><strong>Consulte en tienda</strong></span></button></li>
+					<li><button class="item" type="button" aria-pressed="false" data-k="Macetas"><span class="add" aria-hidden="true"><svg class="ico ico-plus"><use href="#i-plus"/></svg><svg class="ico ico-check"><use href="#i-check"/></svg></span><span><span class="nm">Macetas</span><span class="ds">de varios tamaños</span></span><span class="tag"><small>PVP</small><strong>Consulte en tienda</strong></span></button></li>
+					<li><button class="item" type="button" aria-pressed="false" data-k="Bandejas de cultivo"><span class="add" aria-hidden="true"><svg class="ico ico-plus"><use href="#i-plus"/></svg><svg class="ico ico-check"><use href="#i-check"/></svg></span><span><span class="nm">Bandejas</span><span class="ds">de cultivo y de alvéolos</span></span><span class="tag"><small>PVP</small><strong>Consulte en tienda</strong></span></button></li>
+				</ul>
+			</div>
+			<p class="aisle-note">Esto es lo que se ve en las fotos de la tienda. ¿Busca algo que no está aquí? <a href="https://wa.me/34622148745?text=Hola%2C%20Terra%20Clima%20Grow.%20%C2%BFTienen%20" target="_blank" rel="noopener">Pregúntelo por WhatsApp</a>.</p>
+		</div>
+	</div>
+</section>
+
+<section class="empty" id="empty" aria-live="polite">
+	<div class="wrap">
+		<p id="empty-t">No aparece en el catálogo, pero puede que lo tengan. <a id="empty-a" href="https://wa.me/34622148745" target="_blank" rel="noopener">Pregúntelo por WhatsApp</a>.</p>
+	</div>
+</section>
+</div>
+
+<section class="shop" id="tienda" aria-labelledby="h-shop">
+	<div class="wrap">
+		<figure>
+			<img src="assets/img/02-tienda-480.webp" srcset="assets/img/02-tienda-480.webp 480w, assets/img/02-tienda-980.webp 980w" sizes="(min-width: 900px) 46vw, 100vw" width="980" height="1017" loading="lazy" alt="El interior de la tienda: estanterías de nutrientes a la izquierda, un armario de cultivo montado al fondo, palés de sacos Canna Terra y una zona con sillones">
+			<figcaption>Por dentro: las estanterías, un armario montado y sitio para sentarse.</figcaption>
+		</figure>
+		<div>
+			<p class="kick">La tienda</p>
+			<h2 id="h-shop">Pase y pregunte.</h2>
+			<p class="shop-lede">Un local amplio en San Isidro, con todo a la vista, un armario montado para verlo por dentro y sitio para sentarse mientras le atienden.</p>
+			<div class="facts">
+				<div class="fact">
+					<h3>Dirección</h3>
+					<address>Av. José González Rivas, 44<br>38611 San Isidro, Tenerife</address>
+					<a class="lnk" href="https://maps.google.com/?cid=10588609436054471550" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>Cómo llegar</a>
+				</div>
+				<div class="fact">
+					<h3>Horario</h3>
+					<table class="hours">
+						<caption class="vh">Horario de apertura</caption>
+						<tbody>
+							<tr data-d="1"><th scope="row">Lunes</th><td>10:00–20:00</td></tr>
+							<tr data-d="2"><th scope="row">Martes</th><td>10:00–20:00</td></tr>
+							<tr data-d="3"><th scope="row">Miércoles</th><td>10:00–20:00</td></tr>
+							<tr data-d="4"><th scope="row">Jueves</th><td>10:00–20:00</td></tr>
+							<tr data-d="5"><th scope="row">Viernes</th><td>10:00–20:00</td></tr>
+							<tr data-d="6"><th scope="row">Sábado</th><td>10:00–18:00</td></tr>
+							<tr data-d="0"><th scope="row">Domingo</th><td>Cerrado</td></tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="fact">
+					<h3>Teléfono y WhatsApp</h3>
+					<a class="lnk" href="tel:+34622148745"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg>622 14 87 45</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="voices" aria-labelledby="h-voices">
+	<div class="wrap">
+		<div>
+			<p class="kick" id="h-voices">En Google</p>
+			<div class="score"><b>4,7</b><span class="stars" aria-hidden="true">★★★★★</span><p>26 reseñas · consultado el 17 de noviembre de 2026</p></div>
+		</div>
+		<div class="quotes">
+			<blockquote>
+				<p>[…] han acertado, mis plantas van del 10, y tienen muy bien trato y precios</p>
+				<footer>Adrián, en Google · agosto de 2025</footer>
+			</blockquote>
+			<blockquote>
+				<p>[…] buen trato, y sobre todo buenos precios! El personal sobre todo te ayuda y son super amigables!</p>
+				<footer>Angie B., en Google · agosto de 2025</footer>
+			</blockquote>
+		</div>
+	</div>
+</section>
+
+<section class="close" aria-labelledby="h-close">
+	<svg class="hero-leaves" aria-hidden="true"><use href="#leaves"/></svg>
+	<div class="wrap">
+		<h2 id="h-close">¿Le falta algo para el cultivo?</h2>
+		<p>Escriba qué busca, llame, o pase por la Av. José González Rivas, 44. De lunes a sábado.</p>
+		<div class="hero-act">
+			<a class="btn btn-leaf" href="https://wa.me/34622148745" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
+			<a class="btn btn-ghost" href="tel:+34622148745"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg>Llamar</a>
+			<a class="btn btn-ghost" href="https://maps.google.com/?cid=10588609436054471550" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>Cómo llegar</a>
+		</div>
+	</div>
+</section>
+</main>
+
+<footer class="foot">
+	<div class="wrap">
+		<p><b>Vista previa privada de Teide Digital para Terra Clima Grow.</b></p>
+		<p>Fotos: ficha de Google de la tienda. Catálogo: los productos que se ven en esas fotos; precios, a consultar en tienda. La lista por WhatsApp no envía nada por sí sola: abre su WhatsApp con el mensaje escrito. Valoración y reseñas: Google, 17 de noviembre de 2026.</p>
+	</div>
+</footer>
+
+<div class="sheet" id="sheet" role="region" aria-labelledby="sheet-h" hidden>
+	<h2 id="sheet-h" tabindex="-1">Su lista</h2>
+	<p>Mándela por WhatsApp y le dicen precio y si lo tienen.</p>
+	<ul id="sheet-list"></ul>
+	<button class="clear" type="button" id="clear">Vaciar la lista</button>
+</div>
+
+<div class="bar" id="bar">
+	<button class="btn btn-list" type="button" id="list-btn" aria-expanded="false" aria-controls="sheet">Su lista <span class="count" id="count">0</span></button>
+	<a class="btn btn-ghost btn-call" href="tel:+34622148745"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg>Llamar</a>
+	<a class="btn btn-leaf" id="wa-btn" href="https://wa.me/34622148745" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg><span id="wa-t">WhatsApp</span></a>
+</div>
+
+<script>
+(() => {
+	const d = document;
+	d.documentElement.classList.add('js');
+	const WA = '34622148745';
+	const TZ = 'Atlantic/Canary';
+	// minutes from midnight; 0 = Sunday
+	const HOURS = { 0: null, 1: [600, 1200], 2: [600, 1200], 3: [600, 1200], 4: [600, 1200], 5: [600, 1200], 6: [600, 1080] };
+	const DAY = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+	const hm = m => `${Math.floor(m / 60)}:${String(m % 60).padStart(2, '0')}`;
+
+	// ── open now (Canary time) ──
+	try {
+		const parts = new Intl.DateTimeFormat('en-GB', { timeZone: TZ, weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date());
+		const get = t => parts.find(p => p.type === t).value;
+		const dow = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(get('weekday'));
+		const now = +get('hour') * 60 + +get('minute');
+		const today = HOURS[dow];
+		let txt, open = false;
+		if (today && now >= today[0] && now < today[1]) { open = true; txt = `Abierto ahora · hasta las ${hm(today[1])}`; }
+		else if (today && now < today[0]) txt = `Cerrado · abre hoy a las ${hm(today[0])}`;
+		else {
+			let k = 1; while (!HOURS[(dow + k) % 7]) k++;
+			const nd = (dow + k) % 7;
+			txt = `Cerrado · abre ${k === 1 ? 'mañana' : 'el ' + DAY[nd]} a las ${hm(HOURS[nd][0])}`;
+		}
+		const el = d.getElementById('open');
+		d.getElementById('open-t').textContent = txt;
+		el.classList.toggle('is-open', open);
+		el.hidden = false;
+		const row = d.querySelector(`.hours tr[data-d="${dow}"]`);
+		if (row) row.classList.add('today');
+	} catch (e) {}
+
+	// ── the list ──
+	const items = [...d.querySelectorAll('.item')];
+	const list = new Map();
+	const bar = d.getElementById('bar'), sheet = d.getElementById('sheet'), ul = d.getElementById('sheet-list');
+	const listBtn = d.getElementById('list-btn'), waBtn = d.getElementById('wa-btn'), waT = d.getElementById('wa-t'), count = d.getElementById('count');
+	const label = b => b.dataset.k;
+	const sub = b => b.querySelector('.ds').textContent;
+	function msg() {
+		const lines = [...list.keys()].map(k => `- ${k}`).join('\n');
+		return `Hola, Terra Clima Grow. ¿Me dicen el precio y si lo tienen?\n${lines}`;
+	}
+	function render() {
+		const n = list.size;
+		count.textContent = n;
+		bar.classList.toggle('has', n > 0);
+		waT.textContent = n ? 'Enviar lista' : 'WhatsApp';
+		waBtn.href = n ? `https://wa.me/${WA}?text=${encodeURIComponent(msg())}` : `https://wa.me/${WA}`;
+		listBtn.setAttribute('aria-label', `Ver su lista, ${n} ${n === 1 ? 'producto' : 'productos'}`);
+		ul.replaceChildren(...[...list.entries()].map(([k, b]) => {
+			const li = d.createElement('li');
+			const s = d.createElement('span'); s.textContent = b.querySelector('.nm').textContent;
+			const sm = d.createElement('small'); sm.textContent = sub(b); s.append(sm);
+			const rm = d.createElement('button'); rm.type = 'button'; rm.className = 'rm'; rm.textContent = 'Quitar';
+			rm.setAttribute('aria-label', `Quitar ${b.querySelector('.nm').textContent} de la lista`);
+			rm.addEventListener('click', () => { toggle(b, false); if (!list.size) closeSheet(); });
+			li.append(s, rm); return li;
+		}));
+		if (!n && !sheet.hidden) closeSheet();
+	}
+	function toggle(b, on) {
+		on = on ?? b.getAttribute('aria-pressed') !== 'true';
+		b.setAttribute('aria-pressed', String(on));
+		if (on) list.set(label(b), b); else list.delete(label(b));
+		render();
+	}
+	function openSheet() { sheet.hidden = false; listBtn.setAttribute('aria-expanded', 'true'); d.getElementById('sheet-h').focus(); }
+	function closeSheet() { sheet.hidden = true; listBtn.setAttribute('aria-expanded', 'false'); }
+	items.forEach(b => {
+		b.addEventListener('click', () => toggle(b));
+		b.setAttribute('aria-label', `${b.querySelector('.nm').textContent}, ${sub(b)}. Precio: consulte en tienda. Añadir a su lista`);
+	});
+	listBtn.addEventListener('click', () => sheet.hidden ? openSheet() : closeSheet());
+	d.getElementById('clear').addEventListener('click', () => { items.forEach(b => b.setAttribute('aria-pressed', 'false')); list.clear(); render(); });
+	d.addEventListener('keydown', e => { if (e.key === 'Escape' && !sheet.hidden) { closeSheet(); listBtn.focus(); } });
+	render();
+
+	// ── finder ──
+	const q = d.getElementById('q'), out = d.getElementById('q-out'), empty = d.getElementById('empty'), emptyA = d.getElementById('empty-a');
+	const norm = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+	const hay = items.map(b => [b, norm(b.dataset.k + ' ' + b.textContent)]);
+	const total = items.length;
+	out.textContent = `${total} productos en el catálogo.`;
+	q.addEventListener('input', () => {
+		const t = norm(q.value.trim());
+		let hits = 0;
+		hay.forEach(([b, h]) => { const ok = !t || t.split(/\s+/).every(w => h.includes(w)); b.parentElement.hidden = !ok; if (ok) hits++; });
+		d.querySelectorAll('.group').forEach(g => { g.hidden = !g.querySelector('li:not([hidden])'); });
+		d.querySelectorAll('.aisle').forEach(a => { a.hidden = !a.querySelector('li:not([hidden])'); });
+		empty.classList.toggle('show', hits === 0);
+		emptyA.href = `https://wa.me/${WA}?text=${encodeURIComponent(`Hola, Terra Clima Grow. ¿Tienen ${q.value.trim()}?`)}`;
+		out.textContent = !t ? `${total} productos en el catálogo.` : hits ? `${hits} de ${total} productos.` : 'Ninguno en el catálogo.';
+	});
+
+	// ── active aisle tab ──
+	const tabs = new Map([...d.querySelectorAll('.tabs a')].map(a => [a.dataset.tab, a]));
+	if ('IntersectionObserver' in window) {
+		const io = new IntersectionObserver(es => es.forEach(e => {
+			if (!e.isIntersecting) return;
+			tabs.forEach(a => a.removeAttribute('aria-current'));
+			const a = tabs.get(e.target.id);
+			if (a) {
+				a.setAttribute('aria-current', 'true');
+				const ol = a.closest('ol'), l = a.offsetLeft, r = l + a.offsetWidth;
+				if (l < ol.scrollLeft || r > ol.scrollLeft + ol.clientWidth) ol.scrollLeft = l - 16;
+			}
+		}), { rootMargin: '-45% 0px -50% 0px' });
+		d.querySelectorAll('.aisle').forEach(s => io.observe(s));
+	}
+})();
+</script>
+</body>
+</html>
