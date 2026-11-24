@@ -1,0 +1,1382 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rompiente · Cocina de mar en Playa Paraíso, Adeje</title>
+<meta name="description" content="Restaurante de pescado y brasa sobre las rocas de Playa Paraíso, Adeje, mirando a La Gomera. Reserven la mesa de la puesta de sol por WhatsApp.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0f1f2c">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230f1f2c'/%3E%3Ccircle cx='16' cy='15' r='5.5' fill='%23f2a65a'/%3E%3Cpath d='M4 21c4-3 8 3 12 0s8-3 12 0v5H4z' fill='%23f2ece2'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/dm-serif-display.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/dm-sans-var.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Rompiente — the hospitality world ("Atlantic night", from the Ocean View Studio site).
+   Everything that moves is opt-in under html.motion; without it the page is complete and still. */
+@font-face { font-family: "DM Serif Display"; src: url("assets/fonts/dm-serif-display.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "DM Serif Display"; src: url("assets/fonts/dm-serif-display-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "DM Sans"; src: url("assets/fonts/dm-sans-var.woff2") format("woff2"); font-weight: 400 600; font-style: normal; font-display: swap; }
+
+:root {
+  --bg: #0f1f2c; --bg-deep: #0b1722; --surface: #172b3b; --card: #1b3245;
+  --ink: #f2ece2; --soft: #b9c2c9; --mute: #8fa4b5;
+  --sun: #f2a65a; --sun-hi: #f6b778; --sun-ink: #1a1206;
+  --wa: #1f7a4d; --line: rgb(242 236 226 / .12);
+  --f-d: "DM Serif Display", Georgia, "Times New Roman", serif;
+  --f-t: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --gutter: clamp(1.25rem, 4.5vw, 3.25rem);
+  --r: 14px;
+  --ease: cubic-bezier(.2, .8, .2, 1);
+  --spring: cubic-bezier(.3, 1.5, .5, 1);
+  --bar-h: 4rem;
+  --stage-h: 100svh;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { font-size: 106.25%; -webkit-text-size-adjust: 100%; scroll-padding-top: var(--bar-h); }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 1rem/1.6 var(--f-t); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+::selection { background: var(--sun); color: var(--sun-ink); }
+:focus-visible { outline: 2px solid var(--sun); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--f-d); font-weight: 400; margin: 0; letter-spacing: -.005em; text-wrap: balance; }
+h1 em, h2 em, h3 em { font-style: italic; color: var(--sun); }
+p { margin: 0; text-wrap: pretty; }
+.wrap { width: min(100% - 2 * var(--gutter), 76rem); margin-inline: auto; }
+.ic { width: 1.25rem; height: 1.25rem; flex: none; }
+.ic--sm { width: .9rem; height: .9rem; vertical-align: -.08em; margin-left: .3rem; }
+.sunchip__arr { width: .95rem; height: .95rem; color: var(--soft); }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.skip { position: fixed; left: 1rem; top: -4rem; z-index: 200; padding: .7rem 1rem; background: var(--sun); color: var(--sun-ink); border-radius: 8px; font-weight: 600; text-decoration: none; transition: top 160ms; }
+.skip:focus { top: 1rem; }
+.kick { font: 600 .74rem/1.3 var(--f-t); letter-spacing: .16em; text-transform: uppercase; color: var(--soft); font-variant-numeric: tabular-nums; }
+.kick time { color: var(--sun); letter-spacing: .06em; }
+.lede { font-size: 1.06rem; line-height: 1.62; color: var(--soft); max-width: 36rem; }
+.fine { font-size: .82rem; color: var(--mute); }
+.link { color: var(--sun); text-decoration: underline; text-underline-offset: .22em; text-decoration-thickness: 1px; font-weight: 500; }
+.link:hover { text-decoration-thickness: 2px; }
+
+/* buttons */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: .55rem; min-height: 3.1rem; padding: .8rem 1.45rem; border-radius: 999px;
+  font: 600 .98rem/1 var(--f-t); text-decoration: none; border: 1px solid transparent; cursor: pointer; white-space: nowrap;
+  transition: background-color 160ms, border-color 160ms, transform 220ms var(--spring), box-shadow 220ms var(--ease); }
+.btn--sun { background: var(--sun); color: var(--sun-ink); box-shadow: 0 14px 28px -16px rgb(0 0 0 / .7); position: relative; overflow: hidden; isolation: isolate; }
+.btn--sun:hover { background: var(--sun-hi); transform: translateY(-1px); }
+.btn--ghost { border-color: rgb(242 236 226 / .32); color: var(--ink); }
+.btn--ghost:hover { border-color: var(--ink); background: rgb(242 236 226 / .06); }
+.btn--sm { min-height: 2.75rem; padding: .6rem 1.1rem; font-size: .9rem; }
+.btn--lg { min-height: 3.5rem; font-size: 1.04rem; width: 100%; }
+.btn:active { transform: translateY(1px) scale(.98); }
+
+/* ================= header */
+.bar { position: fixed; inset: 0 0 auto; z-index: 80; height: var(--bar-h); display: flex; align-items: center; gap: 1rem; padding: 0 var(--gutter);
+  background: linear-gradient(rgb(11 23 34 / .55), rgb(11 23 34 / 0)); transition: background-color 260ms var(--ease), box-shadow 260ms; }
+.bar.is-solid { background: rgb(15 31 44 / .94); box-shadow: 0 1px 0 var(--line); }
+@supports (backdrop-filter: blur(10px)) { .bar.is-solid { background: rgb(15 31 44 / .82); backdrop-filter: blur(12px) saturate(1.2); } }
+.brand { display: inline-flex; align-items: baseline; gap: .6rem; text-decoration: none; margin-right: auto; }
+.brand__n { font: 400 1.6rem/1 var(--f-d); letter-spacing: -.01em; }
+.brand__s { font: italic 400 .98rem/1 var(--f-d); color: var(--soft); }
+.nav { display: none; gap: 1.6rem; }
+.nav a { text-decoration: none; font-size: .92rem; color: var(--soft); padding: .5rem 0; position: relative; }
+.nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: .25rem; height: 1px; background: var(--sun); transform: scaleX(0); transform-origin: left; transition: transform 260ms var(--ease); }
+.nav a:hover { color: var(--ink); }
+.nav a:hover::after { transform: scaleX(1); }
+.langs { display: flex; align-items: center; gap: .1rem; }
+.langs button { display: inline-grid; place-items: center; min-width: 2.75rem; min-height: 2.75rem; padding: 0; background: none; border: 0; cursor: pointer; opacity: .6; color: var(--ink);
+  transition: opacity 160ms, transform 200ms var(--spring); }
+.langs .flag { display: block; width: 1.5rem; height: 1rem; border-radius: 3px; overflow: hidden; box-shadow: 0 0 0 1px rgb(255 255 255 / .22), 0 1px 3px rgb(0 0 0 / .4); }
+.langs .flag svg { display: block; width: 100%; height: 100%; }
+.langs button[aria-pressed="true"] { opacity: 1; }
+.langs button[aria-pressed="true"] .flag { box-shadow: 0 0 0 2px var(--ink), 0 2px 6px rgb(0 0 0 / .35); }
+@media (hover: hover) and (pointer: fine) { .langs button:hover { opacity: 1; transform: translateY(-1px) scale(1.06); } }
+.bar__cta { display: none; }
+@media (min-width: 1000px) { .nav { display: flex; } .bar__cta { display: inline-flex; margin-left: .5rem; } }
+@media (max-width: 30rem) { .brand__s { display: none; } }
+@media (min-width: 861px) { .bar { background: linear-gradient(rgb(11 23 34 / .78), rgb(11 23 34 / 0)); } .nav a { color: var(--ink); text-shadow: 0 1px 10px rgb(0 0 0 / .55); } }
+
+/* ================= 1 · hero */
+.hero { position: relative; display: grid; }
+.hero__ph { position: relative; overflow: hidden; height: min(48svh, 118vw); background: var(--bg-deep); }
+.hero__ph img { width: 100%; height: 100%; object-fit: cover; }
+.hero__ph::after { content: ""; position: absolute; inset: auto 0 0; height: 38%; background: linear-gradient(rgb(15 31 44 / 0), var(--bg)); pointer-events: none; }
+.hero__dim { position: absolute; inset: 0; z-index: 2; background: #04070c; opacity: 0; pointer-events: none; }
+.hero__copy { position: relative; z-index: 3; padding: 0 var(--gutter) 2.4rem; margin-top: -2.6rem; display: grid; gap: 1rem; justify-items: start; }
+.hero h1 { font-size: clamp(2.35rem, 10vw, 5.4rem); line-height: 1.02; }
+.ctas { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: .4rem; width: 100%; }
+.sunchip[hidden] { display: none; }
+.sunchip { display: inline-flex; align-items: center; gap: .5rem; padding: .45rem .2rem; font-size: .9rem; color: var(--soft); text-decoration: none; font-variant-numeric: tabular-nums; }
+.sunchip .ic { color: var(--sun); }
+.sunchip time { color: var(--ink); font-weight: 600; }
+.sunchip:hover { color: var(--ink); }
+@media (max-width: 30rem) {
+  .ctas .btn--sun { flex: 1; }
+  .ctas .btn--ghost { width: 3.1rem; padding: 0; }
+  .ctas .btn--ghost .btn__l { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+}
+@media (min-width: 861px) {
+  .hero { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); min-height: max(100svh, 40rem); }
+  .hero__ph { grid-column: 2; grid-row: 1; height: auto; border-bottom-left-radius: 2.4rem; }
+  .hero__ph::after { inset: 0 auto 0 0; width: 22%; height: auto; background: linear-gradient(90deg, rgb(15 31 44 / .55), rgb(15 31 44 / 0)); }
+  .hero__copy { grid-column: 1; grid-row: 1; margin: 0; align-content: end; padding: 7rem clamp(1.5rem, 3.4vw, 3.5rem) 13vh var(--gutter); gap: 1.25rem; }
+}
+
+/* ================= 2 · the evening (signature) */
+.eve { position: relative; background: var(--bg-deep); padding-block: 2.5rem; }
+.eve__stage { display: none; }
+.eve__steps { display: grid; gap: 3.5rem; }
+.eve__step { width: min(100% - 2 * var(--gutter), 76rem); margin-inline: auto; display: grid; }
+.eve__pic { display: block; border-radius: var(--r); overflow: hidden; }
+.eve__pic img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.eve__card { position: relative; margin: -4rem 1rem 0; padding: 1.35rem 1.4rem 1.45rem; border-radius: 16px; background: rgb(15 31 44 / .94); border: 1px solid var(--line);
+  display: grid; gap: .7rem; max-width: 32rem; box-shadow: 0 30px 50px -30px rgb(0 0 0 / .8); }
+.eve__card h2, .eve__card h3 { font-size: clamp(1.9rem, 7.4vw, 3.3rem); line-height: 1.03; }
+.eve__card p:not(.kick) { color: var(--soft); }
+.eve__card .kick time { font-size: 1.05em; }
+.eve__cta { justify-self: start; margin-top: .3rem; }
+.eve__note { width: min(100% - 2 * var(--gutter), 76rem); margin: 0 auto; font-size: .82rem; color: var(--mute); }
+@media (min-width: 861px) {
+  .eve__pic img { aspect-ratio: 16 / 10; }
+  .eve__card { margin: -9rem 0 0 2.5rem; }
+}
+.eve__rail { list-style: none; margin: 0; padding: 0; }
+
+/* the stage version: photos pin, the cards scroll over them (no text is ever hidden) */
+.motion .eve { padding-block: 0; }
+.motion .eve__stage { display: block; position: sticky; top: 0; height: var(--stage-h); overflow: hidden; z-index: 1; background: var(--bg-deep); }
+.motion .eve__stage .eve__pic { position: absolute; inset: 0; border-radius: 0; opacity: var(--o, 0); }
+.motion .eve__stage .eve__pic.is-off { visibility: hidden; }
+.motion .eve__stage .eve__pic img { width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover; transform: scale(var(--z, 1)); transform-origin: 50% 60%; }
+.motion .eve__stage::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgb(11 23 34 / .55) 0, rgb(11 23 34 / 0) 22%, rgb(11 23 34 / 0) 50%, rgb(11 23 34 / .82) 88%, var(--bg-deep) 100%); }
+.motion .eve__steps { position: relative; z-index: 2; margin-top: calc(var(--stage-h) * -1); gap: 0; }
+.motion .eve__step { width: auto; margin: 0; min-height: calc(var(--stage-h) * 1.12); padding: 0 var(--gutter) 7.5rem; align-content: end; }
+.motion .eve__step:first-child { min-height: var(--stage-h); }
+.motion .eve__step:last-of-type { min-height: calc(var(--stage-h) * 1.05); }
+.motion .eve__card { margin: 0; background: rgb(11 23 34 / .8); }
+@supports (backdrop-filter: blur(8px)) { .motion .eve__card { background: rgb(11 23 34 / .62); backdrop-filter: blur(10px) saturate(1.15); } }
+.motion .eve__note { position: relative; z-index: 2; padding: 0 var(--gutter) 2.5rem; }
+.motion .eve__rail { position: absolute; z-index: 3; display: flex; gap: .35rem; top: calc(var(--bar-h) + .6rem); left: var(--gutter); right: var(--gutter); justify-content: space-between;
+  font: 600 .78rem/1 var(--f-t); font-variant-numeric: tabular-nums; color: rgb(242 236 226 / .55); }
+.motion .eve__rail li { flex: 1; padding-top: .55rem; border-top: 2px solid rgb(242 236 226 / .22); transition: color 300ms, border-color 300ms; }
+.motion .eve__rail li.is-on { color: var(--ink); border-top-color: var(--sun); }
+@media (min-width: 861px) {
+  .motion .eve__step { padding: 0 var(--gutter) 0 max(var(--gutter), calc((100vw - 76rem) / 2)); align-content: center; }
+  .motion .eve__card { padding: 1.8rem 2rem 2rem; }
+  .motion .eve__stage::after { background: linear-gradient(90deg, rgb(11 23 34 / .6) 0, rgb(11 23 34 / 0) 55%), linear-gradient(180deg, rgb(11 23 34 / .5) 0, rgb(11 23 34 / 0) 20%, rgb(11 23 34 / 0) 80%, var(--bg-deep) 100%); }
+  .motion .eve__rail { flex-direction: column; gap: 0; top: 50%; left: auto; right: var(--gutter); transform: translateY(-50%); }
+  .motion .eve__rail li { padding: .9rem 0 .9rem 1rem; border-top: 0; border-left: 2px solid rgb(242 236 226 / .22); }
+  .motion .eve__rail li.is-on { border-left-color: var(--sun); }
+}
+
+/* ================= 3 · the menu */
+.carta { padding-block: clamp(4rem, 11vh, 7rem) clamp(3rem, 8vh, 5rem); }
+.carta__grid { display: grid; gap: 2rem; }
+.carta__head { display: grid; gap: 1rem; }
+.carta h2, .vinos h2, .guests h2, .around h2, .gteaser h2, .book h2 { font-size: clamp(2.3rem, 8.4vw, 4.4rem); line-height: 1.02; }
+.ph { margin: 0; border-radius: var(--r); overflow: hidden; background: var(--surface); }
+.ph img { width: 100%; height: 100%; object-fit: cover; }
+.carta__b, .carta__c { display: none; }
+.menu { display: grid; gap: 1.8rem; }
+.menu__g h3 { font: 600 .74rem/1.3 var(--f-t); letter-spacing: .16em; text-transform: uppercase; color: var(--sun); padding-bottom: .7rem; border-bottom: 1px solid var(--line); }
+.menu__g ul { list-style: none; margin: 0; padding: 0; }
+.menu__g li { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding: .85rem 0; border-bottom: 1px solid var(--line); }
+.menu__g .n { font: 400 1.22rem/1.25 var(--f-d); }
+.menu__g .n small { display: block; margin-top: .25rem; font: 400 .86rem/1.4 var(--f-t); color: var(--mute); }
+.menu__g .p { flex: none; font-weight: 500; font-variant-numeric: tabular-nums; color: var(--soft); white-space: nowrap; font-size: .95rem; }
+@media (min-width: 861px) {
+  .carta__grid { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 1.25rem; row-gap: 2.5rem; align-items: start; }
+  .carta__head { grid-column: 1 / span 6; }
+  .carta__a { grid-column: 8 / span 5; grid-row: 1 / span 2; }
+  .menu { grid-column: 1 / span 6; grid-row: 2 / span 2; }
+  .carta__b, .carta__c { display: block; }
+  .carta__b { grid-column: 8 / span 3; grid-row: 3; margin-top: -6rem; z-index: 1; box-shadow: 0 0 0 8px var(--bg); }
+  .carta__c { grid-column: 11 / span 2; grid-row: 3; margin-top: 2rem; }
+}
+.vinos { display: grid; gap: 1.5rem; margin-top: clamp(3.5rem, 9vh, 6rem); }
+.vinos__ph img { aspect-ratio: 3 / 2; }
+.vinos__txt { display: grid; gap: 1rem; align-content: center; }
+.vinos__txt p:not(.kick) { color: var(--soft); font-size: 1.06rem; max-width: 30rem; }
+@media (min-width: 861px) { .vinos { grid-template-columns: 7fr 5fr; gap: 3rem; align-items: center; } }
+
+/* ================= 4 · reviews */
+.guests { background: var(--surface); padding-block: clamp(3.5rem, 9vh, 5.5rem) clamp(2.5rem, 6vh, 4rem); overflow: hidden; }
+.guests__head { display: grid; gap: .9rem; margin-bottom: clamp(1.8rem, 4vh, 2.6rem); }
+.guests__p { color: var(--soft); max-width: 38rem; }
+@media (min-width: 861px) { .guests__head { grid-template-columns: auto 1fr; align-items: end; gap: 1rem 3rem; } .guests__p { justify-self: end; text-align: right; } }
+.rv-row { padding-inline: var(--gutter); }
+.rv-row:focus-visible { outline-offset: -4px; }
+.rv-track { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.1rem; max-width: 76rem; margin-inline: auto; }
+.rv { position: relative; display: flex; flex-direction: column; margin: 0; padding: 1.5rem 1.6rem 1.25rem; border-radius: var(--r); background: var(--card);
+  border: 1px solid rgb(255 255 255 / .08); box-shadow: 0 24px 44px -30px rgb(0 0 0 / .7); transition: transform 320ms var(--ease); }
+.rv::before { content: "\201C"; display: block; font: 400 4.2rem/.6 var(--f-d); color: var(--sun); height: 1.6rem; margin: .4rem 0 .5rem -.15rem; }
+.rv__t { flex: 1; margin: 0; font: 400 1.05rem/1.6 var(--f-t); color: var(--ink); text-wrap: pretty; }
+.rv__tr { margin: .6rem 0 0; font-size: .76rem; color: var(--mute); }
+.rv__tr[hidden] { display: none; }
+.rv__f { display: flex; align-items: center; justify-content: space-between; gap: .8rem; margin-top: 1.3rem; padding-top: .9rem; border-top: 1px solid var(--line); font-size: .8rem; color: var(--soft); }
+.rv__src { display: inline-flex; align-items: center; gap: .45rem; }
+.rv__src svg { width: 1rem; height: 1rem; color: var(--sun); flex: none; }
+.rv time { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.rv:nth-child(n+4) { display: none; }
+@media (hover: hover) and (pointer: fine) { .rv:hover { transform: translateY(-4px); } }
+@media (max-width: 860px) {
+  .rv-row { padding: 0; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .rv-row::-webkit-scrollbar { display: none; }
+  .rv-track { display: flex; gap: .8rem; padding: .4rem var(--gutter) 1.2rem; width: max-content; max-width: none; }
+  .rv, .rv:nth-child(n+4) { display: flex; width: min(82vw, 21rem); scroll-snap-align: center; }
+}
+
+/* ================= 5 · where */
+.around { padding-block: clamp(4rem, 11vh, 7rem); }
+.around__grid { display: grid; gap: 2rem; }
+.around__txt { display: grid; gap: 1rem; align-content: start; }
+.addr { font-size: .98rem; }
+.addr small, .facts small { color: var(--mute); font-size: .82em; }
+.hint { display: flex; align-items: center; gap: .55rem; font-size: .9rem; color: var(--soft); }
+.hint__dot { width: .55rem; height: .55rem; border-radius: 50%; background: var(--sun); box-shadow: 0 0 0 4px rgb(242 166 90 / .18); }
+.places { list-style: none; margin: 0; padding: 0; display: grid; gap: .45rem; }
+.places .place { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: .75rem; width: 100%; min-height: 3.1rem; padding: .65rem .9rem; border-radius: 12px;
+  background: var(--card); border: 1px solid rgb(255 255 255 / .07); color: var(--ink); font: inherit; text-align: left; cursor: pointer;
+  transition: border-color 160ms, background-color 160ms, transform 200ms var(--spring); }
+.places .pin { width: 1.9rem; height: 1.9rem; padding: .45rem; border-radius: 50%; background: rgb(242 166 90 / .14); color: var(--sun); }
+.places b { font: 400 1.15rem/1.15 var(--f-d); }
+.places span { font-size: .84rem; color: var(--soft); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.places li.is-hot .place, .places .place[aria-pressed="true"] { border-color: var(--sun); background: #22384c; }
+.places li.is-hot b { color: var(--sun); }
+@media (hover: hover) and (pointer: fine) { .places .place:hover { border-color: rgb(242 166 90 / .55); } }
+.map { position: relative; margin: 0; border-radius: var(--r); overflow: hidden; background: #132a3c; aspect-ratio: 400 / 330; }
+.map svg { display: block; width: 100%; height: 100%; }
+.map figcaption { position: absolute; right: .6rem; bottom: .45rem; font-size: .74rem; color: var(--mute); }
+.map .land { fill: #21384b; stroke: #33506a; stroke-width: 1; }
+.map .dot { fill: #e9e2d6; transition: fill 160ms; }
+.map .dot.is-hot { fill: var(--sun); }
+.map .lab { font: 500 15px/1 var(--f-t); fill: #efe8dc; paint-order: stroke; stroke: #21384b; stroke-width: 4px; stroke-linejoin: round; }
+.map .lab--sea { font: italic 400 26px/1 var(--f-d); fill: #7f9cb3; stroke: none; }
+.map .lab--isle { font: italic 400 24px/1 var(--f-d); fill: #9bb0c1; stroke: none; }
+.map .lab--home { font: 400 19px/1 var(--f-d); fill: var(--sun); }
+.map .home { fill: var(--sun); stroke: #0f1f2c; stroke-width: 3; }
+.map .home-ring { fill: none; stroke: var(--sun); stroke-width: 1.5; opacity: .7; transform-box: fill-box; transform-origin: center; }
+.map .hit { fill: transparent; cursor: pointer; }
+.map .lab--hit { cursor: pointer; }
+.map .dot, .map .route, .map .lab--time, .map .home, .map .home-ring { pointer-events: none; }
+.map .route { fill: none; stroke: var(--sun); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; opacity: 0; transition: stroke-dashoffset 640ms cubic-bezier(.16, 1, .3, 1), opacity 160ms; }
+.map .route.is-on { opacity: 1; }
+.map .lab--time { font: 600 15px/1 var(--f-t); fill: var(--sun); opacity: 0; transition: opacity 200ms 280ms; }
+.map .lab--time.is-on { opacity: 1; }
+@media (max-width: 860px) {
+  .around__grid { gap: 0; }
+  .around__txt { display: contents; }
+  .around__txt > * { margin-bottom: 1rem; }
+  .around .map { order: 1; margin: .4rem 0 1rem; }
+  .around .hint { order: 2; margin-bottom: .7rem; }
+  .around .places { order: 3; grid-template-columns: 1fr 1fr; margin-bottom: 1rem; }
+  .around .fine { order: 4; }
+  .around .link { order: 5; justify-self: start; }
+  .places .place { grid-template-columns: auto 1fr; gap: .1rem .55rem; min-height: 3.4rem; padding: .5rem .6rem; }
+  .places .pin { grid-row: 1 / span 2; width: 1.7rem; height: 1.7rem; padding: .38rem; }
+  .places b { font-size: 1rem; }
+  .places span { font-size: .76rem; }
+}
+@media (min-width: 861px) {
+  .around__grid { grid-template-columns: 5fr 7fr; gap: 3.5rem; align-items: start; }
+  .map { aspect-ratio: 680 / 400; position: sticky; top: 6rem; }
+}
+
+/* ================= 6 · around */
+.gteaser { position: relative; padding-block: clamp(5rem, 14vh, 9rem); isolation: isolate; overflow: hidden; }
+.gt-bg { position: absolute; inset: 0; z-index: -1; }
+.gt-bg img { width: 100%; height: 100%; object-fit: cover; }
+.gt-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, var(--bg) 0, rgb(15 31 44 / .18) 26%, rgb(15 31 44 / .3) 62%, var(--bg) 100%); }
+.gteaser__grid { display: grid; gap: 2rem; }
+.gteaser__txt { display: grid; gap: 1rem; align-content: start; }
+.gteaser__txt .lede { color: var(--ink); }
+.gteaser__list { list-style: none; margin: 0; padding: 0; display: grid; gap: .9rem; counter-reset: g; }
+.gteaser__list li { display: grid; gap: .3rem; }
+.gteaser__list a { position: relative; display: grid; grid-template-columns: 6.4rem 1fr; grid-template-rows: auto auto 1fr; column-gap: 1rem; row-gap: .25rem; padding: .8rem 1.1rem .8rem .8rem;
+  border-radius: 16px; text-decoration: none; background: rgb(15 31 44 / .82); border: 1px solid rgb(255 255 255 / .12); box-shadow: 0 26px 46px -32px rgb(0 0 0 / .75);
+  transition: transform 260ms var(--ease), border-color 200ms; }
+@supports (backdrop-filter: blur(10px)) { .gteaser__list a { background: rgb(15 31 44 / .6); backdrop-filter: blur(14px) saturate(1.2); } }
+.gt-ph { grid-row: 1 / span 3; width: 6.4rem; height: 6.4rem; border-radius: 10px; object-fit: cover; }
+.gteaser__list b { font: 400 1.35rem/1.1 var(--f-d); padding-top: .2rem; }
+.gteaser__list span { font-size: .9rem; color: #d9dde0; line-height: 1.45; }
+.gteaser__list i { font-style: normal; font-size: .8rem; color: var(--sun); font-weight: 500; align-self: end; }
+.gt-cr { font-size: .74rem; color: rgb(242 236 226 / .66); padding-left: .4rem; }
+@media (hover: hover) and (pointer: fine) { .gteaser__list a:hover { transform: translateY(-3px); border-color: rgb(242 166 90 / .55); } }
+@media (min-width: 861px) { .gteaser__grid { grid-template-columns: 5fr 7fr; gap: 3rem; align-items: center; } }
+
+/* ================= 7 · book */
+.book { padding-block: clamp(4rem, 11vh, 7rem) clamp(2.5rem, 6vh, 4rem); }
+.book__grid { display: grid; gap: 2rem; }
+.book__txt { display: grid; gap: 1rem; align-content: start; }
+.book__ph img { aspect-ratio: 4 / 5; }
+.book__ph { max-height: 22rem; }
+@media (min-width: 861px) { .book__grid { grid-template-columns: 7fr 5fr; gap: 3.5rem; } .book__ph { max-height: none; position: sticky; top: 6rem; align-self: start; } }
+.composer { display: grid; gap: 1.2rem; margin-top: .8rem; padding: 1.3rem; border-radius: 18px; background: var(--surface); border: 1px solid var(--line); }
+.fs { border: 0; margin: 0; padding: 0; display: grid; gap: .55rem; min-width: 0; }
+.fs legend, .field > span { padding: 0; margin-bottom: .55rem; font: 600 .74rem/1.3 var(--f-t); letter-spacing: .14em; text-transform: uppercase; color: var(--soft); }
+.fs__note { font-size: .84rem; color: var(--mute); min-height: 1.3em; }
+.fs__note:empty { display: none; }
+.seg, .chips { display: flex; flex-wrap: wrap; gap: .45rem; }
+.seg label, .chip { position: relative; }
+.seg input, .chip input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.seg span, .chip span { display: inline-flex; flex-direction: column; justify-content: center; min-height: 2.9rem; padding: .45rem .95rem; border-radius: 12px; border: 1px solid rgb(242 236 226 / .2);
+  background: var(--bg); font-size: .95rem; line-height: 1.2; transition: border-color 160ms, background-color 160ms, color 160ms; }
+.seg span b { font-weight: 600; }
+.seg span small { font-size: .78rem; color: var(--mute); font-variant-numeric: tabular-nums; }
+.chip span { flex-direction: row; align-items: center; gap: .4rem; font-variant-numeric: tabular-nums; border-radius: 999px; }
+.chip span b { font-weight: 600; }
+.chip--sun span small { color: var(--sun); font-size: .82rem; }
+.chip--sun .ic { width: 1.05rem; height: 1.05rem; color: var(--sun); }
+.seg input:checked + span, .chip input:checked + span { border-color: var(--sun); background: rgb(242 166 90 / .14); }
+.seg input:checked + span small, .chip input:checked + span small { color: var(--ink); }
+.seg input:focus-visible + span, .chip input:focus-visible + span { outline: 2px solid var(--sun); outline-offset: 2px; }
+.chip input:disabled + span { opacity: .38; text-decoration: line-through; }
+.chip input:disabled { cursor: not-allowed; }
+.seg--sm span { min-height: 2.75rem; }
+.row2 { display: grid; gap: 1.2rem; }
+@media (min-width: 560px) { .row2 { grid-template-columns: auto 1fr; gap: 1.6rem; } }
+.stepper { display: inline-flex; align-items: center; border: 1px solid rgb(242 236 226 / .2); border-radius: 999px; background: var(--bg); }
+.stepper button { width: 2.9rem; height: 2.9rem; border: 0; background: none; color: var(--ink); font: 500 1.4rem/1 var(--f-t); cursor: pointer; border-radius: 50%; }
+.stepper button:hover { color: var(--sun); }
+.stepper button:disabled { opacity: .35; cursor: default; }
+.stepper output { min-width: 2.2rem; text-align: center; font: 600 1.15rem/1 var(--f-t); font-variant-numeric: tabular-nums; }
+.field { display: grid; }
+.field input { min-height: 3rem; padding: .6rem .9rem; border-radius: 12px; border: 1px solid rgb(242 236 226 / .2); background: var(--bg); color: var(--ink); font: inherit; color-scheme: dark; }
+.field input:focus-visible { border-color: var(--sun); outline-offset: 1px; }
+.field--date { margin-top: .4rem; max-width: 16rem; }
+.field--date[hidden] { display: none; }
+.bubble { display: grid; grid-template-columns: auto 1fr; gap: .7rem; align-items: start; padding: .9rem 1rem; border-radius: 14px 14px 14px 4px; background: #12392a; border: 1px solid rgb(111 207 151 / .22); }
+.bubble .ic { color: #6fcf97; margin-top: .15rem; }
+.bubble p { font-size: .94rem; line-height: 1.5; color: #e4f2ea; }
+.facts { list-style: none; padding: 0; margin-top: clamp(2.5rem, 6vh, 3.5rem); display: grid; gap: 1rem; padding-top: 1.6rem; border-top: 1px solid var(--line); }
+.facts li { display: grid; gap: .25rem; }
+.facts li > span { font: 600 .72rem/1.3 var(--f-t); letter-spacing: .15em; text-transform: uppercase; color: var(--mute); }
+.facts b { font-weight: 500; }
+.facts a { text-decoration: none; }
+@media (min-width: 861px) { .facts { grid-template-columns: repeat(3, auto); justify-content: space-between; } }
+
+/* ================= night strip + footer */
+.night { position: relative; height: clamp(9rem, 22vw, 15rem); background: linear-gradient(180deg, var(--bg) 0, #0c1a26 60%, #0a141d 100%); overflow: hidden; }
+.stars { position: absolute; inset: 0 0 45% 0; pointer-events: none; }
+.stars i { position: absolute; width: 2px; height: 2px; border-radius: 50%; background: #fff; opacity: .7; }
+.night__sea { position: absolute; inset: auto 0 0; width: 100%; height: 58%; }
+.foot { background: #0a141d; padding-block: 2.2rem calc(2.6rem + env(safe-area-inset-bottom)); font-size: .88rem; color: var(--soft); }
+.foot__grid { display: grid; gap: .9rem; }
+.foot__brand { display: flex; align-items: baseline; gap: .7rem; flex-wrap: wrap; color: var(--ink); }
+.foot__brand .brand__n { font-size: 1.5rem; }
+.foot a { color: var(--ink); text-underline-offset: .2em; }
+.foot__sample { color: var(--sun); font-weight: 500; }
+.credits summary { cursor: pointer; color: var(--mute); min-height: 2.75rem; display: flex; align-items: center; }
+.credits p { margin-top: .5rem; font-size: .8rem; color: var(--mute); }
+@media (max-width: 860px) { .foot { padding-bottom: calc(6.5rem + env(safe-area-inset-bottom)); } }
+
+/* ================= conversion: phone dock, desktop WhatsApp corner */
+.dock { position: fixed; z-index: 70; left: .7rem; right: .7rem; bottom: calc(.7rem + env(safe-area-inset-bottom)); display: flex; gap: .55rem; padding: .45rem; border-radius: 999px;
+  background: rgb(11 23 34 / .9); border: 1px solid var(--line); box-shadow: 0 18px 40px -18px rgb(0 0 0 / .8);
+  transform: translateY(150%); transition: transform 360ms var(--ease); }
+@supports (backdrop-filter: blur(10px)) { .dock { background: rgb(11 23 34 / .72); backdrop-filter: blur(14px) saturate(1.2); } }
+.dock.is-on { transform: none; }
+.dock .btn { flex: 1; min-height: 3rem; }
+.dock__wa { display: grid; place-items: center; width: 3rem; height: 3rem; border-radius: 50%; background: var(--wa); color: #fff; flex: none; }
+.dock__wa .ic { width: 1.4rem; height: 1.4rem; }
+@media (min-width: 861px) { .dock { display: none; } }
+.wa-fab { position: fixed; right: clamp(1rem, 2.2vw, 1.75rem); bottom: clamp(1rem, 2.2vw, 1.75rem); z-index: 75; display: flex; align-items: center; gap: .6rem;
+  height: 3.6rem; min-width: 3.6rem; padding: 0 1.05rem; border-radius: 999px; background: var(--wa); color: #fff; text-decoration: none;
+  box-shadow: 0 14px 30px -12px rgb(0 0 0 / .6), 0 0 0 1px rgb(255 255 255 / .12) inset; font: 500 .95rem/1 var(--f-t);
+  transition: transform 220ms var(--spring), background-color 160ms; }
+.wa-fab .ic { width: 1.6rem; height: 1.6rem; }
+.wa-fab__l { max-width: 0; overflow: hidden; white-space: nowrap; opacity: 0; transition: max-width 420ms var(--ease), opacity 260ms; }
+.wa-fab:hover, .wa-fab:focus-visible { transform: translateY(-2px); background: #1b6c44; }
+.wa-fab:hover .wa-fab__l, .wa-fab:focus-visible .wa-fab__l { max-width: 18rem; opacity: 1; }
+.wa-fab:focus-visible { outline-color: #fff; }
+@media (max-width: 860px) { .wa-fab { display: none; } }
+@media print { .wa-fab, .dock, .bar { display: none; } }
+
+/* ================= motion layer (only with html.motion: JS on and motion allowed) */
+/* the view lights up from dark */
+.motion .hero__dim { animation: rpDim 2.2s cubic-bezier(.3, .1, .2, 1) .05s both; }
+@keyframes rpDim { from { opacity: .94; } to { opacity: 0; } }
+.motion .hero__ph img { animation: rpSettle 3.2s cubic-bezier(.2, .7, .2, 1) both; }
+@keyframes rpSettle { from { transform: scale(1.08); } to { transform: none; } }
+.motion .hero__copy > .kick, .motion .hero__copy > .lede, .motion .hero__copy > .ctas, .motion .hero__copy > .sunchip { animation: rpUp .8s var(--ease) both; }
+.motion .hero__copy > .kick { animation-delay: .2s; }
+.motion .hero__copy > .lede { animation-delay: .45s; }
+.motion .hero__copy > .ctas { animation-delay: .55s; }
+.motion .hero__copy > .sunchip { animation-delay: .7s; }
+@keyframes rpUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+
+/* headings rise word by word out of a mask */
+.motion [data-split] .w { display: inline-block; overflow: hidden; vertical-align: top; padding: 0 .08em .14em 0; margin: 0 -.08em -.14em 0; }
+.motion [data-split] .w > span { display: inline-block; transform: translateY(108%); transition: transform 1s var(--ease); transition-delay: calc(var(--i) * 60ms + var(--d, 0ms)); }
+.motion [data-split].in .w > span { transform: none; }
+.motion h1[data-split] { --d: 420ms; }
+
+/* times roll like an odometer */
+.odo { display: inline-flex; font-variant-numeric: tabular-nums; }
+.odo .d { display: inline-block; height: 1.2em; line-height: 1.2em; overflow: hidden; vertical-align: top; width: .62em; text-align: center; }
+.odo .d > span { display: flex; flex-direction: column; transform: translateY(calc(var(--to) * -1.2em)); transition: transform 1.5s cubic-bezier(.16, 1, .3, 1); transition-delay: calc(var(--c) * 110ms); }
+.odo .d > span > i { display: block; height: 1.2em; font-style: normal; }
+.motion .odo:not(.in) .d > span { transform: none; }
+
+/* photos unveil and settle, then drift a little against the scroll */
+.motion [data-unveil] { clip-path: inset(9% 7% 9% 7% round 10px); transition: clip-path 1.3s var(--ease); }
+.motion [data-unveil].in { clip-path: inset(0 0 0 0 round var(--r)); }
+.motion [data-unveil] > img { scale: 1.2; transition: scale 1.8s var(--ease); }
+.motion [data-unveil].in > img { scale: 1.08; }
+
+/* the gold buttons catch the light a few times, then rest */
+.btn--sun::after { content: ""; position: absolute; inset: -1px; z-index: -1; background: linear-gradient(105deg, transparent 30%, rgb(255 255 255 / .5) 48%, rgb(255 255 255 / .12) 56%, transparent 70%); transform: translateX(-130%); pointer-events: none; }
+.motion .btn--sun::after { animation: rpSheen 6.5s cubic-bezier(.4, 0, .2, 1) 2.6s 3; }
+@keyframes rpSheen { 0% { transform: translateX(-130%); } 18%, 100% { transform: translateX(130%); } }
+@media (hover: hover) and (pointer: fine) { .motion .btn--sun:hover::after { animation: rpSheen 1.4s cubic-bezier(.4, 0, .2, 1) 1; } }
+
+/* map: places pop in, the restaurant breathes while the map is on screen */
+.motion .map .dot { transform-box: fill-box; transform-origin: center; scale: 0; transition: scale .55s cubic-bezier(.3, 1.7, .5, 1), fill 160ms; transition-delay: calc(var(--i, 0) * 90ms + 200ms), 0ms; }
+.motion .map.in .dot { scale: 1; }
+.motion .map.is-live .home-ring { animation: rpRing 2.8s cubic-bezier(.2, .6, .3, 1) infinite; }
+@keyframes rpRing { 0% { scale: 1; opacity: .75; } 70%, 100% { scale: 2.1; opacity: 0; } }
+
+/* reviews drift past on wide screens; hover or focus holds them; off screen they stop */
+.rv--clone { display: none !important; }
+@media (min-width: 861px) {
+  .motion .rv-row { padding: 0; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); }
+  .motion .rv-track { display: flex; gap: 0; width: max-content; max-width: none; padding-block: .6rem 1rem; animation: rpDrift 110s linear infinite; animation-play-state: paused; }
+  .motion .rv-row.is-live .rv-track { animation-play-state: running; }
+  .motion .rv-track .rv, .motion .rv-track .rv:nth-child(n+4) { display: flex; width: 25rem; margin-right: 1.1rem; }
+  .motion .rv-track .rv--clone { display: flex !important; }
+  .motion .rv-row.is-live:hover .rv-track, .motion .rv-row.is-live:focus-within .rv-track { animation-play-state: paused; }
+}
+@keyframes rpDrift { to { transform: translateX(-50%); } }
+
+/* night: stars come out over the sea, only while the strip is on screen */
+.motion .night.is-live .stars i { animation: rpTwinkle var(--t, 4s) ease-in-out var(--dl, 0s) infinite; }
+@keyframes rpTwinkle { 0%, 100% { opacity: .35; } 50% { opacity: .95; } }
+
+/* the WhatsApp corner button arrives once */
+.motion .wa-fab { animation: rpFab .7s var(--spring) 2.4s both; }
+@keyframes rpFab { from { opacity: 0; transform: translateY(18px) scale(.6); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 1ms !important; animation-duration: 1ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+}
+
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.42.25-.69.25-1.29.18-1.41-.08-.13-.27-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.9a11.82 11.82 0 0 0-3.48-8.41Z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 16 16"><path d="M8 15s5-4.6 5-8.5A5 5 0 0 0 3 6.5C3 10.4 8 15 8 15z" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="6.5" r="1.8" fill="currentColor"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="14" r="4.2" fill="currentColor"/><path d="M2 19h20M5.5 15.5 4 14.6M18.5 15.5l1.5-.9M12 6.5V4.8M7.4 8.6 6.4 7.3M16.6 8.6l1-1.3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-down" viewBox="0 0 16 16"><path d="M8 3v10M3.5 8.5 8 13l4.5-4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-ext" viewBox="0 0 16 16"><path d="M5.5 3.5h7v7M12.5 3.5l-9 9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-dasharray="2.2 1.6"/><path d="M5 8.2h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+</svg>
+<a class="skip" href="#main" data-i18n="skip">Saltar al contenido</a>
+
+<header class="bar">
+  <a class="brand" href="#inicio" aria-label="Rompiente, inicio"><span class="brand__n">Rompiente</span><span class="brand__s" data-i18n="brandS">cocina de mar</span></a>
+  <nav class="nav" aria-label="Secciones" data-i18n-aria="navAria">
+    <a href="#tarde" data-i18n="navTarde">La tarde</a>
+    <a href="#carta" data-i18n="navCarta">La carta</a>
+    <a href="#donde" data-i18n="navDonde">Dónde</a>
+    <a href="#cerca" data-i18n="navCerca">Alrededor</a>
+  </nav>
+  <div class="langs" role="group" aria-label="Idioma · Language · Sprache">
+    <button type="button" data-lang="es" lang="es" aria-label="Español" title="Español" aria-pressed="true"><span class="flag"><svg viewBox="0 0 3 2" preserveAspectRatio="none" aria-hidden="true"><rect width="3" height="2" fill="#AA151B"/><rect y=".5" width="3" height="1" fill="#F1BF00"/></svg></span></button>
+    <button type="button" data-lang="en" lang="en" aria-label="English" title="English" aria-pressed="false"><span class="flag"><svg viewBox="0 0 60 30" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><clipPath id="uka"><path d="M0,0v30h60V0z"/></clipPath><clipPath id="ukb"><path d="M30,15h30v15zv15H0zH0V0zV0h30z"/></clipPath><g clip-path="url(#uka)"><path d="M0,0v30h60V0z" fill="#012169"/><path d="M0,0L60,30M60,0L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0L60,30M60,0L0,30" clip-path="url(#ukb)" stroke="#C8102E" stroke-width="4"/><path d="M30,0v30M0,15h60" stroke="#fff" stroke-width="10"/><path d="M30,0v30M0,15h60" stroke="#C8102E" stroke-width="6"/></g></svg></span></button>
+    <button type="button" data-lang="de" lang="de" aria-label="Deutsch" title="Deutsch" aria-pressed="false"><span class="flag"><svg viewBox="0 0 5 3" preserveAspectRatio="none" aria-hidden="true"><rect width="5" height="1" fill="#000"/><rect y="1" width="5" height="1" fill="#DD0000"/><rect y="2" width="5" height="1" fill="#FFCE00"/></svg></span></button>
+  </div>
+  <a class="btn btn--sun btn--sm bar__cta" href="#reservar" data-i18n="book">Reservar mesa</a>
+</header>
+
+<main id="main">
+
+<!-- 1 · arrival: the view lights up from dark -->
+<section id="inicio" class="hero" aria-labelledby="heroH">
+  <div class="hero__ph">
+    <picture>
+      <source media="(max-width: 860px)" srcset="assets/img/hero-m-640.webp 640w, assets/img/hero-m-900.webp 900w" sizes="100vw" width="900" height="1125">
+      <img src="assets/img/hero-1200.webp" srcset="assets/img/hero-1200.webp 1200w, assets/img/hero-2000.webp 2000w" sizes="(max-width: 860px) 100vw, 60vw" width="2000" height="1333" alt="Olas rompiendo contra las rocas volcánicas negras, con una terraza de restaurante asomada al mar a última hora de la tarde." data-i18n-alt="heroAlt" fetchpriority="high" decoding="async">
+    </picture>
+    <div class="hero__dim" aria-hidden="true"></div>
+  </div>
+  <div class="hero__copy">
+    <p class="kick" data-i18n="heroK">Playa Paraíso · Adeje · Tenerife</p>
+    <h1 id="heroH" data-split data-i18n-html="h1">Cocina de mar, <em>donde rompe la ola.</em></h1>
+    <p class="lede" data-i18n="heroP">Pescado de la lonja, brasa y vinos del sur, en una terraza sobre las rocas que mira a La Gomera.</p>
+    <div class="ctas">
+      <a class="btn btn--sun" href="#reservar" data-i18n="book">Reservar mesa</a>
+      <a class="btn btn--ghost js-wa" href="https://wa.me/34600000000" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg><span class="btn__l" data-i18n="wa">Escríbanos por WhatsApp</span></a>
+    </div>
+    <a class="sunchip js-dyn" href="#tarde" hidden><svg class="ic" aria-hidden="true"><use href="#i-sun"/></svg><span data-i18n="sunchip">Hoy el sol se pone a las</span> <time class="js-sunset"></time><svg class="sunchip__arr" aria-hidden="true"><use href="#i-down"/></svg></a>
+  </div>
+</section>
+
+<!-- 2 · signature: one evening on the terrace, timed by tonight's real sunset -->
+<section id="tarde" class="eve" aria-labelledby="eveH">
+  <div class="eve__stage">
+    <ol class="eve__rail" aria-hidden="true">
+      <li><time class="js-et" data-off="-60"></time></li>
+      <li><time class="js-et" data-off="0"></time></li>
+      <li><time class="js-et" data-off="15"></time></li>
+      <li><time class="js-et" data-off="40"></time></li>
+    </ol>
+  </div>
+  <div class="eve__steps">
+    <article class="eve__step">
+      <picture class="eve__pic">
+        <source media="(max-width: 860px)" srcset="assets/img/eve1-m-600.webp 600w, assets/img/eve1-m-820.webp 820w" sizes="100vw" width="820" height="1640">
+        <img src="assets/img/eve1-1100.webp" srcset="assets/img/eve1-1100.webp 1100w, assets/img/eve1-1800.webp 1800w" sizes="100vw" width="1800" height="1125" alt="Mesas vacías en una terraza cubierta, con el mar y el sol de la tarde al fondo." data-i18n-alt="alt1" loading="lazy" decoding="async">
+      </picture>
+      <div class="eve__card">
+        <p class="kick"><span class="js-dyn" hidden><time class="js-et" data-off="-60"></time> · </span><span data-i18n="e1k">Una hora antes</span></p>
+        <h2 id="eveH" data-split data-i18n-html="e1h">De la luz del día <em>a la de las velas.</em></h2>
+        <p data-i18n-html="e1p">Así pasa una tarde en la terraza, de la primera mesa puesta a la hora azul.</p>
+      </div>
+    </article>
+    <article class="eve__step">
+      <picture class="eve__pic">
+        <source media="(max-width: 860px)" srcset="assets/img/eve2-m-600.webp 600w, assets/img/eve2-m-820.webp 820w" sizes="100vw" width="820" height="1640">
+        <img src="assets/img/eve2-1100.webp" srcset="assets/img/eve2-1100.webp 1100w, assets/img/eve2-1800.webp 1800w" sizes="100vw" width="1800" height="1125" alt="El sol tocando el horizonte del mar, visto desde una terraza con mesas." data-i18n-alt="alt2" loading="lazy" decoding="async">
+      </picture>
+      <div class="eve__card">
+        <p class="kick"><span class="js-dyn" hidden><time class="js-et" data-off="0"></time> · </span><span data-i18n="e2k">La puesta</span></p>
+        <h3 class="js-e2h" data-split data-i18n-html="e2h">El sol entra <em>en el mar.</em></h3>
+        <p data-i18n="e2p">En invierno se pone sobre el mar abierto; en primavera y a finales de verano, detrás de La Gomera.</p>
+      </div>
+    </article>
+    <article class="eve__step">
+      <picture class="eve__pic">
+        <source media="(max-width: 860px)" srcset="assets/img/eve-mesa-m-600.webp 600w, assets/img/eve-mesa-m-820.webp 820w" sizes="100vw" width="820" height="1640">
+        <img src="assets/img/eve-mesa-1100.webp" srcset="assets/img/eve-mesa-1100.webp 1100w, assets/img/eve-mesa-1800.webp 1800w" sizes="100vw" width="1800" height="1125" alt="Una mesa con un farol encendido frente al cielo rojo de después de la puesta." data-i18n-alt="alt3" loading="lazy" decoding="async">
+      </picture>
+      <div class="eve__card">
+        <p class="kick"><span class="js-dyn" hidden><time class="js-et" data-off="15"></time> · </span><span data-i18n="e3k">Después de la puesta</span></p>
+        <h3 data-split data-i18n-html="e3h">Se encienden <em>los faroles.</em></h3>
+        <p data-i18n="e3p">El cielo sigue rojo un rato y en las mesas se encienden los faroles. Es la hora del primer vino.</p>
+      </div>
+    </article>
+    <article class="eve__step">
+      <picture class="eve__pic">
+        <source media="(max-width: 860px)" srcset="assets/img/eve3-m-600.webp 600w, assets/img/eve3-m-820.webp 820w" sizes="100vw" width="820" height="1640">
+        <img src="assets/img/eve3-1100.webp" srcset="assets/img/eve3-1100.webp 1100w, assets/img/eve3-1800.webp 1800w" sizes="100vw" width="1800" height="1125" alt="Alguien lee la carta junto a la barandilla, con el mar y el cielo de la hora azul." data-i18n-alt="alt4" loading="lazy" decoding="async">
+      </picture>
+      <div class="eve__card">
+        <p class="kick"><span class="js-dyn" hidden><time class="js-et" data-off="40"></time> · </span><span data-i18n="e4k">Hora azul</span></p>
+        <h3 data-split data-i18n-html="e4h">Llega la carta, <em>se va la luz.</em></h3>
+        <p data-i18n="e4p">Cuando oscurece, queda la luz de la mesa, el mar abajo y el ruido de la rompiente.</p>
+        <a class="btn btn--sun btn--sm eve__cta" href="#reservar" data-i18n="bookSun">Reservar la mesa de la puesta</a>
+      </div>
+    </article>
+    <p class="eve__note" data-i18n="eveNote">Las horas se calculan para hoy en Playa Paraíso a partir de la puesta de sol. Fotos de muestra.</p>
+  </div>
+</section>
+
+<!-- 3 · the menu -->
+<section id="carta" class="carta" aria-labelledby="cartaH">
+  <div class="wrap carta__grid">
+    <div class="carta__head">
+      <p class="kick"><span data-i18n="cK">La pizarra de hoy</span><span class="js-dyn" hidden> · <time class="js-today"></time></span></p>
+      <h2 id="cartaH" data-split data-i18n-html="cH">Lo que manda <em>la lonja.</em></h2>
+      <p class="lede" data-i18n="cP">El pescado llega por la mañana y decide la pizarra de la noche. Lo demás es brasa, mojo y tiempo.</p>
+    </div>
+    <figure class="ph carta__a" data-unveil>
+      <img src="assets/img/fish-640.webp" srcset="assets/img/fish-640.webp 640w, assets/img/fish-1000.webp 1000w" sizes="(max-width: 860px) 92vw, 34vw" width="1000" height="1250" alt="Dos fuentes blancas: un pescado entero a la brasa y un pulpo a la brasa, con papas, ensalada y verduras asadas." data-i18n-alt="altFish" loading="lazy" decoding="async">
+    </figure>
+    <div class="menu">
+      <section class="menu__g" aria-labelledby="g1">
+        <h3 id="g1" data-i18n="g1">Para empezar</h3>
+        <ul>
+          <li><span class="n" data-i18n="m1">Papas arrugadas con mojo rojo y verde</span><span class="p" data-eur="6.5">6,50 €</span></li>
+          <li><span class="n" data-i18n="m2">Lapas a la plancha con mojo verde</span><span class="p" data-eur="14">14,00 €</span></li>
+          <li><span class="n" data-i18n="m3">Queso asado con mojo</span><span class="p" data-eur="9">9,00 €</span></li>
+        </ul>
+      </section>
+      <section class="menu__g" aria-labelledby="g2">
+        <h3 id="g2" data-i18n="g2">Del mar y la brasa</h3>
+        <ul>
+          <li><span class="n"><span data-i18n="m4">Pescado del día a la brasa</span><small data-i18n="m4d">vieja, cherne o sama, según la lonja</small></span><span class="p" data-eur="54" data-unit="kg">54,00 € / kg</span></li>
+          <li><span class="n" data-i18n="m5">Pulpo a la brasa con papas y pimentón</span><span class="p" data-eur="21">21,00 €</span></li>
+          <li><span class="n" data-i18n="m6">Caldo de pescado con gofio escaldado</span><span class="p" data-eur="12">12,00 €</span></li>
+          <li><span class="n"><span data-i18n="m7">Arroz meloso de marisco</span><small data-i18n="m7d">mínimo dos personas</small></span><span class="p" data-eur="24" data-unit="pp">24,00 € por persona</span></li>
+        </ul>
+      </section>
+      <section class="menu__g" aria-labelledby="g3">
+        <h3 id="g3" data-i18n="g3">Para terminar</h3>
+        <ul>
+          <li><span class="n" data-i18n="m8">Bienmesabe con helado de vainilla</span><span class="p" data-eur="7">7,00 €</span></li>
+        </ul>
+      </section>
+      <p class="fine" data-i18n="priceNote">Precios de ejemplo, IVA incluido.</p>
+    </div>
+    <figure class="ph carta__b" data-unveil>
+      <img src="assets/img/pulpo-640.webp" srcset="assets/img/pulpo-640.webp 640w, assets/img/pulpo-1000.webp 1000w" sizes="(max-width: 860px) 60vw, 22vw" width="1000" height="1250" alt="Patas de pulpo a la brasa con papas en un plato azul claro, y una copa de vino tinto detrás." data-i18n-alt="altPulpo" loading="lazy" decoding="async">
+    </figure>
+    <figure class="ph carta__c" data-unveil>
+      <img src="assets/img/blanco-640.webp" srcset="assets/img/blanco-640.webp 640w, assets/img/blanco-1000.webp 1000w" sizes="(max-width: 860px) 60vw, 22vw" width="1000" height="1250" alt="Una copa de vino blanco junto a dos cuencos pequeños, uno con mojo verde, sobre una mesa de piedra." data-i18n-alt="altBlanco" loading="lazy" decoding="async">
+    </figure>
+  </div>
+  <div class="wrap vinos">
+    <figure class="ph vinos__ph" data-unveil>
+      <img src="assets/img/lava-800.webp" srcset="assets/img/lava-800.webp 800w, assets/img/lava-1400.webp 1400w" sizes="(max-width: 860px) 100vw, 58vw" width="1400" height="933" alt="Dos copas de vino blanco sobre rocas volcánicas negras, con el mar detrás." data-i18n-alt="altLava" loading="lazy" decoding="async">
+    </figure>
+    <div class="vinos__txt">
+      <p class="kick" data-i18n="vK">Para beber</p>
+      <h2 data-split data-i18n-html="vH">Vinos <em>del sur.</em></h2>
+      <p data-i18n="vP">Blancos de la DO Abona, la del sur de Tenerife, también por copas. Así el pescado no tiene que esperar a una botella entera.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · reviews (format samples on a fictional business) -->
+<section id="opiniones" class="guests" aria-labelledby="guestsH">
+  <div class="wrap guests__head">
+    <h2 id="guestsH" data-split data-i18n-html="gH">Lo que se dice <em>en la mesa.</em></h2>
+    <p class="guests__p" data-i18n="gP">Reseñas de muestra, para enseñar el formato. En la web real solo van reseñas reales, con su fuente y su fecha.</p>
+  </div>
+  <div class="rv-row" role="region" aria-label="Reseñas de muestra" data-i18n-aria="rvRegion" tabindex="0">
+    <div class="rv-track">
+      <figure class="rv"><blockquote class="rv__t" data-i18n="r1">«Pedimos la vieja y nos sentaron junto a la barandilla justo cuando se ponía el sol. No se puede pedir más.»</blockquote><p class="rv__tr" data-orig="es" hidden></p><figcaption class="rv__f"><span class="rv__src"><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="rvSample">Reseña de muestra</span></span><time class="js-month" datetime="2026-10-12">octubre de 2026</time></figcaption></figure>
+      <figure class="rv"><blockquote class="rv__t" data-i18n="r2">«Las lapas con mojo verde, de lo mejor que hemos comido en la isla. Nos recomendaron un blanco del sur y acertaron.»</blockquote><p class="rv__tr" data-orig="es" hidden></p><figcaption class="rv__f"><span class="rv__src"><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="rvSample">Reseña de muestra</span></span><time class="js-month" datetime="2026-09-20">septiembre de 2026</time></figcaption></figure>
+      <figure class="rv"><blockquote class="rv__t" data-i18n="r3">«Reservamos por WhatsApp para la puesta de sol y nos guardaron la mesa de la esquina. Solo por el pulpo merece la pena el viaje.»</blockquote><p class="rv__tr" data-orig="en">Traducido del inglés</p><figcaption class="rv__f"><span class="rv__src"><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="rvSample">Reseña de muestra</span></span><time class="js-month" datetime="2026-08-08">agosto de 2026</time></figcaption></figure>
+      <figure class="rv"><blockquote class="rv__t" data-i18n="r4">«Fuimos con los niños a las siete y media: tranquilo, rápido y con el mar delante. El bienmesabe, obligatorio.»</blockquote><p class="rv__tr" data-orig="es" hidden></p><figcaption class="rv__f"><span class="rv__src"><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="rvSample">Reseña de muestra</span></span><time class="js-month" datetime="2026-07-15">julio de 2026</time></figcaption></figure>
+      <figure class="rv"><blockquote class="rv__t" data-i18n="r5">«Cenamos en la hora azul, con los faroles ya encendidos. El arroz meloso, para repetir.»</blockquote><p class="rv__tr" data-orig="es" hidden></p><figcaption class="rv__f"><span class="rv__src"><svg aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="rvSample">Reseña de muestra</span></span><time class="js-month" datetime="2026-06-03">junio de 2026</time></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · where: tap a place, its road route draws from the restaurant -->
+<section id="donde" class="around" aria-labelledby="dondeH">
+  <div class="wrap around__grid">
+    <div class="around__txt">
+      <p class="kick" data-i18n="dK">Cómo llegar</p>
+      <h2 id="dondeH" data-split data-i18n-html="dH">Dónde <em>estamos.</em></h2>
+      <p class="lede" data-i18n="dP">En Playa Paraíso, en la costa oeste de Adeje, entre Costa Adeje y Los Gigantes.</p>
+      <p class="addr"><span data-i18n="addr">Calle de ejemplo 1, Playa Paraíso, Adeje</span> <small>(<span data-i18n="addrTag">dirección de ejemplo</span>)</small></p>
+      <p class="hint"><span class="hint__dot" aria-hidden="true"></span><span data-i18n="tapHint">Toque un sitio para ver la ruta en el mapa.</span></p>
+      <ul class="places">
+        <li data-place="fanabe"><button type="button" class="place" aria-pressed="false"><svg class="pin" aria-hidden="true"><use href="#i-pin"/></svg><b>Costa Adeje</b><span data-i18n="t15">15 min en coche</span></button></li>
+        <li data-place="caleta"><button type="button" class="place" aria-pressed="false"><svg class="pin" aria-hidden="true"><use href="#i-pin"/></svg><b>La Caleta</b><span data-i18n="t15">15 min en coche</span></button></li>
+        <li data-place="cristianos"><button type="button" class="place" aria-pressed="false"><svg class="pin" aria-hidden="true"><use href="#i-pin"/></svg><b>Los Cristianos</b><span data-i18n="t20">20 min en coche</span></button></li>
+        <li data-place="gigantes"><button type="button" class="place" aria-pressed="false"><svg class="pin" aria-hidden="true"><use href="#i-pin"/></svg><b>Los Gigantes</b><span data-i18n="t25">25 min en coche</span></button></li>
+        <li data-place="airport"><button type="button" class="place" aria-pressed="false"><svg class="pin" aria-hidden="true"><use href="#i-pin"/></svg><b data-i18n="pAir">Aeropuerto Tenerife Sur</b><span data-i18n="t25">25 min en coche</span></button></li>
+        <li data-place="cablecar"><button type="button" class="place" aria-pressed="false"><svg class="pin" aria-hidden="true"><use href="#i-pin"/></svg><b data-i18n="pTeide">Teleférico del Teide</b><span data-i18n="t60">1 h en coche</span></button></li>
+      </ul>
+      <p class="fine" data-i18n="mapFine">Tiempos aproximados en coche, sin tráfico.</p>
+      <a class="link" href="https://www.google.com/maps/search/?api=1&amp;query=Playa%20Para%C3%ADso%2C%20Adeje%2C%20Tenerife" target="_blank" rel="noopener"><span data-i18n="mapOpen">Abrir Playa Paraíso en Google Maps</span><svg class="ic ic--sm" aria-hidden="true"><use href="#i-ext"/></svg></a>
+    </div>
+    <figure class="map" role="img" aria-label="Mapa del suroeste de Tenerife y La Gomera, con el restaurante marcado en Playa Paraíso." data-i18n-aria="ariaMap">
+      <svg viewBox="70 225 680 400" aria-hidden="true"></svg>
+      <figcaption>© OpenStreetMap · Natural Earth</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 6 · around: three places nearby, glass cards over the cliffs -->
+<section id="cerca" class="gteaser" aria-labelledby="cercaH">
+  <div class="gt-bg" aria-hidden="true"><img src="assets/guide/gigantes-wide-1200.webp" srcset="assets/guide/gigantes-wide-1200.webp 1200w, assets/guide/gigantes-wide-1800.webp 1800w" sizes="100vw" alt="" width="1800" height="1197" loading="lazy" decoding="async"></div>
+  <div class="wrap gteaser__grid">
+    <div class="gteaser__txt">
+      <p class="kick" data-i18n="aK">Alrededor</p>
+      <h2 id="cercaH" data-split data-i18n-html="aH">Antes o después <em>de cenar.</em></h2>
+      <p class="lede" data-i18n="aP">Tres sitios cerca que recomendamos a quien nos pregunta.</p>
+    </div>
+    <ol class="gteaser__list">
+      <li><a href="https://www.google.com/maps/search/?api=1&amp;query=El%20Puertito%20de%20Adeje" target="_blank" rel="noopener"><img class="gt-ph" src="assets/guide/puertito.webp" alt="" width="1000" height="667" loading="lazy" decoding="async"><b>El Puertito de Adeje</b><span data-i18n="a1p">Una cala de pescadores para bañarse antes de comer.</span><i data-i18n="a1t">Unos 10 min en coche</i></a><small class="gt-cr"><span data-i18n="photo">Foto</span>: Elena Ortuño · CC BY-SA 4.0</small></li>
+      <li><a href="https://www.google.com/maps/search/?api=1&amp;query=La%20Caleta%2C%20Adeje" target="_blank" rel="noopener"><img class="gt-ph" src="assets/guide/caleta.webp" alt="" width="1000" height="667" loading="lazy" decoding="async"><b>La Caleta</b><span data-i18n="a2p">El antiguo pueblo pesquero, para pasear junto al mar después de cenar.</span><i data-i18n="a2t">Unos 15 min en coche</i></a><small class="gt-cr"><span data-i18n="photo">Foto</span>: Edgar El · CC BY 3.0</small></li>
+      <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Acantilados%20de%20Los%20Gigantes" target="_blank" rel="noopener"><img class="gt-ph" src="assets/guide/gigantes-cliffs.webp" alt="" width="1000" height="667" loading="lazy" decoding="async"><b>Los Gigantes</b><span data-i18n="a3p">Los acantilados que caen al mar, más al norte. Mejor con la luz de la tarde.</span><i data-i18n="a3t">Unos 25 min en coche</i></a><small class="gt-cr"><span data-i18n="photo">Foto</span>: Tuxyso · CC BY-SA 4.0</small></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 7 · book: the composer writes the WhatsApp message -->
+<section id="reservar" class="book" aria-labelledby="bookH">
+  <div class="wrap book__grid">
+    <div class="book__txt">
+      <h2 id="bookH" data-split data-i18n-html="bH">Su mesa, <em>esta noche.</em></h2>
+      <p class="lede" data-i18n="bP">Elijan día, hora y cuántos son. Les dejamos el mensaje de WhatsApp escrito; ustedes solo lo envían.</p>
+      <form class="composer" id="composer" action="https://wa.me/34600000000" novalidate>
+        <fieldset class="fs">
+          <legend data-i18n="fDay">Día</legend>
+          <div class="seg" id="fDays">
+            <label><input type="radio" name="day" value="0" checked><span><b data-i18n="dToday">Hoy</b><small class="js-dlab js-dyn" data-d="0" hidden></small></span></label>
+            <label><input type="radio" name="day" value="1"><span><b data-i18n="dTomorrow">Mañana</b><small class="js-dlab js-dyn" data-d="1" hidden></small></span></label>
+            <label><input type="radio" name="day" value="x"><span><b data-i18n="dOther">Otro día</b><small class="js-dlab js-dyn" data-d="x" hidden></small></span></label>
+          </div>
+          <label class="field field--date" id="fDateWrap" hidden><span data-i18n="fDate">Fecha</span><input type="date" id="fDate" name="date"></label>
+        </fieldset>
+        <fieldset class="fs">
+          <legend data-i18n="fTime">Hora</legend>
+          <div class="chips" id="fTimes">
+            <label class="chip chip--sun"><input type="radio" name="time" value="sun" checked><span><svg class="ic" aria-hidden="true"><use href="#i-sun"/></svg><b class="js-sunslot js-dyn" hidden></b> <small data-i18n="slotSun">puesta</small></span></label>
+            <label class="chip"><input type="radio" name="time" value="13:30"><span><b>13:30</b></span></label>
+            <label class="chip"><input type="radio" name="time" value="20:00"><span><b>20:00</b></span></label>
+            <label class="chip"><input type="radio" name="time" value="21:00"><span><b>21:00</b></span></label>
+            <label class="chip"><input type="radio" name="time" value="22:00"><span><b>22:00</b></span></label>
+          </div>
+          <p class="fs__note" id="slotNote" aria-live="polite"></p>
+        </fieldset>
+        <div class="row2">
+          <fieldset class="fs">
+            <legend data-i18n="fPpl">Personas</legend>
+            <div class="stepper">
+              <button type="button" class="js-less" aria-label="Una persona menos" data-i18n-aria="less">−</button>
+              <output id="fPpl" aria-live="polite">2</output>
+              <button type="button" class="js-more" aria-label="Una persona más" data-i18n-aria="more">+</button>
+            </div>
+          </fieldset>
+          <fieldset class="fs">
+            <legend data-i18n="fWhere">¿Dónde?</legend>
+            <div class="seg seg--sm">
+              <label><input type="radio" name="where" value="t" checked><span data-i18n="w1">Terraza, junto al mar</span></label>
+              <label><input type="radio" name="where" value="i"><span data-i18n="w2">Dentro</span></label>
+              <label><input type="radio" name="where" value="x"><span data-i18n="w3">Nos da igual</span></label>
+            </div>
+          </fieldset>
+        </div>
+        <label class="field"><span data-i18n="fName">Nombre (opcional)</span><input type="text" id="fName" name="name" autocomplete="given-name" maxlength="40"></label>
+        <div class="bubble"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg><p id="msg">Hola, Rompiente. Quisiéramos reservar una mesa.</p></div>
+        <a class="btn btn--sun btn--lg js-send" href="https://wa.me/34600000000" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg><span data-i18n="send">Pedir mesa por WhatsApp</span></a>
+        <p class="fine"><span data-i18n="bFine">Se abre WhatsApp con el mensaje listo; ustedes lo envían y les confirmamos la mesa. ¿Prefieren llamar?</span> <a href="tel:+34922000000">+34 922 000 000</a></p>
+      </form>
+    </div>
+    <figure class="ph book__ph" data-unveil>
+      <img src="assets/img/velas-640.webp" srcset="assets/img/velas-640.webp 640w, assets/img/velas-1000.webp 1000w" sizes="(max-width: 860px) 92vw, 40vw" width="1000" height="1250" alt="Una mesa larga de madera con velas encendidas en fila, frente al mar y unas palmeras." data-i18n-alt="altVelas" loading="lazy" decoding="async">
+    </figure>
+  </div>
+  <ul class="wrap facts">
+    <li><span data-i18n="hoursK">Horario</span><b data-i18n="hoursV">Todos los días, de 12:30 a 23:00</b></li>
+    <li><span data-i18n="phoneK">Teléfono</span><b><a href="tel:+34922000000">+34 922 000 000</a></b></li>
+    <li><span data-i18n="addrK">Dirección</span><b><span data-i18n="addr">Calle de ejemplo 1, Playa Paraíso, Adeje</span> <small>(<span data-i18n="addrTag">dirección de ejemplo</span>)</small></b></li>
+  </ul>
+</section>
+
+<div class="night" aria-hidden="true">
+  <div class="stars"></div>
+  <svg class="night__sea" viewBox="0 0 1440 220" preserveAspectRatio="none"><defs><linearGradient id="ns" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1d3346"/><stop offset="1" stop-color="#0a141d"/></linearGradient></defs><path d="M0 120 C 90 116 160 82 250 74 C 330 68 380 92 450 104 C 520 114 560 118 620 120 L1440 120 L1440 220 L0 220Z" fill="#0c1823"/><rect y="120" width="1440" height="100" fill="url(#ns)"/><path d="M0 120 H1440" stroke="#f2a65a" stroke-opacity=".55" stroke-width="1.5" vector-effect="non-scaling-stroke"/></svg>
+</div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__grid">
+    <p class="foot__brand"><span class="brand__n">Rompiente</span><span data-i18n="footTag">cocina de mar · Playa Paraíso, Adeje</span></p>
+    <p><a href="tel:+34922000000">+34 922 000 000</a> · <a class="js-wa" href="https://wa.me/34600000000" rel="noopener">WhatsApp</a></p>
+    <p class="foot__sample" data-i18n="sample">Diseño de muestra de Teide Digital · negocio ficticio</p>
+    <details class="credits">
+      <summary data-i18n="credits">Créditos de las fotos</summary>
+      <p><span data-i18n="credU">Fotos del restaurante y de los platos (muestra), de Unsplash:</span> Rafi Ahamed, Uran Wang, Ashraf, Tomi Saputra, Jochen van Wylick, Aleksandar Rusev, Nikita Tikhomirov, Raelle Cameron, Kamil Pietrzak.</p>
+      <p><span data-i18n="credC">Alrededores, de Wikimedia Commons:</span> <a href="https://commons.wikimedia.org/wiki/File:El_Puertito_de_Adeje.png" target="_blank" rel="noopener">El Puertito de Adeje, Elena Ortuño, CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File:Teneriffa_-_Costa_Adeje_-_La_Caleta_-_panoramio.jpg" target="_blank" rel="noopener">La Caleta, Edgar El, CC BY 3.0</a> · <a href="https://commons.wikimedia.org/wiki/File:Acantilados_de_Los_Gigantes_2024-02.jpg" target="_blank" rel="noopener">Los Gigantes, Tuxyso, CC BY-SA 4.0</a>. <span data-i18n="credM">Mapa: © OpenStreetMap (rutas) y Natural Earth.</span></p>
+    </details>
+  </div>
+</footer>
+
+<div class="dock" id="dock">
+  <a class="btn btn--sun" href="#reservar" data-i18n="book">Reservar mesa</a>
+  <a class="dock__wa js-wa" href="https://wa.me/34600000000" rel="noopener" aria-label="WhatsApp"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg></a>
+</div>
+<a class="wa-fab js-wa" href="https://wa.me/34600000000" rel="noopener" aria-label="WhatsApp"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg><span class="wa-fab__l" data-i18n="wa">Escríbanos por WhatsApp</span></a>
+
+<script>
+var MAP = {"paths":["M66.9,347.4 L104.3,338.4 L138.7,348.8 L170.1,369.2 L210.3,398.6 L219.1,418.1 L223.4,436.8 L211.9,453.5 L197.4,462.9 L175.4,483.7 L159.3,495.0 L142.9,499.1 L123.9,505.5 L105.3,500.9 L66.6,476.6 L42.1,439.4 L41.9,409.4 L45.3,377.7 L66.9,347.4Z","M720.2,395.7 L710.3,409.9 L698.7,424.5 L650.7,473.2 L639.8,490.9 L632.8,501.4 L607.6,496.1 L567.1,511.8 L550.0,518.5 L536.0,524.0 L523.9,521.7 L515.9,510.1 L514.3,502.3 L515.5,492.2 L508.7,489.4 L502.9,484.2 L500.7,477.3 L499.3,461.5 L497.9,455.5 L487.7,442.7 L458.8,414.0 L452.8,400.6 L447.9,382.6 L436.6,368.6 L424.6,356.9 L416.9,345.8 L411.9,308.7 L409.5,300.7 L399.1,284.5 L390.1,264.8 L365.5,239.6 L358.5,223.0 L376.3,211.5 L416.7,192.6 L431.3,198.9 L448.8,211.1 L457.4,213.7 L466.6,213.5 L487.7,207.4 L504.0,199.2 L528.0,191.2 L545.1,184.5 L559.7,188.1 L589.3,185.4 L604.0,184.2 L618.9,172.2 L637.8,170.0 L645.8,166.5 L661.4,164.8 L676.4,152.9 L711.2,121.8 L725.6,108.8 L730.2,101.6 L731.9,89.4 L734.6,84.3 L748.6,76.8 L754.7,72.1 L767.9,64.7 L784.4,61.8 L798.0,56.0 L802.7,40.3 L814.7,44.9 L886.9,47.1 L932.3,30.8 L949.8,40.3 L942.9,64.1 L920.4,80.4 L865.6,110.7 L853.3,133.7 L838.0,148.6 L817.7,170.1 L797.1,187.2 L784.0,192.4 L773.7,200.9 L766.1,216.7 L765.8,234.4 L769.9,248.5 L771.8,256.9 L769.4,265.5 L762.2,271.6 L755.5,279.0 L750.5,298.7 L726.5,343.8 L720.0,380.5 L720.2,395.7Z"],"places":{"flat":[462.9,419.7],"airport":[613.3,482.8],"cristianos":[505.9,477.4],"gigantes":[414.7,315.0],"caleta":[477.4,436.9],"fanabe":[492.7,447.1],"teide":[561.5,292.4],"cablecar":[575.0,306.8],"gomera":[133.3,429.1],"sansebastian":[214.1,445.0]},"routes":{"fanabe":"M462.9,419.7 L462.6,420.4 L463.2,419.8 L461.8,419.8 L461.5,419.2 L463.7,418.0 L463.3,417.3 L463.7,416.2 L462.6,415.9 L466.6,412.5 L471.2,410.2 L474.1,412.7 L478.1,414.4 L479.7,414.0 L482.6,415.3 L486.2,414.7 L489.9,420.2 L495.1,432.3 L496.4,445.7 L494.3,446.8 L492.0,445.5 L490.3,447.0 L492.7,447.1","caleta":"M462.9,419.7 L462.6,420.4 L463.2,419.8 L461.8,419.8 L461.5,419.2 L463.7,418.0 L463.3,417.3 L463.7,416.2 L462.6,415.9 L466.6,412.5 L471.2,410.2 L474.1,412.7 L478.1,414.4 L479.7,414.0 L482.6,415.3 L487.1,414.1 L488.3,415.6 L488.1,416.2 L489.0,417.8 L487.2,421.1 L487.0,422.8 L485.0,423.9 L484.7,425.7 L483.1,426.1 L482.7,427.5 L484.2,427.9 L483.6,430.4 L481.9,433.7 L481.1,434.0 L480.0,433.2 L478.2,434.4 L477.2,435.4 L477.4,436.9","cristianos":"M462.9,419.7 L462.6,420.4 L463.2,419.8 L461.8,419.8 L461.5,419.2 L463.7,418.0 L463.3,417.3 L463.7,416.2 L462.6,415.9 L466.6,412.5 L471.2,410.2 L474.1,412.7 L478.1,414.4 L479.7,414.0 L482.6,415.3 L485.8,414.5 L487.8,416.5 L493.0,426.6 L493.5,429.4 L495.1,432.3 L496.9,447.5 L496.1,454.8 L496.5,458.3 L499.0,462.0 L500.9,463.7 L503.2,464.8 L507.7,465.9 L509.7,467.3 L509.8,470.5 L508.3,475.3 L507.3,475.0 L505.3,476.2 L505.0,475.9 L505.9,477.4","gigantes":"M462.9,419.7 L462.6,420.4 L463.2,419.8 L461.8,419.8 L461.5,419.2 L463.7,418.0 L463.3,417.3 L463.7,416.2 L462.6,415.9 L466.6,412.5 L471.4,410.1 L470.0,408.4 L468.4,408.5 L467.3,407.8 L463.0,408.9 L459.7,406.9 L458.1,405.7 L457.0,403.7 L455.1,402.7 L448.8,394.9 L449.0,392.8 L447.8,391.2 L448.3,387.7 L445.5,387.5 L445.1,386.9 L446.6,375.1 L445.0,374.9 L442.9,373.1 L441.8,373.1 L440.8,369.0 L436.7,368.5 L435.3,367.1 L434.4,368.4 L432.6,367.4 L430.0,362.6 L429.8,360.7 L428.8,359.3 L428.1,359.2 L425.7,354.3 L423.0,350.3 L423.0,348.1 L422.2,345.4 L419.3,340.2 L419.7,338.7 L418.7,333.6 L419.8,332.2 L420.4,328.6 L420.0,326.0 L420.5,324.4 L420.0,323.1 L420.1,321.4 L419.4,320.9 L418.6,321.3 L418.3,320.8 L418.3,322.0 L417.2,317.3 L416.3,318.6 L415.8,316.4 L414.7,315.0","airport":"M462.9,419.7 L462.6,420.4 L463.2,419.8 L461.8,419.8 L461.5,419.2 L463.7,418.0 L463.3,417.3 L463.7,416.2 L462.6,415.9 L466.6,412.5 L471.2,410.2 L474.1,412.7 L478.1,414.4 L479.7,414.0 L482.6,415.3 L486.2,414.7 L489.9,420.2 L495.1,432.3 L496.9,447.5 L496.1,454.8 L496.3,457.7 L499.2,462.3 L502.6,464.6 L511.2,466.7 L517.0,469.4 L526.2,471.0 L533.7,475.7 L538.2,477.1 L542.1,477.4 L560.5,476.3 L564.2,477.0 L571.4,479.8 L580.8,478.7 L584.6,479.0 L585.6,480.1 L585.4,481.6 L588.6,484.6 L598.0,496.4 L605.8,495.7 L605.1,492.4 L606.8,489.9 L609.2,488.3 L615.2,486.1 L613.3,482.8","cablecar":"M462.9,419.7 L462.6,420.4 L463.2,419.8 L461.8,419.8 L461.5,419.2 L463.7,418.0 L463.3,417.3 L463.7,416.2 L462.6,415.9 L466.6,412.5 L471.2,410.2 L474.1,412.7 L478.1,414.4 L479.7,414.0 L482.6,415.3 L486.4,414.3 L482.6,410.0 L470.4,402.7 L468.5,400.3 L468.1,398.0 L468.9,394.2 L466.7,388.7 L467.7,381.5 L466.3,377.9 L465.7,368.9 L464.6,366.6 L464.3,363.8 L462.3,360.3 L462.4,355.6 L459.6,350.8 L457.5,348.7 L455.1,342.4 L452.5,339.3 L454.9,341.2 L457.8,342.5 L455.6,337.9 L455.8,336.2 L455.3,334.5 L454.7,333.3 L453.7,333.0 L453.4,331.9 L454.0,332.6 L454.5,331.4 L454.6,332.1 L457.1,332.7 L459.6,331.0 L459.0,329.2 L460.9,327.8 L462.4,328.8 L462.7,329.7 L464.4,329.8 L465.8,331.0 L467.2,330.9 L470.5,333.2 L475.1,333.8 L479.4,336.3 L480.9,335.7 L480.8,334.7 L476.7,330.6 L475.2,327.4 L475.1,326.4 L476.8,325.4 L475.1,324.7 L473.9,323.1 L473.3,319.1 L473.9,318.3 L472.8,316.5 L473.1,314.7 L471.6,312.1 L471.2,308.9 L469.8,307.2 L469.5,304.0 L471.7,292.6 L471.8,287.6 L472.5,286.3 L474.7,285.4 L476.7,286.2 L482.6,296.3 L489.4,300.2 L491.1,303.5 L492.2,304.3 L493.2,304.2 L494.2,303.3 L494.2,298.8 L496.2,293.6 L498.3,292.3 L500.4,293.1 L501.3,294.9 L500.0,297.8 L500.5,299.3 L504.8,301.9 L506.9,306.4 L510.2,308.0 L511.6,310.6 L516.9,315.5 L519.8,320.8 L523.9,324.9 L538.0,344.4 L542.4,343.9 L544.6,343.0 L551.4,345.6 L554.3,347.4 L564.8,348.2 L574.9,346.7 L575.9,346.0 L577.9,342.7 L576.7,341.6 L576.1,337.3 L575.2,320.8 L577.2,318.0 L577.8,315.3 L579.5,312.8 L575.0,306.8"}}, BUILD = '20261124-2256';
+(function () {
+  'use strict';
+  var root = document.documentElement;
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var MOTION = !reduce && 'IntersectionObserver' in window;
+  var COARSE = matchMedia('(pointer: coarse)').matches;
+  var narrow = function () { return innerWidth <= 860; };
+  var TZ = 'Atlantic/Canary', LAT = 28.1197, LON = -16.7765, WA = 'https://wa.me/34600000000';
+  var LOCALE = { es: 'es-ES', en: 'en-GB', de: 'de-DE' };
+  var R = Math.PI / 180;
+  function $(s, el) { return (el || document).querySelector(s); }
+  function $$(s, el) { return Array.prototype.slice.call((el || document).querySelectorAll(s)); }
+  function clamp01(t) { return t < 0 ? 0 : t > 1 ? 1 : t; }
+  function smooth(t) { t = clamp01(t); return t * t * (3 - 2 * t); }
+
+  /* ---------- tonight's sunset in Playa Paraíso (NOAA / Meeus) ---------- */
+  function solar(jd) {
+    var T = (jd - 2451545) / 36525;
+    var L0 = (280.46646 + T * (36000.76983 + T * 0.0003032)) % 360;
+    var M = 357.52911 + T * (35999.05029 - 0.0001537 * T);
+    var e = 0.016708634 - T * (0.000042037 + 0.0000001267 * T);
+    var C = Math.sin(M * R) * (1.914602 - T * (0.004817 + 0.000014 * T)) + Math.sin(2 * M * R) * (0.019993 - 0.000101 * T) + Math.sin(3 * M * R) * 0.000289;
+    var om = 125.04 - 1934.136 * T;
+    var lam = L0 + C - 0.00569 - 0.00478 * Math.sin(om * R);
+    var eps = 23 + (26 + (21.448 - T * (46.815 + T * (0.00059 - T * 0.001813))) / 60) / 60 + 0.00256 * Math.cos(om * R);
+    var decl = Math.asin(Math.sin(eps * R) * Math.sin(lam * R)) / R;
+    var y = Math.pow(Math.tan((eps / 2) * R), 2);
+    var eot = 4 / R * (y * Math.sin(2 * L0 * R) - 2 * e * Math.sin(M * R) + 4 * e * y * Math.sin(M * R) * Math.cos(2 * L0 * R) - 0.5 * y * y * Math.sin(4 * L0 * R) - 1.25 * e * e * Math.sin(2 * M * R));
+    return { decl: decl, eot: eot };
+  }
+  function sunsetUTC(y, m, d) {   // a Date
+    var jd0 = Date.UTC(y, m - 1, d) / 864e5 + 2440587.5, t = 720 - 4 * LON;
+    for (var i = 0; i < 3; i++) {
+      var s = solar(jd0 + t / 1440);
+      var cosH = (Math.sin(-0.833 * R) - Math.sin(LAT * R) * Math.sin(s.decl * R)) / (Math.cos(LAT * R) * Math.cos(s.decl * R));
+      t = 720 - 4 * LON - s.eot + 4 * Math.acos(Math.max(-1, Math.min(1, cosH))) / R;
+    }
+    var zen = 90.833 * R, cosAz = (Math.sin(LAT * R) * Math.cos(zen) - Math.sin(s.decl * R)) / (Math.cos(LAT * R) * Math.sin(zen));
+    var date = new Date(Date.UTC(y, m - 1, d) + Math.round(t) * 6e4);
+    date.az = (Math.acos(Math.max(-1, Math.min(1, cosAz))) / R + 180) % 360;   // compass bearing of the setting sun
+    return date;
+  }
+  var partsFmt = new Intl.DateTimeFormat('en-CA', { timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
+  function canary(date) { var o = {}; partsFmt.formatToParts(date).forEach(function (p) { o[p.type] = p.value; }); return { y: +o.year, m: +o.month, d: +o.day, h: +o.hour % 24, mi: +o.minute }; }
+  var hmFmt = new Intl.DateTimeFormat('en-GB', { timeZone: TZ, hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
+  function hm(date) { return hmFmt.format(date); }
+  function addMin(date, min, step) { var t = date.getTime() + min * 6e4; if (step) t = Math.round(t / (step * 6e4)) * step * 6e4; return new Date(t); }
+  var NOW = new Date(), TODAY = canary(NOW);
+  function dayFrom(offset) {   // {y,m,d,noon} for today + offset, in the Canaries
+    var n = new Date(Date.UTC(TODAY.y, TODAY.m - 1, TODAY.d + offset, 12));
+    return { y: n.getUTCFullYear(), m: n.getUTCMonth() + 1, d: n.getUTCDate(), noon: n };
+  }
+  function sunsetOf(day) { return sunsetUTC(day.y, day.m, day.d); }
+  var SUNSET = sunsetOf(dayFrom(0));
+  var TMRW = NOW > SUNSET;                 // tonight's sunset has gone: every sunset time on the page is tomorrow's
+  if (TMRW) SUNSET = sunsetOf(dayFrom(1));
+  var GOMERA = SUNSET.az >= 254 && SUNSET.az <= 282;   // from Playa Paraíso the sun then sets behind La Gomera
+  var LATE = TODAY.h * 60 + TODAY.mi + 30 >= 22 * 60;   // no table left today: the composer opens on tomorrow
+
+  /* ---------- words ---------- */
+  var T = {
+    es: {
+      title: 'Rompiente · Cocina de mar en Playa Paraíso, Adeje',
+      desc: 'Restaurante de pescado y brasa sobre las rocas de Playa Paraíso, Adeje, mirando a La Gomera. Reserven la mesa de la puesta de sol por WhatsApp.',
+      skip: 'Saltar al contenido', brandS: 'cocina de mar', navAria: 'Secciones', navTarde: 'La tarde', navCarta: 'La carta', navDonde: 'Dónde', navCerca: 'Alrededor',
+      book: 'Reservar mesa', bookSun: 'Reservar la mesa de la puesta', wa: 'Escríbanos por WhatsApp',
+      heroK: 'Playa Paraíso · Adeje · Tenerife', h1: 'Cocina de mar, <em>donde rompe la ola.</em>',
+      heroP: 'Pescado de la lonja, brasa y vinos del sur, en una terraza sobre las rocas que mira a La Gomera.',
+      heroAlt: 'Olas rompiendo contra las rocas volcánicas negras, con una terraza de restaurante asomada al mar a última hora de la tarde.',
+      sunchip: 'Hoy el sol se pone a las', sunchipT: 'Mañana el sol se pone a las', bHT: 'Su mesa, <em>mañana.</em>', e2hG: 'El sol se esconde <em>tras La Gomera.</em>',
+      e1pT: 'Así pasa una tarde en la terraza. Las horas son las de mañana: el sol se pone a las <time class="js-sunset"></time>.',
+      eveNoteT: 'Las horas se calculan para mañana en Playa Paraíso a partir de la puesta de sol. Fotos de muestra.', tr_en: 'Traducido del inglés',
+      e1k: 'Una hora antes', e1h: 'De la luz del día <em>a la de las velas.</em>',
+      e1p: 'Así pasa una tarde en la terraza. Las horas son las de hoy: el sol se pone a las <time class="js-sunset"></time>.',
+      e2k: 'La puesta', e2h: 'El sol entra <em>en el mar.</em>', e2p: 'En invierno se pone sobre el mar abierto; en primavera y a finales de verano, detrás de La Gomera.',
+      e3k: 'Después de la puesta', e3h: 'Se encienden <em>los faroles.</em>', e3p: 'El cielo sigue rojo un rato y en las mesas se encienden los faroles. Es la hora del primer vino.',
+      e4k: 'Hora azul', e4h: 'Llega la carta, <em>se va la luz.</em>', e4p: 'Cuando oscurece, queda la luz de la mesa, el mar abajo y el ruido de la rompiente.',
+      eveNote: 'Las horas se calculan para hoy en Playa Paraíso a partir de la puesta de sol. Fotos de muestra.',
+      alt1: 'Mesas vacías en una terraza cubierta, con el mar y el sol de la tarde al fondo.', alt2: 'El sol tocando el horizonte del mar, visto desde una terraza con mesas.',
+      alt3: 'Una mesa con un farol encendido frente al cielo rojo de después de la puesta.', alt4: 'Alguien lee la carta junto a la barandilla, con el mar y el cielo de la hora azul.',
+      cK: 'La pizarra de hoy', cH: 'Lo que manda <em>la lonja.</em>', cP: 'El pescado llega por la mañana y decide la pizarra de la noche. Lo demás es brasa, mojo y tiempo.',
+      g1: 'Para empezar', m1: 'Papas arrugadas con mojo rojo y verde', m2: 'Lapas a la plancha con mojo verde', m3: 'Queso asado con mojo',
+      g2: 'Del mar y la brasa', m4: 'Pescado del día a la brasa', m4d: 'vieja, cherne o sama, según la lonja', m5: 'Pulpo a la brasa con papas y pimentón',
+      m6: 'Caldo de pescado con gofio escaldado', m7: 'Arroz meloso de marisco', m7d: 'mínimo dos personas', g3: 'Para terminar', m8: 'Bienmesabe con helado de vainilla',
+      priceNote: 'Precios de ejemplo, IVA incluido.', unit_kg: ' / kg', unit_pp: ' por persona',
+      altFish: 'Dos fuentes blancas: un pescado entero a la brasa y un pulpo a la brasa, con papas, ensalada y verduras asadas.',
+      altPulpo: 'Patas de pulpo a la brasa con papas en un plato azul claro, y una copa de vino tinto detrás.',
+      altBlanco: 'Una copa de vino blanco junto a dos cuencos pequeños, uno con mojo verde, sobre una mesa de piedra.',
+      altLava: 'Dos copas de vino blanco sobre rocas volcánicas negras, con el mar detrás.',
+      vK: 'Para beber', vH: 'Vinos <em>del sur.</em>', vP: 'Blancos de la DO Abona, la del sur de Tenerife, también por copas. Así el pescado no tiene que esperar a una botella entera.',
+      gH: 'Lo que se dice <em>en la mesa.</em>', gP: 'Reseñas de muestra, para enseñar el formato. En la web real solo van reseñas reales, con su fuente y su fecha.',
+      rvRegion: 'Reseñas de muestra', rvSample: 'Reseña de muestra', trEn: 'Traducido del inglés',
+      r1: '«Pedimos la vieja y nos sentaron junto a la barandilla justo cuando se ponía el sol. No se puede pedir más.»',
+      r2: '«Las lapas con mojo verde, de lo mejor que hemos comido en la isla. Nos recomendaron un blanco del sur y acertaron.»',
+      r3: '«Reservamos por WhatsApp para la puesta de sol y nos guardaron la mesa de la esquina. Solo por el pulpo merece la pena el viaje.»',
+      r4: '«Fuimos con los niños a las siete y media: tranquilo, rápido y con el mar delante. El bienmesabe, obligatorio.»',
+      r5: '«Cenamos en la hora azul, con los faroles ya encendidos. El arroz meloso, para repetir.»',
+      dK: 'Cómo llegar', dH: 'Dónde <em>estamos.</em>', dP: 'En Playa Paraíso, en la costa oeste de Adeje, entre Costa Adeje y Los Gigantes.',
+      addr: 'Calle de ejemplo 1, Playa Paraíso, Adeje', addrTag: 'dirección de ejemplo', tapHint: 'Toque un sitio para ver la ruta en el mapa.',
+      t15: '15 min en coche', t20: '20 min en coche', t25: '25 min en coche', t60: '1 h en coche', pAir: 'Aeropuerto Tenerife Sur', pTeide: 'Teleférico del Teide',
+      mapFine: 'Tiempos aproximados en coche, sin tráfico.', mapOpen: 'Abrir Playa Paraíso en Google Maps',
+      ariaMap: 'Mapa del suroeste de Tenerife y La Gomera, con el restaurante marcado en Playa Paraíso.',
+      map: { home: 'Rompiente', gomera: 'La Gomera', sea: 'Atlántico', fanabe: 'Costa Adeje', caleta: 'La Caleta', cristianos: 'Los Cristianos', gigantes: 'Los Gigantes', airport: 'Aeropuerto (TFS)', cablecar: 'Teide' },
+      aK: 'Alrededor', aH: 'Antes o después <em>de cenar.</em>', aP: 'Tres sitios cerca que recomendamos a quien nos pregunta.', photo: 'Foto',
+      a1p: 'Una cala de pescadores para bañarse antes de comer.', a1t: 'Unos 10 min en coche',
+      a2p: 'El antiguo pueblo pesquero, para pasear junto al mar después de cenar.', a2t: 'Unos 15 min en coche',
+      a3p: 'Los acantilados que caen al mar, más al norte. Mejor con la luz de la tarde.', a3t: 'Unos 25 min en coche',
+      bH: 'Su mesa, <em>esta noche.</em>', bP: 'Elijan día, hora y cuántos son. Les dejamos el mensaje de WhatsApp escrito; ustedes solo lo envían.',
+      fDay: 'Día', dToday: 'Hoy', dTomorrow: 'Mañana', dOther: 'Otro día', dPick: 'elegir', fDate: 'Fecha', fTime: 'Hora', slotSun: 'puesta',
+      slotNote: 'La mesa de la puesta: media hora antes de que el sol se ponga, a las {t}.', slotPast: 'Para hoy ya no quedan horas: elijan otro día.',
+      fPpl: 'Personas', less: 'Una persona menos', more: 'Una persona más', fWhere: '¿Dónde?', w1: 'Terraza, junto al mar', w2: 'Dentro', w3: 'Nos da igual',
+      fName: 'Nombre (opcional)', send: 'Pedir mesa por WhatsApp',
+      bFine: 'Se abre WhatsApp con el mensaje listo; ustedes lo envían y les confirmamos la mesa. ¿Prefieren llamar?',
+      altVelas: 'Una mesa larga de madera con velas encendidas en fila, frente al mar y unas palmeras.',
+      hoursK: 'Horario', hoursV: 'Todos los días, de 12:30 a 23:00', phoneK: 'Teléfono', addrK: 'Dirección',
+      footTag: 'cocina de mar · Playa Paraíso, Adeje', sample: 'Diseño de muestra de Teide Digital · negocio ficticio', credits: 'Créditos de las fotos',
+      credU: 'Fotos del restaurante y de los platos (muestra), de Unsplash:', credC: 'Alrededores, de Wikimedia Commons:', credM: 'Mapa: © OpenStreetMap (rutas) y Natural Earth.',
+      msg: function (o) {
+        var day = (o.k === 0 ? 'hoy, ' : o.k === 1 ? 'mañana, ' : 'el ') + o.wd + ' ' + o.d + ' de ' + o.mo + (o.k < 2 ? ',' : '');
+        return 'Hola, Rompiente. Quisiéramos una mesa para ' + o.n + (o.n === 1 ? ' persona ' : ' personas ') + day + ' a las ' + o.t +
+          (o.sun ? ' (la de la puesta de sol)' : '') + (o.w === 't' ? ', en la terraza junto al mar' : o.w === 'i' ? ', dentro' : '') + '.' +
+          (o.name ? ' A nombre de ' + o.name + '.' : '') + ' Gracias.';
+      }
+    },
+    en: {
+      title: 'Rompiente · Seafood on the rocks at Playa Paraíso, Adeje',
+      desc: 'Fish and charcoal grill on the rocks at Playa Paraíso, Adeje, facing La Gomera. Book the sunset table on WhatsApp.',
+      skip: 'Skip to content', brandS: 'cooking from the sea', navAria: 'Sections', navTarde: 'The evening', navCarta: 'The menu', navDonde: 'Getting here', navCerca: 'Around',
+      book: 'Book a table', bookSun: 'Book the sunset table', wa: 'Message us on WhatsApp',
+      heroK: 'Playa Paraíso · Adeje · Tenerife', h1: 'Cooking from the sea, <em>where the waves break.</em>',
+      heroP: 'Fish from the morning market, a charcoal grill and wines from the south, on a terrace over the rocks facing La Gomera.',
+      heroAlt: 'Waves breaking on black volcanic rock, with a restaurant terrace leaning out over the sea in the late afternoon.',
+      sunchip: 'Tonight the sun sets at', sunchipT: 'Tomorrow the sun sets at', bHT: 'Your table, <em>tomorrow.</em>', e2hG: 'The sun goes down <em>behind La Gomera.</em>',
+      e1pT: 'This is how an evening goes on the terrace. The times are tomorrow’s: the sun sets at <time class="js-sunset"></time>.',
+      eveNoteT: 'The times are calculated for tomorrow in Playa Paraíso from the sunset. Sample photos.', tr_es: 'Translated from Spanish',
+      e1k: 'An hour before', e1h: 'From daylight <em>to candlelight.</em>',
+      e1p: 'This is how an evening goes on the terrace. The times are today’s: the sun sets at <time class="js-sunset"></time>.',
+      e2k: 'Sunset', e2h: 'The sun goes <em>into the sea.</em>', e2p: 'In winter it sets over the open sea; in spring and late summer, behind La Gomera.',
+      e3k: 'After sunset', e3h: 'The lanterns <em>come on.</em>', e3p: 'The sky stays red for a while and the lanterns are lit on the tables. Time for the first glass of wine.',
+      e4k: 'Blue hour', e4h: 'The menu arrives, <em>the light goes.</em>', e4p: 'Once it’s dark, there’s the light on the table, the sea below and the sound of the breakers.',
+      eveNote: 'The times are calculated for today in Playa Paraíso from the sunset. Sample photos.',
+      alt1: 'Empty tables on a covered terrace, with the sea and the afternoon sun behind.', alt2: 'The sun touching the sea horizon, seen from a terrace with tables.',
+      alt3: 'A table with a lit lantern against the red sky after sunset.', alt4: 'Someone reading the menu by the railing, with the sea and the blue-hour sky.',
+      cK: 'Today’s board', cH: 'The market <em>decides.</em>', cP: 'The fish arrives in the morning and decides the evening’s board. The rest is charcoal, mojo and time.',
+      g1: 'To start', m1: 'Wrinkled potatoes with red and green mojo', m2: 'Grilled limpets with green mojo', m3: 'Grilled cheese with mojo',
+      g2: 'From the sea and the grill', m4: 'Catch of the day, charcoal-grilled', m4d: 'parrotfish, wreckfish or red bream, as the market allows', m5: 'Grilled octopus with potatoes and paprika',
+      m6: 'Fish broth with gofio escaldado', m7: 'Creamy seafood rice', m7d: 'for two or more', g3: 'To finish', m8: 'Bienmesabe with vanilla ice cream',
+      priceNote: 'Sample prices, VAT included.', unit_kg: ' / kg', unit_pp: ' per person',
+      altFish: 'Two white platters: a whole charcoal-grilled fish and grilled octopus, with potatoes, salad and roast vegetables.',
+      altPulpo: 'Grilled octopus with potatoes on a pale blue plate, a glass of red wine behind.',
+      altBlanco: 'A glass of white wine beside two small bowls, one of green mojo, on a stone table.',
+      altLava: 'Two glasses of white wine on black volcanic rock, with the sea behind.',
+      vK: 'To drink', vH: 'Wines <em>from the south.</em>', vP: 'Whites from DO Abona, the south of Tenerife, by the glass too. So the fish never waits for a whole bottle.',
+      gH: 'What people say <em>at the table.</em>', gP: 'Sample reviews, to show the format. On the real site only real reviews appear, with their source and date.',
+      rvRegion: 'Sample reviews', rvSample: 'Sample review', trEn: 'Translated from English',
+      r1: '“We ordered the parrotfish and they sat us by the railing just as the sun went down. You can’t ask for more.”',
+      r2: '“The limpets with green mojo were some of the best food we had on the island. They recommended a white from the south and got it right.”',
+      r3: '“We booked on WhatsApp for sunset and they kept us the corner table. The octopus alone is worth the drive.”',
+      r4: '“We went with the kids at half seven: relaxed, quick and the sea right in front. The bienmesabe is a must.”',
+      r5: '“We had dinner in the blue hour, with the lanterns already lit. We’d go back for the seafood rice.”',
+      dK: 'Getting here', dH: 'Where <em>we are.</em>', dP: 'In Playa Paraíso, on the west coast of Adeje, between Costa Adeje and Los Gigantes.',
+      addr: 'Calle de ejemplo 1, Playa Paraíso, Adeje', addrTag: 'example address', tapHint: 'Tap a place to see its route on the map.',
+      t15: '15 min by car', t20: '20 min by car', t25: '25 min by car', t60: '1 h by car', pAir: 'Tenerife South airport', pTeide: 'Teide cable car',
+      mapFine: 'Approximate driving times, without traffic.', mapOpen: 'Open Playa Paraíso in Google Maps',
+      ariaMap: 'Map of south-west Tenerife and La Gomera, with the restaurant marked at Playa Paraíso.',
+      map: { home: 'Rompiente', gomera: 'La Gomera', sea: 'Atlantic', fanabe: 'Costa Adeje', caleta: 'La Caleta', cristianos: 'Los Cristianos', gigantes: 'Los Gigantes', airport: 'Airport (TFS)', cablecar: 'Teide' },
+      aK: 'Around', aH: 'Before or after <em>dinner.</em>', aP: 'Three places nearby we send anyone who asks.', photo: 'Photo',
+      a1p: 'A fishermen’s cove for a swim before lunch.', a1t: 'About 10 min by car',
+      a2p: 'The old fishing village, for a walk by the sea after dinner.', a2t: 'About 15 min by car',
+      a3p: 'The cliffs that drop into the sea, further north. Best in the afternoon light.', a3t: 'About 25 min by car',
+      bH: 'Your table, <em>tonight.</em>', bP: 'Choose the day, the time and how many you are. We write the WhatsApp message for you; you just send it.',
+      fDay: 'Day', dToday: 'Today', dTomorrow: 'Tomorrow', dOther: 'Another day', dPick: 'choose', fDate: 'Date', fTime: 'Time', slotSun: 'sunset',
+      slotNote: 'The sunset table: half an hour before the sun sets at {t}.', slotPast: 'No times left for today: please choose another day.',
+      fPpl: 'People', less: 'One person fewer', more: 'One more person', fWhere: 'Where?', w1: 'Terrace, by the sea', w2: 'Inside', w3: 'Either',
+      fName: 'Name (optional)', send: 'Ask for a table on WhatsApp',
+      bFine: 'WhatsApp opens with the message ready; you send it and we confirm your table. Rather call?',
+      altVelas: 'A long wooden table with a row of lit candles, facing the sea and a few palm trees.',
+      hoursK: 'Opening hours', hoursV: 'Every day, 12:30 to 23:00', phoneK: 'Phone', addrK: 'Address',
+      footTag: 'cooking from the sea · Playa Paraíso, Adeje', sample: 'Sample design by Teide Digital · fictional business', credits: 'Photo credits',
+      credU: 'Restaurant and food photos (samples), from Unsplash:', credC: 'Around, from Wikimedia Commons:', credM: 'Map: © OpenStreetMap (routes) and Natural Earth.',
+      msg: function (o) {
+        var day = (o.k === 0 ? 'today, ' : o.k === 1 ? 'tomorrow, ' : 'on ') + o.wd + ' ' + o.d + ' ' + o.mo + (o.k < 2 ? ',' : '');
+        return 'Hello Rompiente, we’d like a table for ' + o.n + (o.n === 1 ? ' person ' : ' people ') + day + ' at ' + o.t +
+          (o.sun ? ' (the sunset table)' : '') + (o.w === 't' ? ', on the terrace by the sea' : o.w === 'i' ? ', inside' : '') + '.' +
+          (o.name ? ' The name is ' + o.name + '.' : '') + ' Thank you!';
+      }
+    },
+    de: {
+      title: 'Rompiente · Meeresküche in Playa Paraíso, Adeje',
+      desc: 'Fisch und Holzkohlegrill auf den Felsen von Playa Paraíso, Adeje, mit Blick auf La Gomera. Reservieren Sie den Tisch zum Sonnenuntergang per WhatsApp.',
+      skip: 'Zum Inhalt springen', brandS: 'Meeresküche', navAria: 'Bereiche', navTarde: 'Der Abend', navCarta: 'Die Karte', navDonde: 'Anfahrt', navCerca: 'Umgebung',
+      book: 'Tisch reservieren', bookSun: 'Tisch zum Sonnenuntergang', wa: 'Schreiben Sie uns auf WhatsApp',
+      heroK: 'Playa Paraíso · Adeje · Teneriffa', h1: 'Meeresküche, <em>wo die Welle bricht.</em>',
+      heroP: 'Fisch vom Markt, Holzkohlegrill und Weine aus dem Süden, auf einer Terrasse über den Felsen mit Blick auf La Gomera.',
+      heroAlt: 'Wellen brechen an schwarzen Vulkanfelsen, darüber eine Restaurantterrasse am Meer am späten Nachmittag.',
+      sunchip: 'Heute geht die Sonne unter um', sunchipT: 'Morgen geht die Sonne unter um', bHT: 'Ihr Tisch, <em>morgen.</em>', e2hG: 'Die Sonne versinkt <em>hinter La Gomera.</em>',
+      e1pT: 'So vergeht ein Abend auf der Terrasse. Die Uhrzeiten gelten für morgen: Die Sonne geht um <time class="js-sunset"></time> unter.',
+      eveNoteT: 'Die Uhrzeiten werden für morgen in Playa Paraíso aus dem Sonnenuntergang berechnet. Beispielfotos.', tr_es: 'Aus dem Spanischen übersetzt', tr_en: 'Aus dem Englischen übersetzt',
+      e1k: 'Eine Stunde vorher', e1h: 'Vom Tageslicht <em>zum Kerzenlicht.</em>',
+      e1p: 'So vergeht ein Abend auf der Terrasse. Die Uhrzeiten gelten für heute: Die Sonne geht um <time class="js-sunset"></time> unter.',
+      e2k: 'Sonnenuntergang', e2h: 'Die Sonne geht <em>ins Meer.</em>', e2p: 'Im Winter versinkt sie über dem offenen Meer, im Frühling und im Spätsommer hinter La Gomera.',
+      e3k: 'Nach Sonnenuntergang', e3h: 'Die Laternen <em>gehen an.</em>', e3p: 'Der Himmel bleibt noch eine Weile rot, auf den Tischen brennen die Laternen. Zeit für das erste Glas Wein.',
+      e4k: 'Blaue Stunde', e4h: 'Die Karte kommt, <em>das Licht geht.</em>', e4p: 'Wenn es dunkel ist, bleiben das Licht auf dem Tisch, das Meer unten und das Rauschen der Brandung.',
+      eveNote: 'Die Uhrzeiten werden für heute in Playa Paraíso aus dem Sonnenuntergang berechnet. Beispielfotos.',
+      alt1: 'Leere Tische auf einer überdachten Terrasse, dahinter das Meer und die Nachmittagssonne.', alt2: 'Die Sonne berührt den Horizont über dem Meer, gesehen von einer Terrasse mit Tischen.',
+      alt3: 'Ein Tisch mit brennender Laterne vor dem roten Himmel nach Sonnenuntergang.', alt4: 'Jemand liest am Geländer die Karte, dahinter das Meer und der Himmel der blauen Stunde.',
+      cK: 'Die Tafel von heute', cH: 'Der Fang <em>bestimmt die Karte.</em>', cP: 'Der Fisch kommt morgens und bestimmt die Tafel am Abend. Der Rest ist Holzkohle, Mojo und Zeit.',
+      g1: 'Zum Anfang', m1: 'Runzelkartoffeln mit rotem und grünem Mojo', m2: 'Gegrillte Napfschnecken mit grünem Mojo', m3: 'Gegrillter Käse mit Mojo',
+      g2: 'Vom Meer und vom Grill', m4: 'Fisch des Tages vom Holzkohlegrill', m4d: 'Papageifisch, Wrackbarsch oder Rotbrasse, je nach Fang', m5: 'Gegrillter Pulpo mit Kartoffeln und Paprika',
+      m6: 'Fischbrühe mit Gofio escaldado', m7: 'Cremiger Reis mit Meeresfrüchten', m7d: 'ab zwei Personen', g3: 'Zum Schluss', m8: 'Bienmesabe mit Vanilleeis',
+      priceNote: 'Beispielpreise, inkl. MwSt.', unit_kg: ' / kg', unit_pp: ' pro Person',
+      altFish: 'Zwei weiße Platten: ein ganzer Fisch und ein Pulpo vom Grill, mit Kartoffeln, Salat und gegrilltem Gemüse.',
+      altPulpo: 'Gegrillter Pulpo mit Kartoffeln auf einem hellblauen Teller, dahinter ein Glas Rotwein.',
+      altBlanco: 'Ein Glas Weißwein neben zwei kleinen Schälchen, eines mit grünem Mojo, auf einem Steintisch.',
+      altLava: 'Zwei Gläser Weißwein auf schwarzem Vulkangestein, dahinter das Meer.',
+      vK: 'Zum Trinken', vH: 'Weine <em>aus dem Süden.</em>', vP: 'Weißweine der DO Abona aus dem Süden Teneriffas, auch glasweise. So muss der Fisch nicht auf eine ganze Flasche warten.',
+      gH: 'Was man <em>am Tisch sagt.</em>', gP: 'Beispielbewertungen, um das Format zu zeigen. Auf der echten Website stehen nur echte Bewertungen, mit Quelle und Datum.',
+      rvRegion: 'Beispielbewertungen', rvSample: 'Beispielbewertung', trEn: 'Aus dem Englischen übersetzt',
+      r1: '„Wir bestellten den Papageifisch und bekamen den Tisch am Geländer, genau als die Sonne unterging. Mehr kann man nicht verlangen.“',
+      r2: '„Die Napfschnecken mit grünem Mojo gehören zum Besten, was wir auf der Insel gegessen haben. Der empfohlene Weißwein aus dem Süden passte genau.“',
+      r3: '„Wir haben per WhatsApp für den Sonnenuntergang reserviert und bekamen den Ecktisch. Allein der Pulpo lohnt die Fahrt.“',
+      r4: '„Mit den Kindern um halb acht: ruhig, schnell und das Meer direkt vor uns. Der Bienmesabe ist Pflicht.“',
+      r5: '„Wir aßen zur blauen Stunde, die Laternen brannten schon. Den cremigen Reis bestellen wir wieder.“',
+      dK: 'Anfahrt', dH: 'So finden <em>Sie uns.</em>', dP: 'In Playa Paraíso an der Westküste von Adeje, zwischen Costa Adeje und Los Gigantes.',
+      addr: 'Calle de ejemplo 1, Playa Paraíso, Adeje', addrTag: 'Beispieladresse', tapHint: 'Tippen Sie auf einen Ort, um die Route auf der Karte zu sehen.',
+      t15: '15 Min. mit dem Auto', t20: '20 Min. mit dem Auto', t25: '25 Min. mit dem Auto', t60: '1 Std. mit dem Auto', pAir: 'Flughafen Teneriffa Süd', pTeide: 'Teide-Seilbahn',
+      mapFine: 'Ungefähre Fahrzeiten, ohne Verkehr.', mapOpen: 'Playa Paraíso in Google Maps öffnen',
+      ariaMap: 'Karte des Südwestens von Teneriffa und La Gomera, das Restaurant in Playa Paraíso markiert.',
+      map: { home: 'Rompiente', gomera: 'La Gomera', sea: 'Atlantik', fanabe: 'Costa Adeje', caleta: 'La Caleta', cristianos: 'Los Cristianos', gigantes: 'Los Gigantes', airport: 'Flughafen (TFS)', cablecar: 'Teide' },
+      aK: 'Umgebung', aH: 'Vor oder nach <em>dem Essen.</em>', aP: 'Drei Orte in der Nähe, die wir allen empfehlen, die uns fragen.', photo: 'Foto',
+      a1p: 'Eine kleine Fischerbucht zum Baden vor dem Mittagessen.', a1t: 'Etwa 10 Min. mit dem Auto',
+      a2p: 'Das alte Fischerdorf, für einen Spaziergang am Meer nach dem Essen.', a2t: 'Etwa 15 Min. mit dem Auto',
+      a3p: 'Die Steilküste, die ins Meer fällt, weiter nördlich. Am schönsten im Nachmittagslicht.', a3t: 'Etwa 25 Min. mit dem Auto',
+      bH: 'Ihr Tisch, <em>heute Abend.</em>', bP: 'Wählen Sie Tag, Uhrzeit und Personenzahl. Wir schreiben die WhatsApp-Nachricht vor, Sie müssen sie nur senden.',
+      fDay: 'Tag', dToday: 'Heute', dTomorrow: 'Morgen', dOther: 'Anderer Tag', dPick: 'wählen', fDate: 'Datum', fTime: 'Uhrzeit', slotSun: 'Sonnenuntergang',
+      slotNote: 'Der Tisch zum Sonnenuntergang: eine halbe Stunde, bevor die Sonne um {t} untergeht.', slotPast: 'Für heute sind keine Uhrzeiten mehr frei: Bitte wählen Sie einen anderen Tag.',
+      fPpl: 'Personen', less: 'Eine Person weniger', more: 'Eine Person mehr', fWhere: 'Wo?', w1: 'Terrasse, am Meer', w2: 'Drinnen', w3: 'Egal',
+      fName: 'Name (optional)', send: 'Tisch per WhatsApp anfragen',
+      bFine: 'WhatsApp öffnet sich mit der fertigen Nachricht; Sie senden sie, wir bestätigen den Tisch. Lieber anrufen?',
+      altVelas: 'Ein langer Holztisch mit einer Reihe brennender Kerzen, davor das Meer und einige Palmen.',
+      hoursK: 'Öffnungszeiten', hoursV: 'Täglich von 12:30 bis 23:00 Uhr', phoneK: 'Telefon', addrK: 'Adresse',
+      footTag: 'Meeresküche · Playa Paraíso, Adeje', sample: 'Beispieldesign von Teide Digital · fiktives Unternehmen', credits: 'Bildnachweise',
+      credU: 'Restaurant- und Speisenfotos (Beispiele), von Unsplash:', credC: 'Umgebung, von Wikimedia Commons:', credM: 'Karte: © OpenStreetMap (Routen) und Natural Earth.',
+      msg: function (o) {
+        var day = (o.k === 0 ? 'heute, ' : o.k === 1 ? 'morgen, ' : 'am ') + o.wd + ', ' + o.d + '. ' + o.mo + (o.k < 2 ? ',' : '');
+        return 'Hallo Rompiente, wir möchten einen Tisch für ' + o.n + (o.n === 1 ? ' Person ' : ' Personen ') + day + ' um ' + o.t + ' Uhr' +
+          (o.sun ? ' (zum Sonnenuntergang)' : '') + (o.w === 't' ? ', auf der Terrasse am Meer' : o.w === 'i' ? ', drinnen' : '') + '.' +
+          (o.name ? ' Auf den Namen ' + o.name + '.' : '') + ' Danke!';
+      }
+    }
+  };
+  var lang = 'es';
+  try { var st = localStorage.getItem('rompiente-lang'); if (T[st]) lang = st; } catch (e) { /* storage blocked: stay in Spanish */ }
+  var qp = (location.search.match(/[?&]lang=(es|en|de)\b/) || [])[1]; if (qp) lang = qp;
+
+  /* ---------- formatting ---------- */
+  function fmtIn(l, opts, date) { return new Intl.DateTimeFormat(LOCALE[l], Object.assign({ timeZone: 'UTC' }, opts)).format(date); }
+  function fillTimes() {
+    $$('.js-sunset').forEach(function (t) { t.textContent = hm(SUNSET); t.setAttribute('datetime', SUNSET.toISOString()); });
+    $$('.js-et').forEach(function (t) {
+      var off = +t.getAttribute('data-off'), d = addMin(SUNSET, off, off ? 5 : 0);
+      t.setAttribute('datetime', d.toISOString());
+      if (!t.querySelector('.odo')) t.textContent = hm(d);
+    });
+  }
+  function fillDates() {
+    var today = dayFrom(0);
+    $$('.js-today').forEach(function (t) { t.textContent = fmtIn(lang, { weekday: 'long', day: 'numeric' }, today.noon); });
+    $$('.js-month').forEach(function (t) { t.textContent = fmtIn(lang, { month: 'long', year: 'numeric' }, new Date(t.getAttribute('datetime') + 'T12:00:00Z')); });
+    var money = new Intl.NumberFormat(LOCALE[lang], { style: 'currency', currency: 'EUR', minimumFractionDigits: 2 });
+    $$('[data-eur]').forEach(function (p) { var u = p.getAttribute('data-unit'); p.textContent = money.format(+p.getAttribute('data-eur')) + (u ? T[lang]['unit_' + u] : ''); });
+  }
+
+  /* ---------- the booking composer ---------- */
+  var form = $('#composer'), ppl = 2;
+  function chosenDay() {
+    var k = (form.querySelector('input[name="day"]:checked') || {}).value || '0';
+    if (k === '0' || k === '1') return { k: +k, day: dayFrom(+k) };
+    var inp = $('#fDate'), v = inp.value, m = v && v.match(/^(\d{4})-(\d\d)-(\d\d)$/);
+    if (!m) return { k: 2, day: dayFrom(2) };
+    if (v < inp.min || v > inp.max) { inp.value = v < inp.min ? inp.min : inp.max; return chosenDay(); }
+    if (v === iso(dayFrom(0))) return { k: 0, day: dayFrom(0) };
+    if (v === iso(dayFrom(1))) return { k: 1, day: dayFrom(1) };
+    var n = new Date(Date.UTC(+m[1], +m[2] - 1, +m[3], 12));
+    return { k: 2, day: { y: +m[1], m: +m[2], d: +m[3], noon: n } };
+  }
+  function iso(day) { return day.y + '-' + String(day.m).padStart(2, '0') + '-' + String(day.d).padStart(2, '0'); }
+  function minutes(s) { var p = s.split(':'); return +p[0] * 60 + +p[1]; }
+  function compose() {
+    var w = T[lang], cd = chosenDay(), day = cd.day;
+    var ss = sunsetOf(day), slot = new Date(Math.round(addMin(ss, -30).getTime() / 9e5) * 9e5);   // half an hour before, to the nearest quarter
+    var slotT = hm(slot);
+    $('.js-sunslot').textContent = slotT;
+    // today: times already gone (or within half an hour) can't be booked
+    var nowMin = TODAY.h * 60 + TODAY.mi + 30, anyLeft = false;
+    $$('input[name="time"]', form).forEach(function (r) {
+      var t = r.value === 'sun' ? slotT : r.value, gone = cd.k === 0 && minutes(t) <= nowMin;
+      r.disabled = gone; if (!gone) anyLeft = true;
+    });
+    var cur = form.querySelector('input[name="time"]:checked');
+    if (cur && cur.disabled) { var next = form.querySelector('input[name="time"]:not(:disabled)'); if (next) next.checked = true; cur = next; }
+    $('#fPpl').textContent = ppl;
+    $('.js-less').disabled = ppl <= 1; $('.js-more').disabled = ppl >= 12;
+    var note = $('#slotNote'), send = $('.js-send');
+    if (!anyLeft) {
+      note.textContent = w.slotPast; send.removeAttribute('href'); send.setAttribute('aria-disabled', 'true');
+      $('#msg').textContent = w.slotPast; return;
+    }
+    note.textContent = w.slotNote.replace('{t}', hm(ss));
+    send.setAttribute('aria-disabled', 'false');
+    var isSun = cur && cur.value === 'sun', name = $('#fName').value.trim().slice(0, 40);
+    var msg = w.msg({ k: cd.k, wd: fmtIn(lang, { weekday: 'long' }, day.noon), d: day.d, mo: fmtIn(lang, { month: 'long' }, day.noon),
+      n: ppl, t: isSun ? slotT : cur.value, sun: isSun, w: (form.querySelector('input[name="where"]:checked') || {}).value, name: name });
+    $('#msg').textContent = msg;
+    send.href = WA + '?text=' + encodeURIComponent(msg);
+  }
+  function dayLabels() {
+    $$('.js-dlab').forEach(function (s) {
+      var k = s.getAttribute('data-d');
+      if (k === 'x') { var cd = chosenDay(); s.textContent = $('#fDate').value ? fmtIn(lang, { weekday: 'short', day: 'numeric', month: 'short' }, cd.day.noon) : T[lang].dPick; return; }
+      s.textContent = fmtIn(lang, { weekday: 'short', day: 'numeric' }, dayFrom(+k).noon);
+    });
+  }
+  (function initComposer() {
+    var dateIn = $('#fDate'); dateIn.min = iso(dayFrom(0)); dateIn.max = iso(dayFrom(120));
+    form.addEventListener('change', function (e) {
+      if (e.target.name === 'day') {
+        var other = e.target.value === 'x'; $('#fDateWrap').hidden = !other;
+        if (other && !dateIn.value) dateIn.value = iso(dayFrom(2));
+        if (other) dateIn.focus();
+      }
+      dayLabels(); compose();
+    });
+    form.addEventListener('input', compose);
+    form.addEventListener('submit', function (e) { e.preventDefault(); var s = $('.js-send'); if (s.getAttribute('aria-disabled') !== 'true') s.click(); });
+    $('.js-less').addEventListener('click', function () { ppl = Math.max(1, ppl - 1); compose(); });
+    $('.js-more').addEventListener('click', function () { ppl = Math.min(12, ppl + 1); compose(); });
+    $('.js-send').addEventListener('click', function (e) { if (this.getAttribute('aria-disabled') === 'true') e.preventDefault(); });
+    // late at night nothing is left today: open on tomorrow instead
+    if (LATE) form.querySelector('input[name="day"][value="1"]').checked = true;
+  })();
+
+  /* ---------- the map: tap a place, its road route draws from the restaurant ---------- */
+  var svg = $('.map svg');
+  function chaikin(pts, n) {
+    for (var k = 0; k < n; k++) {
+      var out = [];
+      for (var i = 0; i < pts.length; i++) {
+        var a = pts[i], b = pts[(i + 1) % pts.length];
+        out.push([a[0] * 0.75 + b[0] * 0.25, a[1] * 0.75 + b[1] * 0.25], [a[0] * 0.25 + b[0] * 0.75, a[1] * 0.25 + b[1] * 0.75]);
+      }
+      pts = out;
+    }
+    return pts;
+  }
+  var OY = -10;   // data is 1000 x 555; framed in 1000 x 600
+  var land = MAP.paths.map(function (d) {
+    var pts = d.replace(/[MZ]/g, '').split(' L').map(function (p) { var q = p.split(','); return [+q[0], +q[1] - OY + 12]; });
+    return 'M' + chaikin(pts.slice(0, -1), 3).map(function (p) { return p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join(' L') + 'Z';
+  });
+  function P(k) { var p = MAP.places[k]; return [p[0], p[1] - OY + 12]; }
+  var LABELS = { gigantes: [-14, -12, 'end'], caleta: [-14, 18, 'end'], fanabe: [12, 4, 'start'], cristianos: [-10, 22, 'end'], airport: [12, 5, 'start'], cablecar: [12, -6, 'start'] };
+  var pinned = null, mapReady = false;
+  function drawMap() {
+    var small = narrow(), t = T[lang].map, h = '';
+    svg.setAttribute('viewBox', small ? '300 290 400 330' : '70 225 680 400');
+    land.forEach(function (d) { h += '<path class="land" d="' + d + '"/>'; });
+    var g = P('gomera'); h += '<text class="lab lab--isle" x="' + (g[0] - 44) + '" y="' + (g[1] + 6) + '">' + t.gomera + '</text>';
+    h += '<text class="lab lab--sea" x="' + (small ? 330 : 250) + '" y="560">' + t.sea + '</text>';
+    h += '<path class="route" d=""/><text class="lab lab--time" x="0" y="0"></text>';
+    Object.keys(LABELS).forEach(function (k, i) {
+      var p = P(k), o = (small && k === 'airport') ? [8, 26, 'end'] : LABELS[k];
+      h += '<circle class="hit" data-hit="' + k + '" cx="' + p[0] + '" cy="' + p[1] + '" r="' + (small ? 20 : 15) + '"/>';
+      h += '<circle class="dot" data-dot="' + k + '" style="--i:' + i + '" cx="' + p[0] + '" cy="' + p[1] + '" r="5.5"/>';
+      h += '<text data-hit="' + k + '" class="lab lab--hit" x="' + (p[0] + o[0]) + '" y="' + (p[1] + o[1]) + '" text-anchor="' + o[2] + '">' + t[k] + '</text>';
+    });
+    var f = P('flat');
+    h += '<circle class="home-ring" cx="' + f[0] + '" cy="' + f[1] + '" r="16"/><circle class="home" cx="' + f[0] + '" cy="' + f[1] + '" r="8"/>';
+    h += '<text class="lab lab--home" x="' + (f[0] - 20) + '" y="' + (f[1] - 10) + '" text-anchor="end">' + t.home + '</text>';
+    svg.innerHTML = h;
+    mapReady = true;
+    if (pinned) showPlace(pinned, timeOf(pinned));
+  }
+  function timeOf(k) { var b = $('.places li[data-place="' + k + '"] .place span'); return b ? b.textContent : ''; }
+  function showPlace(k, timeText) {
+    if (!mapReady) return;
+    var route = svg.querySelector('.route'), tl = svg.querySelector('.lab--time');
+    $$('.dot', svg).forEach(function (d) { d.classList.toggle('is-hot', d.getAttribute('data-dot') === k); });
+    $$('.places li').forEach(function (li) { li.classList.toggle('is-hot', li.getAttribute('data-place') === k); });
+    if (!k) { route.classList.remove('is-on'); tl.classList.remove('is-on'); return; }
+    var real = MAP.routes && MAP.routes[k];
+    route.setAttribute('d', real); route.setAttribute('transform', 'translate(0,' + (12 - OY) + ')');
+    var L = route.getTotalLength();
+    route.style.transition = 'none'; route.style.strokeDasharray = L; route.style.strokeDashoffset = reduce ? 0 : L;
+    route.getBoundingClientRect();
+    route.style.transition = ''; route.classList.add('is-on'); route.style.strokeDashoffset = 0;
+    var mp = route.getPointAtLength(L * 0.5), lx = mp.x + 10, ly = mp.y + 12 - OY - 6, right = lx < (narrow() ? 560 : 620);
+    tl.textContent = timeText;
+    tl.setAttribute('x', (right ? lx : lx - 20).toFixed(1)); tl.setAttribute('y', ly.toFixed(1)); tl.setAttribute('text-anchor', right ? 'start' : 'end');
+    tl.classList.remove('is-on'); tl.getBoundingClientRect(); tl.classList.add('is-on');
+  }
+  svg.addEventListener('click', function (e) {
+    var t = e.target.closest && e.target.closest('[data-hit]'); if (!t) return;
+    var key = t.getAttribute('data-hit');
+    if (t.classList.contains('hit')) {   // dots close together: take the one nearest the finger
+      var pt = svg.createSVGPoint(); pt.x = e.clientX; pt.y = e.clientY; var q = pt.matrixTransform(svg.getScreenCTM().inverse()), best = 1e9;
+      Object.keys(LABELS).forEach(function (k) { var pp = P(k), d = Math.hypot(pp[0] - q.x, pp[1] - q.y); if (d < best) { best = d; key = k; } });
+    }
+    var b = $('.places li[data-place="' + key + '"] .place'); if (b) b.click();
+  });
+  var tourStop = false;
+  $$('.places li').forEach(function (li) {
+    var btn = li.querySelector('.place'), k = li.getAttribute('data-place');
+    btn.addEventListener('mouseenter', function () { if (!pinned) showPlace(k, timeOf(k)); });
+    btn.addEventListener('mouseleave', function () { if (!pinned) showPlace(null); });
+    btn.addEventListener('click', function () {
+      tourStop = true;
+      pinned = pinned === k ? null : k;
+      $$('.places .place').forEach(function (o) { o.setAttribute('aria-pressed', String(o === btn && pinned === k)); });
+      showPlace(pinned, timeOf(k));
+      if (pinned && narrow()) { var mr = $('.map').getBoundingClientRect(); if (mr.top < 60 || mr.bottom > innerHeight - 90) $('.map').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' }); }
+    });
+  });
+  ['pointerdown', 'focusin', 'keydown'].forEach(function (ev) { $('.around').addEventListener(ev, function () { tourStop = true; }, { passive: true }); });
+  function mapTour() {   // the routes draw once by themselves; any touch stops it
+    var items = $$('.places li'), i = 0;
+    (function next() {
+      if (tourStop || pinned) return;
+      if (i >= items.length) { showPlace(null); return; }
+      var k = items[i++].getAttribute('data-place'); showPlace(k, timeOf(k));
+      setTimeout(next, 1700);
+    })();
+  }
+
+  /* ---------- language ---------- */
+  function applyLang(l) {
+    lang = l; var w = T[l];
+    root.lang = l;
+    try { localStorage.setItem('rompiente-lang', l); } catch (e) { /* fine */ }
+    var alt = { sunchip: TMRW, e1p: TMRW, eveNote: TMRW, bH: LATE, e2h: GOMERA };
+    function word(k) { return alt[k] ? w[k + (k === 'e2h' ? 'G' : 'T')] : w[k]; }
+    $$('[data-i18n]').forEach(function (el) { var v = word(el.getAttribute('data-i18n')); if (typeof v === 'string') el.textContent = v; });
+    $$('[data-i18n-html]').forEach(function (el) { var v = word(el.getAttribute('data-i18n-html')); if (typeof v === 'string') { el.innerHTML = v; } });
+    $$('[data-i18n-aria]').forEach(function (el) { var v = w[el.getAttribute('data-i18n-aria')]; if (v) el.setAttribute('aria-label', v); });
+    $$('[data-i18n-alt]').forEach(function (el) { var v = w[el.getAttribute('data-i18n-alt')]; if (v) el.alt = v; });
+    document.title = w.title; $('meta[name="description"]').setAttribute('content', w.desc);
+    $$('.langs button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === l)); });
+    $$('.rv__tr').forEach(function (p) { var o = p.getAttribute('data-orig'); p.hidden = o === l; p.textContent = o === l ? '' : w['tr_' + o]; });
+    fillTimes(); fillDates(); dayLabels(); compose(); drawMap();
+    if (MOTION) $$('[data-split]').forEach(splitWords);
+  }
+  $$('.langs button').forEach(function (b) { b.addEventListener('click', function () { applyLang(b.getAttribute('data-lang')); }); });
+
+  function splitWords(el) {
+    var n = 0;
+    (function walk(node) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (c) {
+        if (c.nodeType === 3) {
+          var frag = document.createDocumentFragment();
+          c.nodeValue.split(/(\s+)/).forEach(function (p) {
+            if (!p) return;
+            if (/^\s+$/.test(p)) { frag.appendChild(document.createTextNode(p)); return; }
+            var wd = document.createElement('span'); wd.className = 'w';
+            var inner = document.createElement('span'); inner.textContent = p; inner.style.setProperty('--i', n++);
+            wd.appendChild(inner); frag.appendChild(wd);
+          });
+          node.replaceChild(frag, c);
+        } else if (c.nodeType === 1 && !c.classList.contains('w')) walk(c);
+      });
+    })(el);
+  }
+  function odometer(t) {   // "18:11" -> rolling digits; the real text stays for assistive tech
+    var s = t.textContent.trim(); if (!/^\d\d:\d\d$/.test(s)) return;
+    var vis = document.createElement('span'); vis.className = 'odo'; vis.setAttribute('aria-hidden', 'true');
+    var c = 0;
+    s.split('').forEach(function (ch) {
+      if (!/\d/.test(ch)) { vis.appendChild(document.createTextNode(ch)); return; }
+      var d = document.createElement('span'); d.className = 'd';
+      var col = document.createElement('span'); col.style.setProperty('--to', ch); col.style.setProperty('--c', c++);
+      for (var i = 0; i < 10; i++) { var g = document.createElement('i'); g.textContent = i; col.appendChild(g); }
+      d.appendChild(col); vis.appendChild(d);
+    });
+    var label = document.createElement('span'); label.className = 'vh'; label.textContent = s;
+    t.textContent = ''; t.appendChild(label); t.appendChild(vis);
+  }
+
+  /* ---------- stars over the night strip (static without motion) ---------- */
+  (function stars() {
+    var box = $('.stars'), seed = 7;
+    function rnd() { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }
+    for (var i = 0; i < 46; i++) {
+      var s = document.createElement('i');
+      s.style.left = (rnd() * 100).toFixed(2) + '%'; s.style.top = (rnd() * 100).toFixed(2) + '%';
+      var big = rnd() > 0.85; s.style.width = s.style.height = big ? '3px' : (rnd() > 0.5 ? '2px' : '1.5px');
+      s.style.setProperty('--t', (3 + rnd() * 4).toFixed(2) + 's'); s.style.setProperty('--dl', (-rnd() * 6).toFixed(2) + 's');
+      box.appendChild(s);
+    }
+  })();
+
+  /* ---------- screen height: measured after layout, locked on touch screens (address bar) ---------- */
+  var lockW = 0, lockH = 0;
+  function stableVH() {
+    if (!COARSE) return innerHeight;
+    var w = document.documentElement.clientWidth;
+    if (w !== lockW || !lockH) { lockW = w; lockH = innerHeight; }
+    return lockH;
+  }
+  var VH = innerHeight;
+  function measure() { VH = stableVH(); root.style.setProperty('--stage-h', VH + 'px'); onScroll(); }
+
+  /* ---------- the evening stage ---------- */
+  var eve = $('#tarde'), stage = $('.eve__stage'), steps = $$('.eve__step'), pics = [], railLi = $$('.eve__rail li'), stageOn = true;
+  function eveFrame() {
+    if (!pics.length) return;
+    var r = eve.getBoundingClientRect();
+    var near = r.bottom > -VH * 0.5 && r.top < VH * 1.5;
+    if (near !== stageOn) { stageOn = near; stage.style.visibility = near ? '' : 'hidden'; }   // frees the phone's graphics memory
+    root.classList.toggle('in-scene', r.top <= 1 && r.bottom >= VH - 1);
+    if (!near) return;
+    var focus = VH * 0.62, c = steps.map(function (s) { var b = s.getBoundingClientRect(); return b.top + b.height * 0.5; }), x = 0;
+    if (focus <= c[0]) x = 0;
+    else if (focus >= c[c.length - 1]) x = c.length - 1;
+    else for (var i = 0; i < c.length - 1; i++) if (focus < c[i + 1]) { x = i + (focus - c[i]) / (c[i + 1] - c[i]); break; }
+    var i0 = Math.floor(x), s = smooth((x - i0 - 0.3) / 0.4);
+    pics.forEach(function (p, j) {
+      var o = j === i0 ? 1 - s : j === i0 + 1 ? s : 0;
+      p.style.setProperty('--o', o.toFixed(3)); p.classList.toggle('is-off', o < 0.002);
+      if (!COARSE) p.style.setProperty('--z', (1.05 - 0.05 * clamp01(x - j + 0.6)).toFixed(4));
+    });
+    var on = Math.round(x); railLi.forEach(function (li, j) { li.classList.toggle('is-on', j === on); });
+  }
+
+  /* ---------- one scroll handler (no animation loop: the page idles at zero cost) ---------- */
+  var bar = $('.bar'), dock = $('#dock'), hero = $('#inicio'), bookSec = $('#reservar'), drift = [], ticking = false;
+  function onScroll() {
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(function () {
+      ticking = false;
+      bar.classList.toggle('is-solid', scrollY > 30);
+      eveFrame();
+      var hb = hero.getBoundingClientRect().bottom, br = bookSec.getBoundingClientRect();
+      dock.classList.toggle('is-on', hb < VH * 0.3 && !root.classList.contains('in-scene') && !(br.top < VH * 0.8 && br.bottom > VH * 0.25));
+      for (var j = 0; j < drift.length; j++) {
+        var el = drift[j], b = el.parentElement.getBoundingClientRect();
+        if (b.bottom < -80 || b.top > VH + 80) continue;
+        el.style.translate = '0 ' + ((((b.top + b.height / 2) - VH / 2) / VH) * 22).toFixed(1) + 'px';
+      }
+    });
+  }
+
+  /* ---------- start ---------- */
+  $$('.js-dyn').forEach(function (el) { el.hidden = false; });
+  applyLang(lang);
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', function () { var w = narrow(); measure(); if (w !== drawMap.small) { drawMap.small = w; drawMap(); } });
+  drawMap.small = narrow();
+  addEventListener('load', measure);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+  measure();
+
+  if (MOTION) {
+    $$('.eve__card .kick .js-et').forEach(odometer);
+    // reviews: one cloned set so the desktop drift loops without a seam
+    var track = $('.rv-track');
+    $$('.rv', track).forEach(function (card) { var c = card.cloneNode(true); c.classList.add('rv--clone'); c.setAttribute('aria-hidden', 'true'); c.setAttribute('inert', ''); track.appendChild(c); });
+    drift = $$('[data-unveil] > img');
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('in'); io.unobserve(e.target);
+        if (e.target.classList.contains('map')) mapTour();
+      });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.18 });
+    $$('[data-split]:not(h1), [data-unveil], .odo, .map').forEach(function (el) { io.observe(el); });
+    // loops run only while their element is on screen
+    var live = new IntersectionObserver(function (es) { es.forEach(function (e) { e.target.classList.toggle('is-live', e.isIntersecting); }); });
+    $$('.rv-row, .map, .night').forEach(function (el) { live.observe(el); });
+    // the stage: the four photos pin, the cards scroll over them
+    var rail = $('.eve__rail');
+    steps.forEach(function (s, j) { var p = s.querySelector('.eve__pic'); stage.insertBefore(p, rail); p.style.setProperty('--o', j ? 0 : 1); p.classList.toggle('is-off', j > 0); pics.push(p); });
+    root.classList.add('motion');
+    requestAnimationFrame(function () { requestAnimationFrame(function () { var h1 = $('h1[data-split]'); h1 && h1.classList.add('in'); measure(); }); });
+    // safety net: nothing on or above the screen stays in its start state
+    setTimeout(function () { $$('[data-split], [data-unveil], .odo, .map').forEach(function (el) { if (el.getBoundingClientRect().top < innerHeight) el.classList.add('in'); }); }, 3000);
+  }
+
+  /* ---------- ?dbg=1: what this phone reports ---------- */
+  if (/[?&]dbg=1/.test(location.search)) {
+    var dbg = document.createElement('pre');
+    dbg.style.cssText = 'position:fixed;left:6px;top:70px;z-index:999;margin:0;padding:6px 8px;font:11px/1.35 monospace;background:rgb(0 0 0 / .78);color:#7CFC9A;border-radius:6px;pointer-events:none';
+    document.body.appendChild(dbg);
+    (function upd() {
+      var img = $('.eve__pic img');
+      dbg.textContent = ['build ' + BUILD, 'inner ' + innerWidth + 'x' + innerHeight + '  stage ' + VH, 'coarse ' + COARSE + '  motion ' + root.classList.contains('motion'),
+        'eve img ' + (img ? (img.currentSrc || '').split('/').pop() : '-'), 'sunset ' + hm(SUNSET) + '  lang ' + lang].join('\n');
+      setTimeout(upd, 1000);
+    })();
+  }
+})();
+
+</script>
+</body>
+</html>
