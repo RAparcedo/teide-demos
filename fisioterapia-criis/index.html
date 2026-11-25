@@ -496,6 +496,72 @@ html.js [data-mode="p"] [data-only="b"], html.js [data-mode="b"] [data-only="p"]
 @keyframes flap { from { transform: rotateX(-95deg); opacity: 0; } }
 .motion .tilt { transition: transform .5s var(--out); }
 
+
+/* ═════ v2 wow layer (all one-shot or scroll/pointer-driven: the idle page costs nothing) ═════ */
+/* headings: words rise out of a mask */
+.motion .w { display: inline-block; overflow: hidden; vertical-align: top; padding: 0 .1em .16em 0; margin: 0 -.1em -.16em 0; }
+.motion .w > span { display: inline-block; transform: translateY(110%) rotate(3deg); transition: transform 1s var(--out); transition-delay: calc(var(--wi) * 70ms + 80ms); }
+.motion .in .w > span, .motion .ch-close.on .w > span { transform: none; }
+/* chapter number rolls in */
+.motion .ch-no b { transform: rotate(-120deg) scale(.5); opacity: 0; transition: transform .9s var(--spring), opacity .4s; }
+.motion .in .ch-no b, .motion .ch-no.in b { transform: none; opacity: 1; }
+/* masthead mini spine = reading progress */
+.motion .mark .spine-mini circle { fill: rgba(248, 242, 235, .3); transition: fill .35s; }
+.motion .mark .spine-mini circle.lit { fill: var(--rose); }
+/* massage cards: 3D tilt + sheen on desktop */
+.mcard { transform-style: preserve-3d; }
+.mcard::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .4s;
+	background: radial-gradient(320px circle at var(--gx, 50%) var(--gy, 0%), rgba(255, 255, 255, .7), transparent 60%); mix-blend-mode: soft-light; }
+.mcard.tilt-on::after { opacity: 1; }
+.motion .mcard.in { transition: transform .5s var(--out), opacity .9s var(--out); }
+/* the dot that flies into your booking */
+.flydot { position: fixed; z-index: 60; left: 0; top: 0; width: 16px; height: 16px; margin: -8px 0 0 -8px; border-radius: 50%; background: var(--rose); border: 3px solid var(--rasp); pointer-events: none; }
+.pulse { animation: pulse .55s var(--spring); }
+@keyframes pulse { 40% { transform: scale(1.12); } }
+/* frío: a glint crosses the cold-wrap card, «Cero Grados» shivers once */
+.vendas { position: relative; overflow: hidden; }
+.motion .vendas::after { content: ""; position: absolute; inset: -20% auto -20% -40%; width: 30%; transform: skewX(-18deg) translateX(0); background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .9), transparent); opacity: 0; pointer-events: none; }
+.motion .ch-frio.on .vendas.in::after { animation: glint 1.6s .5s ease-in-out both; }
+@keyframes glint { 0% { opacity: 0; } 15% { opacity: 1; } 100% { opacity: 0; transform: skewX(-18deg) translateX(560%); } }
+.motion .ch-frio.on .cg.in h3 em { display: inline-block; animation: shiver .55s 1.1s ease-in-out both; }
+@keyframes shiver { 15%, 55% { transform: translateX(-2px) rotate(-.6deg); } 35%, 75% { transform: translateX(2px) rotate(.6deg); } }
+/* piel: the price tag hangs on a string and swings in */
+.tag::before { content: ""; position: absolute; left: 50%; top: -26px; width: 1.5px; height: 30px; background: rgba(248, 242, 235, .55); transform: translateX(-50%); }
+.tag::after { content: ""; position: absolute; left: 50%; top: 6px; width: 9px; height: 9px; margin-left: -4.5px; border-radius: 50%; background: var(--forest); }
+.tag { transform-origin: 50% -26px; }
+.motion .tag { transform: rotate(-38deg); }
+.motion .ch-piel.on .pk-peel.in .tag { animation: swing 2.4s .3s both; }
+@keyframes swing { 0% { transform: rotate(-38deg); } 22% { transform: rotate(16deg); } 42% { transform: rotate(-20deg); } 60% { transform: rotate(4deg); } 76% { transform: rotate(-12deg); } 90% { transform: rotate(-6deg); } 100% { transform: rotate(-8deg); } }
+/* cita: a ripple from the zone you tap, the figure's spine lights up */
+.rip { fill: none; stroke: var(--rose-hi); stroke-width: 2; transform-box: fill-box; transform-origin: center; pointer-events: none; animation: rip .9s ease-out forwards; }
+@keyframes rip { from { transform: scale(1); opacity: 1; } to { transform: scale(7); opacity: 0; } }
+.body .sp circle { transition: fill .3s; transition-delay: calc(var(--s, 0) * 30ms); }
+.body.glow .sp circle { fill: var(--rose-hi); }
+/* the slip: a stamp when it's complete, a shine on the send button */
+.stamp { position: absolute; z-index: 2; right: 14px; top: -20px; background: var(--bone); padding: 8px 12px; border: 2.5px solid var(--rasp); border-radius: 10px; color: var(--rasp); font: 600 .72rem/1.15 var(--mono); letter-spacing: .12em; text-transform: uppercase; text-align: center; transform: rotate(-12deg) scale(2.2); opacity: 0; pointer-events: none; transition: transform .45s cubic-bezier(.3, 1.6, .5, 1), opacity .2s; }
+.slip.ready .stamp { transform: rotate(-12deg); opacity: .92; }
+.slip .btn { position: relative; overflow: hidden; }
+.slip .btn::after { content: ""; position: absolute; top: 0; bottom: 0; left: -40%; width: 30%; transform: skewX(-20deg); background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .45), transparent); opacity: 0; }
+.motion .slip.ready .btn::after { animation: glint 1.2s .35s ease-in-out both; }
+.motion .slip.ready .btn { animation: pulse .6s .3s var(--spring); }
+/* cómo llegar: lights come on floor by floor as the route climbs */
+.bldg .w:not(.w5) { transition: fill .5s; }
+.motion .ch-consulta.on .bldg .w.lt { fill: #f6e2bb; }
+.bldg .lift { font: 600 9px/1 var(--mono); letter-spacing: .14em; fill: var(--rasp); }
+/* reviews: stars pop one by one, a marker sweeps the key words */
+.motion .quotes .stars svg, .motion .score .stars svg { transform: scale(0) rotate(-40deg); transition: transform .5s var(--spring); }
+.motion .in .stars svg { transform: none; }
+.motion .in .stars svg:nth-child(2) { transition-delay: 90ms; } .motion .in .stars svg:nth-child(3) { transition-delay: 180ms; }
+.motion .in .stars svg:nth-child(4) { transition-delay: 270ms; } .motion .in .stars svg:nth-child(5) { transition-delay: 360ms; }
+.quotes mark { color: inherit; padding: 0 .04em; background: linear-gradient(transparent 58%, rgba(230, 170, 165, .6) 58%) no-repeat 0 0 / 100% 100%; }
+.rv-sm mark { background-image: linear-gradient(transparent 60%, rgba(246, 203, 198, .32) 60%); }
+.motion .quotes mark { background-size: 0% 100%; transition: background-size 1.3s cubic-bezier(.6, 0, .2, 1) .7s; }
+.motion .quotes .in mark { background-size: 100% 100%; }
+/* close: the spine takes one more breath when you get there */
+.motion .ch-close.on .spine circle { animation: relief .9s ease-in-out both; animation-delay: calc(var(--i) * 32ms + 250ms); }
+/* magnetic buttons (desktop) */
+.mag { transition: transform .35s var(--out); }
+
 @media (prefers-reduced-motion: reduce) {
 	*, *::before, *::after { animation: none !important; transition: none !important; }
 }
@@ -635,7 +701,7 @@ html.js [data-mode="p"] [data-only="b"], html.js [data-mode="b"] [data-only="p"]
 		<div class="frio">
 			<div class="zero" data-rv aria-hidden="true">
 				<span class="ring"></span>
-				<svg class="flake" viewBox="0 0 100 100"><g transform="rotate(0 50 50)"><path d="M50 50V5M50 20l-10-9M50 20l10-9M50 33l-7-6M50 33l7-6"/></g><g transform="rotate(60 50 50)"><path d="M50 50V5M50 20l-10-9M50 20l10-9M50 33l-7-6M50 33l7-6"/></g><g transform="rotate(120 50 50)"><path d="M50 50V5M50 20l-10-9M50 20l10-9M50 33l-7-6M50 33l7-6"/></g><g transform="rotate(180 50 50)"><path d="M50 50V5M50 20l-10-9M50 20l10-9M50 33l-7-6M50 33l7-6"/></g><g transform="rotate(240 50 50)"><path d="M50 50V5M50 20l-10-9M50 20l10-9M50 33l-7-6M50 33l7-6"/></g><g transform="rotate(300 50 50)"><path d="M50 50V5M50 20l-10-9M50 20l10-9M50 33l-7-6M50 33l7-6"/></g></svg>
+				<svg class="flake" viewBox="0 0 100 100"><g id="flk"><g transform="rotate(0 50 50)"><path d="M50 50V5M50 20l-10-9M50 20l10-9M50 33l-7-6M50 33l7-6"/></g><g transform="rotate(60 50 50)"><path d="M50 50V5M50 20l-10-9M50 20l10-9M50 33l-7-6M50 33l7-6"/></g><g transform="rotate(120 50 50)"><path d="M50 50V5M50 20l-10-9M50 20l10-9M50 33l-7-6M50 33l7-6"/></g><g transform="rotate(180 50 50)"><path d="M50 50V5M50 20l-10-9M50 20l10-9M50 33l-7-6M50 33l7-6"/></g><g transform="rotate(240 50 50)"><path d="M50 50V5M50 20l-10-9M50 20l10-9M50 33l-7-6M50 33l7-6"/></g><g transform="rotate(300 50 50)"><path d="M50 50V5M50 20l-10-9M50 20l10-9M50 33l-7-6M50 33l7-6"/></g></g></svg>
 				<span class="deg"><span id="deg">0</span><sup>°</sup></span>
 				<span class="zero-cap" data-en="Ice + essential oils">Hielo + aceites esenciales</span>
 			</div>
@@ -782,6 +848,7 @@ html.js [data-mode="p"] [data-only="b"], html.js [data-mode="b"] [data-only="p"]
 			</div>
 			<div class="slip-col" data-rv>
 				<div class="slip" id="slip">
+					<span class="stamp" aria-hidden="true"><span data-en="Ready<br>to send">Lista<br>para enviar</span></span>
 					<div class="slip-h"><h3 data-en="Booking slip">Ficha de cita</h3><small>Criis · 614 765 306</small></div>
 					<dl>
 						<div><dt data-en="Treatment">Tratamiento</dt><dd id="s-t" class="empty" data-ph="Elija en la carta o arriba" data-ph-en="Pick from the menu or above">Elija en la carta o arriba</dd></div>
@@ -810,6 +877,7 @@ html.js [data-mode="p"] [data-only="b"], html.js [data-mode="b"] [data-only="p"]
 					<svg class="bldg" viewBox="0 0 300 310" aria-hidden="true" focusable="false">
 						<defs><mask id="rm"><path class="rmask" d="M6 292 H214 V250 V170 H166 V108" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></mask></defs>
 						<rect class="b" x="40" y="30" width="200" height="252" rx="4"/>
+						<text class="lift" id="lift" x="240" y="20" text-anchor="end">Planta 2</text>
 						<path d="M34 30 H246" stroke="#1d3832" stroke-width="4" stroke-linecap="round"/>
 						<path d="M40 122 H240 M40 202 H240" stroke="#1d3832" stroke-width="1" stroke-dasharray="3 4" opacity=".5"/>
 						<text class="fl" x="24" y="80">2</text><text class="fl" x="24" y="166">1</text><text class="fl" x="24" y="250">0</text>
@@ -866,7 +934,7 @@ html.js [data-mode="p"] [data-only="b"], html.js [data-mode="b"] [data-only="p"]
 				<span class="stars" aria-hidden="true"><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg></span>
 				<p data-en="5.0 out of 5 on Google: three reviews, all five stars.">5,0 sobre 5 en Google: tres reseñas, las tres de cinco estrellas.</p>
 			</div>
-			<div class="quotes"><blockquote class="rv-big" data-rv><span class="stars" role="img" aria-label="5 de 5 estrellas" data-en-label="5 out of 5 stars"><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg></span><p>«He tenido la oportunidad de recibir varios tratamientos y conocer de cerca su forma de trabajar. Destacaría especialmente la profesionalidad, la dedicación y el trato cercano que ofrece. Se nota el cariño que pone en su trabajo y la importancia que da al bienestar de cada persona. Una experiencia muy positiva.»</p><footer><b>Fito D.</b>, <span data-en="on Google · October 2026 (in Spanish)">en Google · octubre de 2026</span></footer></blockquote><blockquote class="rv-sm" data-rv><span class="stars" role="img" aria-label="5 de 5 estrellas" data-en-label="5 out of 5 stars"><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg></span><p>«Fui muy mal y sali como una reina, no habia usado un fisio nunca y su confianza y buen trato me encanto .La recomiendo 100×100»</p><footer><b>Montse H.</b>, <span data-en="on Google · October 2026 (in Spanish)">en Google · octubre de 2026</span></footer></blockquote><blockquote class="rv-sm" data-rv><span class="stars" role="img" aria-label="5 de 5 estrellas" data-en-label="5 out of 5 stars"><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg></span><p>«Hola buenas tardes muy buena esperiencia y se lo recomiendo a todo el mundo .buen atendimiento y como profecional un 10 ..se lo recomiendo a todo el mundo»</p><footer><b>Francisco S.</b>, <span data-en="on Google · October 2026 (in Spanish)">en Google · octubre de 2026</span></footer></blockquote></div>
+			<div class="quotes"><blockquote class="rv-big" data-rv><span class="stars" role="img" aria-label="5 de 5 estrellas" data-en-label="5 out of 5 stars"><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg></span><p>«He tenido la oportunidad de recibir varios tratamientos y conocer de cerca su forma de trabajar. Destacaría especialmente <mark>la profesionalidad, la dedicación y el trato cercano</mark> que ofrece. Se nota el cariño que pone en su trabajo y la importancia que da al bienestar de cada persona. Una experiencia muy positiva.»</p><footer><b>Fito D.</b>, <span data-en="on Google · October 2026 (in Spanish)">en Google · octubre de 2026</span></footer></blockquote><blockquote class="rv-sm" data-rv><span class="stars" role="img" aria-label="5 de 5 estrellas" data-en-label="5 out of 5 stars"><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg></span><p>«Fui muy mal y <mark>sali como una reina</mark>, no habia usado un fisio nunca y su confianza y buen trato me encanto .La recomiendo 100×100»</p><footer><b>Montse H.</b>, <span data-en="on Google · October 2026 (in Spanish)">en Google · octubre de 2026</span></footer></blockquote><blockquote class="rv-sm" data-rv><span class="stars" role="img" aria-label="5 de 5 estrellas" data-en-label="5 out of 5 stars"><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg></span><p>«Hola buenas tardes muy buena esperiencia y se lo recomiendo a todo el mundo .buen atendimiento y <mark>como profecional un 10</mark> ..se lo recomiendo a todo el mundo»</p><footer><b>Francisco S.</b>, <span data-en="on Google · October 2026 (in Spanish)">en Google · octubre de 2026</span></footer></blockquote></div>
 		</div>
 	</div>
 </section>
@@ -993,6 +1061,9 @@ html.js [data-mode="p"] [data-only="b"], html.js [data-mode="b"] [data-only="p"]
 		el.dataset.v = s;
 	};
 
+	// motion hooks: no-ops unless the motion layer below replaces them
+	const fx = { fly: () => {}, ripple: () => {}, type: (dd, v) => { dd.textContent = v; } };
+
 	// ── the appointment ──
 	const st = { t: null, label: '', dd: '', price: null, mode: 'p', zones: new Set(), relax: false, day: null, dayLabel: '', slot: '' };
 	let mode = 'p';
@@ -1003,8 +1074,8 @@ html.js [data-mode="p"] [data-only="b"], html.js [data-mode="b"] [data-only="p"]
 		const empty = !txt;
 		const v = empty ? (L === 'en' ? dd.dataset.phEn : dd.dataset.ph) : txt;
 		if (dd.textContent === v) return;
-		dd.textContent = v; dd.classList.toggle('empty', empty);
-		if (!calm && !empty) { dd.classList.remove('pop'); void dd.offsetWidth; dd.classList.add('pop'); }
+		dd.classList.toggle('empty', empty);
+		if (empty) { clearTimeout(dd._tt); dd.textContent = v; } else fx.type(dd, v);
 	};
 	const zoneList = (arr, lang) => { if (arr.length < 2) return arr.join(''); return arr.slice(0, -1).join(', ') + (lang === 'en' ? ' and ' : ' y ') + arr[arr.length - 1]; };
 	const msg = () => {
@@ -1054,6 +1125,7 @@ html.js [data-mode="p"] [data-only="b"], html.js [data-mode="b"] [data-only="p"]
 		barT.textContent = any ? [st.t ? chipName(st.t) : '', st.dd, zs[0]].filter(Boolean).join(' · ') || S().pick : S().pick;
 		barWa.querySelector('span').textContent = any ? S().send : S().book;
 		if (bump && !calm) { bar.classList.remove('bump'); void bar.offsetWidth; bar.classList.add('bump'); }
+		$('#slip').classList.toggle('ready', !!(st.t && (st.zones.size || st.relax) && (st.day != null || st.slot)));
 	}
 	const pressOnly = (list, el) => list.forEach(b => b.setAttribute('aria-pressed', String(b === el)));
 	function chooseT(k, fromOpt) {
@@ -1070,17 +1142,20 @@ html.js [data-mode="p"] [data-only="b"], html.js [data-mode="b"] [data-only="p"]
 			st.price = +(st.mode === 'b' ? o.dataset.b : o.dataset.p);
 		} else { st.t = null; st.dd = ''; st.price = null; pressOnly(chipsT, null); }
 		render(on);
+		if (on) fx.fly(o.querySelector('.o-ck'));
 	}));
 	chipsT.forEach(c => c.addEventListener('click', () => {
 		const on = c.getAttribute('aria-pressed') !== 'true';
 		if (on) chooseT(c.dataset.t); else { st.t = null; st.dd = ''; st.price = null; pressOnly(chipsT, null); opts.forEach(o => o.setAttribute('aria-pressed', 'false')); }
 		render(on);
+		if (on) fx.fly(c);
 	}));
 	$$('.pick').forEach(b => b.addEventListener('click', () => {
 		chooseT(b.dataset.pick);
 		if (b.dataset.pick === 'cerogrados') st.dd = '30 min';
 		if (b.dataset.pick === 'peeling') { st.dd = 'cuerpo entero'; st.price = 40; st.mode = 'p'; }
 		render(true);
+		fx.fly(b);
 		$('#cita').scrollIntoView({ behavior: calm ? 'auto' : 'smooth' });
 	}));
 	const setZone = (z, on) => {
@@ -1089,6 +1164,7 @@ html.js [data-mode="p"] [data-only="b"], html.js [data-mode="b"] [data-only="p"]
 		zoneG.filter(g => g.dataset.z === z).forEach(g => g.classList.toggle('on', on));
 		if (on && st.relax) { st.relax = false; $('#relax').setAttribute('aria-pressed', 'false'); }
 		render(on);
+		if (on) fx.ripple(z);
 	};
 	zchips.forEach(b => b.addEventListener('click', () => setZone(b.dataset.z, !st.zones.has(b.dataset.z))));
 	zoneG.forEach(g => g.addEventListener('click', () => setZone(g.dataset.z, !st.zones.has(g.dataset.z))));
@@ -1171,7 +1247,7 @@ html.js [data-mode="p"] [data-only="b"], html.js [data-mode="b"] [data-only="p"]
 	const setLang = l => {
 		if (l === L) return; L = l;
 		try { localStorage.setItem('criis-lang', L); } catch (e) {}
-		applyStatic(); ty.textContent = words()[tyI % words().length];
+		applyStatic(); fx.split && fx.split(); ty.textContent = words()[tyI % words().length];
 		openStatus(); buildDays(); syncDays(); labelOpts();
 		$$('.odo').forEach(el => { el._dg = null; odo(el, el.dataset.v, true); });
 		requestAnimationFrame(placePill); render();
@@ -1203,7 +1279,8 @@ html.js [data-mode="p"] [data-only="b"], html.js [data-mode="b"] [data-only="p"]
 	// ── masthead + bar + chapter nav ──
 	const mast = $('#mast'), hero = $('.ch-hero');
 	let mq = false;
-	const onScroll = () => { mq = false; const y = scrollY; mast.classList.toggle('solid', y > 40); bar.classList.toggle('show', y > hero.offsetHeight * .7); };
+	let onScrollFx = null;
+	const onScroll = () => { mq = false; const y = scrollY; mast.classList.toggle('solid', y > 40); bar.classList.toggle('show', y > hero.offsetHeight * .7); if (onScrollFx) onScrollFx(y); };
 	addEventListener('scroll', () => { if (!mq) { mq = true; requestAnimationFrame(onScroll); } }, { passive: true });
 	onScroll();
 	const navA = new Map($$('.vnav a').map(a => [a.dataset.ch, a]));
@@ -1223,7 +1300,7 @@ html.js [data-mode="p"] [data-only="b"], html.js [data-mode="b"] [data-only="p"]
 			if (e.isIntersecting) e.target.classList.add('on');
 			else if (e.target.matches('.ch-frio')) e.target.classList.remove('on');
 		}), { threshold: .18 });
-		$$('.ch-frio, .ch-piel, .ch-cita, .ch-consulta').forEach(s => onIO.observe(s));
+		$$('.ch-frio, .ch-piel, .ch-cita, .ch-consulta, .ch-close').forEach(s => onIO.observe(s));
 	}
 
 	// ── motion: opt-in, with a 3 s safety net ──
@@ -1258,6 +1335,133 @@ html.js [data-mode="p"] [data-only="b"], html.js [data-mode="b"] [data-only="p"]
 		const sIO = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { sIO.disconnect(); setTimeout(() => odo(sc, 5), 200); } }), { threshold: .5 });
 		sIO.observe(sc);
 		setTimeout(() => { if (sc.dataset.v === '0' && sc.getBoundingClientRect().top < innerHeight) odo(sc, 5); }, 3000);
+
+		// ═════ v2 wow layer ═════
+		// headings: split into words that rise out of a mask (re-split after a language switch)
+		fx.split = () => $$('main h2:not(.vh)').forEach(h => {
+			h.setAttribute('aria-label', h.textContent.replace(/\s+/g, ' ').trim());
+			let wi = 0;
+			const wrap = node => [...node.childNodes].forEach(n => {
+				if (n.nodeType === 3) {
+					const frag = d.createDocumentFragment();
+					n.textContent.split(/(\s+)/).forEach(part => {
+						if (!part) return;
+						if (/^\s+$/.test(part)) { frag.append(d.createTextNode(part)); return; }
+						const w = d.createElement('span'); w.className = 'w'; w.setAttribute('aria-hidden', 'true');
+						const i = d.createElement('span'); i.textContent = part; i.style.setProperty('--wi', wi++);
+						w.append(i); frag.append(w);
+					});
+					n.replaceWith(frag);
+				} else if (n.nodeType === 1 && !n.classList.contains('w')) wrap(n);
+			});
+			wrap(h);
+		});
+		fx.split();
+		$$('.ch-no').forEach(n => { if (!n.closest('[data-rv]')) { n.setAttribute('data-rv', ''); io2.observe(n); } });
+
+		// typewriter for the booking slip
+		fx.type = (dd, v) => {
+			clearTimeout(dd._tt);
+			let i = 0;
+			const step = () => { i = Math.min(v.length, i + 2); dd.textContent = v.slice(0, i); if (i < v.length) dd._tt = setTimeout(step, 18); };
+			step();
+		};
+
+		// a dot flies from what you tapped into your booking
+		const visible = el => el && el.offsetParent !== null && (r => r.width && r.bottom > 0 && r.top < innerHeight)(el.getBoundingClientRect());
+		fx.fly = src => {
+			if (!src) return;
+			const slip = $('#slip');
+			const target = [bar.classList.contains('show') ? $('#bar-wa') : null, slip, $('.mast .btn'), $('.mast-call')].find(visible);
+			if (!target) return;
+			const a = src.getBoundingClientRect(), b = target.getBoundingClientRect();
+			const x0 = a.left + a.width / 2, y0 = a.top + a.height / 2, x1 = b.left + b.width / 2, y1 = b.top + Math.min(b.height / 2, 40);
+			if (Math.hypot(x1 - x0, y1 - y0) < 60) return;
+			const dot = d.createElement('span'); dot.className = 'flydot'; d.body.append(dot);
+			const lift = Math.min(160, Math.abs(y1 - y0) * .3 + 60);
+			dot.animate([
+				{ transform: `translate(${x0}px, ${y0}px) scale(.6)` },
+				{ transform: `translate(${(x0 + x1) / 2}px, ${Math.min(y0, y1) - lift}px) scale(1.25)`, offset: .45 },
+				{ transform: `translate(${x1}px, ${y1}px) scale(.35)`, opacity: .5 }
+			], { duration: 820, easing: 'cubic-bezier(.45, 0, .25, 1)' }).onfinish = () => {
+				dot.remove();
+				target.classList.remove('pulse'); void target.offsetWidth; target.classList.add('pulse');
+			};
+		};
+
+		// a ripple from the zone you tap; the figure's spine lights up
+		const ZC = { cuello: [[120, 86]], hombros: [[88, 111], [152, 111]], dorsal: [[120, 150]], lumbar: [[120, 226]], brazos: [[54, 190], [186, 190]], caderas: [[101, 266], [139, 266]], piernas: [[96, 330], [144, 330]], rodillas: [[95, 373], [145, 373]] };
+		const fig = $('.body');
+		$$('.body .sp circle').forEach((c, i) => c.style.setProperty('--s', i));
+		fx.ripple = z => {
+			(ZC[z] || []).forEach(([x, y]) => {
+				const c = d.createElementNS('http://www.w3.org/2000/svg', 'circle');
+				c.setAttribute('cx', x); c.setAttribute('cy', y); c.setAttribute('r', 6); c.setAttribute('class', 'rip');
+				c.addEventListener('animationend', () => c.remove()); fig.append(c);
+			});
+			fig.classList.add('glow'); clearTimeout(fig._gt); fig._gt = setTimeout(() => fig.classList.remove('glow'), 900);
+		};
+
+		// cómo llegar: windows light up floor by floor, the lift counts 0 → 2, in step with the route
+		const lift = $('#lift'), LIFT = () => L === 'en' ? 'Floor' : 'Planta';
+		lift.textContent = `${LIFT()} 0`;
+		const wins = $$('.bldg .w:not(.w5)').sort((p, q) => +q.getAttribute('y') - +p.getAttribute('y'));
+		wins.forEach((w, i) => { w.classList.add('lt'); w.style.transitionDelay = `${400 + Math.floor((+w.getAttribute('y') > 200 ? 0 : +w.getAttribute('y') > 120 ? 1 : 2)) * 650 + i * 40}ms`; });
+		const lIO = new IntersectionObserver(es => es.forEach(e => {
+			if (!e.isIntersecting) return; lIO.disconnect();
+			[1, 2].forEach(n => setTimeout(() => { lift.textContent = `${LIFT()} ${n}`; }, 600 + n * 700));
+		}), { threshold: .18 });
+		lIO.observe($('.ch-consulta'));
+		d.addEventListener('click', e => { if (e.target.closest('.lang button')) setTimeout(() => { lift.textContent = lift.textContent.replace(/^\S+/, LIFT()); }, 0); });
+
+		// scroll-driven (costs nothing while you're still): the hero spine ripples with mobility,
+		// the name and card drift apart, the masthead spine fills as you read, the snowflake turns, the scrub grains drift
+		const hDots = $$('.ch-hero .spine circle').map(c => [c, +c.getAttribute('cx')]);
+		const nDots = hDots.length;
+		const mini = $$('.mark .spine-mini circle');
+		const brandTxt = $('.brand-txt'), cardWrap = $('.card-wrap'), flk = $('#flk'), grains = $('.grains'), frioS = $('.ch-frio'), pielS = $('.ch-piel');
+		let heroH = hero.offsetHeight, docH = 1, frioTop = 0, pielTop = 0, lit = -1, wide = innerWidth >= 900;
+		const measure = () => {
+			heroH = hero.offsetHeight; docH = Math.max(1, d.documentElement.scrollHeight - innerHeight);
+			frioTop = frioS.getBoundingClientRect().top + scrollY; pielTop = pielS.getBoundingClientRect().top + scrollY; wide = innerWidth >= 900;
+		};
+		measure(); addEventListener('resize', measure, { passive: true }); addEventListener('load', measure);
+		if (d.fonts) d.fonts.ready.then(measure);
+		onScrollFx = y => {
+			const n = Math.round(Math.min(1, y / docH) * mini.length);
+			if (n !== lit) { lit = n; mini.forEach((c, i) => c.classList.toggle('lit', i < n)); }
+			if (y < heroH) {
+				const a = Math.min(1, y / 220) * 7;
+				hDots.forEach(([c, x], i) => c.setAttribute('cx', (x + a * Math.sin(i * .55 - y * .022) * (0.4 + i / nDots)).toFixed(2)));
+				if (wide) { brandTxt.style.transform = `translate3d(0, ${(y * .16).toFixed(1)}px, 0)`; cardWrap.style.transform = `translate3d(0, ${(-y * .07).toFixed(1)}px, 0) rotate(${(y * .004).toFixed(3)}deg)`; }
+			}
+			const fy = y + innerHeight - frioTop;
+			if (fy > 0 && fy < innerHeight * 2.4) flk.setAttribute('transform', `rotate(${(fy * .045).toFixed(2)} 50 50)`);
+			const py = y + innerHeight - pielTop;
+			if (grains && py > 0 && py < innerHeight * 2.4) grains.style.transform = `translate3d(0, ${(-py * .09).toFixed(1)}px, 0) rotate(${(py * .02).toFixed(2)}deg)`;
+		};
+		onScrollFx(scrollY);
+
+		if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
+			// massage cards tilt toward the pointer with a soft sheen
+			$$('.mcard').forEach(c => {
+				let q = false, ex = 0, ey = 0;
+				const paint = () => {
+					q = false; if (!c.classList.contains('in')) return;
+					const r = c.getBoundingClientRect(), nx = (ex - r.left) / r.width, ny = (ey - r.top) / r.height;
+					c.style.transform = `perspective(1000px) rotateY(${((nx - .5) * 7).toFixed(2)}deg) rotateX(${((.5 - ny) * 6).toFixed(2)}deg) translateY(-4px)`;
+					c.style.setProperty('--gx', `${(nx * 100).toFixed(1)}%`); c.style.setProperty('--gy', `${(ny * 100).toFixed(1)}%`);
+				};
+				c.addEventListener('pointermove', e => { ex = e.clientX; ey = e.clientY; c.classList.add('tilt-on'); if (!q) { q = true; requestAnimationFrame(paint); } }, { passive: true });
+				c.addEventListener('pointerleave', () => { c.classList.remove('tilt-on'); c.style.transform = ''; });
+			});
+			// the main buttons lean toward the pointer
+			$$('.ch-hero .hero-act .btn, .ch-close .btn, .slip .btn-rasp, .cg-act .btn').forEach(b => {
+				b.classList.add('mag');
+				b.addEventListener('pointermove', e => { const r = b.getBoundingClientRect(); b.style.transform = `translate(${((e.clientX - r.left - r.width / 2) * .18).toFixed(1)}px, ${((e.clientY - r.top - r.height / 2) * .3).toFixed(1)}px)`; }, { passive: true });
+				b.addEventListener('pointerleave', () => { b.style.transform = ''; });
+			});
+		}
 		// desktop: a warm-hands glow follows the cursor over the hero; the card tilts a little
 		if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
 			const spot = $('.spot'), card = $('.pcard');
