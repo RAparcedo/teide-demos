@@ -497,6 +497,19 @@ html.js [data-mode="p"] [data-only="b"], html.js [data-mode="b"] [data-only="p"]
 .motion .tilt { transition: transform .5s var(--out); }
 
 
+/* her lotus (keyed from her own flyer), coloured by CSS */
+.lotus-mark { display: inline-block; width: 42px; height: 25px; flex: none; background: var(--rose);
+	-webkit-mask: url("assets/img/criis-lotus.webp") center / contain no-repeat; mask: url("assets/img/criis-lotus.webp") center / contain no-repeat; }
+.motion .mast .lotus-mark { background: linear-gradient(to top, var(--rose) var(--p, 0%), rgba(248, 242, 235, .6) var(--p, 0%)); }
+.lotus-wm { position: absolute; z-index: -1; pointer-events: none; width: min(92vw, 820px); aspect-ratio: 680 / 406; right: -14%; bottom: -6%; background: var(--rose); opacity: .075;
+	-webkit-mask: url("assets/img/criis-lotus.webp") center / contain no-repeat; mask: url("assets/img/criis-lotus.webp") center / contain no-repeat; }
+@media (max-width: 899px) { .lotus-wm { right: -34%; bottom: auto; top: 30%; width: 130vw; } }
+.motion .lotus-wm { opacity: 0; transform: translate3d(0, 0, 0) scale(.82); transform-origin: 50% 100%; }
+.motion .ch-hero.go .lotus-wm { opacity: .075; transform: none; transition: opacity 2.2s ease .6s, transform 2.6s var(--out) .6s; }
+.foot-mark { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; font: 400 1.3rem/1.1 var(--display); color: var(--bone); }
+.foot-mark .lotus-mark { width: 52px; height: 31px; }
+.foot-mark small { display: block; font: 500 .7rem/1.4 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--sage); }
+
 /* ═════ v2 wow layer (all one-shot or scroll/pointer-driven: the idle page costs nothing) ═════ */
 /* headings: words rise out of a mask */
 .motion .w { display: inline-block; overflow: hidden; vertical-align: top; padding: 0 .1em .16em 0; margin: 0 -.1em -.16em 0; }
@@ -596,7 +609,7 @@ html.js [data-mode="p"] [data-only="b"], html.js [data-mode="b"] [data-only="p"]
 
 <header class="mast" id="mast">
 	<div class="wrap">
-		<a class="mark" href="#inicio" aria-label="Criis Fisioterapeuta, inicio" data-en-label="Criis Physiotherapist, home"><svg class="spine-mini" viewBox="0 0 30 120" aria-hidden="true" focusable="false"><circle cx="14.1" cy="7.2" r="2.48" style="--i:11;--dx:-17px"/><circle cx="15.6" cy="12.2" r="2.79" style="--i:10;--dx:41px"/><circle cx="17.2" cy="17.8" r="3.14" style="--i:9;--dx:22px"/><circle cx="18.7" cy="23.9" r="3.52" style="--i:8;--dx:-33px"/><circle cx="19.7" cy="30.6" r="3.90" style="--i:7;--dx:-46px"/><circle cx="20.0" cy="37.9" r="4.30" style="--i:6;--dx:40px"/><circle cx="19.2" cy="45.9" r="4.70" style="--i:5;--dx:31px"/><circle cx="17.3" cy="54.4" r="5.12" style="--i:4;--dx:30px"/><circle cx="14.6" cy="63.6" r="5.53" style="--i:3;--dx:-42px"/><circle cx="11.9" cy="73.5" r="5.96" style="--i:2;--dx:29px"/><circle cx="10.2" cy="84.0" r="6.38" style="--i:1;--dx:43px"/><circle cx="10.4" cy="95.2" r="6.82" style="--i:0;--dx:43px"/></svg><span>Criis<small data-en="Physiotherapist">Fisioterapeuta</small></span></a>
+		<a class="mark" href="#inicio" aria-label="Criis Fisioterapeuta, inicio" data-en-label="Criis Physiotherapist, home"><span class="lotus-mark" aria-hidden="true"></span><span>Criis<small data-en="Physiotherapist">Fisioterapeuta</small></span></a>
 		<nav class="mnav" aria-label="Secciones" data-en-label="Sections">
 			<a href="#masajes" data-en="Massages">Masajes</a>
 			<a href="#frio" data-en="Cold">Frío</a>
@@ -629,6 +642,7 @@ html.js [data-mode="p"] [data-only="b"], html.js [data-mode="b"] [data-only="p"]
 <!-- ═════ 00 · HERO ═════ -->
 <section class="ch ch-hero grain" id="inicio" aria-labelledby="h1">
 	<div class="spot" aria-hidden="true"></div>
+	<div class="lotus-wm" aria-hidden="true"></div>
 	<div class="wrap hero">
 		<div class="hero-txt">
 			<p class="kicker"><span data-en="Physiotherapist">Fisioterapeuta</span><span>San Isidro, Tenerife</span></p>
@@ -953,8 +967,9 @@ html.js [data-mode="p"] [data-only="b"], html.js [data-mode="b"] [data-only="p"]
 
 <footer class="foot">
 	<div class="wrap">
+		<p class="foot-mark"><span class="lotus-mark" aria-hidden="true"></span><span>Criis Fisioterapia<small data-en="Wellbeing &amp; Health">Bienestar &amp; Salud</small></span></p>
 		<p><b data-en="A private preview by Teide Digital for Criis Fisioterapeuta.">Vista previa privada de Teide Digital para Criis Fisioterapeuta.</b></p>
-		<p data-en="Sources: the clinic's Google listing (address, phone, hours, rating and the three reviews, 25 November 2026) and the flyers published on it (treatments, prices, bonos and new services). Photo: the listing's own. The booking slip sends nothing by itself: it opens WhatsApp with the message written.">Fuentes: la ficha de Google de la consulta (dirección, teléfono, horario, valoración y las tres reseñas, 25 de noviembre de 2026) y los carteles publicados en ella (tratamientos, precios, bonos y servicios nuevos). Foto: la de la propia ficha. La ficha de cita no envía nada por sí sola: abre WhatsApp con el mensaje escrito.</p>
+		<p data-en="Sources: the clinic's Google listing (address, phone, hours, rating and the three reviews, 25 November 2026) and the flyers published on it (treatments, prices, bonos and new services). Photo: the listing's own. Logo: the lotus from her own flyers. The booking slip sends nothing by itself: it opens WhatsApp with the message written.">Fuentes: la ficha de Google de la consulta (dirección, teléfono, horario, valoración y las tres reseñas, 25 de noviembre de 2026) y los carteles publicados en ella (tratamientos, precios, bonos y servicios nuevos). Foto: la de la propia ficha. Logo: el loto de sus propios carteles. La ficha de cita no envía nada por sí sola: abre WhatsApp con el mensaje escrito.</p>
 	</div>
 </footer>
 
@@ -1418,7 +1433,7 @@ html.js [data-mode="p"] [data-only="b"], html.js [data-mode="b"] [data-only="p"]
 		// the name and card drift apart, the masthead spine fills as you read, the snowflake turns, the scrub grains drift
 		const hDots = $$('.ch-hero .spine circle').map(c => [c, +c.getAttribute('cx')]);
 		const nDots = hDots.length;
-		const mini = $$('.mark .spine-mini circle');
+		const lotusMark = $('.mast .lotus-mark'), lwm = $('.lotus-wm');
 		const brandTxt = $('.brand-txt'), cardWrap = $('.card-wrap'), flk = $('#flk'), grains = $('.grains'), frioS = $('.ch-frio'), pielS = $('.ch-piel');
 		let heroH = hero.offsetHeight, docH = 1, frioTop = 0, pielTop = 0, lit = -1, wide = innerWidth >= 900;
 		const measure = () => {
@@ -1428,9 +1443,10 @@ html.js [data-mode="p"] [data-only="b"], html.js [data-mode="b"] [data-only="p"]
 		measure(); addEventListener('resize', measure, { passive: true }); addEventListener('load', measure);
 		if (d.fonts) d.fonts.ready.then(measure);
 		onScrollFx = y => {
-			const n = Math.round(Math.min(1, y / docH) * mini.length);
-			if (n !== lit) { lit = n; mini.forEach((c, i) => c.classList.toggle('lit', i < n)); }
+			const n = Math.round(Math.min(1, y / docH) * 100);
+			if (n !== lit) { lit = n; lotusMark.style.setProperty('--p', `${Math.max(n, 6)}%`); }
 			if (y < heroH) {
+				if (hero.classList.contains('go') && y > 0) lwm.style.transform = `translate3d(0, ${(y * .28).toFixed(1)}px, 0) rotate(${(y * -.012).toFixed(3)}deg)`;
 				const a = Math.min(1, y / 220) * 7;
 				hDots.forEach(([c, x], i) => c.setAttribute('cx', (x + a * Math.sin(i * .55 - y * .022) * (0.4 + i / nDots)).toFixed(2)));
 				if (wide) { brandTxt.style.transform = `translate3d(0, ${(y * .16).toFixed(1)}px, 0)`; cardWrap.style.transform = `translate3d(0, ${(-y * .07).toFixed(1)}px, 0) rotate(${(y * .004).toFixed(3)}deg)`; }
