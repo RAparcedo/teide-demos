@@ -1,0 +1,845 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Voolcam · boleros originales en Tenerife</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Voolcam, grupo de bolero de Tenerife: diez músicos y un repertorio propio. Escuche sus boleros y contrátelos para su boda, cena o fiesta.">
+<meta name="theme-color" content="#140c08">
+<meta property="og:title" content="Voolcam · boleros originales">
+<meta property="og:description" content="Diez músicos y un repertorio propio. Para que su noche suene a bolero.">
+<meta property="og:image" content="assets/og.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23140c08'/%3E%3Cpath d='M15 21h9l8 21 8-21h9L37 51h-10z' fill='%23d8ac57'/%3E%3Cpath d='M32 5l2.2 4.6 5 .5-3.8 3.3 1.2 4.9L32 15.7l-4.6 2.6 1.2-4.9-3.8-3.3 5-.5z' fill='%23f6dfa0'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/display-italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/body.woff2" as="font" type="font/woff2" crossorigin>
+<script>if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('motion');</script>
+<style>
+@font-face { font-family: 'Fraunces'; src: url(assets/fonts/display.woff2) format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Fraunces'; src: url(assets/fonts/display-italic.woff2) format('woff2'); font-weight: 100 900; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url(assets/fonts/body.woff2) format('woff2'); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: 'Plex Mono'; src: url(assets/fonts/mono.woff2) format('woff2'); font-weight: 500; font-display: swap; }
+
+:root {
+	--velvet: #140c08; --velvet-2: #21130c; --night: #1b100a; --black: #0c0705;
+	--wine: #3f0d15; --wine-2: #5c1420; --rose: #b8232f; --rose-2: #e0606a; --rosefield: #8c1a26;
+	--gold: #d8ac57; --gold-hi: #f6dfa0; --gold-lo: #8c6424;
+	--cream: #f5e9d3; --cream-2: rgba(245, 233, 211, .78); --paper: #f1e4c9; --ink: #2b1a10; --ink-2: #5a4230; --ink-rose: #8e1b25;
+	--serif: 'Fraunces', 'Iowan Old Style', Georgia, serif; --sans: 'Inter', system-ui, sans-serif; --mono: 'Plex Mono', ui-monospace, monospace;
+	--wrap: min(1220px, 100% - 2rem);
+	--ease: cubic-bezier(.2, .85, .25, 1);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+@media (min-width: 900px) { html { scroll-snap-type: y proximity; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: var(--velvet); color: var(--cream); font: 400 1.0625rem/1.62 var(--sans); overflow-x: hidden; }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+button, input, select { font: inherit; color: inherit; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 450; line-height: 1.02; margin: 0; letter-spacing: -.01em; }
+h2 { font-size: clamp(2.5rem, 8.4vw, 5.2rem); margin-bottom: 1.3rem; }
+h2 em { font-style: italic; font-weight: 380; color: var(--gold); }
+p { margin: 0 0 1em; }
+.wrap { width: var(--wrap); margin-inline: auto; position: relative; }
+.vh { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.kick { font: 500 .76rem/1.3 var(--mono); letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin: 0 0 1.1rem; display: flex; align-items: center; gap: .8rem; }
+.kick::before { content: ''; width: 2.2rem; height: 1px; background: currentColor; opacity: .7; }
+.ch { position: relative; overflow: clip; padding: clamp(5rem, 12vw, 8.5rem) 0; scroll-snap-align: start; }
+@media (min-width: 900px) { .ch { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; } }
+:focus-visible { outline: 2px solid var(--gold-hi); outline-offset: 3px; }
+.skip { position: absolute; left: 1rem; top: -4rem; z-index: 99; background: var(--gold); color: var(--ink); padding: .6rem 1rem; border-radius: 99px; }
+.skip:focus { top: 1rem; }
+
+/* buttons */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: .6rem; min-height: 3.25rem; padding: .85rem 1.6rem; border-radius: 99px; font-weight: 600; font-size: 1rem; text-decoration: none; border: 1px solid transparent; transition: transform .25s var(--ease), background .25s, box-shadow .25s; }
+.btn:hover { transform: translateY(-2px); }
+.btn-gold { background: linear-gradient(180deg, var(--gold-hi), var(--gold) 60%, #c39443); color: #24140a; box-shadow: 0 10px 24px -12px rgba(0, 0, 0, .75), inset 0 1px 0 rgba(255, 255, 255, .5); }
+.btn-ghost { border-color: rgba(246, 223, 160, .45); color: var(--gold-hi); }
+.btn-ghost:hover { background: rgba(246, 223, 160, .08); }
+.btn-cream { background: var(--cream); color: var(--ink-rose); }
+.ico { width: 1.15em; height: 1.15em; flex: none; fill: currentColor; }
+
+/* ── masthead ─────────────────────────── */
+.mast { position: fixed; inset: 0 0 auto; z-index: 40; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .7rem max(1rem, calc((100% - 1220px) / 2)); transition: background .35s, box-shadow .35s, backdrop-filter .35s; }
+.mast.solid { background: rgba(20, 12, 8, .86); box-shadow: 0 1px 0 rgba(216, 172, 87, .18); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.wm { display: inline-flex; align-items: center; gap: .55rem; text-decoration: none; font: 500 1.02rem/1 var(--serif); letter-spacing: .34em; color: var(--gold-hi); padding: .5rem 0; }
+.wm svg { width: 1.5rem; height: 1.5rem; }
+.mast-r { display: flex; align-items: center; gap: .55rem; }
+.lang { display: inline-flex; border: 1px solid rgba(246, 223, 160, .35); border-radius: 99px; padding: 3px; }
+.lang button { background: none; border: 0; border-radius: 99px; min-width: 2.6rem; min-height: 2.4rem; font: 500 .72rem/1 var(--mono); letter-spacing: .1em; color: var(--cream-2); cursor: pointer; }
+.lang button[aria-pressed="true"] { background: var(--gold); color: #24140a; }
+.mast .btn { min-height: 2.75rem; padding: .55rem 1.1rem; font-size: .92rem; }
+@media (max-width: 30rem) { .mast .hire { display: none; } }
+
+/* ── hero: the stage ──────────────────── */
+.hero { position: relative; min-height: 100svh; overflow: clip; isolation: isolate; display: flex; align-items: center; padding: 5.5rem 0 4rem; scroll-snap-align: start;
+	background:
+		radial-gradient(ellipse 70% 55% at 62% 8%, rgba(120, 70, 30, .55), transparent 70%),
+		repeating-linear-gradient(90deg, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, .26) 42px, rgba(0, 0, 0, 0) 84px),
+		linear-gradient(180deg, #2a170e 0%, var(--velvet) 62%, #0e0805 100%); }
+.beam { position: absolute; inset: 0; z-index: -1; pointer-events: none;
+	background:
+		radial-gradient(ellipse 22% 85% at 70% -6%, rgba(255, 226, 160, .30), rgba(255, 226, 160, .08) 55%, transparent 75%),
+		radial-gradient(ellipse 30% 9% at 70% 74%, rgba(255, 214, 140, .16), transparent 70%); }
+@media (max-width: 899px) { .beam { background: radial-gradient(ellipse 48% 62% at 50% -4%, rgba(255, 226, 160, .30), rgba(255, 226, 160, .07) 55%, transparent 76%); } }
+.motes { position: absolute; inset: 0 20% 20% 45%; z-index: -1; pointer-events: none; display: none; }
+@media (max-width: 899px) { .motes { inset: 0 18% 45% 18%; } }
+.motes i { position: absolute; left: var(--x); top: var(--y); width: 3px; height: 3px; border-radius: 50%; background: #ffe9b8; opacity: 0; }
+.spot { position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: 0; transition: opacity .6s; background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(255, 220, 150, .10), transparent 70%); }
+.hero:hover .spot { opacity: 1; }
+.hero-grid { display: grid; gap: 1.6rem; align-items: center; }
+.emblem { position: relative; width: min(58vw, 15.5rem); margin: 0 auto; }
+.emblem img { width: 100%; filter: drop-shadow(0 18px 40px rgba(0, 0, 0, .6)); }
+.shine { position: absolute; inset: 0; overflow: hidden; pointer-events: none; -webkit-mask: url(assets/img/logo-640.webp) center / contain no-repeat; mask: url(assets/img/logo-640.webp) center / contain no-repeat; }
+.shine i { position: absolute; inset: 0 -60%; background: linear-gradient(105deg, transparent 42%, rgba(255, 248, 225, .9) 50%, transparent 58%); transform: translateX(-70%); }
+.glints { position: absolute; inset: 0; pointer-events: none; }
+.glints i { position: absolute; left: var(--x); top: var(--y); width: 18%; aspect-ratio: 1; translate: -50% -50%; scale: 0; opacity: 0;
+	background: radial-gradient(circle, #fff 0 6%, transparent 7%), conic-gradient(from 45deg, transparent 0 20%, transparent 0); }
+.glints i::before, .glints i::after { content: ''; position: absolute; left: 50%; top: 50%; width: 100%; height: 6%; translate: -50% -50%; border-radius: 50%; background: radial-gradient(closest-side, #fffbe9, rgba(255, 240, 200, 0)); }
+.glints i::after { rotate: 90deg; }
+.hero-copy { text-align: center; }
+.hero .kick { justify-content: center; }
+.hero .kick::before { display: none; }
+#h1 { font-style: italic; font-weight: 380; font-size: clamp(5.4rem, 25vw, 12.5rem); line-height: .86; letter-spacing: -.03em; padding: 0 .06em .08em; margin: 0 0 .8rem;
+	background: linear-gradient(178deg, #fff1c4 8%, var(--gold-hi) 30%, var(--gold) 62%, #a3762f 92%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+#h1 .w { display: inline-block; white-space: nowrap; }
+#h1 .lt { display: inline-block; padding: 0 .07em; margin: 0 -.07em; background: inherit; background-size: 100% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; }
+.typed-line { font: italic 400 clamp(1.45rem, 5.4vw, 2.1rem)/1.2 var(--serif); color: var(--cream); margin: 0 0 1.1rem; min-height: 1.25em; }
+.typed { color: var(--gold-hi); border-right: 2px solid transparent; padding-right: 2px; }
+.lede { color: var(--cream-2); max-width: 34rem; margin: 0 auto 1.8rem; }
+.acts { display: flex; flex-wrap: wrap; gap: .75rem; justify-content: center; }
+.nowcard { position: relative; display: block; width: min(100%, 23rem); margin: 1.2rem auto 0; text-decoration: none; rotate: -2.5deg; border-radius: 16px; overflow: hidden; box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .8), 0 0 0 1px rgba(216, 172, 87, .35); transition: rotate .5s var(--ease), translate .5s var(--ease); }
+.nowcard:hover { rotate: 0deg; translate: 0 -4px; }
+.nowcard img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.glass { position: absolute; left: .7rem; right: .7rem; bottom: .7rem; display: flex; align-items: center; gap: .8rem; padding: .65rem .8rem; border-radius: 12px; background: rgba(20, 12, 8, .55); backdrop-filter: blur(12px) saturate(1.3); -webkit-backdrop-filter: blur(12px) saturate(1.3); border: 1px solid rgba(246, 223, 160, .25); }
+.glass .pl { flex: none; width: 2.4rem; height: 2.4rem; border-radius: 50%; display: grid; place-items: center; background: var(--rose); color: #fff; }
+.glass b { display: block; font: italic 500 1.08rem/1.15 var(--serif); color: var(--cream); }
+.glass small { display: block; font: 500 .7rem/1.3 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+@media (max-width: 899px) { .hero-art { display: contents; } .nowcard { order: 3; } }
+.cue { position: absolute; left: 50%; bottom: 1.1rem; translate: -50% 0; width: 2.75rem; height: 2.75rem; display: grid; place-items: center; color: var(--gold); text-decoration: none; opacity: .8; }
+@media (min-width: 900px) {
+	.hero-grid { grid-template-columns: 1.05fr .95fr; gap: 2rem; }
+	.hero-copy { text-align: left; order: -1; }
+	.hero .kick { justify-content: flex-start; }
+	.hero .kick::before { display: block; }
+	.lede { margin-left: 0; }
+	.acts { justify-content: flex-start; }
+	.hero-art { position: relative; padding-bottom: 7rem; }
+	.emblem { width: min(30vw, 25rem); }
+	.nowcard { position: absolute; right: -1rem; bottom: -1rem; width: min(20vw, 18rem); margin: 0; rotate: 4deg; }
+	.nowcard:hover { rotate: 1deg; }
+}
+@media (min-width: 900px) and (max-height: 760px) { .emblem { width: min(26vw, 19rem); } .hero-art { padding-bottom: 5rem; } }
+
+/* curtains: only with motion; pure CSS, they open on their own */
+.curtain { display: none; }
+.motion .curtain { display: block; position: absolute; top: 0; bottom: 0; width: 51%; z-index: 30; pointer-events: none;
+	background:
+		linear-gradient(180deg, rgba(0, 0, 0, .35), transparent 18%, transparent 80%, rgba(0, 0, 0, .45)),
+		repeating-linear-gradient(90deg, #4c0b14 0, #7d1824 26px, #5a0f19 44px, #3a0710 64px);
+	animation: curtain 1.7s cubic-bezier(.7, 0, .2, 1) .35s both; }
+.motion .curtain::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 14px; background: radial-gradient(circle at 50% 30%, var(--gold-hi) 0 3px, var(--gold-lo) 3.5px 4.5px, transparent 5px) 0 0 / 14px 14px repeat-x; }
+.motion .curtain.l { left: 0; box-shadow: 18px 0 40px rgba(0, 0, 0, .5); --to: -102%; }
+.motion .curtain.r { right: 0; box-shadow: -18px 0 40px rgba(0, 0, 0, .5); --to: 102%; }
+@keyframes curtain { 0% { transform: none; } 100% { transform: translateX(var(--to)); visibility: hidden; } }
+
+@media (prefers-reduced-motion: no-preference) {
+	.motion .beam { animation: lighton 1.5s linear 1.05s both; }
+	.motion .motes { display: block; }
+	.motion .motes i { animation: mote var(--d) ease-in-out var(--dl) infinite; }
+	.motion .idle .motes i, .motion.idle .motes i, .motion .hero.off .motes i { animation-play-state: paused; }
+	.motion .emblem img { animation: emblem 1.4s var(--ease) 1.5s both; }
+	.motion .shine i { animation: sweep 1.5s ease-in-out 2.6s both; }
+	.motion .glints i { animation: glint .9s var(--ease) both; animation-delay: calc(2.3s + var(--i) * 90ms); }
+	.motion .hero .kick { animation: fadeup .9s var(--ease) 1.4s both; }
+	.motion #h1 .lt { animation: rise 1.05s var(--ease) both, sheen 2.4s ease-in-out both; animation-delay: calc(1.55s + var(--i) * 70ms), calc(2.4s + var(--i) * 80ms); background-image: linear-gradient(100deg, #a3762f 0%, var(--gold) 28%, var(--gold-hi) 44%, #fffaf0 50%, var(--gold-hi) 56%, var(--gold) 72%, #a3762f 100%); background-size: 300% 100%; background-position: 100% 0; }
+	.motion .typed-line, .motion .lede, .motion .acts { animation: fadeup .9s var(--ease) both; }
+	.motion .typed-line { animation-delay: 2.1s; } .motion .lede { animation-delay: 2.3s; } .motion .acts { animation-delay: 2.45s; }
+	.motion .nowcard { animation: cardin 1.3s var(--ease) 2.5s both; }
+	.motion .typed.typing { border-right-color: var(--gold-hi); animation: caret .8s steps(1) 7; }
+}
+@keyframes lighton { 0% { opacity: 0; } 10% { opacity: .7; } 14% { opacity: .1; } 22% { opacity: .85; } 27% { opacity: .3; } 40%, 100% { opacity: 1; } }
+@keyframes mote { 0%, 100% { opacity: 0; transform: translate3d(0, 0, 0); } 30% { opacity: .75; } 50% { opacity: .35; transform: translate3d(12px, -40px, 0); } 75% { opacity: .7; } 100% { transform: translate3d(-6px, -80px, 0); } }
+@keyframes emblem { from { opacity: 0; transform: translateY(30px) scale(.92); } to { opacity: 1; transform: none; } }
+@keyframes sweep { to { transform: translateX(70%); } }
+@keyframes glint { 0% { scale: 0; opacity: 0; rotate: -40deg; } 45% { scale: 1.25; opacity: 1; } 100% { scale: 0; opacity: 0; rotate: 40deg; } }
+@keyframes rise { from { opacity: 0; transform: translateY(.45em) rotate(4deg); } to { opacity: 1; transform: none; } }
+@keyframes sheen { from { background-position: 100% 0; } to { background-position: 0 0; } }
+@keyframes fadeup { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes cardin { from { opacity: 0; transform: translateY(40px) rotate(8deg); } to { opacity: 1; transform: none; } }
+@keyframes caret { 50% { border-right-color: transparent; } }
+
+/* reveals: opt-in, and a CSS-only safety net at 3 s */
+@media (prefers-reduced-motion: no-preference) {
+	.motion [data-rv] { opacity: 0; transform: translateY(26px); transition: opacity .8s ease, transform 1s var(--ease); transition-delay: calc(var(--i, 0) * 70ms); animation: safety 0s 3s forwards; }
+	.motion [data-rv].in { opacity: 1; transform: none; }
+}
+@keyframes safety { to { opacity: 1; transform: none; } }
+
+/* ── I. el grupo (paper) ──────────────── */
+.grupo { background: var(--paper); color: var(--ink); padding-bottom: clamp(7rem, 14vw, 10rem);
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .22 0 0 0 0 .1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E"); }
+.grupo .kick { color: var(--ink-rose); }
+.grupo h2 em { color: var(--ink-rose); }
+.grupo-grid { display: grid; gap: 3rem; align-items: center; }
+.grupo p { color: var(--ink-2); max-width: 36rem; font-size: 1.1rem; }
+.grupo p strong { color: var(--ink); font-weight: 600; }
+.grupo h2 { margin-bottom: 1.6rem; }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 2.2rem 0 0; padding: 1.6rem 0 0; border-top: 1px solid rgba(43, 26, 16, .2); max-width: 34rem; }
+.stats div { margin: 0; }
+.stats dt { font: 300 clamp(2.8rem, 10vw, 4.4rem)/1 var(--serif); color: var(--ink-rose); font-variant-numeric: tabular-nums; }
+.stats dd { margin: .4rem 0 0; font: 500 .72rem/1.35 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-2); }
+.odo { display: inline-flex; overflow: hidden; height: 1em; line-height: 1; }
+.odo .col { display: inline-flex; flex-direction: column; transition: transform 1.6s var(--ease); }
+.photo-card { position: relative; margin: 0; background: #fffaf0; padding: .8rem .8rem 3.2rem; rotate: 2deg; box-shadow: 0 30px 60px -25px rgba(43, 26, 16, .55), 0 2px 6px rgba(43, 26, 16, .15); max-width: 34rem; justify-self: center; }
+.photo-card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; filter: saturate(.92); }
+.photo-card figcaption { position: absolute; left: 1rem; right: 1rem; bottom: .9rem; font: italic 400 1.15rem/1.2 var(--serif); color: var(--ink); }
+.photo-card .tape { position: absolute; top: -14px; left: 50%; width: 110px; height: 28px; translate: -50% 0; rotate: -4deg; background: rgba(216, 172, 87, .55); }
+.stave { position: absolute; inset: auto 0 1.6rem; height: 60px; width: 100%; pointer-events: none; opacity: .5; }
+.stave path { fill: none; stroke: var(--gold-lo); stroke-width: 1; }
+.stave .nt { fill: var(--ink-rose); }
+@media (prefers-reduced-motion: no-preference) {
+	.motion .stave path { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 2.4s var(--ease); }
+	.motion .stave .nt { opacity: 0; transform: translateY(8px); transform-box: fill-box; transition: opacity .5s, transform .6s var(--ease); transition-delay: calc(.9s + var(--i) * 120ms); }
+	.motion .stave.in path { stroke-dashoffset: 0; }
+	.motion .stave.in .nt { opacity: 1; transform: none; }
+	.motion .photo-card[data-rv] { transform: translateY(40px) rotate(9deg); }
+	.motion .photo-card[data-rv].in { transform: none; }
+}
+@media (min-width: 900px) { .grupo-grid { grid-template-columns: 1.1fr .9fr; gap: 4rem; } }
+
+/* ── II. la formación (wine velvet) ───── */
+.formacion { background:
+		radial-gradient(ellipse 60% 40% at 50% 0%, rgba(184, 35, 47, .35), transparent 70%),
+		repeating-linear-gradient(90deg, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, .22) 48px, rgba(0, 0, 0, 0) 96px),
+		var(--wine); }
+.form-head { display: grid; gap: 1.4rem; margin-bottom: 2.6rem; }
+.form-head h2 { color: var(--cream); }
+.pending { display: inline-flex; align-items: center; gap: .6rem; justify-self: start; padding: .55rem 1rem; border-radius: 99px; border: 1px dashed rgba(246, 223, 160, .6); color: var(--gold-hi); font: 500 .78rem/1.3 var(--mono); letter-spacing: .06em; background: rgba(0, 0, 0, .18); }
+.chips { display: flex; gap: .5rem; overflow-x: auto; padding: .2rem 0 .5rem; scrollbar-width: none; margin-inline: -1rem; padding-inline: 1rem; }
+.chips::-webkit-scrollbar { display: none; }
+.chips button { flex: none; min-height: 2.75rem; padding: .5rem 1rem; border-radius: 99px; border: 1px solid rgba(246, 223, 160, .35); background: transparent; color: var(--cream); cursor: pointer; font-size: .92rem; transition: background .25s, color .25s; }
+.chips button b { font: 500 .7rem/1 var(--mono); opacity: .7; margin-left: .3rem; }
+.chips button[aria-pressed="true"] { background: var(--gold); border-color: var(--gold); color: #24140a; }
+.chips button[aria-pressed="true"] b { opacity: 1; }
+.members { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.6rem 1rem; }
+.m { text-align: center; transition: opacity .4s, filter .4s; }
+.m.dim { opacity: .28; filter: grayscale(.8); }
+.m-ph { display: block; position: relative; margin: 0 auto .9rem; width: 100%; max-width: 11rem; aspect-ratio: 4 / 5; }
+.oval { position: absolute; inset: 0; border-radius: 50% / 46%; display: grid; place-items: center; overflow: hidden;
+	background: radial-gradient(ellipse at 50% 30%, #4a1a1f, #220a0e 75%);
+	box-shadow: inset 0 0 0 1.5px var(--gold), inset 0 0 0 6px var(--wine), inset 0 0 0 7px rgba(216, 172, 87, .5), 0 18px 30px -16px rgba(0, 0, 0, .7); transition: transform .5s var(--ease); }
+.oval img { width: 100%; height: 100%; object-fit: cover; }
+.m-ico { width: 58%; height: 58%; transition: transform .6s var(--ease); }
+.m:hover .m-ico { transform: rotate(-8deg) scale(1.06); }
+.m:hover .oval { transform: translateY(-4px); }
+.m-ph .tag { position: absolute; left: 50%; bottom: -.55rem; translate: -50% 0; white-space: nowrap; padding: .25rem .65rem; border-radius: 99px; background: var(--velvet); border: 1px solid rgba(216, 172, 87, .55); font: 500 .7rem/1.2 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--gold-hi); }
+.m h3 { font-size: 1.22rem; font-weight: 500; line-height: 1.15; color: var(--cream); margin: 1.1rem 0 .35rem; }
+.m .role { font: 500 .7rem/1.4 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin: 0 0 .5rem; }
+.m .bio { font-size: .88rem; color: rgba(245, 233, 211, .68); font-style: italic; margin: 0; }
+.m.lead { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 9rem) 1fr; gap: 1.2rem; align-items: center; text-align: left; padding: 1.2rem; border-radius: 20px; background: rgba(0, 0, 0, .2); border: 1px solid rgba(216, 172, 87, .3); }
+.m.lead .m-ph { margin: 0; }
+.m.lead h3 { margin-top: 0; font-size: 1.5rem; }
+.m.lead .ribbon { display: inline-block; margin-bottom: .6rem; font: 500 .7rem/1.25 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: #24140a; background: var(--gold); padding: .35rem .55rem; border-radius: 4px; }
+@media (max-width: 699px) { .m:last-child { grid-column: 1 / -1; } .m:last-child .m-ph { max-width: 9.5rem; } }
+@media (min-width: 700px) { .members { grid-template-columns: repeat(3, minmax(0, 1fr)); } .m.lead { grid-template-columns: minmax(0, 11rem) 1fr; padding: 1.6rem; } }
+@media (min-width: 1100px) {
+	.form-head { grid-template-columns: 1fr auto; align-items: end; }
+	.members { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 2.4rem 1.6rem; }
+	.m.lead { grid-column: auto; display: block; text-align: center; padding: 1rem .8rem 1.2rem; margin: -1rem -.8rem 0; }
+	.m.lead .m-ph { margin: 0 auto .9rem; }
+	.m.lead h3 { margin-top: 1.1rem; font-size: 1.22rem; }
+	.m.lead .ribbon { margin: .9rem 0 0; }
+}
+
+/* ── III. escuchar (night, the record) ── */
+.escuchar { background: radial-gradient(ellipse 50% 60% at 20% 40%, rgba(150, 85, 35, .28), transparent 70%), var(--night); }
+.esc-head { max-width: 40rem; margin-bottom: 2.6rem; }
+.esc-head p { color: var(--cream-2); }
+.lp { display: grid; gap: 2rem; align-items: center; }
+.stage { position: relative; }
+.vinyl { position: absolute; z-index: 0; top: 50%; right: -6%; height: 104%; aspect-ratio: 1; border-radius: 50%; translate: 0 -50%;
+	background:
+		radial-gradient(circle, #0b0706 0 2.2%, var(--rose) 2.6% 17%, #2a0a0e 17.3% 18%, transparent 18.2%),
+		repeating-radial-gradient(circle, #0d0907 0 1.6px, #1b120e 2px 2.8px),
+		#0d0907;
+	box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .9); transition: rotate 1.8s var(--ease), translate 1.4s var(--ease); }
+.vinyl::before { content: ''; position: absolute; inset: 0; border-radius: 50%; background: conic-gradient(from 30deg, transparent 0 8%, rgba(255, 230, 190, .12) 12%, transparent 18% 50%, rgba(255, 230, 190, .1) 62%, transparent 68%); }
+.vinyl span { position: absolute; left: 50%; top: 50%; translate: -50% -50%; width: 30%; text-align: center; font: italic 500 clamp(.6rem, 1.3vw, .95rem)/1.1 var(--serif); color: var(--gold-hi); }
+.player { position: relative; z-index: 1; width: 88%; border-radius: 14px; overflow: hidden; background: #000; aspect-ratio: 16 / 9; box-shadow: 0 40px 70px -25px rgba(0, 0, 0, .95), 0 0 0 1px rgba(216, 172, 87, .3); }
+.player a, .player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.player img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease), opacity .4s; }
+.player a:hover img { transform: scale(1.03); }
+.player .big { position: absolute; left: 50%; top: 50%; translate: -50% -50%; width: 4.6rem; height: 4.6rem; border-radius: 50%; display: grid; place-items: center; background: rgba(184, 35, 47, .92); color: #fff; box-shadow: 0 0 0 8px rgba(184, 35, 47, .25), 0 14px 30px rgba(0, 0, 0, .5); transition: transform .3s var(--ease); }
+.player a:hover .big { transform: scale(1.08); }
+.player .big svg { width: 1.6rem; height: 1.6rem; margin-left: 4px; }
+.player .cap { position: absolute; left: 1rem; bottom: .9rem; right: 1rem; font: italic 500 1.25rem/1.1 var(--serif); color: #fff; text-shadow: 0 2px 12px rgba(0, 0, 0, .8); }
+.yt-note { position: relative; z-index: 2; font-size: .82rem; color: rgba(245, 233, 211, .55); margin: .9rem 0 0; }
+.tracks { list-style: none; margin: 0; padding: 0; border-top: 1px solid rgba(216, 172, 87, .25); }
+.side { font: 500 .72rem/1 var(--mono); letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin: 0 0 .9rem; }
+.trk { display: grid; grid-template-columns: 2.4rem 1fr auto; gap: .8rem; align-items: center; width: 100%; padding: 1.05rem .4rem; text-align: left; text-decoration: none; background: none; border: 0; border-bottom: 1px solid rgba(216, 172, 87, .25); cursor: pointer; transition: background .3s; }
+.trk:hover { background: rgba(246, 223, 160, .05); }
+.trk .no { font: 500 .8rem/1 var(--mono); color: var(--gold); }
+.trk b { display: block; font: italic 450 1.4rem/1.15 var(--serif); color: var(--cream); }
+.trk small { display: block; font-size: .8rem; color: rgba(245, 233, 211, .6); margin-top: .25rem; }
+.trk .len { font: 500 .8rem/1 var(--mono); color: rgba(245, 233, 211, .6); font-variant-numeric: tabular-nums; }
+.trk[aria-current="true"] b { color: var(--gold-hi); }
+.trk[aria-current="true"] .no { color: transparent; position: relative; }
+.trk[aria-current="true"] .no::after { content: ''; position: absolute; left: 0; top: 50%; translate: 0 -50%; width: 1.1rem; height: .9rem; background: linear-gradient(var(--rose-2), var(--rose-2)) 0 100% / 3px 60% no-repeat, linear-gradient(var(--rose-2), var(--rose-2)) 50% 100% / 3px 100% no-repeat, linear-gradient(var(--rose-2), var(--rose-2)) 100% 100% / 3px 40% no-repeat; }
+.yt-link { display: inline-flex; align-items: center; gap: .5rem; margin-top: 1.6rem; color: var(--gold-hi); font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(246, 223, 160, .4); padding-bottom: .2rem; }
+@media (min-width: 900px) {
+	.lp { grid-template-columns: 1.35fr .9fr; gap: 4.5rem; }
+	.vinyl { right: -14%; }
+}
+@media (prefers-reduced-motion: no-preference) {
+	.motion .vinyl { translate: -38% -50%; }
+	.motion .lp.in .vinyl { translate: 0 -50%; transition-delay: .3s; }
+}
+
+/* ── IV. conciertos (the marquee) ─────── */
+.conciertos { background: radial-gradient(ellipse 60% 50% at 70% 50%, rgba(216, 172, 87, .12), transparent 70%), var(--black); }
+.conc-grid { display: grid; gap: 3rem; align-items: center; }
+.conc-grid p { color: var(--cream-2); max-width: 30rem; }
+.marquee { position: relative; padding: 2rem 1.4rem; border-radius: 10px; background: linear-gradient(180deg, #1c120c, #100a07); box-shadow: 0 0 0 1px rgba(216, 172, 87, .5), 0 0 60px -10px rgba(246, 223, 160, .25), inset 0 0 40px rgba(0, 0, 0, .7); }
+.bulbs { position: absolute; pointer-events: none; --b: radial-gradient(circle, #fff6d6 0 2.5px, #f0c96e 3px 3.6px, rgba(240, 201, 110, .25) 4.2px, transparent 6.5px); }
+.bulbs.t, .bulbs.b { left: 10px; right: 10px; height: 16px; background: var(--b) 0 50% / 18px 16px repeat-x; }
+.bulbs.l, .bulbs.r { top: 10px; bottom: 10px; width: 16px; background: var(--b) 50% 0 / 16px 18px repeat-y; }
+.bulbs.t { top: 2px; } .bulbs.b { bottom: 2px; } .bulbs.l { left: 2px; } .bulbs.r { right: 2px; }
+.board-h { display: grid; grid-template-columns: 1fr 1.6fr .8fr; gap: .6rem; font: 500 .72rem/1 var(--mono); letter-spacing: .2em; color: var(--gold); padding: .2rem .4rem .8rem; border-bottom: 1px solid rgba(216, 172, 87, .25); margin-bottom: 1rem; }
+.flaprow { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 3px; margin: .5rem 0; font: 500 clamp(.95rem, 4.2vw, 1.25rem)/1 var(--mono); color: var(--gold-hi); letter-spacing: .04em; text-align: center; }
+.flaprow .fl { position: relative; display: inline-grid; place-items: center; width: 1.2em; height: 1.65em; border-radius: 3px; background: linear-gradient(180deg, #2b1d14 0 49%, #100a07 49% 51%, #23170f 51%); box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .6); }
+.flaprow .wd { display: inline-flex; gap: 3px; white-space: nowrap; }
+.flaprow .sp { width: .6em; }
+.flaprow.dim { color: var(--rose-2); }
+.board-empty { display: grid; grid-template-columns: 1fr 1.6fr .8fr; gap: .6rem; margin-top: 1.1rem; }
+.board-empty i { height: 1.4rem; border-radius: 3px; background: repeating-linear-gradient(90deg, #22170f 0 14px, #120b08 14px 16px); }
+.gigs { list-style: none; margin: 0; padding: 0; }
+.gigs li { display: grid; grid-template-columns: 1fr 1.6fr .8fr; gap: .6rem; padding: .7rem .4rem; border-bottom: 1px solid rgba(216, 172, 87, .15); font-size: .95rem; }
+@media (prefers-reduced-motion: no-preference) {
+	.motion .bulbs { opacity: .2; transition: opacity .25s; }
+	.motion .marquee.in .bulbs { opacity: 1; }
+	.motion .marquee.in .bulbs.t { transition-delay: .15s; } .motion .marquee.in .bulbs.r { transition-delay: .4s; }
+	.motion .marquee.in .bulbs.b { transition-delay: .65s; } .motion .marquee.in .bulbs.l { transition-delay: .9s; }
+	.motion .flaprow .fl { transform-origin: 50% 50%; }
+	.motion .marquee.in .flaprow .fl { animation: flap .55s cubic-bezier(.3, 1.4, .5, 1) both; animation-delay: calc(1s + var(--i) * 45ms); }
+}
+@keyframes flap { 0% { transform: rotateX(90deg); filter: brightness(.4); } 60% { transform: rotateX(-12deg); } 100% { transform: none; filter: none; } }
+@media (min-width: 900px) { .conc-grid { grid-template-columns: .9fr 1.1fr; gap: 4rem; } .marquee { padding: 2.8rem 2.4rem; } }
+
+/* ── V. contratar (rose field) ────────── */
+.contratar { background: radial-gradient(ellipse 60% 70% at 85% 30%, rgba(255, 120, 120, .18), transparent 70%), var(--rosefield); }
+.contratar .kick, .contratar h2 em { color: var(--gold-hi); }
+.contratar h2 { margin-bottom: 1.2rem; }
+.book-grid { display: grid; gap: 2.4rem; align-items: start; position: relative; z-index: 1; }
+.book-intro { color: rgba(255, 244, 228, .88); max-width: 32rem; }
+.rose { position: absolute; z-index: 0; right: -4rem; top: 2rem; width: min(55vw, 26rem); opacity: .22; pointer-events: none; }
+.rose path { fill: none; stroke: var(--gold-hi); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.rose .pf { fill: rgba(60, 4, 12, .55); stroke: none; }
+@media (prefers-reduced-motion: no-preference) {
+	.motion .rose path:not(.pf) { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 2.6s var(--ease); transition-delay: calc(var(--i, 0) * 160ms); }
+	.motion .rose .pf { opacity: 0; transition: opacity 1.2s ease 1.6s; }
+	.motion .rose.in path:not(.pf) { stroke-dashoffset: 0; }
+	.motion .rose.in .pf { opacity: 1; }
+}
+.book { display: none; }
+.js .book { display: grid; gap: 1.3rem; }
+.js .nojs-wa { display: none; }
+.book fieldset { border: 0; margin: 0; padding: 0; }
+.book legend, .book label > span.l { display: block; font: 500 .72rem/1.3 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--gold-hi); margin-bottom: .6rem; }
+.evs { display: flex; flex-wrap: wrap; gap: .5rem; }
+.ev { position: relative; }
+.ev input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.ev span { display: inline-flex; align-items: center; min-height: 2.75rem; padding: .5rem 1rem; border-radius: 99px; border: 1px solid rgba(255, 240, 220, .45); color: #fff4e4; font-size: .95rem; transition: background .25s, color .25s, border-color .25s; }
+.ev input:checked + span { background: var(--cream); color: var(--ink-rose); border-color: var(--cream); font-weight: 600; }
+.ev input:focus-visible + span { outline: 2px solid var(--gold-hi); outline-offset: 3px; }
+.row2 { display: grid; gap: 1.3rem; }
+@media (min-width: 560px) { .row2 { grid-template-columns: 1fr 1fr; } }
+.book input[type="date"], .book input[type="text"], .book select { width: 100%; min-height: 3rem; padding: .7rem .9rem; border-radius: 10px; border: 1px solid rgba(255, 240, 220, .4); background: rgba(40, 4, 10, .35); color: #fff4e4; color-scheme: dark; }
+.book input::placeholder { color: rgba(255, 240, 220, .78); }
+.book select option { background: #3a0a12; }
+.send { justify-self: start; }
+.chat { position: relative; border-radius: 26px; background: #0f0a08; padding: .7rem; box-shadow: 0 40px 80px -30px rgba(0, 0, 0, .8), 0 0 0 1px rgba(255, 240, 220, .12); max-width: 24rem; width: 100%; justify-self: center; }
+.chat-top { display: flex; align-items: center; gap: .7rem; padding: .6rem .7rem .8rem; border-bottom: 1px solid rgba(255, 255, 255, .08); }
+.chat-top img { width: 2.4rem; height: 2.4rem; border-radius: 50%; background: var(--velvet); object-fit: contain; padding: 3px; }
+.chat-top b { display: block; font-size: .95rem; }
+.chat-top small { display: block; font-size: .75rem; color: rgba(245, 233, 211, .55); }
+.chat-body { min-height: 15rem; padding: 1.2rem .6rem .6rem; display: flex; flex-direction: column; justify-content: flex-end;
+	background: radial-gradient(circle at 20% 20%, rgba(216, 172, 87, .06), transparent 50%), #17100c; border-radius: 0 0 18px 18px; }
+.bubble { align-self: flex-end; max-width: 92%; padding: .7rem .85rem .5rem; border-radius: 14px 14px 4px 14px; background: #1f5c46; color: #f1fff7; font-size: .92rem; line-height: 1.45; white-space: pre-line; box-shadow: 0 2px 0 rgba(0, 0, 0, .25); transform-origin: 100% 100%; }
+.bubble time { display: block; text-align: right; font-size: .72rem; opacity: .65; margin-top: .25rem; }
+.bubble.pop { animation: pop .35s var(--ease); }
+@keyframes pop { 40% { transform: scale(1.03); } }
+.chat-note { font-size: .78rem; color: rgba(245, 233, 211, .55); text-align: center; margin: .8rem .4rem .2rem; }
+.petal { position: fixed; z-index: 60; width: 18px; height: 14px; border-radius: 80% 10% 80% 10%; background: linear-gradient(135deg, #ff7b86, var(--rose)); pointer-events: none; }
+.direct { margin-top: 1.4rem; font-size: .95rem; color: rgba(255, 244, 228, .85); }
+.direct a { color: #fff; font-weight: 600; }
+@media (min-width: 960px) { .book-grid { grid-template-columns: 1.15fr .85fr; gap: 4rem; } .chat { position: sticky; top: 6rem; } .rose { right: 2%; top: auto; bottom: 2rem; opacity: .18; } }
+
+/* ── footer ───────────────────────────── */
+.foot { background: var(--velvet); padding: 4rem 0 7rem; border-top: 1px solid rgba(216, 172, 87, .2); }
+.foot-grid { display: grid; gap: 2rem; justify-items: center; text-align: center; }
+.foot img { width: 7rem; }
+.foot .tag { font: italic 400 1.4rem/1.3 var(--serif); color: var(--gold-hi); margin: 0; }
+.foot nav { display: flex; flex-wrap: wrap; justify-content: center; gap: .4rem 1.4rem; }
+.foot nav a { color: var(--cream-2); text-decoration: none; padding: .5rem 0; }
+.foot nav a:hover { color: var(--gold-hi); }
+.fine { font-size: .8rem; color: rgba(245, 233, 211, .5); max-width: 46rem; margin: 0; }
+.fine b { color: rgba(245, 233, 211, .75); font-weight: 600; }
+@media (min-width: 900px) { .foot { padding-bottom: 4rem; } }
+
+/* ── chapter nav (desktop) + sticky CTA (mobile) ── */
+.chap { display: none; }
+@media (min-width: 1180px) {
+	.chap { display: flex; flex-direction: column; gap: .3rem; position: fixed; right: 1.2rem; top: 50%; translate: 0 -50%; z-index: 35; opacity: 0; transition: opacity .4s; }
+	.chap.on { opacity: 1; }
+	.chap a { display: flex; align-items: center; justify-content: flex-end; gap: .7rem; text-decoration: none; padding: .35rem 0; font: 500 .72rem/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: rgba(245, 233, 211, .6); }
+	.chap a em { font-style: normal; opacity: 0; translate: 6px 0; transition: opacity .3s, translate .3s; }
+	.chap a:hover em, .chap a:focus-visible em { opacity: 1; translate: 0 0; }
+	.chap a span { display: grid; place-items: center; width: 1.9rem; height: 1.9rem; border-radius: 50%; border: 1px solid rgba(216, 172, 87, .35); font-family: var(--serif); font-size: .8rem; letter-spacing: 0; background: rgba(20, 12, 8, .6); }
+	.chap a[aria-current="true"] { color: var(--gold-hi); }
+	.chap a[aria-current="true"] span { background: var(--gold); color: #24140a; border-color: var(--gold); }
+}
+.sticky { position: fixed; left: 1rem; right: 1rem; bottom: max(1rem, env(safe-area-inset-bottom)); z-index: 38; display: flex; translate: 0 160%; transition: translate .5s var(--ease); }
+.sticky.on { translate: 0 0; }
+.sticky .btn { flex: 1; box-shadow: 0 14px 30px -8px rgba(0, 0, 0, .7); }
+@media (min-width: 900px) { .sticky { display: none; } }
+@media (prefers-reduced-motion: reduce) { .sticky { transition: none; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#main" data-en="Skip to content">Saltar al contenido</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+	<symbol id="i-star" viewBox="0 0 24 24"><path d="M12 1.8l2.9 6.2 6.8.8-5 4.6 1.3 6.7L12 16.8l-6 3.3 1.3-6.7-5-4.6 6.8-.8z"/></symbol>
+	<symbol id="i-wa" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.4.8 3.2.6a2.8 2.8 0 0 0 1.8-1.3 2.3 2.3 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></symbol>
+	<symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z"/></symbol>
+	<symbol id="i-yt" viewBox="0 0 24 24"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.7 15V9l5.8 3z"/></symbol>
+	<symbol id="i-down" viewBox="0 0 24 24"><path d="M12 16.5l-7-7 1.4-1.4 5.6 5.6 5.6-5.6L19 9.5z"/></symbol>
+	<symbol id="i-bell" viewBox="0 0 24 24"><path d="M12 22a2.5 2.5 0 0 0 2.4-2h-4.8A2.5 2.5 0 0 0 12 22zm7-6V11a7 7 0 0 0-5.5-6.8V3.5a1.5 1.5 0 0 0-3 0v.7A7 7 0 0 0 5 11v5l-2 2v1h18v-1z"/></symbol>
+	<!-- instruments: flat, multi-colour, the logo's palette. Nothing ever animates inside a symbol. -->
+	<symbol id="i-voz" viewBox="0 0 64 64"><rect x="21" y="5" width="22" height="31" rx="11" fill="#d8ac57"/><rect x="21" y="5" width="11" height="31" rx="5.5" fill="#f6dfa0" opacity=".55"/><path d="M21 14h22M21 20h22M21 26h22" stroke="#8c6424" stroke-width="2"/><path d="M14 27c0 10 8 18 18 18s18-8 18-18" fill="none" stroke="#f6dfa0" stroke-width="3" stroke-linecap="round"/><rect x="30" y="45" width="4" height="9" fill="#c39443"/><rect x="19" y="54" width="26" height="5" rx="2.5" fill="#b8232f"/></symbol>
+	<symbol id="i-guitarra" viewBox="0 0 64 64"><g transform="rotate(-38 32 33)"><rect x="29.5" y="5" width="5" height="30" fill="#5a3418"/><rect x="27.5" y="2" width="9" height="8" rx="2" fill="#2e180b"/><path d="M32 26c-6 0-9.5 3.6-9.5 8 0 2.6 1.4 4 1.4 5.6S20 42.6 20 48c0 7 5.4 12 12 12s12-5 12-12c0-5.4-3.9-6.8-3.9-8.4s1.4-3 1.4-5.6c0-4.4-3.5-8-9.5-8z" fill="#c98a3e"/><path d="M32 26c-6 0-9.5 3.6-9.5 8 0 2.6 1.4 4 1.4 5.6S20 42.6 20 48c0 3 1 5.6 2.8 7.6L32 26z" fill="#e0a85a" opacity=".6"/><circle cx="32" cy="41" r="4.2" fill="#2a1408"/><circle cx="32" cy="41" r="5.4" fill="none" stroke="#f6dfa0" stroke-width="1"/><rect x="27" y="51" width="10" height="3" rx="1.5" fill="#2e180b"/><path d="M31 6v46M33 6v46" stroke="#f6dfa0" stroke-width=".6"/></g></symbol>
+	<symbol id="i-requinto" viewBox="0 0 64 64"><g transform="rotate(32 32 34)"><rect x="29.8" y="8" width="4.4" height="26" fill="#3a1e0e"/><rect x="28" y="5" width="8" height="7" rx="2" fill="#d8ac57"/><path d="M32 28c-5 0-8 3-8 6.8 0 2.2 1.2 3.4 1.2 4.8S22 42 22 46.8c0 6 4.5 10.4 10 10.4s10-4.4 10-10.4c0-4.8-3.2-5.8-3.2-7.2s1.2-2.6 1.2-4.8c0-3.8-3-6.8-8-6.8z" fill="#9c3a22"/><path d="M32 28c-5 0-8 3-8 6.8 0 2.2 1.2 3.4 1.2 4.8S22 42 22 46.8c0 2.6.9 4.8 2.4 6.6L32 28z" fill="#c4553a" opacity=".55"/><circle cx="32" cy="41" r="3.6" fill="#1d0c06"/><circle cx="32" cy="41" r="4.8" fill="none" stroke="#d8ac57" stroke-width="1"/><rect x="27.8" y="49.5" width="8.4" height="2.6" rx="1.3" fill="#1d0c06"/><path d="M31.2 9v41M32.8 9v41" stroke="#f6dfa0" stroke-width=".55"/></g></symbol>
+	<symbol id="i-piano" viewBox="0 0 64 64"><path d="M8 20c0-5 4-9 10-9h28c6 0 10 4 10 9v3H8z" fill="#2c1a10"/><path d="M8 23h48v8H8z" fill="#1a0f09"/><path d="M14 17h36" stroke="#d8ac57" stroke-width="1.5"/><rect x="8" y="31" width="48" height="19" rx="1.5" fill="#f5e9d3"/><path d="M14.9 31v19M21.7 31v19M28.6 31v19M35.4 31v19M42.3 31v19M49.1 31v19" stroke="#c9b48e" stroke-width=".8"/><g fill="#1a0f09"><rect x="12.6" y="31" width="4.4" height="11" rx="1"/><rect x="19.5" y="31" width="4.4" height="11" rx="1"/><rect x="33.2" y="31" width="4.4" height="11" rx="1"/><rect x="40" y="31" width="4.4" height="11" rx="1"/><rect x="46.9" y="31" width="4.4" height="11" rx="1"/></g><path d="M8 50h48" stroke="#d8ac57" stroke-width="2"/><rect x="11" y="51" width="4" height="9" fill="#2c1a10"/><rect x="49" y="51" width="4" height="9" fill="#2c1a10"/><rect x="29" y="54" width="6" height="3" rx="1" fill="#d8ac57"/></symbol>
+	<symbol id="i-contrabajo" viewBox="0 0 64 64"><rect x="30" y="3" width="4" height="24" fill="#2e180b"/><path d="M29 2h6v5h-6z" fill="#d8ac57"/><path d="M32 20c-8 0-11 4-11 9 0 3 2 5 2 7s-4.5 4-4.5 10.5C18.5 54 24.5 60 32 60s13.5-6 13.5-13.5C45.5 40 41 38 41 36s2-4 2-7c0-5-3-9-11-9z" fill="#8a4a22"/><path d="M32 20c-8 0-11 4-11 9 0 3 2 5 2 7s-4.5 4-4.5 10.5c0 4 1.7 7.6 4.4 10.1L32 20z" fill="#a85f2e" opacity=".6"/><path d="M26.5 35c-1.4 3 1.2 6.5-.2 9.5M37.5 35c1.4 3-1.2 6.5.2 9.5" stroke="#1d0c06" stroke-width="1.8" fill="none" stroke-linecap="round"/><rect x="28" y="47" width="8" height="2.6" rx="1" fill="#1d0c06"/><path d="M31 5v42M33 5v42" stroke="#f6dfa0" stroke-width=".6"/><path d="M32 60v3" stroke="#d8ac57" stroke-width="2"/></symbol>
+	<symbol id="i-trompeta" viewBox="0 0 64 64"><path d="M4 29h37" stroke="#d8ac57" stroke-width="5" stroke-linecap="round"/><path d="M40 26.5L57 17v26l-17-9.5z" fill="#f6dfa0"/><ellipse cx="57" cy="30" rx="3" ry="13" fill="#c39443"/><path d="M13 30v9c0 2 1.5 3.5 3.5 3.5h17c2 0 3.5-1.5 3.5-3.5v-9" fill="none" stroke="#c39443" stroke-width="3"/><g fill="#8c6424"><rect x="18" y="19" width="3.2" height="10"/><rect x="24.4" y="19" width="3.2" height="10"/><rect x="30.8" y="19" width="3.2" height="10"/></g><g fill="#b8232f"><rect x="17.1" y="15.5" width="5" height="4" rx="1.6"/><rect x="23.5" y="15.5" width="5" height="4" rx="1.6"/><rect x="29.9" y="15.5" width="5" height="4" rx="1.6"/></g><rect x="1.5" y="26" width="5" height="6" rx="2" fill="#8c6424"/></symbol>
+	<symbol id="i-congas" viewBox="0 0 64 64"><path d="M9 13h21l-3.5 46h-14z" fill="#b8232f"/><path d="M9 13h7l-1 46h-1.5z" fill="#d8434f" opacity=".6"/><ellipse cx="19.5" cy="13" rx="10.5" ry="3.6" fill="#f5e9d3"/><path d="M10.4 25h18.2M11.8 47h15.4" stroke="#d8ac57" stroke-width="2"/><path d="M34 19h21l-3.5 40h-14z" fill="#c98a3e"/><path d="M34 19h7l-1 40h-1.5z" fill="#e0a85a" opacity=".6"/><ellipse cx="44.5" cy="19" rx="10.5" ry="3.6" fill="#f5e9d3"/><path d="M35.4 30h18.2M36.8 49h15.4" stroke="#d8ac57" stroke-width="2"/></symbol>
+	<symbol id="i-bongos" viewBox="0 0 64 64"><path d="M4 27h23l-3.4 19H7.4z" fill="#c98a3e"/><ellipse cx="15.5" cy="27" rx="11.5" ry="4" fill="#f5e9d3"/><path d="M33 23h27l-3.8 23H36.8z" fill="#b8232f"/><ellipse cx="46.5" cy="23" rx="13.5" ry="4.5" fill="#f5e9d3"/><rect x="25" y="33" width="10" height="6" rx="1.5" fill="#8c6424"/><path d="M5.8 34h19.4M34.6 31h23.8" stroke="#d8ac57" stroke-width="2"/></symbol>
+	<symbol id="i-maracas" viewBox="0 0 64 64"><g transform="rotate(-22 32 34)"><ellipse cx="22" cy="21" rx="10" ry="12.5" fill="#b8232f"/><path d="M13.5 18c5 2 12 2 17 0M13 24c5 2 13 2 18 0" stroke="#f6dfa0" stroke-width="2" fill="none"/><rect x="20" y="32" width="4" height="27" rx="2" fill="#8a4a22"/></g><g transform="rotate(22 32 34)"><ellipse cx="42" cy="21" rx="10" ry="12.5" fill="#d8ac57"/><path d="M33.5 18c5 2 12 2 17 0M33 24c5 2 13 2 18 0" stroke="#b8232f" stroke-width="2" fill="none"/><rect x="40" y="32" width="4" height="27" rx="2" fill="#5a3418"/></g></symbol>
+</svg>
+
+<header class="mast" id="mast">
+	<a class="wm" href="#top" aria-label="Voolcam, inicio" data-en-label="Voolcam, home"><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-star" fill="#d8ac57"/></svg>VOOLCAM</a>
+	<div class="mast-r">
+		<div class="lang" role="group" aria-label="Idioma" data-en-label="Language"><button type="button" data-lang="es" aria-pressed="true">ES</button><button type="button" data-lang="en" aria-pressed="false">EN</button></div>
+		<a class="btn btn-gold hire" href="#contratar" data-en="Book us">Contratar</a>
+	</div>
+</header>
+
+<nav class="chap" id="chap" aria-label="Capítulos" data-en-label="Chapters">
+	<a href="#grupo"><em data-en="The band">El grupo</em><span>I</span></a>
+	<a href="#formacion"><em data-en="Line-up">La formación</em><span>II</span></a>
+	<a href="#escuchar"><em data-en="Listen">Escuchar</em><span>III</span></a>
+	<a href="#conciertos"><em data-en="Concerts">Conciertos</em><span>IV</span></a>
+	<a href="#contratar"><em data-en="Book">Contratar</em><span>V</span></a>
+</nav>
+
+<main id="main">
+<section class="hero" id="top" aria-labelledby="h1">
+	<div class="beam" aria-hidden="true"></div>
+	<div class="motes" aria-hidden="true"><i style="--x:71.7%;--y:76.8%;--d:12.2s;--dl:-5.3s"></i><i style="--x:54.3%;--y:81.7%;--d:9.1s;--dl:-2.7s"></i><i style="--x:69.1%;--y:55.8%;--d:9.2s;--dl:-10.5s"></i><i style="--x:73.3%;--y:29.8%;--d:11.4s;--dl:-0.2s"></i><i style="--x:52.1%;--y:32.1%;--d:11.0s;--dl:-10.2s"></i><i style="--x:55.7%;--y:77.4%;--d:12.5s;--dl:-0.9s"></i><i style="--x:39.5%;--y:52.9%;--d:10.5s;--dl:-5.3s"></i><i style="--x:64.1%;--y:20.7%;--d:11.2s;--dl:-4.3s"></i><i style="--x:71.1%;--y:51.0%;--d:11.7s;--dl:-11.7s"></i><i style="--x:90.6%;--y:81.0%;--d:7.9s;--dl:-8.0s"></i><i style="--x:74.2%;--y:61.8%;--d:7.0s;--dl:-4.9s"></i><i style="--x:13.8%;--y:73.9%;--d:11.2s;--dl:-12.0s"></i><i style="--x:38.1%;--y:81.6%;--d:8.8s;--dl:-0.9s"></i><i style="--x:17.9%;--y:57.9%;--d:11.2s;--dl:-6.9s"></i><i style="--x:41.7%;--y:68.4%;--d:14.0s;--dl:-9.4s"></i><i style="--x:14.8%;--y:53.9%;--d:9.7s;--dl:-5.3s"></i></div>
+	<div class="spot" aria-hidden="true"></div>
+	<div class="wrap hero-grid">
+		<div class="hero-art">
+			<div class="emblem">
+				<img src="assets/img/logo-640.webp" srcset="assets/img/logo-320.webp 282w, assets/img/logo-640.webp 565w" sizes="(min-width: 900px) 25rem, 58vw" width="565" height="640" alt="Escudo de Voolcam: dos guitarras cruzadas en una corona de laurel bajo nueve estrellas" data-en-alt="The Voolcam crest: two crossed guitars in a laurel wreath under nine stars" fetchpriority="high">
+				<span class="shine" aria-hidden="true"><i></i></span>
+				<span class="glints" aria-hidden="true"><i style="--x:5.8%;--y:24.5%;--i:0"></i><i style="--x:14.5%;--y:16.7%;--i:1"></i><i style="--x:24.4%;--y:10.6%;--i:2"></i><i style="--x:36.5%;--y:6.6%;--i:3"></i><i style="--x:49.7%;--y:4.7%;--i:4"></i><i style="--x:63.0%;--y:6.6%;--i:5"></i><i style="--x:75.0%;--y:10.6%;--i:6"></i><i style="--x:85.5%;--y:16.7%;--i:7"></i><i style="--x:94.2%;--y:24.5%;--i:8"></i></span>
+			</div>
+			<a class="nowcard" href="#escuchar" aria-label="Escuchar Mi dulce sueño y dos boleros más" data-en-label="Listen to Mi dulce sueño and two more boleros">
+				<img src="assets/img/dulce-sueno-640.webp" width="640" height="359" alt="" loading="lazy">
+				<span class="glass"><span class="pl"><svg class="ico" aria-hidden="true"><use href="#i-play"/></svg></span><span><small data-en="On YouTube · 3 boleros">En YouTube · 3 boleros</small><b>Mi dulce sueño</b></span></span>
+			</a>
+		</div>
+		<div class="hero-copy">
+			<p class="kick" data-en="Original boleros · Tenerife">Boleros originales · Tenerife</p>
+			<h1 id="h1">Voolcam</h1>
+			<p class="typed-line"><span data-en="Boleros for">Boleros para</span> <span class="typed" data-words="su boda|su cena de gala|su fiesta|su noche" data-words-en="your wedding|your gala dinner|your party|your night">su noche</span></p>
+			<p class="lede" data-en="Ten musicians and a repertoire of their own, most of it written by Ricardo Hernández. Live, so your celebration sounds like a bolero.">Diez músicos y un repertorio propio, compuesto en su mayoría por Ricardo Hernández. En directo, para que su celebración suene a bolero.</p>
+			<div class="acts">
+				<a class="btn btn-gold" href="#contratar"><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg><span data-en="Book Voolcam">Contrate a Voolcam</span></a>
+				<a class="btn btn-ghost" href="#escuchar"><svg class="ico" aria-hidden="true"><use href="#i-play"/></svg><span data-en="Listen">Escuchar</span></a>
+			</div>
+		</div>
+	</div>
+	<a class="cue" href="#grupo" aria-label="Seguir" data-en-label="Continue"><svg class="ico" aria-hidden="true"><use href="#i-down"/></svg></a>
+	<div class="curtain l" aria-hidden="true"></div><div class="curtain r" aria-hidden="true"></div>
+</section>
+
+<section class="ch grupo" id="grupo" aria-labelledby="h-grupo">
+	<svg class="stave" viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true" data-draw>
+		<path pathLength="1" d="M0 10H1440"/><path pathLength="1" d="M0 22H1440"/><path pathLength="1" d="M0 34H1440"/><path pathLength="1" d="M0 46H1440"/><path pathLength="1" d="M0 58H1440"/>
+		<g class="nt" style="--i:0"><ellipse cx="140" cy="46" rx="7" ry="5" transform="rotate(-20 140 46)"/><rect x="145.5" y="16" width="1.6" height="30"/></g><g class="nt" style="--i:1"><ellipse cx="190" cy="40" rx="7" ry="5" transform="rotate(-20 190 40)"/><rect x="195.5" y="10" width="1.6" height="30"/></g><g class="nt" style="--i:2"><ellipse cx="240" cy="34" rx="7" ry="5" transform="rotate(-20 240 34)"/><rect x="245.5" y="4" width="1.6" height="30"/></g><g class="nt" style="--i:3"><ellipse cx="290" cy="28" rx="7" ry="5" transform="rotate(-20 290 28)"/><rect x="295.5" y="-2" width="1.6" height="30"/></g><g class="nt" style="--i:4"><ellipse cx="1080" cy="40" rx="7" ry="5" transform="rotate(-20 1080 40)"/><rect x="1085.5" y="10" width="1.6" height="30"/></g><g class="nt" style="--i:5"><ellipse cx="1130" cy="34" rx="7" ry="5" transform="rotate(-20 1130 34)"/><rect x="1135.5" y="4" width="1.6" height="30"/></g><g class="nt" style="--i:6"><ellipse cx="1180" cy="46" rx="7" ry="5" transform="rotate(-20 1180 46)"/><rect x="1185.5" y="16" width="1.6" height="30"/></g><g class="nt" style="--i:7"><ellipse cx="1230" cy="52" rx="7" ry="5" transform="rotate(-20 1230 52)"/><rect x="1235.5" y="22" width="1.6" height="30"/></g>
+	</svg>
+	<div class="wrap grupo-grid">
+		<div>
+			<p class="kick" data-en="I · The band">I · El grupo</p>
+			<h2 id="h-grupo" data-rv data-en="Original boleros, <em>with a name of their own.</em>">Boleros originales, <em>con nombre propio.</em></h2>
+			<p data-rv data-en="Voolcam is a bolero band from Tenerife with a repertoire that is almost all its own: songs written mostly by <strong>Ricardo Hernández</strong>, with lyrics by <strong>Susana Curbelo</strong>, registered with the SGAE.">Voolcam es un grupo de bolero de Tenerife con un repertorio casi todo propio: temas compuestos en su mayoría por <strong>Ricardo Hernández</strong>, con letras de <strong>Susana Curbelo</strong>, y registrados en la SGAE.</p>
+			<p data-rv data-en="Ten musicians on stage: four voices, guitar and requinto, piano, double bass, trumpet, congas, bongos and percussion.">Diez músicos en el escenario: cuatro voces, guitarra y requinto, piano, contrabajo, trompeta, congas, bongós y percusión.</p>
+			<dl class="stats" data-rv>
+				<div><dt><span class="num" data-n="10">10</span></dt><dd data-en="musicians">músicos</dd></div>
+				<div><dt><span class="num" data-n="4">4</span></dt><dd data-en="voices">voces</dd></div>
+				<div><dt><span class="num" data-n="3">3</span></dt><dd data-en="boleros on video">boleros en vídeo</dd></div>
+			</dl>
+		</div>
+		<figure class="photo-card" data-rv>
+			<span class="tape" aria-hidden="true"></span>
+			<img src="assets/img/sonrisa-640.webp" srcset="assets/img/sonrisa-640.webp 640w, assets/img/sonrisa-1280.webp 1276w" sizes="(min-width: 900px) 34rem, 92vw" width="640" height="359" loading="lazy" alt="Voces y guitarras alrededor de una mesa, en un patio" data-en-alt="Voices and guitars around a table, in a patio">
+			<figcaption data-en="Recording «La sonrisa femenina»">Grabando «La sonrisa femenina»</figcaption>
+		</figure>
+	</div>
+</section>
+
+<section class="ch formacion" id="formacion" aria-labelledby="h-form">
+	<div class="wrap">
+		<div class="form-head">
+			<div>
+				<p class="kick" data-en="II · Line-up">II · La formación</p>
+				<h2 id="h-form" data-rv data-en="Ten musicians, <em>one bolero night.</em>">Diez músicos, <em>una noche de bolero.</em></h2>
+			</div>
+			<p class="pending" data-rv data-en="Each member's photo and introduction: pending">✎ Foto y presentación de cada componente: pendiente</p>
+		</div>
+		<div class="chips" role="group" aria-label="Ver por instrumento" data-en-label="Show by instrument"><button type="button" data-f="*" aria-pressed="true"><span data-en="All">Todos</span> <b>10</b></button><button type="button" data-f="voz" aria-pressed="false"><span data-en="Vocals">Voces</span> <b>4</b></button><button type="button" data-f="cuerda" aria-pressed="false"><span data-en="Strings">Cuerdas</span> <b>3</b></button><button type="button" data-f="piano" aria-pressed="false"><span data-en="Piano">Piano</span> <b>1</b></button><button type="button" data-f="viento" aria-pressed="false"><span data-en="Brass">Viento</span> <b>1</b></button><button type="button" data-f="perc" aria-pressed="false"><span data-en="Percussion">Percusión</span> <b>3</b></button></div>
+		<p class="vh" id="filter-live" aria-live="polite"></p>
+		<ol class="members" id="members"><li class="m lead" data-g="cuerda voz" data-rv><span class="m-ph"><span class="oval"><svg class="m-ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-requinto"/></svg></span><span class="tag" data-en="Photo pending">Foto pendiente</span></span><div><span class="ribbon" data-en="Writes most of the songs">Compone la mayoría de los temas</span><h3>Ricardo Hernández Hernández</h3><p class="role" data-en="Composer · requinto and vocals">Compositor · requinto y voz</p><p class="bio" data-en="Introduction: pending">Presentación: pendiente</p></div></li><li class="m" data-g="cuerda voz" data-rv><span class="m-ph"><span class="oval"><svg class="m-ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-guitarra"/></svg></span><span class="tag" data-en="Photo pending">Foto pendiente</span></span><div><h3>Ezequiel Barreto Iglesias</h3><p class="role" data-en="Guitar and vocals">Guitarra y voz</p><p class="bio" data-en="Introduction: pending">Presentación: pendiente</p></div></li><li class="m" data-g="voz" data-rv><span class="m-ph"><span class="oval"><svg class="m-ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-voz"/></svg></span><span class="tag" data-en="Photo pending">Foto pendiente</span></span><div><h3>Carmen Déniz Hernández</h3><p class="role" data-en="Vocals">Voz</p><p class="bio" data-en="Introduction: pending">Presentación: pendiente</p></div></li><li class="m" data-g="voz" data-rv><span class="m-ph"><span class="oval"><svg class="m-ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-voz"/></svg></span><span class="tag" data-en="Photo pending">Foto pendiente</span></span><div><h3>Sonia Sosa Peña</h3><p class="role" data-en="Vocals">Voz</p><p class="bio" data-en="Introduction: pending">Presentación: pendiente</p></div></li><li class="m" data-g="piano" data-rv><span class="m-ph"><span class="oval"><svg class="m-ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-piano"/></svg></span><span class="tag" data-en="Photo pending">Foto pendiente</span></span><div><h3>Roberto Suárez García</h3><p class="role" data-en="Piano">Piano</p><p class="bio" data-en="Introduction: pending">Presentación: pendiente</p></div></li><li class="m" data-g="cuerda" data-rv><span class="m-ph"><span class="oval"><svg class="m-ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-contrabajo"/></svg></span><span class="tag" data-en="Photo pending">Foto pendiente</span></span><div><h3>Felipe Román Hernández Rosales</h3><p class="role" data-en="Double bass">Contrabajo</p><p class="bio" data-en="Introduction: pending">Presentación: pendiente</p></div></li><li class="m" data-g="viento" data-rv><span class="m-ph"><span class="oval"><svg class="m-ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-trompeta"/></svg></span><span class="tag" data-en="Photo pending">Foto pendiente</span></span><div><h3>Néstor González Coello</h3><p class="role" data-en="Trumpet">Trompeta</p><p class="bio" data-en="Introduction: pending">Presentación: pendiente</p></div></li><li class="m" data-g="perc" data-rv><span class="m-ph"><span class="oval"><svg class="m-ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-congas"/></svg></span><span class="tag" data-en="Photo pending">Foto pendiente</span></span><div><h3>David Hernández Hernández</h3><p class="role" data-en="Congas">Congas</p><p class="bio" data-en="Introduction: pending">Presentación: pendiente</p></div></li><li class="m" data-g="perc" data-rv><span class="m-ph"><span class="oval"><svg class="m-ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-bongos"/></svg></span><span class="tag" data-en="Photo pending">Foto pendiente</span></span><div><h3>Jordi Arocha</h3><p class="role" data-en="Bongos and percussion">Bongós y percusión</p><p class="bio" data-en="Introduction: pending">Presentación: pendiente</p></div></li><li class="m" data-g="perc" data-rv><span class="m-ph"><span class="oval"><svg class="m-ico" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-maracas"/></svg></span><span class="tag" data-en="Photo pending">Foto pendiente</span></span><div><h3>Francisco Trillo Barroso</h3><p class="role" data-en="Hand percussion">Percusión menor</p><p class="bio" data-en="Introduction: pending">Presentación: pendiente</p></div></li></ol>
+	</div>
+</section>
+
+<section class="ch escuchar" id="escuchar" aria-labelledby="h-esc">
+	<div class="wrap">
+		<div class="esc-head">
+			<p class="kick" data-en="III · Listen">III · Escuchar</p>
+			<h2 id="h-esc" data-rv data-en="Side A: <em>three boleros.</em>">Cara A: <em>tres boleros.</em></h2>
+			<p data-rv data-en="Recorded in a wine cellar and in a friend's house. Press play.">Grabados en una bodega y en casa de un amigo. Pulse y suena.</p>
+		</div>
+		<div class="lp" data-rv>
+			<div class="stage">
+				<div class="vinyl" id="vinyl" aria-hidden="true"><span>Voolcam<br>· Cara A ·</span></div>
+				<div class="player" id="player"><a href="https://www.youtube.com/watch?v=mjz6EFhCOfY" target="_blank" rel="noopener" aria-label="Reproducir Mi dulce sueño" data-en-label="Play Mi dulce sueño"><img src="assets/img/dulce-sueno-1280.webp" srcset="assets/img/dulce-sueno-640.webp 640w, assets/img/dulce-sueno-1280.webp 1280w" sizes="(min-width: 900px) 50vw, 88vw" width="1076" height="604" alt="Carmen Déniz y Sonia Sosa cantando en una bodega, a la luz cálida de las lámparas" data-en-alt="Carmen Déniz and Sonia Sosa singing in a wine cellar, in warm lamplight" loading="lazy"><span class="big"><svg aria-hidden="true" fill="currentColor"><use href="#i-play"/></svg></span><span class="cap">Mi dulce sueño</span></a></div>
+				<p class="yt-note" data-en="The video loads from YouTube only when you press play.">El vídeo se carga desde YouTube solo al pulsar.</p>
+			</div>
+			<div>
+				<p class="side" data-en="Side A · 3 songs">Cara A · 3 temas</p>
+				<ol class="tracks" id="tracks"><li><a class="trk" href="https://www.youtube.com/watch?v=mjz6EFhCOfY" target="_blank" rel="noopener" aria-current="true"><span class="no">01</span><span><b>Mi dulce sueño</b><small data-en="Music: Ricardo Hernández · Lyrics: Susana Curbelo · Recorded in Francisco Trillo&#x27;s wine cellar">Música: Ricardo Hernández · Letra: Susana Curbelo · Grabado en la bodega de Francisco Trillo</small></span><span class="len"><span class="vh" data-en="length">duración</span> 3:31</span></a></li><li><a class="trk" href="https://www.youtube.com/watch?v=3dd35nhZy34" target="_blank" rel="noopener"><span class="no">02</span><span><b>La sonrisa femenina</b><small data-en="Song by Antonio Damián Hernández · Arranged by Ricardo Hernández · Recorded at Fran&#x27;s house">Tema de Antonio Damián Hernández · Arreglos: Ricardo Hernández · Grabado en casa de Fran</small></span><span class="len"><span class="vh" data-en="length">duración</span> 3:18</span></a></li><li><a class="trk" href="https://www.youtube.com/watch?v=M3xOaA7-3Go" target="_blank" rel="noopener"><span class="no">03</span><span><b>No dejes de crecer</b><small data-en="Music and lyrics: Ricardo Hernández · With the full band">Música y letra: Ricardo Hernández · Con el grupo al completo</small></span><span class="len"><span class="vh" data-en="length">duración</span> 3:02</span></a></li></ol>
+				<a class="yt-link" href="https://www.youtube.com/@ricardohernandez-voolocam" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-yt"/></svg><span data-en="The channel on YouTube">El canal en YouTube</span></a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="ch conciertos" id="conciertos" aria-labelledby="h-conc">
+	<div class="wrap conc-grid">
+		<div>
+			<p class="kick" data-en="IV · Upcoming concerts">IV · Próximos conciertos</p>
+			<h2 id="h-conc" data-rv data-en="The dates, <em>coming soon.</em>">Las fechas, <em>muy pronto.</em></h2>
+			<p data-rv data-en="Every concert will appear here: the day, the place and the time. Want to be the first to know?">Aquí aparecerá cada concierto: el día, el lugar y la hora. ¿Quiere enterarse el primero?</p>
+			<div class="acts" style="justify-content:flex-start" data-rv>
+				<a class="btn btn-ghost" id="notify" href="https://wa.me/34661213561?text=Hola%2C%20Ricardo.%20Av%C3%ADseme%20cuando%20haya%20fechas%20de%20conciertos%20de%20Voolcam%2C%20por%20favor." data-href-en="https://wa.me/34661213561?text=Hello%20Ricardo%2C%20please%20let%20me%20know%20when%20Voolcam%20has%20concert%20dates." target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-bell"/></svg><span data-en="Tell me the dates">Avíseme de las fechas</span></a>
+			</div>
+		</div>
+		<div class="marquee" data-rv>
+			<span class="bulbs t" aria-hidden="true"></span><span class="bulbs r" aria-hidden="true"></span><span class="bulbs b" aria-hidden="true"></span><span class="bulbs l" aria-hidden="true"></span>
+			<div class="board-h" aria-hidden="true"><span data-en="DAY">DÍA</span><span data-en="PLACE">LUGAR</span><span data-en="TIME">HORA</span></div><p class="flaprow" data-en="DATES COMING">PRÓXIMAS FECHAS</p><p class="flaprow dim" data-en="TO BE ANNOUNCED">POR ANUNCIAR</p><div class="board-empty" aria-hidden="true"><i></i><i></i><i></i></div>
+		</div>
+	</div>
+</section>
+
+<section class="ch contratar" id="contratar" aria-labelledby="h-book">
+	<svg class="rose" viewBox="0 0 200 320" aria-hidden="true" data-draw>
+		<path class="pf" d="M100 40C60 40 40 80 52 115c10 25 38 37 48 35 10 2 38-10 48-35 12-35-8-75-48-75z"/>
+		<path pathLength="1" style="--i:0" d="M100 40C60 40 40 80 52 115c10 25 38 37 48 35 10 2 38-10 48-35 12-35-8-75-48-75z"/>
+		<path pathLength="1" style="--i:1" d="M100 60c-22 0-34 22-28 44 6 20 24 26 28 24 12 0 26-10 28-28 2-20-8-38-28-40z"/>
+		<path pathLength="1" style="--i:2" d="M100 74c-12 0-18 12-14 22s18 12 24 4-0-18-8-16-6 10 0 10"/>
+		<path pathLength="1" style="--i:3" d="M52 115c18-3 32-15 36-31M148 115c-18-3-32-15-36-31"/>
+		<path pathLength="1" style="--i:4" d="M70 52c14-16 46-16 60 0"/>
+		<path pathLength="1" style="--i:5" d="M100 150c-2 50 4 100 0 166"/>
+		<path pathLength="1" style="--i:6" d="M100 220c-30-15-45-5-52 12 22 6 42 0 52-12zM101 250c30-15 45-5 52 12-22 6-42 0-52-12z"/>
+	</svg>
+	<div class="wrap book-grid">
+		<div>
+			<p class="kick" data-en="V · Book the band">V · Contratar</p>
+			<h2 id="h-book" data-rv data-en="Book <em>Voolcam.</em>">Contrate a <em>Voolcam.</em></h2>
+			<p class="book-intro" data-rv data-en="Weddings, anniversaries, gala dinners, hotels and parties. Tell us what you are celebrating: the message goes straight to Ricardo on WhatsApp.">Bodas, aniversarios, cenas de gala, hoteles y fiestas. Cuéntenos qué celebra: el mensaje le llega directo a Ricardo por WhatsApp.</p>
+			<form class="book" id="book" data-rv onsubmit="return false">
+				<fieldset>
+					<legend data-en="What are you celebrating?">¿Qué celebra?</legend>
+					<div class="evs"><label class="ev"><input type="radio" name="ev" value="Boda" data-msg-en="Wedding"><span data-en="Wedding">Boda</span></label><label class="ev"><input type="radio" name="ev" value="Aniversario" data-msg-en="Anniversary"><span data-en="Anniversary">Aniversario</span></label><label class="ev"><input type="radio" name="ev" value="Cena o gala" data-msg-en="Dinner or gala"><span data-en="Dinner or gala">Cena o gala</span></label><label class="ev"><input type="radio" name="ev" value="Hotel o restaurante" data-msg-en="Hotel or restaurant"><span data-en="Hotel or restaurant">Hotel o restaurante</span></label><label class="ev"><input type="radio" name="ev" value="Fiesta privada" data-msg-en="Private party"><span data-en="Private party">Fiesta privada</span></label><label class="ev"><input type="radio" name="ev" value="Fiestas del pueblo" data-msg-en="Town festival"><span data-en="Town festival">Fiestas del pueblo</span></label><label class="ev"><input type="radio" name="ev" value="Otro" data-msg-en="Other"><span data-en="Other">Otro</span></label></div>
+				</fieldset>
+				<div class="row2">
+					<label><span class="l" data-en="Date">Fecha</span><input type="date" id="f-date"></label>
+					<label><span class="l" data-en="Where">Dónde</span><input type="text" id="f-place" autocomplete="address-level2" placeholder="Municipio o local" data-en-ph="Town or venue"></label>
+				</div>
+				<div class="row2">
+					<label><span class="l" data-en="Guests (approx.)">Invitados (aprox.)</span><select id="f-guests"><option value="" data-en="I don't know yet">Aún no lo sé</option><option value="&lt;50" data-en="Fewer than 50">Menos de 50</option><option value="50–150">50–150</option><option value="150–300">150–300</option><option value="+300" data-en="More than 300">Más de 300</option></select></label>
+					<label><span class="l" data-en="Your name">Su nombre</span><input type="text" id="f-name" autocomplete="given-name" placeholder="Opcional" data-en-ph="Optional"></label>
+				</div>
+				<a class="btn btn-cream send" id="send" href="https://wa.me/34661213561?text=Hola%2C%20Ricardo.%20Quiero%20informaci%C3%B3n%20para%20contratar%20a%20Voolcam." target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg><span data-en="Send on WhatsApp">Enviar por WhatsApp</span></a>
+			</form>
+			<p class="nojs-wa"><a class="btn btn-cream" href="https://wa.me/34661213561?text=Hola%2C%20Ricardo.%20Quiero%20informaci%C3%B3n%20para%20contratar%20a%20Voolcam." target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg><span data-en="Write on WhatsApp">Escribir por WhatsApp</span></a></p>
+			<p class="direct" data-en="Or straight to Ricardo: <a href=&quot;https://wa.me/34661213561&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; style=&quot;white-space:nowrap&quot;>WhatsApp +34 661 21 35 61</a>">O directamente a Ricardo: <a href="https://wa.me/34661213561" target="_blank" rel="noopener" style="white-space:nowrap">WhatsApp +34 661 21 35 61</a></p>
+		</div>
+		<div class="chat" aria-hidden="true">
+			<div class="chat-top"><img src="assets/img/logo-320.webp" width="282" height="320" alt="" loading="lazy"><span><b>Ricardo · Voolcam</b><small data-en="WhatsApp · your message">WhatsApp · su mensaje</small></span></div>
+			<div class="chat-body"><p class="bubble" id="bubble">Hola, Ricardo. Quiero información para contratar a Voolcam.</p></div>
+			<p class="chat-note" data-en="Nothing is sent until you press the button.">No se envía nada hasta que usted pulse el botón.</p>
+		</div>
+	</div>
+</section>
+</main>
+
+<footer class="foot">
+	<div class="wrap foot-grid">
+		<img src="assets/img/logo-320.webp" width="282" height="320" alt="Voolcam" loading="lazy">
+		<p class="tag" data-en="Original boleros, from Tenerife.">Boleros originales, desde Tenerife.</p>
+		<nav aria-label="Pie de página" data-en-label="Footer">
+			<a href="https://www.youtube.com/@ricardohernandez-voolocam" target="_blank" rel="noopener">YouTube</a>
+			<a href="#escuchar" data-en="Listen">Escuchar</a>
+			<a href="#contratar" data-en="Book">Contratar</a>
+			<a href="https://wa.me/34661213561" target="_blank" rel="noopener">WhatsApp</a>
+		</nav>
+		<p class="fine" data-en="Songs registered with the SGAE and the Intellectual Property Registry.">Temas registrados en la SGAE y en el Registro de la Propiedad Intelectual.</p>
+		<p class="fine" data-en="<b>A private preview by Teide Digital for Voolcam.</b> Photos and videos: the Voolcam boleros YouTube channel. Members and credits: the descriptions of those videos. Videos load from YouTube only when you press play. The booking form sends nothing by itself: it opens your WhatsApp with the message written."><b>Vista previa privada de Teide Digital para Voolcam.</b> Fotos y vídeos: el canal de YouTube Voolcam boleros. Componentes y créditos: las descripciones de esos vídeos. Los vídeos se cargan desde YouTube solo al pulsar. El formulario no envía nada por sí solo: abre su WhatsApp con el mensaje escrito.</p>
+	</div>
+</footer>
+
+<div class="sticky" id="sticky"><a class="btn btn-gold" href="#contratar"><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg><span data-en="Book Voolcam">Contrate a Voolcam</span></a></div>
+
+<script>
+(() => {
+	const d = document, root = d.documentElement;
+	root.classList.add('js');
+	const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+	const WA = '34661213561';
+	const VIDEOS = [{"id": "mjz6EFhCOfY", "title": "Mi dulce sueño", "p640": "assets/img/dulce-sueno-640.webp", "p1280": "assets/img/dulce-sueno-1280.webp"}, {"id": "3dd35nhZy34", "title": "La sonrisa femenina", "p640": "assets/img/sonrisa-640.webp", "p1280": "assets/img/sonrisa-1280.webp"}, {"id": "M3xOaA7-3Go", "title": "No dejes de crecer", "p640": "assets/img/crecer-640.webp", "p1280": "assets/img/crecer-1280.webp"}];
+
+	// ── ES | EN ──
+	const STR = {
+		es: { title: 'Voolcam · boleros originales en Tenerife', play: t => `Reproducir ${t}`, hello: 'Hola, Ricardo. Quiero información para contratar a Voolcam.', ev: 'Evento', date: 'Fecha', place: 'Lugar', guests: 'Invitados', me: n => `Soy ${n}.`, locale: 'es-ES', filt: (n, g) => `${n} de 10: ${g}` , all: 'Toda la formación' },
+		en: { title: 'Voolcam · original boleros in Tenerife', play: t => `Play ${t}`, hello: 'Hello Ricardo, I would like information about booking Voolcam.', ev: 'Event', date: 'Date', place: 'Place', guests: 'Guests', me: n => `I'm ${n}.`, locale: 'en-GB', filt: (n, g) => `${n} of 10: ${g}`, all: 'The whole line-up' }
+	};
+	let L = 'es';
+	try { const u = new URLSearchParams(location.search).get('lang'); L = (u === 'en' || u === 'es') ? u : (localStorage.getItem('voolcam-lang') === 'en' ? 'en' : 'es'); } catch (e) {}
+	const S = () => STR[L];
+	const typed = d.querySelector('.typed');
+	const words = () => (L === 'en' ? typed.dataset.wordsEn : typed.dataset.words).split('|');
+	const applyStatic = () => {
+		const en = L === 'en';
+		d.querySelectorAll('[data-en]').forEach(el => { if (el._es == null) el._es = el.innerHTML; el.innerHTML = en ? el.dataset.en : el._es; });
+		d.querySelectorAll('[data-en-alt]').forEach(el => { if (el._esA == null) el._esA = el.alt; el.alt = en ? el.dataset.enAlt : el._esA; });
+		d.querySelectorAll('[data-en-label]').forEach(el => { if (el._esL == null) el._esL = el.getAttribute('aria-label'); el.setAttribute('aria-label', en ? el.dataset.enLabel : el._esL); });
+		d.querySelectorAll('[data-en-ph]').forEach(el => { if (el._esP == null) el._esP = el.placeholder; el.placeholder = en ? el.dataset.enPh : el._esP; });
+		d.querySelectorAll('[data-href-en]').forEach(el => { if (el._esH == null) el._esH = el.href; el.href = en ? el.dataset.hrefEn : el._esH; });
+		typed.textContent = words()[words().length - 1];
+		root.lang = L; d.title = S().title;
+		d.querySelectorAll('.lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === L)));
+	};
+	applyStatic();
+
+	// ── split-flap board: wrap letters (after each language swap) ──
+	const flaps = () => d.querySelectorAll('.flaprow').forEach(row => {
+		const t = row.textContent; let i = 0;
+		const said = d.createElement('span'); said.className = 'vh'; said.textContent = t;
+		const parts = [];
+		t.split(' ').forEach((word, k) => {
+			if (k) { const sp = d.createElement('span'); sp.className = 'sp'; sp.setAttribute('aria-hidden', 'true'); parts.push(sp); }
+			const wd = d.createElement('span'); wd.className = 'wd'; wd.setAttribute('aria-hidden', 'true');
+			[...word].forEach(c => { const s = d.createElement('span'); s.className = 'fl'; s.style.setProperty('--i', i++); s.textContent = c; wd.append(s); });
+			parts.push(wd);
+		});
+		row.replaceChildren(said, ...parts);
+	});
+	flaps();
+
+	// ── the line-up filter ──
+	const members = [...d.querySelectorAll('.m')];
+	const chips = [...d.querySelectorAll('.chips button')];
+	const live = d.getElementById('filter-live');
+	chips.forEach(b => b.addEventListener('click', () => {
+		const f = b.dataset.f;
+		chips.forEach(c => c.setAttribute('aria-pressed', String(c === b)));
+		let n = 0;
+		members.forEach(m => { const on = f === '*' || m.dataset.g.split(' ').includes(f); m.classList.toggle('dim', !on); if (on) n++; });
+		if (live) live.textContent = f === '*' ? S().all : S().filt(n, b.firstChild.textContent.trim());
+	}));
+
+	// ── the record player ──
+	const player = d.getElementById('player'), vinyl = d.getElementById('vinyl');
+	const trks = [...d.querySelectorAll('.trk')];
+	let cur = 0, spun = 0, playing = false;
+	const spin = () => { if (calm) return; spun += 360; vinyl.style.rotate = spun + 'deg'; };
+	const poster = i => {
+		const v = VIDEOS[i];
+		const a = d.createElement('a');
+		a.href = `https://www.youtube.com/watch?v=${v.id}`; a.target = '_blank'; a.rel = 'noopener';
+		a.setAttribute('aria-label', S().play(v.title));
+		a.innerHTML = `<img src="${v.p1280}" srcset="${v.p640} 640w, ${v.p1280} 1280w" sizes="(min-width: 900px) 50vw, 88vw" width="1280" height="720" alt=""><span class="big"><svg aria-hidden="true" fill="currentColor"><use href="#i-play"/></svg></span><span class="cap"></span>`;
+		a.querySelector('.cap').textContent = v.title;
+		a.addEventListener('click', e => { e.preventDefault(); embed(i); });
+		player.replaceChildren(a);
+	};
+	const embed = i => {
+		const v = VIDEOS[i];
+		const f = d.createElement('iframe');
+		f.src = `https://www.youtube-nocookie.com/embed/${v.id}?autoplay=1&rel=0&modestbranding=1`;
+		f.title = v.title; f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen'; f.allowFullscreen = true;
+		f.referrerPolicy = 'strict-origin-when-cross-origin';
+		player.replaceChildren(f); playing = true; spin();
+	};
+	const pick = i => {
+		cur = i;
+		trks.forEach((t, k) => t.setAttribute('aria-current', String(k === i)));
+		if (playing) embed(i); else { poster(i); spin(); }
+	};
+	trks.forEach((t, k) => t.addEventListener('click', e => { e.preventDefault(); pick(k); }));
+	const relabel = () => { const a = player.querySelector('a'); if (a) a.setAttribute('aria-label', S().play(VIDEOS[cur].title)); };
+	{ const a0 = player.querySelector('a'); if (a0) a0.addEventListener('click', e => { e.preventDefault(); embed(0); }); }
+
+	// ── booking: the message builds itself as you choose ──
+	const book = d.getElementById('book'), send = d.getElementById('send'), bubble = d.getElementById('bubble');
+	const fDate = d.getElementById('f-date'), fPlace = d.getElementById('f-place'), fGuests = d.getElementById('f-guests'), fName = d.getElementById('f-name');
+	const clock = () => { try { return new Intl.DateTimeFormat('es-ES', { hour: '2-digit', minute: '2-digit', timeZone: 'Atlantic/Canary' }).format(new Date()); } catch (e) { return ''; } };
+	const msg = () => {
+		const s = S(), lines = [s.hello];
+		const ev = book.querySelector('input[name="ev"]:checked');
+		if (ev) lines.push(`· ${s.ev}: ${L === 'en' ? ev.dataset.msgEn : ev.value}`);
+		if (fDate.value) { try { lines.push(`· ${s.date}: ${new Intl.DateTimeFormat(s.locale, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(fDate.value + 'T12:00'))}`); } catch (e) { lines.push(`· ${s.date}: ${fDate.value}`); } }
+		if (fPlace.value.trim()) lines.push(`· ${s.place}: ${fPlace.value.trim()}`);
+		if (fGuests.value) lines.push(`· ${s.guests}: ${fGuests.selectedOptions[0].textContent}`);
+		if (fName.value.trim()) lines.push(s.me(fName.value.trim()));
+		return lines.join('\n');
+	};
+	const render = bump => {
+		const m = msg();
+		bubble.textContent = m;
+		const t = d.createElement('time'); t.textContent = clock(); bubble.append(t);
+		send.href = `https://wa.me/${WA}?text=${encodeURIComponent(m)}`;
+		if (bump && !calm) { bubble.classList.remove('pop'); void bubble.offsetWidth; bubble.classList.add('pop'); }
+	};
+	book.addEventListener('input', () => render(true));
+	book.addEventListener('change', e => {
+		if (calm || e.target.name !== 'ev' || !e.target.checked) return;
+		// a rose petal flies from the chosen chip into the message
+		const a = e.target.nextElementSibling.getBoundingClientRect(), b = bubble.getBoundingClientRect();
+		if (b.bottom < 0 || b.top > innerHeight) return;
+		const p = d.createElement('i'); p.className = 'petal'; d.body.append(p);
+		const x0 = a.left + a.width / 2, y0 = a.top, x1 = b.left + b.width * .7, y1 = b.top + 10;
+		const an = p.animate([
+			{ transform: `translate(${x0}px, ${y0}px) rotate(0deg) scale(.6)`, opacity: 0 },
+			{ transform: `translate(${(x0 + x1) / 2}px, ${Math.min(y0, y1) - 90}px) rotate(200deg) scale(1.1)`, opacity: 1, offset: .5 },
+			{ transform: `translate(${x1}px, ${y1}px) rotate(380deg) scale(.5)`, opacity: 0 }
+		], { duration: 900, easing: 'cubic-bezier(.3,.7,.3,1)' });
+		an.onfinish = () => p.remove();
+	});
+	render();
+
+	// language switch
+	const setLang = l => {
+		if (l === L) return; L = l;
+		try { localStorage.setItem('voolcam-lang', L); } catch (e) {}
+		applyStatic(); flaps(); relabel(); render();
+	};
+	d.querySelectorAll('.lang button').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+
+	// ── masthead, chapter rail, sticky CTA ──
+	const mast = d.getElementById('mast'), chap = d.getElementById('chap'), sticky = d.getElementById('sticky');
+	const hero = d.querySelector('.hero'), bookSec = d.getElementById('contratar');
+	if ('IntersectionObserver' in window) {
+		let heroOn = true, bookOn = false;
+		const ui = () => { mast.classList.toggle('solid', !heroOn || scrollY > 40); chap.classList.toggle('on', !heroOn); sticky.classList.toggle('on', !heroOn && !bookOn); };
+		new IntersectionObserver(es => es.forEach(e => { heroOn = e.isIntersecting; hero.classList.toggle('off', !e.isIntersecting); ui(); }), { rootMargin: '-64px 0px 0px 0px' }).observe(hero);
+		new IntersectionObserver(es => es.forEach(e => { bookOn = e.isIntersecting; ui(); }), { threshold: .15 }).observe(bookSec);
+		addEventListener('scroll', () => mast.classList.toggle('solid', !heroOn || scrollY > 40), { passive: true });
+		const links = new Map([...chap.querySelectorAll('a')].map(a => [a.getAttribute('href').slice(1), a]));
+		const io3 = new IntersectionObserver(es => es.forEach(e => {
+			if (!e.isIntersecting) return;
+			links.forEach(a => a.removeAttribute('aria-current'));
+			const a = links.get(e.target.id); if (a) a.setAttribute('aria-current', 'true');
+		}), { rootMargin: '-45% 0px -50% 0px' });
+		d.querySelectorAll('.ch').forEach(s => io3.observe(s));
+	}
+
+	// ── motion: reveals (CSS holds a 3 s safety net), counters, typing, light ──
+	if (!calm && 'IntersectionObserver' in window) {
+		const rv = [...d.querySelectorAll('[data-rv]')];
+		const show = el => {
+			el.classList.add('in');
+			el.querySelectorAll('.num').forEach(odo);
+		};
+		const io2 = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { show(e.target); io2.unobserve(e.target); } }), { rootMargin: '0px 0px -10% 0px' });
+		rv.forEach(el => io2.observe(el));
+		setTimeout(() => rv.forEach(el => el.classList.add('in')), 3000);
+		const io4 = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io4.unobserve(e.target); } }), { threshold: .2 });
+		d.querySelectorAll('[data-draw]').forEach(el => io4.observe(el));
+		members.forEach((m, i) => m.style.setProperty('--i', i % 5));
+
+		// odometer: a column of digits rolls to the number
+		function odo(el) {
+			if (el._done) return; el._done = 1;
+			const n = el.dataset.n; el.setAttribute('aria-label', n);
+			const wrap = d.createElement('span'); wrap.className = 'odo'; wrap.setAttribute('aria-hidden', 'true');
+			[...n].forEach((digit, k) => {
+				const col = d.createElement('span'); col.className = 'col';
+				for (let x = 0; x <= 9; x++) { const s = d.createElement('span'); s.textContent = x; col.append(s); }
+				wrap.append(col);
+				requestAnimationFrame(() => requestAnimationFrame(() => { col.style.transitionDelay = `${k * 120 + 200}ms`; col.style.transform = `translateY(${-digit}em)`; }));
+			});
+			el.replaceChildren(wrap);
+		}
+
+		// the name rises letter by letter
+		const h1 = d.getElementById('h1');
+		h1.setAttribute('aria-label', h1.textContent.trim());
+		const w = d.createElement('span'); w.className = 'w'; w.setAttribute('aria-hidden', 'true');
+		[...h1.textContent.trim()].forEach((c, i) => { const s = d.createElement('span'); s.className = 'lt'; s.style.setProperty('--i', i); s.textContent = c; w.append(s); });
+		h1.replaceChildren(w);
+
+		// one pass through the occasions, landing on «su noche»; no loop
+		setTimeout(() => {
+			const list = words(); let k = 0, txt = '', del = false; const lang0 = L;
+			typed.classList.add('typing');
+			const step = () => {
+				if (L !== lang0) { typed.classList.remove('typing'); return; }
+				const target = list[k];
+				if (!del) { txt = target.slice(0, txt.length + 1); typed.textContent = txt; if (txt === target) { if (k === list.length - 1) { typed.classList.remove('typing'); return; } del = true; return setTimeout(step, 850); } return setTimeout(step, 60); }
+				const keep = L === 'en' ? 'your ' : 'su ';
+				if (txt.length > keep.length) { txt = txt.slice(0, -1); typed.textContent = txt; return setTimeout(step, 35); }
+				del = false; k++; setTimeout(step, 120);
+			};
+			txt = L === 'en' ? 'your ' : 'su '; typed.textContent = txt; k = 0; step();
+		}, 3000);
+
+		// desktop: the stage light follows the cursor; the art drifts with the scroll
+		if (matchMedia('(pointer: fine)').matches) {
+			const spot = d.querySelector('.spot'); let q = false, mx = 0, my = 0;
+			hero.addEventListener('pointermove', e => { mx = e.clientX; my = e.clientY; if (q) return; q = true; requestAnimationFrame(() => { q = false; const r = hero.getBoundingClientRect(); spot.style.setProperty('--mx', (mx - r.left) + 'px'); spot.style.setProperty('--my', (my - r.top) + 'px'); }); });
+		}
+		const art = d.querySelector('.emblem'), card = d.querySelector('.nowcard');
+		let tq = false;
+		addEventListener('scroll', () => { if (tq) return; tq = true; requestAnimationFrame(() => { tq = false; const y = scrollY; if (y > innerHeight) return; art.style.transform = `translate3d(0, ${(y * .18).toFixed(1)}px, 0)`; card.style.translate = `0 ${(y * -.08).toFixed(1)}px`; }); }, { passive: true });
+	} else {
+		d.querySelectorAll('[data-rv]').forEach(el => el.classList.add('in'));
+	}
+
+	// ── idle sleep: the only loop (dust in the light) pauses after 12 s untouched or in the background ──
+	let idleT;
+	const wake = () => { root.classList.remove('idle'); clearTimeout(idleT); idleT = setTimeout(() => root.classList.add('idle'), 12000); };
+	['scroll', 'pointermove', 'pointerdown', 'keydown', 'touchstart'].forEach(ev => addEventListener(ev, wake, { passive: true }));
+	addEventListener('blur', () => root.classList.add('idle'));
+	d.addEventListener('visibilitychange', () => d.hidden ? root.classList.add('idle') : wake());
+	wake();
+})();
+</script>
+</body>
+</html>
