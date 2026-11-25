@@ -152,12 +152,13 @@ h1 { display: grid; color: var(--ink); }
 .open::before { content: ""; width: 10px; height: 10px; flex: none; border-radius: 50%; background: #b9b6cf; }
 .open.is-open { color: #17663d; }
 .open.is-open::before { background: #22a35f; box-shadow: 0 0 0 4px rgba(34, 163, 95, .18); }
-.flap span { display: inline-block; white-space: pre; }
-.flap.flip span { animation: flip .5s var(--out) both; animation-delay: calc(var(--c) * 22ms); }
+.flap .fw { display: inline-block; white-space: nowrap; }
+.flap .fw span { display: inline-block; }
+.flap.flip .fw span { animation: flip .5s var(--out) both; animation-delay: calc(var(--c) * 22ms); }
 @keyframes flip { from { transform: perspective(200px) rotateX(-90deg); opacity: 0; } }
-.p-rate { display: flex; align-items: center; gap: 8px; font-weight: 600; }
+.p-rate { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; font-weight: 600; }
 .p-rate .stars { color: #e0a21b; display: flex; }
-.p-rate small { font-weight: 400; color: var(--muted); font-size: 15px; }
+.p-rate small { flex-basis: 100%; font-weight: 400; color: var(--muted); font-size: 15px; }
 .p-addr { display: flex; gap: 8px; font-size: 15px; line-height: 1.4; color: var(--muted); }
 .p-addr .ico { color: var(--violet); margin-top: 2px; }
 @media (min-width: 900px) {
@@ -516,7 +517,7 @@ mark { background: linear-gradient(transparent 58%, rgba(244, 166, 207, .75) 58%
 			</a>
 			<div class="panel">
 				<p class="open" id="open" hidden><span class="flap" id="open-t"></span></p>
-				<p class="p-rate"><span class="stars" aria-hidden="true"><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg></span><span>5,0</span> <small data-en="· 273 reviews on Google">· 273 opiniones en Google</small></p>
+				<p class="p-rate"><span class="stars" aria-hidden="true"><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg></span><span>5,0</span> <small data-en="273 reviews on Google">273 opiniones en Google</small></p>
 				<p class="p-addr"><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg><span data-en="Av. Coronel Gorrín, 30 · right next to the pharmacy">Av. Coronel Gorrín, 30 · al lado de la farmacia</span></p>
 			</div>
 		</div>
@@ -767,11 +768,11 @@ mark { background: linear-gradient(transparent 58%, rgba(244, 166, 207, .75) 58%
 	const MON_ES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
 	const MON_EN = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 	const STR = {
-		es: { title: 'Clínica Dental Tamaimo · dentista en Tamaimo, Santiago del Teide', open: t => `Abierto ahora · hasta las ${t}`, today: t => `Cerrado ahora · abre hoy a las ${t}`,
-			later: (k, day, t) => `Cerrado ahora · abre ${k === 1 ? 'mañana' : 'el ' + day} a las ${t}`, days: DAYS_ES, short: ['dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb'], hoy: 'Hoy', man: 'Mañana',
+		es: { title: 'Clínica Dental Tamaimo · dentista en Tamaimo, Santiago del Teide', open: t => `Abierto · hasta las ${t}`, today: t => `Cerrado · abre hoy a las ${t}`,
+			later: (k, day, t) => `Cerrado · abre ${k === 1 ? 'mañana' : 'el ' + day} a las ${t}`, days: DAYS_ES, short: ['dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb'], hoy: 'Hoy', man: 'Mañana',
 			asap: 'Lo antes posible', pick: 'Pida su cita', add: 'Añadido', ask: 'Preguntar', m: 'por la mañana', t: 'por la tarde', yourCita: 'Su cita' },
-		en: { title: 'Clínica Dental Tamaimo · dentist in Tamaimo, Santiago del Teide', open: t => `Open now · until ${t}`, today: t => `Closed now · opens today at ${t}`,
-			later: (k, day, t) => `Closed now · opens ${k === 1 ? 'tomorrow' : 'on ' + day} at ${t}`, days: DAYS_EN, short: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], hoy: 'Today', man: 'Tomorrow',
+		en: { title: 'Clínica Dental Tamaimo · dentist in Tamaimo, Santiago del Teide', open: t => `Open · until ${t}`, today: t => `Closed · opens today at ${t}`,
+			later: (k, day, t) => `Closed · opens ${k === 1 ? 'tomorrow' : 'on ' + day} at ${t}`, days: DAYS_EN, short: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], hoy: 'Today', man: 'Tomorrow',
 			asap: 'As soon as possible', pick: 'Book an appointment', add: 'Added', ask: 'Ask about this', m: 'morning', t: 'afternoon', yourCita: 'Your appointment' }
 	};
 	let L = 'es';
@@ -799,7 +800,14 @@ mark { background: linear-gradient(transparent 58%, rgba(244, 166, 207, .75) 58%
 
 	// ── open now, split-flap ──
 	const flap = (el, txt) => {
-		el.replaceChildren(...[...txt].map((c, i) => { const s = d.createElement('span'); s.textContent = c; s.style.setProperty('--c', i); return s; }));
+		let i = 0;
+		const parts = txt.split(' ').flatMap((word, k) => {
+			const w = d.createElement('span'); w.className = 'fw';
+			[...word].forEach(c => { const s = d.createElement('span'); s.textContent = c; s.style.setProperty('--c', i++); w.append(s); });
+			i++;
+			return k ? [d.createTextNode(' '), w] : [w];
+		});
+		el.replaceChildren(...parts);
 		el.setAttribute('aria-label', txt);
 		if (!calm) { el.classList.remove('flip'); void el.offsetWidth; el.classList.add('flip'); }
 	};
