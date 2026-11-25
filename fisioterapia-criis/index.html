@@ -124,7 +124,7 @@ ul, ol { padding: 0; list-style: none; }
 @media (min-width: 1180px) and (min-height: 620px) { .vnav { display: block; } }
 
 /* ── chapters ── */
-.ch { position: relative; padding-block: clamp(80px, 11vw, 150px); overflow: hidden; }
+.ch { position: relative; padding-block: clamp(80px, 11vw, 150px); overflow: hidden; overflow: clip; }
 @media (min-width: 1000px) { .ch:not(.ch-hero) { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; } }
 .ch-no { display: inline-flex; align-items: center; gap: 12px; font: 500 .76rem/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; }
 .ch-no b { display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid currentColor; font-weight: 500; letter-spacing: 0; }
@@ -342,7 +342,7 @@ html.js [data-mode="p"] [data-only="b"], html.js [data-mode="b"] [data-only="p"]
 .name-f input:focus-visible { outline: 3px solid var(--rose-hi); outline-offset: 2px; }
 /* the slip */
 .slip-col { position: relative; }
-@media (min-width: 1000px) { .slip-col { position: sticky; top: calc(var(--mast) + 24px); } }
+@media (min-width: 1000px) and (min-height: 700px) { .slip-col { position: sticky; top: calc(var(--mast) + 28px); } }
 .slip { background: var(--bone); color: var(--ink); border-radius: 22px; padding: 26px 24px 22px; position: relative; box-shadow: 0 40px 80px -40px rgba(0, 0, 0, .7); transform: rotate(-1deg); }
 .slip::before { content: ""; position: absolute; left: 22px; right: 22px; top: -9px; height: 18px; background: radial-gradient(circle at 9px 9px, var(--forest) 6px, transparent 6.5px) 0 0 / 26px 18px repeat-x; }
 .slip-h { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; border-bottom: 1.5px solid var(--ink); padding-bottom: 12px; }
