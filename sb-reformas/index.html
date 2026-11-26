@@ -144,9 +144,9 @@ h2 em { font-style: italic; font-weight: 500; color: var(--bronze); }
 .top { position: fixed; inset: 0 0 auto 0; z-index: 40; height: 56px; display: flex; align-items: center; gap: 10px; padding: 0 10px 0 14px; background: rgba(11, 18, 32, .88); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(214, 173, 85, .18); color: var(--silver); }
 @media (min-width: 1100px) { .top { display: none; } }
 .top-logo img { width: 54px; height: auto; }
-.chips-nav { flex: 1; min-width: 0; overflow-x: auto; scrollbar-width: none; -webkit-mask: linear-gradient(90deg, transparent, #000 10px, #000 calc(100% - 22px), transparent); mask: linear-gradient(90deg, transparent, #000 10px, #000 calc(100% - 22px), transparent); }
+.chips-nav { flex: 1; min-width: 0; overflow-x: auto; scrollbar-width: none; -webkit-mask: linear-gradient(90deg, transparent, #000 8px, #000 calc(100% - 22px), transparent); mask: linear-gradient(90deg, transparent, #000 8px, #000 calc(100% - 22px), transparent); }
 .chips-nav::-webkit-scrollbar { display: none; }
-.chips-nav ol { display: flex; gap: 6px; padding: 0 16px 0 8px; width: max-content; }
+.chips-nav ol { display: flex; gap: 6px; padding: 0 28px 0 12px; width: max-content; }
 .chips-nav a { display: inline-flex; align-items: center; min-height: 36px; padding: 0 12px; border-radius: 99px; text-decoration: none; font: 500 14px/1 var(--body); color: var(--mist); border: 1px solid rgba(169, 179, 198, .25); white-space: nowrap; }
 .chips-nav a[aria-current="true"] { color: var(--ob); background: var(--gold); border-color: var(--gold); }
 /* the tape measure, phone edition: pulled out under the bar, runs with the page */
@@ -953,7 +953,11 @@ textarea.q-in { min-height: 92px; resize: vertical; }
 		if (!e.isIntersecting) return;
 		navLinks.forEach(a => a.setAttribute('aria-current', String(a.dataset.sec === e.target.id)));
 		const chip = $(`.chips-nav [data-sec="${e.target.id}"]`);
-		if (chip) { const nav = $('.chips-nav'); nav.scrollTo({ left: chip.offsetLeft - 12, behavior: calm ? 'auto' : 'smooth' }); }
+		if (chip) {
+			// centre the current chip inside the chip bar (measured against the bar itself, not the header the logo sits in)
+			const nav = $('.chips-nav'), n = nav.getBoundingClientRect(), c = chip.getBoundingClientRect();
+			nav.scrollTo({ left: nav.scrollLeft + (c.left - n.left) - (n.width - c.width) / 2, behavior: calm ? 'auto' : 'smooth' });
+		}
 	}), { rootMargin: '-45% 0px -50% 0px' });
 	['servicios', 'trabajos', 'presupuesto', 'zona', 'opinion'].forEach(id => secIO.observe(d.getElementById(id)));
 
