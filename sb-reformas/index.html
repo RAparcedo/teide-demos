@@ -53,7 +53,7 @@
 	--body: "Jost", system-ui, sans-serif;
 	--mono: "IBM Plex Mono", ui-monospace, monospace;
 	--rail: 236px;
-	--top: 56px;
+	--top: 78px;
 	--px: 20px;
 	--zh: 72px;
 	--spring: cubic-bezier(.34, 1.56, .64, 1);
@@ -141,7 +141,7 @@ h2 em { font-style: italic; font-weight: 500; color: var(--bronze); }
 .tape-read small { display: block; color: var(--mist); font-size: 8.5px; }
 
 /* ═════════ TOP BAR (phones/tablets) ═════════ */
-.top { position: fixed; inset: 0 0 auto 0; z-index: 40; height: var(--top); display: flex; align-items: center; gap: 10px; padding: 0 10px 0 14px; background: rgba(11, 18, 32, .88); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(214, 173, 85, .18); color: var(--silver); }
+.top { position: fixed; inset: 0 0 auto 0; z-index: 40; height: 56px; display: flex; align-items: center; gap: 10px; padding: 0 10px 0 14px; background: rgba(11, 18, 32, .88); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(214, 173, 85, .18); color: var(--silver); }
 @media (min-width: 1100px) { .top { display: none; } }
 .top-logo img { width: 54px; height: auto; }
 .chips-nav { flex: 1; min-width: 0; overflow-x: auto; scrollbar-width: none; -webkit-mask: linear-gradient(90deg, transparent, #000 10px, #000 calc(100% - 22px), transparent); mask: linear-gradient(90deg, transparent, #000 10px, #000 calc(100% - 22px), transparent); }
@@ -149,8 +149,17 @@ h2 em { font-style: italic; font-weight: 500; color: var(--bronze); }
 .chips-nav ol { display: flex; gap: 6px; padding: 0 16px 0 8px; width: max-content; }
 .chips-nav a { display: inline-flex; align-items: center; min-height: 36px; padding: 0 12px; border-radius: 99px; text-decoration: none; font: 500 14px/1 var(--body); color: var(--mist); border: 1px solid rgba(169, 179, 198, .25); white-space: nowrap; }
 .chips-nav a[aria-current="true"] { color: var(--ob); background: var(--gold); border-color: var(--gold); }
-.top-tape { position: absolute; left: 0; right: 0; bottom: -1px; height: 5px; overflow: hidden; }
-.top-tape i { position: absolute; inset: 0 auto 0 0; width: 100%; background: repeating-linear-gradient(90deg, var(--ob) 0 1px, transparent 1px 6px), linear-gradient(var(--gold), var(--gold-lo)); transform-origin: 0 50%; transform: scaleX(0); will-change: transform; }
+/* the tape measure, phone edition: pulled out under the bar, runs with the page */
+.mtape { position: absolute; left: 0; right: 0; top: 100%; height: 22px; overflow: hidden; background: var(--ob2); box-shadow: 0 8px 14px -10px rgba(0, 0, 0, .7); }
+.mtape-strip { position: absolute; top: 0; bottom: 3px; left: 0; width: 4840px; border-radius: 0 0 3px 0; background-color: var(--gold); background-image:
+	repeating-linear-gradient(to right, var(--ob) 0 1px, transparent 1px 8px),
+	repeating-linear-gradient(to right, var(--ob) 0 1.5px, transparent 1.5px 40px),
+	repeating-linear-gradient(to right, var(--ob) 0 2px, transparent 2px 80px),
+	linear-gradient(var(--gold-hi), var(--gold) 60%, var(--gold-lo));
+	background-size: 100% 5px, 100% 8px, 100% 12px, 100% 100%; background-repeat: no-repeat; will-change: transform; }
+.mtape-strip span { position: absolute; bottom: 1px; transform: translateX(3px); font: 500 9px/1 var(--mono); color: var(--ob); font-variant-numeric: lining-nums; }
+.mtape-mark { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; margin-left: -1px; background: #e5534b; }
+.mtape-read { position: absolute; left: 50%; top: 3px; margin-left: 6px; padding: 2px 6px; border-radius: 4px; background: var(--ob); color: var(--gold-hi); font: 500 11px/1.2 var(--mono); font-variant-numeric: lining-nums; white-space: nowrap; }
 .lang { display: inline-flex; padding: 3px; border-radius: 99px; border: 1px solid rgba(169, 179, 198, .3); flex: none; }
 .lang button { min-width: 38px; min-height: 34px; border: 0; border-radius: 99px; background: none; font: 500 12.5px/1 var(--mono); letter-spacing: .06em; color: var(--mist); cursor: pointer; }
 .lang button[aria-pressed="true"] { background: var(--gold); color: var(--ob); }
@@ -181,12 +190,17 @@ h2 em { font-style: italic; font-weight: 500; color: var(--bronze); }
 .band { display: inline-flex; align-items: center; gap: 12px; padding: 11px 26px 12px 22px; clip-path: polygon(14px 0, 100% 0, calc(100% - 14px) 100%, 0 100%); color: var(--ob);
 	background: linear-gradient(100deg, var(--gold-lo), var(--gold) 25%, var(--gold-hi) 55%, var(--gold) 85%);
 	font: 600 clamp(21px, 5.2vw, 30px)/1.1 var(--display); letter-spacing: .01em; }
+.band { position: relative; }
+.band::after { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 35%, rgba(255, 255, 255, .7) 50%, transparent 65%); transform: translateX(-130%); pointer-events: none; }
+.band.shine::after { animation: shine 1.1s var(--out); }
+@keyframes shine { to { transform: translateX(130%); } }
 .band .ico { width: 22px; height: 22px; }
 .roll { display: none; }
 .typed-line { margin-top: 22px; font: 500 italic clamp(22px, 5.4vw, 30px)/1.25 var(--display); color: var(--silver); min-height: 1.25em; }
 .typed { color: var(--gold-hi); }
 .caret { display: inline-block; width: 2px; height: .9em; margin-left: 3px; vertical-align: -.08em; background: var(--gold); will-change: opacity; }
 .h-act { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+@media (max-width: 479px) { .h-act { flex-wrap: nowrap; gap: 10px; } .h-act .btn-gold { flex: 1; } .h-act .btn-line { width: 52px; padding: 0; flex: none; } .h-act .tel-n { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); } }
 /* photo cards with masking tape */
 .h-vis { position: relative; height: calc(92vw + 110px); }
 @media (min-width: 760px) { .h-vis { height: min(78vh, 680px); min-height: 520px; } }
@@ -275,6 +289,21 @@ h2 em { font-style: italic; font-weight: 500; color: var(--bronze); }
 .gf.g-tall figcaption b { background: var(--gold); color: var(--ob); }
 .gf .tape { --tw: 84px; top: -11px; left: 18px; transform: rotate(-4deg); z-index: 2; }
 .gf:nth-child(even) .tape { left: auto; right: 18px; transform: rotate(5deg); }
+.gal-count { display: none; }
+@media (max-width: 899px) {
+	.gal { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none; margin: 30px calc(-1 * var(--px)) 0; padding: 30px var(--px) 34px; }
+	.gal::-webkit-scrollbar { display: none; }
+	.gf { flex: 0 0 78%; align-self: center; scroll-snap-align: center; padding: 8px 8px 12px; border-radius: 4px; background: var(--plaster); box-shadow: 0 26px 40px -24px rgba(60, 40, 10, .65); rotate: -2deg; }
+	.gf:nth-child(even) { rotate: 2.2deg; }
+	.gf a { border-radius: 2px; box-shadow: none; }
+	.gf.g-a a, .gf.g-b a, .gf.g-c a, .gf.g-d a, .gf.g-wide a { aspect-ratio: 4 / 3; }
+	.gf figcaption { padding: 0 4px; }
+	.gal-count { display: flex; justify-content: center; align-items: center; gap: 12px; margin-top: 2px; font: 500 12px/1 var(--mono); letter-spacing: .08em; color: var(--bronze); text-transform: uppercase; }
+	.gal-count b { font-weight: 500; color: var(--ink); }
+	.gal-dots { display: flex; gap: 5px; }
+	.gal-dots i { width: 6px; height: 6px; border-radius: 50%; background: rgba(117, 83, 26, .3); transition: background-color .3s, transform .3s var(--spring); }
+	.gal-dots i.on { background: var(--bronze); transform: scale(1.35); }
+}
 @media (min-width: 900px) {
 	.gal { grid-template-columns: repeat(6, minmax(0, 1fr)); grid-template-rows: auto auto auto; gap: 30px 24px; align-items: start; }
 	.gf.g-tall { grid-column: 1 / 3; grid-row: 1 / 3; }
@@ -341,6 +370,7 @@ textarea.q-in { min-height: 92px; resize: vertical; }
 #send { width: 100%; margin-top: 18px; min-height: 56px; font-size: 17px; }
 .tk-note { margin-top: 12px; font-size: 13px; line-height: 1.45; color: var(--muted); text-align: center; }
 .pulse { animation: pulse .6s var(--spring); }
+@media (hover: none) { .btn:active, .chip:active, .sv-add:active, .bar-call:active { transform: scale(.95); transition-duration: .08s; } }
 @keyframes pulse { 40% { transform: scale(1.04); } }
 
 /* ═════════ 04 AREA ═════════ */
@@ -465,6 +495,8 @@ textarea.q-in { min-height: 92px; resize: vertical; }
 .motion .go .typed-line { animation: rise .8s var(--out) 2.1s both; }
 .motion .go .h-act { animation: rise .9s var(--out) 2.2s both; }
 @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.motion .mtape-strip { animation: pull 1.2s var(--out) .25s backwards; }
+@keyframes pull { from { transform: translateX(-100%); } }
 .motion .ltr { display: inline-block; }
 .motion .go .ltr { animation: ltr .8s var(--spring) calc(.18s + var(--l) * .05s) both; }
 @keyframes ltr { from { opacity: 0; transform: translateY(.42em) rotate(4deg); } 50% { opacity: 1; } to { opacity: 1; transform: none; } }
@@ -483,7 +515,10 @@ textarea.q-in { min-height: 92px; resize: vertical; }
 .motion [data-rv].in { opacity: 1; transform: none; transition: opacity .7s var(--out), transform .9s var(--out); transition-delay: calc(var(--i, 0) * .08s); }
 .motion .sv[data-rv] { transform: translateX(-26px); }
 .motion .sv[data-rv].in { transform: none; }
+.motion .sv.in .s-ic { animation: pop .8s var(--spring) .2s backwards; }
+@keyframes pop { from { transform: scale(.3) rotate(-25deg); opacity: 0; } }
 .motion .gf .tape { opacity: 1; }
+@media (max-width: 899px) { .motion .gf[data-rv] { opacity: 1; transform: none; } }
 .motion .gf.in .tape { animation: peel .9s var(--out) .55s both; }
 @keyframes peel { 0% { opacity: 1; } 100% { opacity: 0; transform: translate(24px, -26px) rotate(-22deg) scale(.9); } }
 .motion .gf:nth-child(even).in .tape { animation-name: peel2; }
@@ -561,7 +596,7 @@ textarea.q-in { min-height: 92px; resize: vertical; }
 		<li><a href="#opinion" data-sec="opinion" data-en="Review">Opinión</a></li>
 	</ol></nav>
 	<div class="lang" role="group" aria-label="Idioma" data-en-label="Language"><button type="button" data-lang="es" aria-pressed="true">ES</button><button type="button" data-lang="en" aria-pressed="false">EN</button></div>
-	<span class="top-tape" aria-hidden="true"><i></i></span>
+	<div class="mtape" aria-hidden="true"><div class="mtape-strip"><span style="left:0px">0</span><span style="left:80px">10</span><span style="left:160px">20</span><span style="left:240px">30</span><span style="left:320px">40</span><span style="left:400px">50</span><span style="left:480px">60</span><span style="left:560px">70</span><span style="left:640px">80</span><span style="left:720px">90</span><span style="left:800px">100</span><span style="left:880px">110</span><span style="left:960px">120</span><span style="left:1040px">130</span><span style="left:1120px">140</span><span style="left:1200px">150</span><span style="left:1280px">160</span><span style="left:1360px">170</span><span style="left:1440px">180</span><span style="left:1520px">190</span><span style="left:1600px">200</span><span style="left:1680px">210</span><span style="left:1760px">220</span><span style="left:1840px">230</span><span style="left:1920px">240</span><span style="left:2000px">250</span><span style="left:2080px">260</span><span style="left:2160px">270</span><span style="left:2240px">280</span><span style="left:2320px">290</span><span style="left:2400px">300</span><span style="left:2480px">310</span><span style="left:2560px">320</span><span style="left:2640px">330</span><span style="left:2720px">340</span><span style="left:2800px">350</span><span style="left:2880px">360</span><span style="left:2960px">370</span><span style="left:3040px">380</span><span style="left:3120px">390</span><span style="left:3200px">400</span><span style="left:3280px">410</span><span style="left:3360px">420</span><span style="left:3440px">430</span><span style="left:3520px">440</span><span style="left:3600px">450</span><span style="left:3680px">460</span><span style="left:3760px">470</span><span style="left:3840px">480</span><span style="left:3920px">490</span><span style="left:4000px">500</span><span style="left:4080px">510</span><span style="left:4160px">520</span><span style="left:4240px">530</span><span style="left:4320px">540</span><span style="left:4400px">550</span><span style="left:4480px">560</span><span style="left:4560px">570</span><span style="left:4640px">580</span><span style="left:4720px">590</span><span style="left:4800px">600</span></div><span class="mtape-mark"></span><span class="mtape-read"><b id="mtape-n">0</b> cm</span></div>
 </header>
 
 <div class="field">
@@ -586,7 +621,7 @@ textarea.q-in { min-height: 92px; resize: vertical; }
 			<p class="typed-line"><span data-en="Ask for a quote for your">Pida presupuesto para su</span> <span class="typed" data-words="villa|piso|baño|cocina|fachada|comunidad" data-words-en="villa|flat|bathroom|kitchen|façade|building">villa</span><span class="caret" aria-hidden="true"></span></p>
 			<div class="h-act">
 				<a class="btn btn-gold js-wa" href="https://wa.me/34665575841?text=Hola%2C%20quer%C3%ADa%20pedir%20presupuesto%20a%20SB%20Reformas%20%26%20Multiservicios." target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg><span data-en="Get a quote">Pedir presupuesto</span></a>
-				<a class="btn btn-line" href="tel:+34665575841"><svg class="ico" aria-hidden="true"><use href="#i-tel"/></svg>665 575 841</a>
+				<a class="btn btn-line" href="tel:+34665575841"><svg class="ico" aria-hidden="true"><use href="#i-tel"/></svg><span class="tel-n"><span class="vh" data-en="Call ">Llamar </span>665 575 841</span></a>
 			</div>
 		</div>
 		<div class="h-vis">
@@ -617,7 +652,8 @@ textarea.q-in { min-height: 92px; resize: vertical; }
 		<p class="kick"><b>02</b> <span data-en="Our work">Trabajos</span></p>
 		<h2 id="h-work" data-rv data-en="From dust sheets to a home <em>ready to live in.</em>">Del plástico de obra a la casa <em>lista para vivir.</em></h2>
 		<p class="intro" data-en="How we work, and how the homes turn out. Tap a photo to see it full size.">Así trabajamos y así quedan las casas. Toque una foto para verla grande.</p>
-		<div class="gal"><figure class="gf g-tall" data-rv style="--i:0"><a class="zoom" href="assets/img/sb-obra-760.webp" aria-label="Ampliar foto" data-en-label="Enlarge photo"><img src="assets/img/sb-obra-420.webp" srcset="assets/img/sb-obra-420.webp 420w, assets/img/sb-obra-760.webp 760w" sizes="(min-width: 900px) 40vw, 100vw" width="760" height="1258" loading="lazy" decoding="async" alt="En obra: pintura a pistola, con suelos, puertas y ventanas protegidos." data-en-alt="On the job: spray painting, with floors, doors and windows covered."></a><span class="tape t1" aria-hidden="true"></span><figcaption><b data-en="On the job">En obra</b> <span data-en="On the job: spray painting, with floors, doors and windows covered.">En obra: pintura a pistola, con suelos, puertas y ventanas protegidos.</span></figcaption></figure><figure class="gf g-wide" data-rv style="--i:1"><a class="zoom" href="assets/img/sb-cocina-1200.webp" aria-label="Ampliar foto" data-en-label="Enlarge photo"><img src="assets/img/sb-cocina-640.webp" srcset="assets/img/sb-cocina-640.webp 640w, assets/img/sb-cocina-1200.webp 1200w" sizes="(min-width: 900px) 40vw, 100vw" width="1200" height="900" loading="lazy" decoding="async" alt="Cocina abierta a la terraza y la piscina." data-en-alt="Kitchen opening onto the terrace and the pool."></a><span class="tape t1" aria-hidden="true"></span><figcaption><b data-en="Finished">Terminado</b> <span data-en="Kitchen opening onto the terrace and the pool.">Cocina abierta a la terraza y la piscina.</span></figcaption></figure><figure class="gf g-a" data-rv style="--i:2"><a class="zoom" href="assets/img/sb-pasillo-1000.webp" aria-label="Ampliar foto" data-en-label="Enlarge photo"><img src="assets/img/sb-pasillo-560.webp" srcset="assets/img/sb-pasillo-560.webp 560w, assets/img/sb-pasillo-1000.webp 1000w" sizes="(min-width: 900px) 40vw, 100vw" width="1000" height="750" loading="lazy" decoding="async" alt="Pasillo con zócalo en dos tonos." data-en-alt="Hallway with a two-tone dado wall."></a><span class="tape t1" aria-hidden="true"></span><figcaption><b data-en="Finished">Terminado</b> <span data-en="Hallway with a two-tone dado wall.">Pasillo con zócalo en dos tonos.</span></figcaption></figure><figure class="gf g-b" data-rv style="--i:3"><a class="zoom" href="assets/img/sb-distribuidor-1000.webp" aria-label="Ampliar foto" data-en-label="Enlarge photo"><img src="assets/img/sb-distribuidor-560.webp" srcset="assets/img/sb-distribuidor-560.webp 560w, assets/img/sb-distribuidor-1000.webp 1000w" sizes="(min-width: 900px) 40vw, 100vw" width="1000" height="750" loading="lazy" decoding="async" alt="Distribuidor con barandilla de cristal, lleno de luz." data-en-alt="A bright landing with a glass balustrade."></a><span class="tape t1" aria-hidden="true"></span><figcaption><b data-en="Finished">Terminado</b> <span data-en="A bright landing with a glass balustrade.">Distribuidor con barandilla de cristal, lleno de luz.</span></figcaption></figure><figure class="gf g-c" data-rv style="--i:4"><a class="zoom" href="assets/img/sb-bano-570.webp" aria-label="Ampliar foto" data-en-label="Enlarge photo"><img src="assets/img/sb-bano-570.webp" srcset="assets/img/sb-bano-570.webp 570w" sizes="(min-width: 900px) 40vw, 100vw" width="570" height="426" loading="lazy" decoding="async" alt="Baño: lavabo sobre encimera de madera y mampara negra." data-en-alt="Bathroom: basin on a wooden vanity and a black-framed shower screen."></a><span class="tape t1" aria-hidden="true"></span><figcaption><b data-en="Finished">Terminado</b> <span data-en="Bathroom: basin on a wooden vanity and a black-framed shower screen.">Baño: lavabo sobre encimera de madera y mampara negra.</span></figcaption></figure><figure class="gf g-d" data-rv style="--i:5"><a class="zoom" href="assets/img/sb-salon-570.webp" aria-label="Ampliar foto" data-en-label="Enlarge photo"><img src="assets/img/sb-salon-570.webp" srcset="assets/img/sb-salon-570.webp 570w" sizes="(min-width: 900px) 40vw, 100vw" width="570" height="426" loading="lazy" decoding="async" alt="Salón con celosía de madera junto a la escalera." data-en-alt="Living room with a timber slat screen by the stairs."></a><span class="tape t1" aria-hidden="true"></span><figcaption><b data-en="Finished">Terminado</b> <span data-en="Living room with a timber slat screen by the stairs.">Salón con celosía de madera junto a la escalera.</span></figcaption></figure></div>
+		<div class="gal" id="gal"><figure class="gf g-tall" data-rv style="--i:0"><a class="zoom" href="assets/img/sb-obra-760.webp" aria-label="Ampliar foto" data-en-label="Enlarge photo"><img src="assets/img/sb-obra-420.webp" srcset="assets/img/sb-obra-420.webp 420w, assets/img/sb-obra-760.webp 760w" sizes="(min-width: 900px) 40vw, 100vw" width="760" height="1258" loading="lazy" decoding="async" alt="Pintura a pistola, con suelos, puertas y ventanas protegidos." data-en-alt="Spray painting, with floors, doors and windows covered."></a><span class="tape t1" aria-hidden="true"></span><figcaption><b data-en="On the job">En obra</b> <span data-en="Spray painting, with floors, doors and windows covered.">Pintura a pistola, con suelos, puertas y ventanas protegidos.</span></figcaption></figure><figure class="gf g-wide" data-rv style="--i:1"><a class="zoom" href="assets/img/sb-cocina-1200.webp" aria-label="Ampliar foto" data-en-label="Enlarge photo"><img src="assets/img/sb-cocina-640.webp" srcset="assets/img/sb-cocina-640.webp 640w, assets/img/sb-cocina-1200.webp 1200w" sizes="(min-width: 900px) 40vw, 100vw" width="1200" height="900" loading="lazy" decoding="async" alt="Cocina abierta a la terraza y la piscina." data-en-alt="Kitchen opening onto the terrace and the pool."></a><span class="tape t1" aria-hidden="true"></span><figcaption><b data-en="Finished">Terminado</b> <span data-en="Kitchen opening onto the terrace and the pool.">Cocina abierta a la terraza y la piscina.</span></figcaption></figure><figure class="gf g-a" data-rv style="--i:2"><a class="zoom" href="assets/img/sb-pasillo-1000.webp" aria-label="Ampliar foto" data-en-label="Enlarge photo"><img src="assets/img/sb-pasillo-560.webp" srcset="assets/img/sb-pasillo-560.webp 560w, assets/img/sb-pasillo-1000.webp 1000w" sizes="(min-width: 900px) 40vw, 100vw" width="1000" height="750" loading="lazy" decoding="async" alt="Pasillo con zócalo en dos tonos." data-en-alt="Hallway with a two-tone dado wall."></a><span class="tape t1" aria-hidden="true"></span><figcaption><b data-en="Finished">Terminado</b> <span data-en="Hallway with a two-tone dado wall.">Pasillo con zócalo en dos tonos.</span></figcaption></figure><figure class="gf g-b" data-rv style="--i:3"><a class="zoom" href="assets/img/sb-distribuidor-1000.webp" aria-label="Ampliar foto" data-en-label="Enlarge photo"><img src="assets/img/sb-distribuidor-560.webp" srcset="assets/img/sb-distribuidor-560.webp 560w, assets/img/sb-distribuidor-1000.webp 1000w" sizes="(min-width: 900px) 40vw, 100vw" width="1000" height="750" loading="lazy" decoding="async" alt="Distribuidor con barandilla de cristal, lleno de luz." data-en-alt="A bright landing with a glass balustrade."></a><span class="tape t1" aria-hidden="true"></span><figcaption><b data-en="Finished">Terminado</b> <span data-en="A bright landing with a glass balustrade.">Distribuidor con barandilla de cristal, lleno de luz.</span></figcaption></figure><figure class="gf g-c" data-rv style="--i:4"><a class="zoom" href="assets/img/sb-bano-570.webp" aria-label="Ampliar foto" data-en-label="Enlarge photo"><img src="assets/img/sb-bano-570.webp" srcset="assets/img/sb-bano-570.webp 570w" sizes="(min-width: 900px) 40vw, 100vw" width="570" height="426" loading="lazy" decoding="async" alt="Baño: lavabo sobre encimera de madera y mampara negra." data-en-alt="Bathroom: basin on a wooden vanity and a black-framed shower screen."></a><span class="tape t1" aria-hidden="true"></span><figcaption><b data-en="Finished">Terminado</b> <span data-en="Bathroom: basin on a wooden vanity and a black-framed shower screen.">Baño: lavabo sobre encimera de madera y mampara negra.</span></figcaption></figure><figure class="gf g-d" data-rv style="--i:5"><a class="zoom" href="assets/img/sb-salon-570.webp" aria-label="Ampliar foto" data-en-label="Enlarge photo"><img src="assets/img/sb-salon-570.webp" srcset="assets/img/sb-salon-570.webp 570w" sizes="(min-width: 900px) 40vw, 100vw" width="570" height="426" loading="lazy" decoding="async" alt="Salón con celosía de madera junto a la escalera." data-en-alt="Living room with a timber slat screen by the stairs."></a><span class="tape t1" aria-hidden="true"></span><figcaption><b data-en="Finished">Terminado</b> <span data-en="Living room with a timber slat screen by the stairs.">Salón con celosía de madera junto a la escalera.</span></figcaption></figure></div>
+		<p class="gal-count" aria-hidden="true"><span class="gal-dots"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></span><span><b id="gal-n">1</b> / 6</span><span data-en="Swipe →">Deslice →</span></p>
 	</div>
 </section>
 
@@ -922,7 +958,8 @@ textarea.q-in { min-height: 92px; resize: vertical; }
 	['servicios', 'trabajos', 'presupuesto', 'zona', 'opinion'].forEach(id => secIO.observe(d.getElementById(id)));
 
 	// ── scroll: phone bar, the tape measures the page (transform only; nothing runs while you're still) ──
-	const hero = $('.s-hero'), strip = $('.tape-strip'), tapeN = $('#tape-n'), topTape = $('.top-tape i'), rail = $('.rail');
+	const hero = $('.s-hero'), strip = $('.tape-strip'), tapeN = $('#tape-n'), mStrip = $('.mtape-strip'), mTapeN = $('#mtape-n');
+	let lastMcm = -1;
 	let mq = false, onScrollFx = null, heroH = hero.offsetHeight, docH = 1, railH = innerHeight, lastCm = -1;
 	const measure = () => { heroH = hero.offsetHeight; docH = Math.max(1, root.scrollHeight - innerHeight); railH = innerHeight; };
 	measure(); addEventListener('resize', measure, { passive: true }); addEventListener('load', measure);
@@ -934,7 +971,9 @@ textarea.q-in { min-height: 92px; resize: vertical; }
 		strip.style.transform = `translate3d(0, ${(-tY).toFixed(1)}px, 0)`;
 		const cm = Math.round((tY + railH / 2) / 8);
 		if (cm !== lastCm) { lastCm = cm; tapeN.textContent = cm; }
-		topTape.style.transform = `scaleX(${Math.min(1, y / docH).toFixed(4)})`;
+		mStrip.style.transform = `translate3d(${(-tY).toFixed(1)}px, 0, 0)`;
+		const mcm = Math.round((tY + innerWidth / 2) / 8);
+		if (mcm !== lastMcm) { lastMcm = mcm; mTapeN.textContent = mcm; }
 		if (onScrollFx) onScrollFx(y);
 	};
 	addEventListener('scroll', () => { if (!mq) { mq = true; requestAnimationFrame(onScroll); } }, { passive: true });
@@ -1019,17 +1058,49 @@ textarea.q-in { min-height: 92px; resize: vertical; }
 		};
 		setTimeout(() => { hero.classList.add('settled'); onScrollFx(scrollY); }, 2200);
 
+		// a laser level: it sweeps in once and levels the gold band, then follows a finger (or the cursor) over the hero
+		const lh = $('.lz-h'), lv = $('.lz-v'), ld = $('.lz-dot'), band = $('.band');
+		let pq = false, px = 0, py = 0, litT = null;
+		const place = (x, y) => {
+			lh.style.transform = `translate3d(0, ${y.toFixed(0)}px, 0)`;
+			lv.style.transform = `translate3d(${x.toFixed(0)}px, 0, 0)`;
+			ld.style.transform = `translate3d(${x.toFixed(0)}px, ${y.toFixed(0)}px, 0)`;
+		};
+		const paint = () => { pq = false; const r = hero.getBoundingClientRect(); place(px - r.left, py - r.top); };
+		const follow = (x, y) => { px = x; py = y; clearTimeout(litT); hero.classList.add('lit'); if (!pq) { pq = true; requestAnimationFrame(paint); } };
+		setTimeout(() => {
+			if (scrollY > heroH * .5 || hero.classList.contains('lit')) return;
+			const r = hero.getBoundingClientRect(), b = band.getBoundingClientRect();
+			const x = b.left - r.left + 18, y = b.top - r.top + b.height / 2, opt = { duration: 1300, easing: 'cubic-bezier(.3, .7, .2, 1)' };
+			place(x, y); hero.classList.add('lit');
+			lh.animate([{ transform: `translate3d(0, ${(y - 220).toFixed(0)}px, 0)` }, { transform: `translate3d(0, ${(y + 14).toFixed(0)}px, 0)`, offset: .75 }, { transform: `translate3d(0, ${y.toFixed(0)}px, 0)` }], opt);
+			lv.animate([{ transform: `translate3d(${(r.width - 30).toFixed(0)}px, 0, 0)` }, { transform: `translate3d(${x.toFixed(0)}px, 0, 0)` }], opt);
+			ld.animate([{ transform: `translate3d(${(r.width - 30).toFixed(0)}px, ${(y - 220).toFixed(0)}px, 0)` }, { transform: `translate3d(${x.toFixed(0)}px, ${(y + 14).toFixed(0)}px, 0)`, offset: .75 }, { transform: `translate3d(${x.toFixed(0)}px, ${y.toFixed(0)}px, 0)` }], opt)
+				.onfinish = () => { band.classList.add('shine'); litT = setTimeout(() => hero.classList.remove('lit'), 1500); };
+		}, 2900);
+		hero.addEventListener('touchstart', e => { const t = e.touches[0]; follow(t.clientX, t.clientY); }, { passive: true });
+		hero.addEventListener('touchmove', e => { const t = e.touches[0]; follow(t.clientX, t.clientY); }, { passive: true });
+		hero.addEventListener('touchend', () => { litT = setTimeout(() => hero.classList.remove('lit'), 900); }, { passive: true });
+
+		// phones: the print strip counts, and nudges once to show it swipes
+		const gal = $('#gal'), cards = $$('#gal .gf'), dots = $$('.gal-dots i');
+		if (getComputedStyle(gal).display === 'flex') {
+			const cIO = new IntersectionObserver(es => es.forEach(e => {
+				if (!e.isIntersecting) return;
+				const i = cards.indexOf(e.target);
+				$('#gal-n').textContent = i + 1; dots.forEach((dt, k) => dt.classList.toggle('on', k === i));
+			}), { root: gal, threshold: .6 });
+			cards.forEach(c => cIO.observe(c));
+			const nIO = new IntersectionObserver(es => es.forEach(e => {
+				if (!e.isIntersecting || gal.scrollLeft > 4) return;
+				nIO.disconnect();
+				setTimeout(() => { gal.scrollBy({ left: 90, behavior: 'smooth' }); setTimeout(() => gal.scrollBy({ left: -90, behavior: 'smooth' }), 650); }, 900);
+			}), { threshold: .5 });
+			nIO.observe(gal);
+		}
+
 		if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
-			// a laser level follows the cursor over the hero
-			const lh = $('.lz-h'), lv = $('.lz-v'), ld = $('.lz-dot');
-			let pq = false, px = 0, py = 0;
-			const paint = () => {
-				pq = false; const r = hero.getBoundingClientRect(), x = px - r.left, y = py - r.top;
-				lh.style.transform = `translate3d(0, ${y.toFixed(0)}px, 0)`;
-				lv.style.transform = `translate3d(${x.toFixed(0)}px, 0, 0)`;
-				ld.style.transform = `translate3d(${x.toFixed(0)}px, ${y.toFixed(0)}px, 0)`;
-			};
-			hero.addEventListener('pointermove', e => { px = e.clientX; py = e.clientY; hero.classList.add('lit'); if (!pq) { pq = true; requestAnimationFrame(paint); } }, { passive: true });
+			hero.addEventListener('pointermove', e => follow(e.clientX, e.clientY), { passive: true });
 			hero.addEventListener('pointerleave', () => hero.classList.remove('lit'));
 			// the main buttons lean toward the pointer
 			$$('.h-act .btn, .c-act .btn, #send').forEach(b => {
