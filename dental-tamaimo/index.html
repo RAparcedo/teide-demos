@@ -1143,5 +1143,28 @@ mark { background: linear-gradient(transparent 58%, rgba(244, 166, 207, .75) 58%
 	wake();
 })();
 </script>
+<!-- Teide demo views (cookie-clean variant, 27 Nov 2026): one ping per page load to the Cold-email-agent's counter. The counter
+     stores only the demo's name and the time, nothing about the visitor, and merges repeat pings itself; this page writes
+     NOTHING to a visitor's device. Opening any demo once with ?yo=1 marks that browser as Rodolfo's and it never counts
+     (?yo=0 undoes it); automated browsers (the factory's Playwright checks) never count. The demo's name is data-demo on
+     <html>, or else its folder in /teide-demos/<name>/. Source: demo-lane/shared/demo-views.snippet.html -->
+<script>
+(function () {
+  var ENDPOINT = 'https://teide-demo-views.pages.dev/v';
+  try {
+    var q = new URLSearchParams(location.search);
+    if (q.get('yo') === '1') localStorage.setItem('teide_yo', '1');
+    if (q.get('yo') === '0') localStorage.removeItem('teide_yo');
+    if (localStorage.getItem('teide_yo') === '1') return;
+  } catch (e) {}
+  if (navigator.webdriver) return;
+  var m = location.pathname.match(/\/teide-demos\/([a-z0-9][a-z0-9-]*)/i);
+  var slug = (document.documentElement.getAttribute('data-demo') || (m && m[1]) || '').toLowerCase();
+  if (!/^[a-z0-9][a-z0-9-]{0,59}$/.test(slug)) return;
+  var url = ENDPOINT + '?d=' + encodeURIComponent(slug);
+  try { if (navigator.sendBeacon && navigator.sendBeacon(url)) return; } catch (e) {}
+  try { fetch(url, { method: 'POST', mode: 'no-cors', keepalive: true }); } catch (e) {}
+})();
+</script>
 </body>
 </html>
